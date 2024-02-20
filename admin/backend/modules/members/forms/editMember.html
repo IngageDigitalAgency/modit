@@ -1,0 +1,16 @@
+<script type="text/javascript">
+$.ajax({
+	url: "/modit/ajax/addContent/members",
+	data: {m_id:%%m_id%%,j_id:<!@@(DRIVER_FOLDER)@@!>},
+	success: function( obj, status, xhr ) {
+		try {
+			obj = JSON.parse(obj);
+			showPopup(obj.html);
+			var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+		}
+		catch(err) {
+			alert(err.Message);
+		}
+	}
+});
+</script>

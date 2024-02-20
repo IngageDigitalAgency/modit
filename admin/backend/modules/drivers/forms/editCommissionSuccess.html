@@ -1,0 +1,12 @@
+<div class="title">Edit a Commission Detail</div>
+%%errorMessage%%
+<script type="text/javascript">
+$.ajax({
+	url: "/modit/ajax/getCommissionDetails/drivers",
+	data: {p_id:%%delivery_id%%},
+	success: function( obj, status, xhr ) {
+		$("#pmt-2").html(obj);
+	}
+});
+closeAltPopup();
+</script>

@@ -1,0 +1,22 @@
+<!if("%%id%%"!="0")!>
+<script type="text/javascript" src="/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="/css/jquery-ui.css" />
+
+<div id="billingReport"></div>
+<script type="text/javascript">
+$.ajax({
+	url: "/ajax/render",
+	data: {t_id:121},
+	success: function( obj, status, xhr ) {
+		try {
+			h = JSON.parse(obj);
+			$("#billingReport").replaceWith(h.html);
+			var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); 
+		}
+		catch(err) {
+		}
+	}
+});
+</script>
+<!fi!>

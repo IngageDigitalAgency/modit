@@ -1,0 +1,11 @@
+<div></div>
+<script type="text/javascript">
+closeAltPopup();
+loadAddresses();
+<!if(strlen("%%geocode:geometry:location:lat%%")>0)!>
+$("input[name=latitude]").val("%%geocode:geometry:location:lat%%")
+<!fi!>
+<!if(strlen("%%geocode:geometry:location:lng%%")>0)!>
+$("input[name=longitude]").val("%%geocode:geometry:location:lng%%")
+<!fi!>
+</script>

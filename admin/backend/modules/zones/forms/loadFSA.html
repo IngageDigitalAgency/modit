@@ -1,0 +1,20 @@
+<table class="listing" aria-label="FSA">
+	<thead>
+		<tr>
+			<th>FSA</th>
+			<th>Enabled</th>
+			<th>Edit</th>
+			<th>Remove</th>
+		</tr>
+	</thead>
+	<tbody>
+		%%rows%%
+	</tbody>
+</table>
+<form method="post" id="FSAPager">
+	<input type="hidden" name="pagenum" value="%%pageNum%%" />
+%%pagination%%
+</form>
+<div class="form-actions">
+	<input class="def_field_submit" type="button" onclick="addFSA(%%id%%,%%j_id%%,0);return false;" value="Add FSA" />
+</div>

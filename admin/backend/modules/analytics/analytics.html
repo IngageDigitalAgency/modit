@@ -1,0 +1,63 @@
+<code>
+<link media="screen" type="text/css" rel="stylesheet" href="%%global:modules%%/analytics/analytics.css" />
+<link media="screen" type="text/css" rel="stylesheet" href="%%global:admincss%%/smoothness.css" />
+<script type="text/javascript" src="/admin/js/flot.js"></script>
+<script type="text/javascript" src="%%global:modules%%/analytics/analytics.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+// Load the Visualization API and the piechart package.
+google.load('visualization', '1.0', {'packages':['corechart']});
+google.setOnLoadCallback(chartsReady);
+function chartsReady() {
+}
+</script>
+
+</code>
+<div id='page'>
+	<div id='mainContent'>
+		<div id='mainNav'>
+			<div class='closer'><a href='#' onclick='toggleNav(this);return false;'><img src='/admin/images/right-arrow.png' alt='open menu' /></a></div>
+			<div class='inner'></div>
+			<div class='break'></div>	
+		</div>
+		<div id='leftContent'>
+			<div id='contentTree'>
+				<div class='left' id='accordion'>
+					<h3 class='section'><a class='subtitle' href='#'>Demographics</a></h3>
+					<div>
+						<div><a href='#' onclick='getDemo(this,"language");return false;'>Language</a></div>
+						<div><a href='#' onclick='getDemo(this,"country");return false;'>Country/Territory</a></div>
+						<div><a href='#' onclick='getDemo(this,"city");return false;'>City</a></div>
+					</div>
+					<h3 class='section'><a class='subtitle' href='#'>System</a></h3>
+					<div>
+						<div><a href='#' onclick='getDemo(this,"browser");return false;'>Browser</a></div>
+						<div><a href='#' onclick='getDemo(this,"operatingSystem");return false;'>Operating System</a></div>
+						<div><a href='#' onclick='getDemo(this,"networkLocation");return false;'>Service Provider</a></div>
+						<div><a href='#' onclick='getDemo(this,"screenResolution");return false;'>Screen Resolution</a></div>
+					</div>
+					<h3 class='section'><a class='subtitle' href='#'>Pages</a></h3>
+					<div>
+						<div><a href='#' onclick='getDemo(this,"pagePath");return false;'>By Page</a></div>
+						<div><a href='#' onclick='getDemo(this,"keyword");return false;'>Keyword Searches</a></div>
+						<div><a href='#' onclick='getDemo(this,"referralPath");return false;'>By Referrer</a></div>
+					</div>
+				</div>
+				<div class="break"></div>
+			</div>
+			<div id='pageInfo'>
+			</div>
+			<div id='status'></div>
+			<div class='break'></div>
+		</div>
+		<div id='middleContent'>
+			%%injector%%
+			<div class='break'></div>
+		</div>
+	</div>
+	<div id='rightContent'>
+			
+	</div>
+	<div class='break'></div>
+</div>
+<script type='text/javascript' src='%%global:modules%%/analytics/finalize.js'></script>
