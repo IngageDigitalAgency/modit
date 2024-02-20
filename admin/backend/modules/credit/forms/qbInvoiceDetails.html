@@ -1,0 +1,46 @@
+<div class="title centered">Quickbooks Invoice #%%qb_invoice_id%%</div>
+<div class="row">
+	<div class="col-xs-16">
+<table aria-label="" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Order #</th><th>Date</th><th>Service</th><th>Total</th><th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%rows%%
+			</tbody>
+		</table>
+	</div>
+</div>
+<form method="post" action="/modit/ajax/qbInvoiceDetails/credit">
+	<div class="row">
+		<div class="col-xs-13">
+			%%pagination%%
+		</div>
+		<div class="col-xs-3 text-right">
+			%%pager%%
+		</div>
+	</div>
+	%%qbInvoiceDetails%%%%i_id%%%%pagenum%%
+</form>
+<script type="text/javascript">
+altPagination = function(pg,el) {
+	f = $(el).closest("form");
+	if (pg >= 0) $(f).find("input[name='pagenum']").val(pg);
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				showPopup(h.html);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+$("#pager").change(function() {
+	altPagination(-1,this);
+});
+</script>

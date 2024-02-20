@@ -1,0 +1,182 @@
+<div id="trails">
+	<div id="map-wrapper">
+		<div id='toggler' onclick="javascript:toggleDirections();">Remove Route</div>
+		<div id="map" style="width: 880px; height: 300px;"></div>
+	</div>
+</div>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=%%config:google_maps_key%%&sensor=false"></script>
+<script type="text/javascript">
+	function toggleDirections() {
+		var t = $("#toggler")[0];
+		if (t.innerHTML == "Remove Route") {
+			renderer.setMap(null);
+			t.innerHTML = "Show Route";
+		}
+		else {
+			t.innerHTML = "Remove Route";
+			router.route(route,function(result,status) {
+				if (status == google.maps.DirectionsStatus.OK) {
+					renderer.setMap(map);
+					renderer.setDirections(result);
+				}
+			});
+		}
+	}
+	var renderer = null;
+	var router = null;
+	var route = null;
+	var minZ = 9;
+	var maxZ = 13;
+	var map = null;
+	var geocoder = null;
+	var polyLine = null;
+	var allowedBounds;
+	var directions = null;
+	var xxx = "%%title%%";
+	var google_route = "%%notes%%".split("|");
+	function CustomGetTileUrl(a,b) {
+		var z = 17 - b;
+		var f = "/images/maps/"+b+"_"+a.x+"_"+a.y+".jpg";
+		return f;
+	}
+
+	function initialize() {
+		var latlng = new google.maps.LatLng(43.15, -79.3);
+		var myOptions = {
+			zoom: minZ,
+			minZoom: minZ,
+			maxZoom: maxZ,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+		geocoder = new google.maps.Geocoder();
+
+		var BuildingsLayer = new google.maps.ImageMapType({
+    	getTileUrl: function(coord, zoom) {
+        return CustomGetTileUrl(coord,zoom);
+    	},
+    	tileSize: new google.maps.Size(256, 256),
+    	isPng: true
+		});
+		//map.overlayMapTypes.push(BuildingsLayer);
+		//allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.9, -79.5),new google.maps.LatLng(43.335,-79.1));
+		renderer = new google.maps.DirectionsRenderer;
+		router = new google.maps.DirectionsService;
+		var waypoints = [];
+		if (google_route.length > 2) {
+			for(i = 1; i < google_route.length-2; i++) {
+				waypoints.push({
+					location: google_route[i],
+					stopover:false
+				});
+			}
+		}
+		route = {
+			origin: google_route[0],
+			destination: google_route[google_route.length-1],
+			waypoints: waypoints,
+			travelMode: google.maps.TravelMode.DRIVING
+		};
+		router.route(route,function(result,status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				renderer.setMap(map);
+				renderer.setDirections(result);
+			}
+		});
+		google.maps.event.addListener(map, "zoom_changedxx", function() {
+			var z = map.getZoom() - 11;
+			switch(z) {
+				case 0:
+					allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.9, -79.5),new google.maps.LatLng(43.335,-79.1));
+					break;
+				case 1:
+					allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.85, -79.7),new google.maps.LatLng(43.335,-78.9));
+					break;
+				case 2:
+					allowedBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.85, -79.7),new google.maps.LatLng(43.335,-78.9));
+					break;
+				default:
+			}
+		});
+		google.maps.event.addListener(map, "dragend", function() {
+			checkBounds();
+		});
+		google.maps.event.addListener(map, 'maptypeid_changed', function() {
+			if (map.overlayMapTypes.length > 0)
+	  		map.overlayMapTypes.removeAt(0);
+		});
+	}
+
+	function checkBounds() {
+		// Perform the check and return if OK
+		if (allowedBounds.contains(map.getCenter())) {
+			return;
+		}
+		// It`s not OK, so find the nearest allowed point and move there
+		var C = map.getCenter();
+		var X = C.lng();
+		var Y = C.lat();
+
+		var AmaxX = allowedBounds.getNorthEast().lng();
+		var AmaxY = allowedBounds.getNorthEast().lat();
+		var AminX = allowedBounds.getSouthWest().lng();
+		var AminY = allowedBounds.getSouthWest().lat();
+
+		if (X < AminX) {X = AminX;}
+		if (X > AmaxX) {X = AmaxX;}
+		if (Y < AminY) {Y = AminY;}
+		if (Y > AmaxY) {Y = AmaxY;}
+		//alert ("Restricting "+Y+" "+X);
+		map.setCenter(new google.maps.LatLng(Y,X));
+	}
+	
+	function openMarker(marker, info, event) {
+		var w = new google.maps.InfoWindow();
+		w.setContent(info);
+		w.setPosition(event.latLng);
+		w.open(map);
+	}
+
+	function setPt(point, info, image) {
+		if (point) {
+			var marker = new google.maps.Marker({
+				position: point,
+				animation: google.maps.Animation.DROP,
+				map: map,
+				icon: image
+			});
+			google.maps.event.addListener(marker,'click',function (event) {
+				openMarker(this, info, event);
+			});
+		}
+	}
+
+	function showAddress(address, info, image, lng, lat) {
+		info = info.replace("<br/><br/>","<br/>");
+		info = info.replace(/&quot;/g,"'");
+		if (geocoder) {
+			if (lat && lng && (lat != 0 && lng != 0)) {
+				var a = "<a class='directions' target='_new' href='http://maps.google.com/maps?f=d&hl=en&ie=UTF8&daddr=".concat(escape("(".concat(lat,",",lng,")"))).concat("'>Directions</a>");
+				info += a;
+				setPt(new google.maps.LatLng(lat,lng), info, image);
+			}
+			else {
+				geocoder.geocode( { 'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						setPt(results[0].geometry.location, info, image);
+					}
+				});
+			}
+		}
+	}
+
+	function populate() {
+%%stores%%
+	}
+$(document).ready(function() {
+	initialize(); 
+	populate();
+});
+//]]>
+</script>

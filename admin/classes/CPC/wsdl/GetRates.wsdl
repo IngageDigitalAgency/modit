@@ -1,0 +1,30 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:rate="http://www.canadapost.ca/ws/soap/ship/rate/v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <rate:get-rates-request>
+         <!--You may enter the following 2 items in any order-->
+         <mailing-scenario>
+            <customer-number>%%customer%%</customer-number>
+            <contract-id>%%contract%%</contract-id>
+            <!--You may enter the following 9 items in any order-->
+            <parcel-characteristics>
+               <!--You may enter the following 5 items in any order-->
+               <weight>1</weight>
+            </parcel-characteristics>
+            <origin-postal-code>%%shipper:postalcode%%</origin-postal-code>
+            <destination>
+               <!--You have a CHOICE of the next 3 items at this level-->
+               <domestic>
+                  <postal-code>%%customer::postalcode%%</postal-code>
+               </domestic>
+               <!--<united-states>
+                  <zip-code>?</zip-code>
+               </united-states>
+               <international>
+                  <country-code>?</country-code>
+               </international>-->
+            </destination>
+         </mailing-scenario>
+      </rate:get-rates-request>
+   </soapenv:Body>
+</soapenv:Envelope>

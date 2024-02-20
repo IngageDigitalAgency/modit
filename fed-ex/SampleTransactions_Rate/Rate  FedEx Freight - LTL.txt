@@ -1,0 +1,178 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v9="http://fedex.com/ws/rate/v9">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v9:RateRequest>
+         <v9:WebAuthenticationDetail>
+                       <v9:CspCredential>
+               <v9:Key>"Input Your Information"</v9:Key>
+               <v9:Password>"Input Your Information"</v9:Password>
+            </v9:CspCredential>
+            <v9:UserCredential>
+               <v9:Key>"Input Your Information"</v9:Key>
+               <v9:Password>"Input Your Information"</v9:Password>
+            </v9:UserCredential>
+         </v9:WebAuthenticationDetail>
+         <v9:ClientDetail>
+            <v9:AccountNumber>"Input Your Information"</v9:AccountNumber>
+            <v9:MeterNumber>"Input Your Information"</v9:MeterNumber>
+            <v9:IntegratorId>12345</v9:IntegratorId>
+            <v9:Region>US</v9:Region>
+            <v9:Localization>
+               <v9:LanguageCode>EN</v9:LanguageCode>
+               <v9:LocaleCode>ES</v9:LocaleCode>
+            </v9:Localization>
+         </v9:ClientDetail>
+         <v9:TransactionDetail>
+            <v9:CustomerTransactionId>Rate  FedEx Freight - LTL </v9:CustomerTransactionId>
+            <v9:Localization>
+               <v9:LanguageCode>EN</v9:LanguageCode>
+               <v9:LocaleCode>ES</v9:LocaleCode>
+            </v9:Localization>
+         </v9:TransactionDetail>
+         <v9:Version>
+            <v9:ServiceId>crs</v9:ServiceId>
+            <v9:Major>9</v9:Major>
+            <v9:Intermediate>0</v9:Intermediate>
+            <v9:Minor>0</v9:Minor>
+         </v9:Version>
+         <v9:ReturnTransitAndCommit>1</v9:ReturnTransitAndCommit>
+         <v9:VariableOptions>FREIGHT_GUARANTEE</v9:VariableOptions>
+         <v9:RequestedShipment>
+            <v9:ShipTimestamp>2013-06-13T09:30:47-05:00</v9:ShipTimestamp>
+            <v9:DropoffType>REGULAR_PICKUP</v9:DropoffType>
+            <v9:ServiceType>FEDEX_FREIGHT</v9:ServiceType>
+            <v9:PackagingType>YOUR_PACKAGING</v9:PackagingType>
+            <v9:Shipper>
+               <v9:AccountNumber>"Input Your Information"</v9:AccountNumber>
+               <v9:Contact>
+                  <v9:PersonName>ROHIT BORSE</v9:PersonName>
+                  <v9:Title>Mr.</v9:Title>
+                  <v9:CompanyName>DEOYAROHIT0705</v9:CompanyName>
+                  <v9:PhoneNumber>9762308621</v9:PhoneNumber>
+                  <v9:PhoneExtension>02033469</v9:PhoneExtension>
+                  <v9:PagerNumber>9762308621</v9:PagerNumber>
+                  <v9:FaxNumber>9762308621</v9:FaxNumber>
+                  <v9:EMailAddress>Rohit*Borse@DeoyaRohit.com</v9:EMailAddress>
+               </v9:Contact>
+               <v9:Address>
+                  <v9:StreetLines>SHIPPER ADDRESS LINE 1</v9:StreetLines>
+                  <v9:StreetLines>SHIPPER ADDRESS LINE 2</v9:StreetLines>
+                  <v9:City>SPRING</v9:City>
+                  <v9:StateOrProvinceCode>TX</v9:StateOrProvinceCode>
+                  <v9:PostalCode>77388</v9:PostalCode>
+                  <v9:UrbanizationCode>AR</v9:UrbanizationCode>
+                  <v9:CountryCode>US</v9:CountryCode>
+                  <v9:Residential>0</v9:Residential>
+               </v9:Address>
+            </v9:Shipper>
+            <v9:Recipient>
+               <v9:AccountNumber>"Input Your Information"</v9:AccountNumber>
+               <v9:Contact>
+                  <v9:PersonName>DEOYANEE BHADANE</v9:PersonName>
+                  <v9:Title>Ms.</v9:Title>
+                  <v9:CompanyName>DEOYAROHIT0705</v9:CompanyName>
+                  <v9:PhoneNumber>9762308621</v9:PhoneNumber>
+                  <v9:PhoneExtension>02033469</v9:PhoneExtension>
+                  <v9:PagerNumber>9762308621</v9:PagerNumber>
+                  <v9:FaxNumber>9762308621</v9:FaxNumber>
+                  <v9:EMailAddress>Deoyanee*Bhadane@DeoyaRohit.com</v9:EMailAddress>
+               </v9:Contact>
+               <v9:Address>
+                  <v9:StreetLines>RECIPIENT ADDRESS LINE</v9:StreetLines>
+                  <v9:StreetLines>RECIPIENT ADDRESS LINE</v9:StreetLines>
+                  <v9:City>ETOBICOKE</v9:City>
+                  <v9:StateOrProvinceCode>ON</v9:StateOrProvinceCode>
+                  <v9:PostalCode>M9C5K6</v9:PostalCode>
+                  <v9:UrbanizationCode>ON</v9:UrbanizationCode>
+                  <v9:CountryCode>CA</v9:CountryCode>
+                  <v9:Residential>0</v9:Residential>
+               </v9:Address>
+            </v9:Recipient>
+            <v9:RecipientLocationNumber>DEN001</v9:RecipientLocationNumber>
+            <v9:Origin>
+               <v9:Contact>
+                  <v9:PersonName>ROHIT BORSE</v9:PersonName>
+                  <v9:Title>Mr.</v9:Title>
+                  <v9:CompanyName>DEOYAROHIT0705</v9:CompanyName>
+                  <v9:PhoneNumber>9762308621</v9:PhoneNumber>
+                  <v9:PhoneExtension>02033469</v9:PhoneExtension>
+                  <v9:PagerNumber>9762308621</v9:PagerNumber>
+                  <v9:FaxNumber>9762308621</v9:FaxNumber>
+                  <v9:EMailAddress>Rohit*Borse@DeoyaRohit.com</v9:EMailAddress>
+               </v9:Contact>
+               <v9:Address>
+                  <v9:StreetLines>SHIPPER ADDRESS LINE 1</v9:StreetLines>
+                  <v9:StreetLines>SHIPPER ADDRESS LINE 2</v9:StreetLines>
+                  <v9:City>SPRING</v9:City>
+                  <v9:StateOrProvinceCode>TX</v9:StateOrProvinceCode>
+                  <v9:PostalCode>77388</v9:PostalCode>
+                  <v9:UrbanizationCode>AR</v9:UrbanizationCode>
+                  <v9:CountryCode>US</v9:CountryCode>
+                  <v9:Residential>0</v9:Residential>
+               </v9:Address>
+            </v9:Origin>
+            <v9:ShippingChargesPayment>
+               <v9:PaymentType>SENDER</v9:PaymentType>
+               <v9:Payor>
+                  <v9:AccountNumber>"Input Your Information"</v9:AccountNumber>
+                  <v9:CountryCode>US</v9:CountryCode>
+               </v9:Payor>
+            </v9:ShippingChargesPayment>
+            <v9:FreightShipmentDetail>
+               <v9:FedExFreightAccountNumber>377221745</v9:FedExFreightAccountNumber>
+               <v9:FedExFreightBillingContactAndAddress>
+                  <v9:Address>
+                     <v9:StreetLines>2200 FORWARD DR</v9:StreetLines>
+                     <v9:StreetLines>2200 FORWARD DR</v9:StreetLines>
+                     <v9:City>SPRING</v9:City>
+                     <v9:StateOrProvinceCode>TX</v9:StateOrProvinceCode>
+                     <v9:PostalCode>77388</v9:PostalCode>
+                     <v9:UrbanizationCode>AR</v9:UrbanizationCode>
+                     <v9:CountryCode>US</v9:CountryCode>
+                     <v9:Residential>0</v9:Residential>
+                  </v9:Address>
+               </v9:FedExFreightBillingContactAndAddress>
+               <v9:Role>SHIPPER</v9:Role>
+               <v9:PaymentType>PREPAID</v9:PaymentType>
+               <v9:Coupons/>
+               <v9:ClientDiscountPercent>0</v9:ClientDiscountPercent>
+               <v9:PalletWeight>
+                  <v9:Units>LB</v9:Units>
+                  <v9:Value>500.0</v9:Value>
+               </v9:PalletWeight>
+               <v9:ShipmentDimensions>
+                  <v9:Length>180</v9:Length>
+                  <v9:Width>93</v9:Width>
+                  <v9:Height>106</v9:Height>
+                  <v9:Units>IN</v9:Units>
+               </v9:ShipmentDimensions>
+               <v9:Comment>ESBD2600 (FXF - QA-B) - PRODUCTION - 2011-02-01T12:47:00-06:00</v9:Comment>
+               <v9:LineItems>
+                  <v9:FreightClass>CLASS_050</v9:FreightClass>
+                  <v9:Packaging>BAG</v9:Packaging>
+                  <v9:Description>LineItemsDescription</v9:Description>
+                  <v9:Weight>
+                     <v9:Units>LB</v9:Units>
+                     <v9:Value>19999.0</v9:Value>
+                  </v9:Weight>
+                  <v9:Dimensions>
+                     <v9:Length>180</v9:Length>
+                     <v9:Width>93</v9:Width>
+                     <v9:Height>106</v9:Height>
+                     <v9:Units>IN</v9:Units>
+                  </v9:Dimensions>
+                  <v9:Volume>
+                     <v9:Units>CUBIC_FT</v9:Units>
+                     <v9:Value>28.43</v9:Value>
+                  </v9:Volume>
+               </v9:LineItems>
+            </v9:FreightShipmentDetail>
+            <v9:DeliveryInstructions>DeliveryInstructions</v9:DeliveryInstructions>
+            <v9:BlockInsightVisibility>1</v9:BlockInsightVisibility>
+            <v9:RateRequestTypes>ACCOUNT</v9:RateRequestTypes>
+            <v9:PackageCount>1</v9:PackageCount>
+            <v9:PackageDetail>INDIVIDUAL_PACKAGES</v9:PackageDetail>
+         </v9:RequestedShipment>
+      </v9:RateRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,8 @@
+%%products%%
+<script type='text/javascript'>
+$('select[name=currency_id]').change(function() {
+	setCurrency(this);
+});
+var c = "%%session:cart:header:currency_id%%";
+$('select[name=currency_id]').val(c);
+</script>
