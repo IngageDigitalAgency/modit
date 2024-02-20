@@ -1,0 +1,106 @@
+<div class='title'>Add a Content Page</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">MainInfo</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-4">SEO</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			%%customTab%%
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("pageForm","/modit/ajax/showPageProperties/menu",$("#popup"));return false;' id='pageForm'>
+			<div id='tabs-1'>
+<table aria-label="" class='propertyEditing'>
+					<tr>
+						<th class="a-left" scope="col">Page Name:</th><td>%%title%% %%titleError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Sub-Title:</th><td>%%alternate_title%% %%alternate_titleError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Browser Title:</th><td>%%browser_title%% %%browser_titleError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Parent:</th><td>%%p_id%% %%pidError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Template:</th><td>%%template_id%% %%template_idError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Published:</th><td>%%published%% %%publishedError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Default Page:</th><td>%%default_page%% %%default_pageError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Secure Link:</th><td>%%secure%% %%secureError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Icon Class:</th><td>%%icon_class%% %%icon_classError%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Notes:</th><td>%%notes%% %%notesError%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+<table role="presentation" aria-label="">
+					<tr>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image" value="%%image%%" />
+							<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+							<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+							<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser</div>
+				%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+				<div class='title'>Description</div>
+				%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+			</div>
+			<div id='tabs-4'>
+<table aria-label="">
+					<tr>
+						<th class="a-left" scope="col">SEO Url:</th><td>%%seo_url%% %%seo_urlError%%</td>
+					</tr>
+					<tr>
+						<th scope="col">Keywords</th>
+						<td>%%meta_keywords%%</td>
+					</tr>
+					<tr>
+						<th scope="col">Description</th>
+						<td>%%meta_description%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'><strong>Note: All text should be entered as a single line (no Enter keys)</strong></td>
+					</tr>
+				</table>
+			</div>
+			%%customInfo%%
+			<input type='hidden' action='%%form:action%%'>
+			%%showPageProperties%% %%test%% %%id%% %%type%% %%fromContent%%
+			%%submit%%
+			<div class='break'></div>
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$( "#tabs" ).tabs();
+/*initTinyMCE();*/
+//]]> 
+</script> 
+</code>

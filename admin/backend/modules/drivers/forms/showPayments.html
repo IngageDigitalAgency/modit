@@ -1,0 +1,28 @@
+<div>
+	<div class="title">Payments for %%driver:firstname%% %%driver:lastname%%</div>
+role="presentation"
+		<thead>
+			<tr>
+				<th scope="col">Type</th>
+				<th scope="col">Date</th>
+				<th scope="col">Invoice</th>
+				<th scope="col">Commissionable Amt</th>
+				<th scope="col"></th>
+				<th scope="col">%-age</th>
+				<th scope="col">Calculated</th>
+				<th scope="col">Override</th>
+			</tr>
+		</thead>
+		<tbody>%%xpayments,false%%</tbody>
+		<tfoot>
+			<tr>
+				<th scope="col" colspan='2' scope="col"></th>
+				<th scope="col" class="a-right">%%xxct%%</th>
+				<th scope="col" class="a-right">%%xxbase%%</th>
+				<th scope="col" colspan='2' class='a-right'>Total:</th>
+				<th scope="col" class="a-right">%%commission%%</th>
+				<th scope="col" class="a-right">%%override%%</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

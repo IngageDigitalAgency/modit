@@ -1,0 +1,112 @@
+<div id="mobile-details">
+	<div id="mobile-header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2"><a href="/routes"><em class="fa fa-chevron-left"></em></a></div>
+				<div class="col-xs-12">ORDER: %%order_id%%</div>
+				<div class="col-xs-2"><em class="fa fa-search"></em></div>
+			</div>
+		</div>
+	</div>
+	<div class="map">
+		<div class="container">
+			<div class="row top20">
+				<div class="col-xs-12">
+					%%action:line1%%<br/>
+<!if(strlen("%%action:line2%%")>0)!>
+					%%action:line2%%<br/>
+<!fi!>
+					%%action:city%%, %%action:provinceCode%% %%action:postalcode%%
+				</div>
+				<div class="col-xs-4">
+					<img src="/images/icons/map-pin-icon.png" alt="Map" />
+				</div>
+			</div>
+			<div class="row top10 bottom10">
+				<div class="col-xs-6">
+<!if("%%IS_ANDROID%%"==1)!>
+					<a href="geo:%%pickup:latitude%%,%%pickup:longitude%%" class="btn red-bg form-control">MAP</a>
+<!else!>
+					<a href="http://maps.apple.com/?ll=%%pickup:latitude%%,%%pickup:longitude%%" class="btn red-bg form-control">MAP</a>
+<!fi!>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+<!if("%%showClient%%"=="1")!>
+<div class="row top10">
+				<div class="col-xs-6">Client:</div>
+				<div class="col-xs-10"><strong><em>%%client:company%%</em></strong> <a href="tel:%%client:phone1%%">%%client:phone1%%</a></div>
+</div>
+<!fi!>
+		<div class="pickup top10 bottom10">
+			<div class="row ul">
+				<div class="col-xs-16 ">Pick Up From</div>
+			</div>
+			<div class="row top10">
+				<div class="col-xs-6">P/U Time:</div>
+				<div class="col-xs-10">%%pickup:scheduled_date%%</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">Company:</div>
+				<div class="col-xs-10">%%pickup:company%%</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">Name:</div>
+				<div class="col-xs-10">%%pickup:firstname%% %%pickup:lastname%%</div>
+			</div>
+			<div class="row ul">
+				<div class="col-xs-6">Phone:</div>
+				<div class="col-xs-10 bottom10"><a href="tel:%%pickup:phone1%%">%%pickup:phone1%%</a></div>
+			</div>
+		</div>
+		<div class="delivery bottom10">
+			<div class="row ul">
+				<div class="col-xs-16">Deliver To</div>
+			</div>
+			<div class="row top10">
+				<div class="col-xs-6">Del Time:</div>
+				<div class="col-xs-10">%%delivery:scheduled_date%%</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">Company:</div>
+				<div class="col-xs-10">%%delivery:company%%</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">Address:</div>
+				<div class="col-xs-10">
+					%%delivery:line1%%
+<!if(strlen("%%delivery:line2%%"))!><br/>%%delivery:line2%%<!fi!>
+<br/>%%delivery:city%% %%delivery:provinceCode%% %%delivery:postalcode%%
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6">Name:</div>
+				<div class="col-xs-10">%%delivery:firstname%% %%delivery:lastname%%</div>
+			</div>
+			<div class="row ul">
+				<div class="col-xs-6">Phone:</div>
+				<div class="col-xs-10 bottom10"><a href="tel:%%delivery:phone1%%">%%delivery:phone1%%</a></div>
+			</div>
+		</div>
+		<div class="button bottom10">
+			<div class="row">
+<!if("%%service_type%%"=="P")!>
+				<div class="col-xs-12 col-xs-offset-2">
+					<a href="/mobile-pickup?c_id=%%id%%" class="btn btn-primary form-control">VIEW ORDER DETAILS (P)</a>
+				</div>
+<!else!>
+<!if("%%pu_action:completed%%"!="1")!>
+				<div class="col-xs-12 col-xs-offset-2">
+					<div class="alert alert-danger text-center">The <a href="/mobile-pickup?c_id=%%pu_action:id%%" style="text-decoration:underline;font-style:italic">Pickup</a> has not been completed</div>
+				</div>
+<!fi!>
+				<div class="col-xs-12 col-xs-offset-2">
+					<a href="/mobile-delivery?c_id=%%id%%" class="btn btn-primary form-control">VIEW ORDER DETAILS (D)</a>
+				</div>
+<!fi!>
+			</div>
+		</div>
+	</div>
+</div>
