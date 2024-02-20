@@ -1,0 +1,72 @@
+<table aria-label="Inv1" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:12%;"><img class="def_field_image" src="http://%%FULLDOMAIN%%/images/logos/kjv-courier.jpg" alt="KJV Courier" style="max-width:100px;" /></td>
+		<td style="width:55%;"> </td>
+		<td><strong>KJV Courier Service</strong><br/>3858 Chesswood Drive<br/>Downsview, ON M3J 2W6<br/>Phone: (416) 398-5155<br/>Fax: (416) 398-7077</td>
+	</tr>
+</table>
+<hr/>
+<table aria-label="Inv2" style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:50%;font-size:14px;">
+			<strong>%%company%%</strong><br/>
+Attn: %%firstname%% %%lastname%%<br/>
+			%%address:line1%%<br/>
+<!if(strlen("%%address:line2%%")>0)!>
+			%%address:line2%%<br/>
+<!fi!>
+			%%address:city%%, %%address:provinceCode%% %%address:postalcode%%
+		</td>
+		<td style="width:50%;font-size:14px;text-align:right;">
+			Invoice Date: <strong><!@@(date("d-M-Y", strtotime("%%request:d_id%%")))@@!></strong>
+<br/>Invoice #: <strong>%%qb_invoice_id%%C</strong>
+<!if(strlen("%%custom_reference_number%%") > 0)!>
+<br/>Reference #: <strong>%%custom_reference_number%%</strong>
+<!fi!>
+		</td>
+	</tr>
+</table>
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE SUMMARY</strong></div>
+<table aria-label="INVOICE SUMMARY" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr><th style="width:25%;" class="a-left" scope="col">Total Invoices:</th><td style="width:15%;text-align:right;">%%count%%</td><td style="width:60%;"></td></tr>
+	<tr><th class="a-left" scope="col">Subtotal:</th><td style="text-align:right;">%%subtotal%%</td></tr>
+	<tr><th class="a-left" scope="col">Taxes:</th><td style="text-align:right;">%%taxes%%</td><td></td></tr>
+<!if("%%paid_amount%%"!="$0.00")!>
+	<tr><th class="a-left" scope="col">Total:</th><td style="text-align:right;"><strong>%%total%%</strong></td><td></td></tr>
+	<tr><th class="a-left" scope="col">Paid:</th><td style="text-align:right;"><strong>%%paid_amount%%</strong></td><td></td></tr>
+	<tr style="background-color:darkgray;color:#ffffff;"><th class="a-left" scope="col">Balance:</th><td style="text-align:right;"><strong>%%balance%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!else!>
+	<tr style="background-color:darkgray;color:#ffffff;"><th class="a-left" scope="col">Total:</th><td style="text-align:right;"><strong>%%total%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!fi!>
+</table>
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE DETAILS:</strong></div>
+<table aria-label="INVOICE DETAILS" style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<thead>
+		<tr>
+			<th style="width:40%;">Company</th>
+			<th style="width:20%;">Invoice #:</th>
+			<th style="width:20%;text-align:right;"># of Orders</th>
+			<th style="width:20%;text-align:right">Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		%%invoices%%
+	</tbody>
+</table>
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE SUMMARY</strong></div>
+<table aria-label="INVOICE SUMMARY" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr><th style="width:25%;" class="a-left" scope="col">Total Invoices:</th><td style="width:15%;text-align:right;">%%count%%</td><td style="width:60%;"></td></tr>
+	<tr><th class="a-left" scope="col">Subtotal:</th><td style="text-align:right;">%%subtotal%%</td></tr>
+	<tr><th class="a-left" scope="col">Taxes:</th><td style="text-align:right;">%%taxes%%</td><td></td></tr>
+<!if("%%paid_amount%%"!="$0.00")!>
+	<tr><th class="a-left" scope="col">Total:</th><td style="text-align:right;"><strong>%%total%%</strong></td><td></td></tr>
+	<tr><th class="a-left" scope="col">Paid:</th><td style="text-align:right;"><strong>%%paid_amount%%</strong></td><td></td></tr>
+	<tr style="background-color:darkgray;color:#ffffff;"><th class="a-left" scope="col">Balance:</th><td style="text-align:right;"><strong>%%balance%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!else!>
+	<tr style="background-color:darkgray;color:#ffffff;"><th class="a-left" scope="col">Total:</th><td style="text-align:right;"><strong>%%total%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!fi!>
+</table>
+<hr/>

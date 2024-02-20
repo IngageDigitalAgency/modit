@@ -1,0 +1,131 @@
+<div class="container">
+	<div class="row">
+		<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center">%%errorMessage%%</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center">
+			<div class="alert alert-info">Current route for %%driver:company%% - %%driver:firstname%% %%driver:lastname%%</div>
+		</div>	
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div id="map" class="col-xs-16" style="height:90vh;">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=false&libraries=places&key=%%config:google_maps_key%%"></script>
+<script type='text/javascript'>
+var stores = Array(), markers = [], map = null, mc = null, geocoder = null, idx, centered = false, openWindow = null;
+mapDriver = function(addresses,route) {
+	mapInitialize();
+	var mcOptions = {gridSize: 50, maxZoom: 15};
+	if (addresses.length > 0) {
+		addresses[0].marker = "/images/map_markers/green.png";
+		addresses[addresses.length-1].marker = "/images/map_markers/yellow.png";
+	}
+	for(idx = 0; idx < addresses.length; idx++) {
+		//showAddress(addresses[idx].address,addresses[idx].info,addresses[idx].marker,addresses[idx].latitude,addresses[idx].longitude);
+showInfo(addresses[idx]);
+	}
+	var polyline = Array();
+	for(var leg in route) {
+		polyline.push(new google.maps.LatLng(route[leg].lat,route[leg].lng));
+	}
+	var plot = new google.maps.Polyline({
+		path: polyline,
+		geodesic: true,
+		strokeColor:"#ff0000",
+		strokeWeight:2
+	});
+	plot.setMap(map);
+}
+
+function openMarker(marker, info, event) {
+	var w = new google.maps.InfoWindow();
+	if (openWindow) openWindow.close();
+	openWindow = w;
+	w.setContent(info);
+	w.setPosition(event.latLng);
+	w.open(map);
+}
+
+function mapInitialize() {
+		var myOptions = {
+			zoom: 12,
+			center: new google.maps.LatLng(43.7, -79.38),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+		geocoder = new google.maps.Geocoder();
+}
+function setPt(point, info, image) {
+	if (point) {
+		var marker = new google.maps.Marker({
+			position: point,
+			animation: google.maps.Animation.DROP,
+			map: map,
+			icon: image
+		});
+		markers.push(marker);
+		google.maps.event.addListener(marker,'mouseover',function (event) {
+			openMarker(this, info, event);
+		});
+		google.maps.event.addListener(marker,'mouseout',function (event) {
+			this.close;
+		});
+	}
+}
+
+function showAddress(address, info, image, lat, lng) {
+	info = info.replace("<br/><br/>","<br/>");
+	if (geocoder) {
+		if (lat && lng && (lat != 0 && lng != 0)) {
+			if (address.sameDay == 1)
+				var e1 = `<a target="_new" href="/modit/dispatch/sameDays?order_id=${address.order_id}&sameDays=1"><em class="fa fa-truck"></em></a>`;
+			else
+				var e1 = `<a target="_new" href="/modit/dispatch?order_id=${address.order_id}&overnights=1"><em class="fa fa-truck"></em></a>`;
+			var e2 = `<a target = "_new" href="/modit/orders/showOrder?o_id=${address.order_id}"><em class="fa fa-info-circle"></em></a>`;
+			setPt(new google.maps.LatLng(lat,lng), info, image);
+		}
+		else {
+			geocoder.geocode( { 'address': address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					setPt(results[0].geometry.location, info, image);
+				}
+			});
+		}
+	}
+}
+
+function showInfo(address) {
+	info = address.info.replace("<br/><br/>","<br/>");
+	if (geocoder) {
+		if (address.latitude && address.longitude && (address.latitude != 0 && address.longitude != 0)) {
+			if (address.sameDay == 1)
+				var e1 = `<a target="_new" href="/modit/dispatch/sameDays?order_id=${address.order_id}&sameDays=1"><em class="fa fa-truck"></em></a>`;
+			else
+				var e1 = `<a target="_new" href="/modit/dispatch?order_id=${address.order_id}&overnights=1"><em class="fa fa-truck"></em></a>`;
+			var e2 = `<a target = "_new" href="/modit/orders/showOrder?o_id=${address.order_id}"><em class="fa fa-info-circle"></em></a>`;
+			//var a = "<a class='directions arrow' target='_new' href='http://maps.google.com/maps?f=d&hl=en&ie=UTF8&daddr=".concat(escape("(".concat(lat,",",lng,")"))).concat("'>Directions</a>");
+			info += "".concat(address.order_id," ",e1," ",e2);
+			setPt(new google.maps.LatLng(address.latitude,address.longitude), info, address.marker);
+		}
+		else {
+			geocoder.geocode( { 'address': address.address}, function(results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					setPt(results[0].geometry.location, info, address.marker);
+				}
+			});
+		}
+	}
+}
+
+stores = Array();
+route = Array();
+%%addresses%%
+%%route%%
+mapDriver(stores,route);
+</script>

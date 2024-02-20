@@ -1,0 +1,12 @@
+<div class="pricing">
+	<div class="price">Regular Price: %%formattedRegularExtended%%</div>
+	<div class="salePrice">
+<!if(%%pct%% > 0)!>
+		Your Price: <span class="price">%%formattedPrice%%</span> <span>(Save <span class="percent">%%formattedPct%%</span> %)</span>
+<!fi!>
+	</div>
+</div>
+<code>
+var fmtPrice = "%%formattedPrice%%";
+var fmtPct = "%%formattedPct%%";
+</code>
