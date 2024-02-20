@@ -1,0 +1,68 @@
+%%heading%%
+<div id="variableContent">
+	<div class='sameDays %%x2%%'>
+		<h2>All Orders</h2>
+		<div class='status'>%%statusMessage%%</div>
+		<div id='search-tabs'>
+			<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent");return false;' id='%%form:name%%'>
+				<table>
+					<tbody>
+						<tr>
+							<td>Date:</td><td>%%opt_scheduled_date%% %%scheduled_date%%</td>
+							<td>Driver:</td><td>%%driver_id%%</td>
+						</tr>
+						<tr>
+							<td>Service:</td><td>%%service_type%%</td>
+							<td>Delivery Type:</td><td>%%delivery_type%%</td>
+						</tr>
+						<tr>
+							<td>Show Completed:</td><td>%%opt_delivered%%</td>
+							<td>Overnight or Same Day:</td><td>%%custom_same_day%%</td>
+						</tr>
+						<tr>
+							<td>Order Id:</td><td>%%order_id%%</td>
+							<td></td><td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div id='articleList' class="listing">
+					<table>
+						<thead>
+							<tr>
+								<th>Order #</th>
+								<th>Type</th>
+								<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Company</span></th>
+								<th>Address</th>
+								<th>City</th>
+								<th>Postal</th>
+								<th><span onclick='sort("scheduled_date","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Time</span></th>
+								<th>Service</th>
+								<th><span onclick='sort("drivername","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Driver</span></th>
+								<th></th>
+							</tr>
+						</thead>
+						%%deliveries%%
+					</table>
+					<div id='pagination'>
+						<span class="pagination-dropdown pull-right">Deliveries per page : %%pager%%</span>
+						%%pagination%%
+						<div class="break"></div>
+					</div>
+				</div>
+				%%allDeliveries%% 
+				%%pagenum%%
+				%%sortorder%%
+				%%sortby%%
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+sameDayDraggable();
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+initDateFields();
+//]]> 
+</script>

@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="col-xs-12 col-xs-offset-2 centered">%%errorMessage%%</div>
+</div>
+<table>
+	<tr>
+		<td>Type:</td><td>%%pType%%</td>
+		<td>Weight:</td><td>%%weightUnits%%</td>
+		<td>Dimensions:</td><td>%%dimUnits%%</td>
+	</tr>
+</table>
+<form method="post" action="/modit/ajax/weightDims/orders">
+	<table class='table'>
+		<thead>
+			<tr>
+				<th class="a-right">Qty</th>
+				<th class="a-right">Weight</th>
+				<th class="a-right">Length</th>
+				<th class="a-right">Height</th>
+				<th class="a-right">Width</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" class="a-right">%%add%% %%submit%%%%weightDims%%%%l_id%%</td>
+			</tr>
+		</tfoot>
+	</table>
+</form>
+<script type="text/javascript">
+addDims = function(el) {
+	$.ajax({
+		url: "/modit/ajax/addDims/orders",
+		context: { el:el },
+		success: function( obj, status, xhr ) {
+			try {
+				t = $(this.el).closest("form").find("tbody").append(obj);
+				x = 1;
+			}
+			catch(err) {}
+		}
+	})
+}
+updateDims = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#tabs-wt").html(h.html);
+				editArticle(%%order_id%%);
+			}
+			catch(err) {
+				
+			}
+		}
+	})
+}
+</script>

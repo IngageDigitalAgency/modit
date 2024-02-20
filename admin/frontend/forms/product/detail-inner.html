@@ -1,0 +1,134 @@
+<article class='product'>
+	<h2 id='productName' class='productGeneral'>%%name%%</h2>
+	<div class='innProductMain'>
+		<div class='productLeft'>
+			<div class='bigPic'>
+				<div class="centeredContent back" id="productMainImage">
+					%%img_image1%%
+				</div>
+			</div>
+<!if(strlen("%%video:title%%")>0)!>
+			%%video:embed_code,false%%
+<!fi!>
+		</div>
+		<div class='productRgt'>
+			<div class='teaser tinymce'>
+				%%teaser%%
+				<div class='widget'>
+					<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style ">
+						<a class="addthis_button_preferred_1"></a>
+						<a class="addthis_button_preferred_2"></a>
+						<a class="addthis_button_preferred_3"></a>
+						<a class="addthis_button_preferred_4"></a>
+						<a class="addthis_button_compact"></a>
+						<a class="addthis_counter addthis_bubble_style"></a>
+					</div>
+					<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+					<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-530cc5293cdac2ce"></script>
+					<!-- AddThis Button END -->
+					<div class='reviews'>
+						%%comment_count%%
+					</div>
+				</div>
+			</div>
+			<div class='btmPart'>
+				<form method='post' action='/shopping-cart'>
+					<div class='pricing'>
+						<div class='price'>Regular Price: %%regularPriceFormatted%%</div>
+						<div class='salePrice'>
+<!if(strlen("%%saleDiscount%%")>0)!>
+							Your Price: <span class='price'>%%price_fmt%%</span> <span>(Save <span class='percent'>%%salePercentFormatted%%</span> %)</span>
+<!fi!>
+						</div>
+					</div>
+					<div class='quantity'>
+						%%options%%&nbsp;%%quantity%%&nbsp;<span>Qty.</span>
+						%%product_id%%
+						%%addToCart%%
+					</div>
+					<div class="greenBox">
+						<div class="autoshipLft">
+							Want to Save Even More?
+						</div>
+						<div class="autoshipRgt">
+								<a class="popovers" title="Auto-Delivery Terms of Use" rel="popover" href="#" data-original-title="Recurring Shipping Rules" data-content="Auto Delivery Shipments are subject to a <b>Minimum of 2 shipments</b>, prices are guaranteed unless cancelled. Shipments shall be sent out on a 30, 60, 90 or 120 Day Supply."><img src="/images/backgrounds/auto-save.jpg" /></a>
+						</div>
+					</div>
+					<div class="autoship">
+						%%recurring_period%%
+						<input type='hidden' name='recurring_qty' value='0' />
+						<input type="submit" class="addcartBtn" alt="Add to Cart" value="Add to Cart" />
+					</div>
+<!if(%%session:cart:header:exchange_rate%% != 1)!>
+					<div class='caveat'>Converted prices are approximate. <br/>Actual prices are in CAD and will be converted by the financial institutions at their current exchange rate</div>
+<!fi!>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id='tabsholder'>
+		<ul class='tabs'>
+			<li class='learn'><div class='l1'>Learn</div><div class='l2'>More</div><div class='l3'>Here</div></li>
+			<li><a href='#tab1'>Description</a><span class='delim'>|</span></li>
+			<li><a href='#tab2'>Email A Friend</a><span class='delim'>|</span></li>
+			<li><a href='#tab3'>Product Label</a><span class='delim'>|</span></li>
+			<li><a href='#tab4'>Reviews</a><span class='delim'>|</span></li>
+			<li><a href='#tab5'>Ingredients</a></li>
+		</ul>
+		<div class='content marginbot tinymce'>
+			<div id='tab1' class='tabscontent tinymce'>%%description%%</div>
+			<div id='tab2' class='tabscontent'>%%email%%</div>
+			<div id='tab3' class='tabscontent'>%%img_image2%%</div>
+			<div id='tab4' class='tabscontent'>%%reviews%%</div>
+			<div id='tab5' class='tabscontent tinymce'>%%custom_ingredients%%</div>
+		</div>
+	</div>
+</article>
+
+<script type='text/javascript'>
+%%pricingOptions%%
+function getSavings() {
+	var i = $("#productGeneral select[name=options_id]")[0].value;
+	$.ajax({
+		url: '/ajax/render',
+		data: {"t_id":58,"o_id":i,"p_id":$("#productGeneral input[name=product_id]")[0].value,"r_id":$("#productGeneral select[name=recurring_period]")[0].value},
+		success:function(obj,status,xhr) {
+			obj = JSON.parse(obj);
+			var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			$("#productGeneral .pricing").replaceWith(obj.html);
+		}
+	});
+}
+$("#productGeneral select[name=options_id]").change(function() {
+	getSavings();
+});
+$('select[name=recurring_period]').change(function() {
+	if ($(this)[0].selectedIndex <= 0)
+		$('input[name=recurring_qty]').val(0);
+	else
+		$('input[name=recurring_qty]').val(1);
+	getSavings();
+});
+$('#tab2 input[name=p_id]').val(%%id%%);
+function sendEmail(el) {
+	$(el).closest('form').ajaxSubmit({
+		context: el,
+		success: function(obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$('#tab2').html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				$('#tab2').html(err.message);
+			}
+		}
+	});
+}
+$("#productGeneral .breadcrumbs").append("&nbsp;&gt;&gt;&nbsp;<a href='#'>%%name%%</a>");
+$(document).ready(function() {
+	$("#productMainImage").zoom();
+});
+//$("title").html("%%name%% - %%folder:name%% - Whole Food Vitamins &amp; Supplements - VitaTree");
+</script>

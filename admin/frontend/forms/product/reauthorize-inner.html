@@ -1,0 +1,17 @@
+<table>
+	<tbody>
+		<tr><th>Order #:</th><td>%%id%%</td></tr>
+		<tr><th>Date:</th><td>%%formattedOrderDate%%</td></tr>
+		<tr><th>Status:</th><td>%%formattedStatus%%</td></tr>
+		<tr><th>Goods:</th><td>%%formattedValue%%</td></tr>
+		<tr><th>Shipping:</th><td>%%formattedShipping%% (%%ship_via%%)</td></tr>
+		<tr><th>Discounts:</th><td>%%formattedDiscountValue%%</td></tr>
+		<tr><th>Product Discounts:</th><td>%%formattedLineDiscount%%</td></tr>
+		<tr><th>Taxes:</th><td>%%formattedTaxes%%</td></tr>
+		<tr><th>Amount to Bill:</th><td>%%formattedTotal%%</td></tr>
+	</tbody>
+</table>
+<form method='post' action=''>
+	<input type='submit' value='Please Keep my shipments coming' />
+	%%reauthorize%%
+</form>

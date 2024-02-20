@@ -1,0 +1,83 @@
+<div id="driverPayout">
+	<div class="row">
+		<div class="col-xs-16 text-center"><h1>Driver Payments</h1></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-14 col-xs-offset-1 text-center">%%errorMessage%%</div>
+	</div>
+	<form method="POST" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+		<div class="row">
+			<div class="form-group col-xs-6 col-xs-offset-1">
+				<label>Start Date:</label>
+				%%startDate%%
+			</div>
+			<div class="form-group col-xs-6 col-xs-offset-2">
+				<label>End Date:</label>
+				%%endDate%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-14 col-xs-offset-1">
+				<label>Delivery Types:</label>
+				%%serviceType%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-14 col-xs-offset-1">
+				%%driverPayout%%
+				%%submit%%
+				%%pagenum%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16">
+				<table class='table table-striped table-bordered top20'>
+					<thead>
+						<tr>
+							<th class='text-center'>Order #</th>
+							<th class='text-center'>Date</th>
+							<th class='text-center'>Service</th>
+							<th class='text-center'>Type</th>
+							<th class='text-center'>%-age</th>
+							<th class='text-center'>Payment</th>
+						</tr>
+					</thead>
+					<tbody>
+						%%payments%%
+						<tr>
+							<td colspan="5" class="text-right">Page Total: %%p_count%%</td>
+							<td class="text-right">%%field:currency^p_total%%</td>
+						</tr>
+						<tr>
+							<td colspan="5" class="text-right">Grand Total: %%g_count%%</td>
+							<td class="text-right">%%field:currency^g_total%%</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-14 col-xs-offset-1">
+				%%pagination%%
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$("select[multiple]").chosen();
+getPayouts = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			obj = JSON.parse(obj);
+			$("#driverPayout").replaceWith(obj.html);
+			var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+		}
+	});
+}
+initDateFields();
+pagination = function(pg,el) {
+	$(el).closest("form").find("input[name=pagenum]").val(pg);
+	getPayouts(el);
+}
+</script>

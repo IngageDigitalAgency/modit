@@ -1,0 +1,56 @@
+<div id='commentEditor'>
+	<div class='title'>Comment Details</div>
+	<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("editCommentForm","%%form:action%%","commentEditor");return false;' id='editCommentForm'>
+		<table>
+			<tr>
+				<th>Created:</th><td>%%created%%</td><td rowspan='5' class='preview'>%%preview%%</td>
+			</tr>
+			<tr>
+				<th>Approved:</th><td>%%approved%% <span class='errorMessage'>%%approveError%%</span></td>
+			</tr>
+			<tr>
+				<th>Rating:</th><td>%%rating%% <span class='errorMessage'>%%ratingError%%</span></td>
+			</tr>
+			<tr>
+				<th>Attachment:</th><td>%%attachment%% <span class='errorMessage'>%%attachmentError%%</span> <a href="javascript:mcFileManager.open('%%form:name%%','commentAttachment','','');">BROWSE</a></td>
+			</tr>
+			<tr>
+				<th>Attachment Type:</th><td>%%mime_type%% <span class='errorMessage'>%%mimeTypeError%% %%tooltip:MimeType%%</span></td>
+			</tr>
+			<tr>
+				<th>Author:</th><td>%%author_id%% <span class='errorMessage'>%%author_idError%%</span></td>
+			</tr>
+		</table>
+		<div>
+			<div class='title'>Comment: <span class='errorMessage'>%%approveError%%</span></div>
+			%%content%%
+		</div>
+		%%save%%
+		%%editComment%%
+		<input type='hidden' name='c_id' value='%%id%%' />
+		<div class='break'></div>
+	</form>
+</div>
+<script type='text/javascript'>
+$('.popovers').popover();
+$('select[name=author_id]').chosen();
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getNames/blog',
+			data:{'s':request.term,'m':$("input[name=c_id]").val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=author_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+</script>

@@ -1,0 +1,20 @@
+<div id='payment'>
+<!if(array_key_exists("billing_agreement",$_SESSION) && $_SESSION["billing_agreement"] != 0)!>
+	<div class='pmtOptions success'>
+		%%errorMessage%%
+		<div class='header'>
+			<img src='/images/backgrounds/step_4.png' alt='Checkout Step 4' />
+			<div class='alert alert-success'>Thank you for your order.</div>
+		</div>
+		<div class='links'>
+			<p>We're almost done.</p>
+			<p>For recurring orders paid by PayPal, you have to authorize us to keep billing you.</p>
+			<p>Click the link below to start the authorization process. You won't be billed until your next scheduled date.</p>
+			<a href='%%ba_url%%&token=%%TOKEN%%' class='submit'>Create a Billing Agreement</a>
+			<div class='clearfix'></div>
+		</div>
+	</div>
+<!else!>
+	<div class="alert alert-error">Sorry, but you don't seem to have an order awaiting a Billing Agreement</div>
+<!fi!>
+</div>

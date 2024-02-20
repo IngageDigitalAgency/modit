@@ -1,0 +1,31 @@
+<div id='messages'>
+	<div class='warnings'>%%warnings%%</div>
+	<div class='errors'>%%errors%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+</div>
+<form method='get' name='editorForm' action='/render' id='editorForm' style='display:none'>
+	%%saveButton%%
+	%%deleteButton%%
+	%%editButton%%
+	%%revertButton%%
+	%%previewButton%%
+	<input type='hidden' name='%%page_type%%_id' value='%%page_id%%' />
+	<input type='hidden' name='edit' value='%%edit_mode%%' />
+</form>
+<script type="text/javascript"> 
+//<![CDATA[ 
+function setEditMode(mode) {
+	var f = $('#editorForm');
+	var e = f.find('input[name=edit]');
+	if (mode == 'preview')
+		e[0].value = 0;
+	if (mode == 'edit')
+		e[0].value = 1;
+	if (mode == 'save')
+		e[0].value = 2
+	if (mode == 'revert')
+		e[0].value = 3;
+	f.submit();
+}
+//]]> 
+</script> 

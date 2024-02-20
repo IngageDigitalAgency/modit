@@ -1,0 +1,182 @@
+@media print {
+	#header, #mainNav, #leftContent {
+		display:none;
+	}
+	#middleContent .title {
+		background-color:#ffffff;
+		color:#000000;
+		background-image:none;
+	}
+	#middleContent .listing td {
+		padding:5px 2px;
+	}
+}
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.newsDragger {
+}
+.newsDragger:hover {
+	cursor:move;
+}
+.newsDragger .id {
+	display:none;
+}
+
+
+
+.draggerClone {
+	border: 1px solid #e0e0e0;
+	padding:5px;
+	background-color:#e0e0e0;
+}
+
+.draggerClone span {
+	float:left;
+	padding-right:5px;
+}
+#confirmationListing textarea {
+	height:75px;
+	width:500px;
+}
+tr.details td {
+	padding:0px;
+}
+table.sublisting td {
+	padding:3px;
+}
+.sublisting input.shipped {
+	text-align:right;
+	width:100px;
+}
+tr.address {
+	font-size:16px;
+	font-weight:bold;
+}
+tr.address td {
+	background-color:#e0e0e0 !important;
+}
+form table {
+	border-spacing:0 !important;
+}
+tr.address .name {
+	width:20%;
+}
+tr.address .address {
+	width:50%;
+}
+.shipit {
+	padding-top:15px;
+	width:760px;
+}
+.shipit table {
+	width:100%;
+	font-size:14px;
+	background-color:#ffffff;
+	color:#656565;
+}
+.shipit .order_id {
+	color:#113b70;
+	font-size:20px;
+	Margin-bottom:10px;
+}
+.shipit .order_id span {
+	color:#717171;
+	font-size:12px;
+}
+.shipit .o_header thead {
+	background-color:#656565;
+}
+.shipit thead th {
+	text-align:left;
+	color:#ffffff;
+}
+.shipit .o_details thead {
+	background-color:#626161;
+}
+.shipit hr {
+	margin:0;
+}
+.shipit td.comments {
+	width:50%;
+}
+.shipit textarea {
+	width:100%;
+	height:100px;
+	resize:none;
+}
+.shipit .o_details thead tr {
+	background-color:#e2e1e1;
+}
+.shipit .o_details thead th {
+	color:#656565;
+}
+.shipit .o_details input {
+	width:50px;
+	text-align:right;
+}
+.download {
+	font-size:20px;
+	font-weight:bold;
+	padding:10px 0;
+}
+#leftContent {
+	width:1%;
+	min-width:1%;
+	max-width:1%;
+}
+#contentTree {
+	display:none;
+}
+#middleContent {
+	min-width:75% !important;
+}
+#packForm,
+#pickForm {
+	padding-top:15px;
+}
+#packForm span,
+#pickForm span {
+	margin-right:15px;
+}
+#packForm .def_field_submit,
+#pickForm .def_field_submit {
+	margin-top:-10px;
+}

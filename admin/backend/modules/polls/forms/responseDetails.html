@@ -1,0 +1,85 @@
+<div id='responseDetails'>
+	<div class='clearfix'></div>
+	<form id='responseForm' method='post' onsubmit='formCheck("responseForm","/modit/ajax/%%form:action%%/polls","foldertabs");return false;'>
+		<div class='heading'>
+			<div class='heading_title'>
+				<h2>%%title%% Responses</h2>
+			</div>
+			<div class='heading_options'>
+				<div class="buttons">
+					<a onclick="fnResponseCSV(this,'/modit/ajax/%%form:action%%/polls');return false" href="#" class="btn btn-primary">Download CSV</a>
+				</div>
+				<div class="btn-group pull-right">
+					<button class="search_button btn" type="submit"><i class="icon-search"></i></button>
+					<a onclick="toggleForm('responseSearch');return false;" data-toggle="dropdown" href="#" class="btn dropdown-toggle"><span class="caret"></span></a>
+					<div id="responseSearch" class="dropdown-menu hidden">
+						<div class="closer"><a onclick="toggleForm('responseSearch');return false;" href="#">x</a></div>
+						<table>
+							<tr>
+								<th class="centered" colspan="2">Created</th>
+							</tr>
+							<tr>
+								<th>Criteria:</th>
+								<td>%%opt_created%%</td>
+							</tr>
+							<tr>
+								<th>Value:</th><td>%%created%%</td>
+							</tr>						
+							<tr>
+								<th class="centered" colspan="2">IP Address</th>
+							</tr>
+							<tr>
+								<th>Criteria:</th>
+								<td>%%opt_ip_address%%</td>
+							</tr>
+							<tr>
+								<th>Value:</th><td>%%ip_address%%</td>
+							</tr>						
+							%%search%%
+							<tr>
+								<td colspan="2">
+									<input type="button" name="submitBtn" value="Search" class="def_field_submit" onclick='formCheck("responseForm","/modit/ajax/%%form:action%%/polls","foldertabs");return false;'>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class='clearfix'></div>
+		</div>
+		<div class='clearfix'></div>
+		<table class='listing'>
+			<thead>
+				<tr>
+					<th><span onclick='sort("ip_address","responseForm","/modit/ajax/%%form:action%%/polls","foldertabs");'>IP Address</span></th>
+					<th><span onclick='sort("created","responseForm","/modit/ajax/%%form:action%%/polls","foldertabs");'>Created</span></th>
+					<th>Completed</th>
+					%%demographicNames%%
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%responses%%
+			</tbody>
+		</table>
+		%%pagenum%%
+		<div id='pagination'>
+			<span class='pagination-dropdown pull-right'>Responses per page: %%pager%%</span>
+			<div class='pagination'>
+				%%pagination%%
+			</div>
+			<div class='clearfix'></div>
+		</div>
+		%%sortby%%
+		%%sortorder%%
+		%%p_id%%
+		%%p_state%%
+		%%csv%%
+		%%responseDetails%%
+	</form>
+</div>
+<div id='pollResults'>
+</div>
+<code>
+	initDateFields();
+</code>

@@ -1,0 +1,70 @@
+<script type='text/javascript'>
+	var p_urls = Array();
+</script>
+<!if(%%recordCount%%!=1)!>
+<div id='categoryProducts'>
+	<div class='breadcrumbs'>%%breadcrumbs%%</div>
+	<h2>%%title%%</h2>	
+	<div class='description tinymce'>
+		<div class='image'>%%img_image%%</div>
+		%%description%%
+		<div class='clearfix'></div>
+	</div>
+	<form method='post' id='addToCart' action="/shopping-cart">
+		<div class='selects'>
+			<div class='left'>%%minicart%%</div>
+			<div class='right'>
+				<select name="sort_by"><option value=''>Sort By</option><option value="name">Name</option><option value="price">Price</option></select>
+				<input type='hidden' name='productProducts' value='1' />
+			</div>
+			<div class='clearfix'></div>
+		</div>
+		<div class='products'>
+			%%products%%
+			<div class='clearfix'></div>
+		</div>
+		<div class='pager'>
+			%%pagination%%
+			<input type='hidden' name='pagenum' value='%%pagenum%%' />
+		</div>
+		<input type="hidden" class="def_field_input" name="product_quantity" value="1">
+		<input type="hidden" name="product_id" value="0" class="def_field_input">
+		<input type="hidden" name="options_id" value="0" class="def_field_input">
+		<input type="hidden" name="addToCart" value="0" class="def_field_input">
+	</form>
+</div>
+<!else!>
+	<div style='display:none'>%%products%%</div>
+	<script type="text/javascript">
+	document.location = p_urls[0];
+	</script>
+<!fi!>
+<script type='text/javascript'>
+function buyIt(p_id,el) {
+	var s = $(el).closest(".product").find("select[name=options_id]");
+	var f = $("#addToCart");
+	f.find("input[name=product_id]").val(p_id);
+	f.find("input[name=addToCart]").val(1);
+	if (s.length > 0) f.find("input[name=options_id]").val(s[0].value);
+	f.submit();
+}
+var sortType = "%%sort_by%%";
+var s = $("select[name=sort_by]")[0];
+for(i = 0; i < s.length; i++) {
+	if (s[i].value == sortType) s.selectedIndex = i;
+}
+$("select[name=sort_by]").change(function() {
+	var f = $("#addToCart");
+	f[0].action = "";
+	f.submit();
+});
+function pagination(pgnum,el) {
+	var f = $(el).closest('form');
+	f.find('input[name=pagenum]').val(pgnum);
+	f[0].action = "";
+	f.submit();
+}
+$(window).load(function() {
+	balanceItems('#categoryProducts .products h3');
+});
+</script>

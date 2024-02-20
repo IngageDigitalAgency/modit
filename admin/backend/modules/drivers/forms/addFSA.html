@@ -1,0 +1,17 @@
+<div class='propertyEditing'>
+	<div class='title'>Assign an FSA to a Driver</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form method="post" onsubmit='formCheck("addFSA","/modit/ajax/addFSA/drivers",$("#altPopup"));return false;' id="addFSA">
+		<table>
+			<tbody>
+				<tr><th>FSA:</th><td>%%fsa_id%%</td>
+			</tbody>
+		</table>
+		<div class="form-actions">
+			%%submit%% %%driver_id%% %%addFSA%%
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$("select[name='fsa_id[]']").chosen();
+</script>

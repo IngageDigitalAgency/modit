@@ -1,0 +1,79 @@
+%%heading%%
+<div id='articleList'>
+	<div id='category_heading'>
+		<div class="heading_title">
+			<h2>%%title%%%%connector%%%%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='calendarFolderId' style='display:none'>%%id%%</div>
+	<form name='%%form:name%%' action='' onsubmit='formCheck_add("%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent");return false' method='%%form:method%%' id='%%form:name%%'>
+		<div class='calendar'>
+			<div class='traverseOptions'>
+				%%headerOptions%%
+			</div>
+			<div class='startDate'>%%startDate%%</div>
+			<div class='viewOptions'>
+				<div class='option'><a href='#' onclick='viewType("month");return false;'>View Month</a></div>
+				<div class='option'><a href='#' onclick='viewType("week");return false;'>View Week</a></div>
+				<div class='option'><a href='#' onclick='viewType("day");return false;'>View Day</a></div>
+				<div class="break"></div>
+			</div>
+			<div class="break"></div>
+			%%calendar%%
+		</div>
+		%%sortby%%
+		%%sortorder%%
+		%%showFolderContent%%
+		%%pagenum%%
+		%%currentDate%%
+		%%moveType%%
+		%%viewType%%
+		%%submit%%
+		<div id='foldertabs'>
+			<div class='listing'>
+				<div class='break'></div>
+				<table>
+					<tr>
+						<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>Name</span></th>
+						<th><span onclick='sort("start_date","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>Start Date</span></th>
+						<th><span onclick='sort("end_date","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>End Date</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>Published</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("featured","%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent")'>Featured</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Events per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+		</div>
+		<input type='hidden' name='p_id' value='%%id%%' />
+	</form>
+</div>
+<code>
+addSortableDroppable(false);
+pagingUrl = '/modit/ajax/%%form:action%%/calendar';
+var move = function(typ) {
+	$('#showFolderContent input[name=moveType]')[0].value = typ;
+	formCheck_add("%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent");
+}
+setCalendarHover();
+$('#showFolderContent input[name=moveType]')[0].value = '';
+hideTables($('#middleContent'));
+$('#pager').change(function() {
+	formCheck("%%form:name%%","/modit/ajax/%%form:action%%/calendar","middleContent");
+});
+$('.count:empty').hide();
+</code>

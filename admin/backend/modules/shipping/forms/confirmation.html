@@ -1,0 +1,31 @@
+<div class='title'>Shipping Confirmation</div>
+%%errorMessage%%
+<form method='post' action='' id='confirmationForm'>
+	<table>
+		<tr>
+			<th class="centered">Start Date:<br/>%%start_date%%</td>
+			<th class="centered">End Date:<br/>%%end_date%%</td>
+			<th class="centered">Shipping Method:<br/>%%ship_via%%</td>
+			<th class="centered">Order #:<br/>%%order_id%%</td>
+		</tr>
+		<tr>
+			<th>&nbsp;<br/>%%submit%%</th>
+			<th>&nbsp;<br/>%%reprint%%</th>
+		</tr>
+	</table>
+	 %%export%%
+	%%confirmation%%
+	<div class='info'>Records Found: %%count%%</div>
+	<div class='download'>%%download,false%%</div>
+	%%orders%%
+	%%update%%
+</form>
+<script type='text/javascript'>
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+function displayOrder(id) {
+	$("#order_".concat(id)).css("display","block");
+}
+</script>

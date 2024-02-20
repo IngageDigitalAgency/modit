@@ -1,0 +1,66 @@
+<div id="invoicing">
+	<div class="container">
+		<div class="bg hidden text-center" style="z-index:10;background-color:rgba(0,0,0,.3);padding-top:100px;"><i class="fa fa-spinner fa-spin fa-3x"></i></div>
+		<div class="row">
+			<div class="col-xs-16 text-center"><h1>Create Invoices</h1></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center">%%errorMessage%%</div>
+		</div>
+		<form method="post" class="bottom20" onsubmit="doInvoicing(this);return false;" action="/ajax/render">
+			<div class="row">
+				<div class="col-xs-4 form-group"><label>Start Date</label>%%start_date%%</div>
+				<div class="col-xs-4 form-group"><label>End Date</label>%%end_date%%</div>
+				<div class="col-xs-4 form-group"><label>Invoice Type</label>%%order_type%%</div>
+				<div class="col-xs-4 form-group"><label>Company</label>%%member_id%%</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 form-group"><label>Starting Invoice #</label>%%invoice_id%%</div>
+				<div class="col-xs-4 form-group"><label>Create Invoices</label>%%do_it%%</div>
+				<div class="col-xs-4 form-group"><label>Report Only</label>%%report_only%%</div>
+				<div class="col-xs-4 form-group"><label> </label>%%submit%%</div>
+			</div>
+%%invoicing%%%%t_id%%
+		</form>
+	</div>
+	<div class="container-fluid">
+		<div class="row top20 bottom20">
+			<div class="col-xs-16">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Invoice #</th><th>Company</th><th class="text-right"># of Orders</th><th class="text-right">Taxable</th><th class="text-right">Non-Taxable</th><th class="text-right">Taxes</th><th class="text-right">Total</th><th class="text-right">Paid</th><th class="text-right">Net</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%invoices%%
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+initDateFields();
+$("#invoicing select").chosen({width:"100%"});
+doInvoicing = function(el) {
+	$("#invoicing .bg").toggleClass("hidden");
+	$(el).closest("form").ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			$("#invoicing .bg").toggleClass("hidden");
+			try {
+				h = JSON.parse(obj);
+				$("#invoicing").replaceWith(h.html);
+				initDateFields();
+				$("#invoicing select").chosen({width:"100%"});
+			}
+			catch(err) {
+				alert(obj);
+			}
+		}
+	});
+}
+toggleDetail = function(id) {
+	$(`tr.inv-${id}`).toggle()
+}
+</script>

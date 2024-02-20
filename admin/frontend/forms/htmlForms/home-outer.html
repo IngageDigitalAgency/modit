@@ -1,0 +1,50 @@
+<div id="home-login" class="container">
+	<div class="wrapper">
+		%%alert%%
+		<div class="row">
+			<div class="col-xs-16 col-sm-14 col-sm-offset-1 col-md-offset-2 col-md-12 inner">
+				<div class="form">
+					<div class="col-sm-11 top40">
+						<div class="col-xs-16 text-center">%%errorMessage%%</div>
+						<div class="col-xs-2 icon"><i class="fa  fa-clock-o"></i></div>
+						<div class="col-xs-6 text"><h3>OPENING HOURS</h3><h4>Mon-Fri: 9am-6pm<br/>Sat: By Appt Only (Call Office)</div>
+						<div class="col-xs-2 icon"><i class="fa  fa-phone"></i></div>
+						<div class="col-xs-6 text"><h3>CALL US ANYTIME</h3><h4>%%config:mailing-address:phone1%%</h4></div>
+					</div>
+					<div class="col-sm-5 col-xs-12 col-xs-offset-2 col-sm-offset-0">
+						<div class="row no-gutters">
+							<h4>LOGIN</h4>
+							<form method="post" action="/ajax/render" onsubmit="logMeIn(this);return false;">
+								<div class="form-group">
+									%%username%%
+								</div>
+								<div class="form-group">
+									%%password%%
+								</div>
+								<div class="col-xs-8 col-sm-16 col-md-8 forgot">Forgot Password?</div>
+								<div class="col-xs-8 col-sm-16 col-md-8"><input type='submit' class='form-control btn btn-primary' value='LOGIN' /></div>
+	%%t_id%%%%loginForm%%
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+logMeIn = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#home-login").replaceWith(h.html);
+				var objcode = "<script type='text/javascript'>"+h.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

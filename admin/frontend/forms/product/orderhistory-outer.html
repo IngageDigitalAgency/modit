@@ -1,0 +1,122 @@
+<div id="history-account" class="top20">
+	<div class="row">
+		<div class="col-sm-16">
+			<ul class="nav nav-tabs">
+				<li class="active">
+					<a title="Order History" href="#tabs-1" data-toggle="tab" class="button button-gray button-red active fontsize10" id="order-history-link">Order History</a> 
+				</li>
+				<li>
+					<a title="Edit Account" href="#tabs-2" data-toggle="tab" class="button button-gray fontsize10" id="edit-account-link">Edit Account</a>
+				</li>
+			</ul>
+			<div class="tab-content">
+				<div id="tabs-2" class="tab-pane fade form-group">
+					%%account%%
+				</div>
+				<div id="tabs-1" class="tab-pane fade in active form-group">
+					<div id="order-history">
+						<div class="row">
+							<div class="col-sm-16">
+								<h3>Order History</h3>
+								<table class="table table-striped table-hover">
+									<thead>
+										<tr>
+											<th class="col-md-2 text-center">Order #</th>
+											<th class="col-md-4 text-center">Order Date</th>
+											<th class="col-md-4 text-center">Status</th>
+											<th class="col-md-2 text-center"># of Items</th>
+											<th class="col-md-2 text-center">Total</th>
+											<th class="col-md-2 text-center">View</th>
+											<th class="col-md-1 text-center"></th>
+											<th class="col-md-1 text-center"></th>
+										</tr>
+									</thead>
+									<tbody>
+										%%orders%%
+									</tbody>
+								</table>
+								<hr>
+								<div class="bottom40">
+									<ul class="list-unstyled" id="processing-legend-list">
+										<li>Processing = Received</li>
+										<li>Recurring Billing = Order Recurs</li>
+										<li>Credit Hold = Payment Failed or Order on Hold</li>
+										<li>Authorization or CC Expiring = Credit Card is denied or Card has Expired</li>
+									</ul>
+								</div>
+								<div class="row text-center">
+									<div class="col-md-12">
+										%%pagination%%
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="order-details" class="top40"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+$("#xxedit-account").css("display","none");
+$("#order-history tbody .order-status").each(function(idx,el) {
+	$(el).html($(el).html().replace(/,/g,"<br/>"));
+});
+$("#order-history tbody tr:odd").addClass('odd');
+function viewOrder(o_id) {
+	var retStatus = $.ajax({
+		url: '/ajax/render',
+		data: {'t_id':30,'o_id':o_id},
+		type: 'POST',
+		success: function(obj,status,xhr) {
+			try {
+				var obj = JSON.parse(retStatus.responseText);
+				$('#order-details').html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+scrollToItem("#order-details");
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+function pagination(p_id,el) {
+	$.ajax({
+		url: '/ajax/render',
+		data: {t_id:%%module:fetemplate_id%%,pagenum:p_id},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				if (obj.status == 'true') {
+					obj.html = obj.html;
+					tmp = $("<div></div>").append(obj.html);
+					$('#order-history').replaceWith($(tmp).find("#order-history"));
+					var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				}
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+function pdf(o_id) {
+	$.ajax({
+		url: '/ajax/render',
+		data: {t_id:69,o_id:o_id},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				if (obj.status == 'true') {
+					obj.html = obj.html;
+					//tmp = $("<div></div>").append(obj.html);
+					//$('#order-history').replaceWith($(tmp).find("#order-history"));
+					var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				}
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

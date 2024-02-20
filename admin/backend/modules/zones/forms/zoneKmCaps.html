@@ -1,0 +1,60 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/zoneKmCaps/zones","middleContent");return false;' id='%%form:name%%'>
+	<table>
+		<tr>
+			<td>Group:</td><td>%%groups%%</td>
+			<td>Zones:</td><td id="groupZones">%%zones%%</td>
+			<td>Product(s):</td><td>%%products%%</td>
+			<td><button class="def_field_submit" type="submit">Search</button></td>
+			<td><button class="def_field_submit" onclick="addMinMax();return false;">Add a Zone Min/Max</button></td>
+		</tr>
+	</table>
+	<div id='articleList'>
+		<table class='listing'>
+			<thead>
+				<tr>
+					<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Zone Group</span></th>
+					<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>From</span></th>
+					<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>To</span></th>
+					<th><span onclick='sort("delivery_surcharge","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Product</span></th>
+					<th>Min Charge</th>
+					<th>Max Charge</th>
+					<th colspan='2'></th>
+				</tr>
+			</thead>
+			%%caps%%
+		</table>
+		<div id='pagination'><span class="pagination-dropdown pull-right">Zones per page : %%pager%%</span> %%pagination%%</div>
+	</div>
+	%%zoneKmCaps%%
+	%%pagenum%%
+	%%sortorder%%
+	%%sortby%%
+</form>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$("#pager").change(function() {
+	$("#%%form:name%%").submit();
+});
+pagingUrl = '/modit/ajax/%%form:action%%/zones';
+$("#zoneKmCaps select[name=groups]").change(function() {
+	$.ajax({
+		url: "/modit/ajax/getZones/zones",
+		data: { g_id : $(this).val(), r: 0 },
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#groupZones").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				showError(obj.messages);
+			}
+			catch(err) {
+				showError(err.message);
+			}
+		}
+	});
+});
+$("select[multiple=multiple]").chosen();
+//]]> 
+</script> 

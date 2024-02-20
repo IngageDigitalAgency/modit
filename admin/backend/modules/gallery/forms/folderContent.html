@@ -1,0 +1,34 @@
+%%heading%%
+<div id='foldertabs'>
+	<div id='galleryArticleList' class='altListing'>
+		<div id='galleryFolderId' style='display:none'>%%id%%</div>
+		<div id='category_heading'>
+			<div class="heading_title">
+				<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+			</div>
+			<div class="heading_options">
+				<div class="buttons">
+					<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+					<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+				</div>
+			</div>
+			<div class="break"></div>
+		</div>
+		<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+			%%sortby%%
+			%%sortorder%%
+			%%showFolderContent%%
+			%%pagenum%%
+			<input type='hidden' name='p_id' value='%%id%%' />
+			<ul id="sortableImages">
+				%%images%%
+			</ul>
+			<div class="break"></div>
+			<div id='pagination'>%%pagination%%</div>
+		</form>
+	</div>
+</div>
+<code>
+pagingUrl = '/modit/ajax/%%form:action%%/gallery';
+initFolderContent(false);
+</code>

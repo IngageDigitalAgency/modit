@@ -1,0 +1,33 @@
+<tr>
+	<td class="text-right">%%order_id%% <a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new"><i class="fa fa-info-circle"></i></a> <a href="/modit/dispatch/?overnights=1&order_id=%%order_id%%" target="new"><i class="fa fa-truck"></i></a></td>
+	<td>%%service:name%%</td>
+	<td>%%packages%%</td>
+	<td>%%pickup:address:company%%<br/>
+		%%pickup:address:firstname%% %%pickup:address:lastname%%<br/>
+		%%pickup:address:line1%%<br/>
+<!if(strlen("%%pickup:address:line2%%")>0)!>
+%%pickup:address:line2%%<br/>
+<!fi!>
+		%%pickup:address:city%% %%pickup:address:province%% %%pickup:address:postalcode%%
+		<br/>Phone:%%pickup:address:phone1%% Email: %%pickup:address:email%%
+	</td>
+	<td <!if("%%pickup:completed%%"=="1")!>class="alert alert-success"<!fi!>>
+		%%pickup:scheduled_date%%<br/>
+<!if("%%pickup:driver_id%%"=="0")!>
+		<div class="alert alert-warning">Unassigned</div>
+<!else!>
+		<div <!if("%%pickup:driver:third_party%%"=="1")!>class="alert alert-warning"<!fi!>>%%pickup:delivery:company%% %%pickup:driver:lastname%% %%pickup:driver:firstname%%</div>
+<!fi!>
+	</td>
+	<td>%%delivery:address:company%%<br/>
+		%%delivery:address:firstname%% %%delivery:address:lastname%%<br/>
+		%%delivery:address:line1%%<br/>
+<!if(strlen("%%delivery:address:line2%%")>0)!>
+%%delivery:address:line2%%<br/>
+<!fi!>
+		%%delivery:address:city%% %%delivery:address:province%% %%delivery:address:postalcode%%
+		<br/>Phone: %%delivery:address:phone1%% Email: %%delivery:address:email%%
+	</td>
+	<td><a href="/modit/drivers/editService?p_id=%%delivery:id%%" target="new"><i class="fa fa-edit"></i></a> %%delivery:comments%%<br/>%%customs_declaration%%</td>
+	<td>%%delivery:scheduled_date%%<br/>%%delivery:driver:company%% %%delivery:driver:lastname%% %%delivery:driver:firstname%%</td>
+</tr>

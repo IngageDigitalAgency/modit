@@ -1,0 +1,66 @@
+<div class="propertyEditing">
+	<div class="title">Add a Zone By Km Cap</div>
+	%%errorMessage%%
+	<form id="addCap" method="POST" onsubmit='formCheck("addCap","/modit/ajax/addMinMax/zones",$("#popup"));return false;'>
+		<table>
+			<tr>
+				<th>Zone Group:</th><td>%%groups%% %%groupsError%%</td>
+			</tr>
+			<tr>
+				<th>Source Zone:</th><td id="from_zone">%%zone_from%% %%from_zoneError%%</td>
+			</tr>
+			<tr>
+				<th>Dest Zone:</th><td id="to_zone">%%zone_to%% %%to_zoneError%%</td>
+			</tr>
+			<tr>
+				<th>Product:</th><td>%%product_id%% %%product_idError%%</td>
+			</tr>
+			<tr>
+				<th>Min Charge:</th><td>%%custom_km_mincharge%% %%custom_km_minchargeError%%</td>
+			</tr>
+			<tr>
+				<th>Max Charge:</th><td>%%custom_km_maxcharge%% %%custom_km_maxchargeError%%</td>
+			</tr>
+		</table>
+		<div class="form-actions">
+			%%save%%
+			%%addMinMax%%
+			%%c_id%%
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+$("#addCap select[name=groups]").change(function() {
+	$.ajax({
+		url: "/modit/ajax/getZones/zones",
+		data: { g_id: $(this).val(), name: "zone_from", r: 0 },
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#from_zone").html(obj.html);
+				$("#addCap select[name=zone_from]").change(function() {
+					getDest(this);
+				});
+			}
+			catch(err) {
+				showError(err.message);
+			}
+		}
+	});
+});
+getDest = function(el) {
+	$.ajax({
+		url: "/modit/ajax/getZoneDest/zones",
+		data: { g_id: $("#addCap select[name=groups]").val(), s_id: $(el).val(), name: "zone_to" },
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#to_zone").html(obj.html);
+			}
+			catch(err) {
+				showError(err.message);
+			}
+		}
+	});
+}
+</script>

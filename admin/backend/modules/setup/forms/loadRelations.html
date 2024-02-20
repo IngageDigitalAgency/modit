@@ -1,0 +1,18 @@
+<div class='title'>Relationship Editing</div>
+<form method='post' name='editRelation' id='editRelation' onSubmit='formCheck("editRelation","/modit/ajax/editRelation/setup",$("#altPopup"));return false;'>
+	<table>
+		<tr>
+			<th>Related From:</th><td>%%related_from%%</td>
+		</tr>
+		<tr>
+			<th>Related To:</th><td>%%related_to%%</td>
+		</tr>
+		<tr>
+			<th>Enabled:</th><td>%%enabled%%</td>
+		</tr>
+	</table>
+	%%submit%%
+	%%editRelation%%
+	<input type='hidden' name='p_id' value='%%p_id%%' />
+	<input type='hidden' name='r_id' value='%%id%%' />
+</form>

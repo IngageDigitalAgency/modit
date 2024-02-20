@@ -1,0 +1,56 @@
+<form name='%%form:name%%' action='' onsubmit='' method='%%form:method%%' id='%%form:name%%_%%random%%' />
+	<span class='errorMessage'>%%errorMessage%%</span>
+	<table>
+		<tr>
+			<th>Module:</th><td>%%module_id%%</td>
+		</tr>
+		<tr>
+			<th>Template:</th><td><div id='template_list'>%%fetemplate_id%%</div></td>
+		</tr>
+		<tr>
+			<th>Folder:</th><td><div id='template_folder'>%%folder_id%%</div></td>
+		</tr>
+		<tr>
+			<th>Allow Override:</th><td>%%allow_override%%</td>
+		</tr>
+		<tr>
+			<th>Include Sub-Folders:</th><td><div id='template_subfolder'>%%include_subfolders%%</div></td>
+		</tr>
+		<tr>
+			<th>State:</th><td>%%state%%</td>
+		</tr>
+		<tr>
+			<th>Page Content:</th><td>%%content_area%%</td>
+		</tr>
+		<tr>
+			<th>Search Query Related:</th><td>%%query_linked%%</td>
+		</tr>
+	</table>
+	%%module_name%%
+	%%page_type%%
+	%%page_id%%
+	%%reset%%
+	%%content%%
+	<input type='hidden' name='id' value='%%id%%' />
+	<div class='buttons' style='float:right;'>
+		<a href='#' onclick='resetModule(this);return false;' class='btn' style='color:#103b6f'>Reset</a>
+		<a href='#' onclick='saveModule(this);return false;' class='btn btn-primary'>Save</a>
+	</div>
+	<div class='clearfix'></div>
+	%%changeModule%%
+</form>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+var rand = %%random%%;
+var f = $('#%%form:name%%_%%random%%');
+f.find('select[name=module_id]').change(function() {
+	f.find('input[name=changeModule]')[0].value = 1;
+	loadCMSModule(this,"%%id%%");
+});
+$(f).find('input[name=content_area]').each(function(idx,el) {
+	fnSetContentState(el);
+});
+//]]> 
+</script> 
+</code>

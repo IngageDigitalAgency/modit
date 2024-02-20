@@ -1,0 +1,19 @@
+<div class='title'>Currency Exchange</div>
+<form method='post' onsubmit='formCheck("exchangeForm","/modit/ajax/exchange/credit","middleContent");return false;' id='exchangeForm'>
+	<span>Currency:&nbsp;%%currency_id%%</span>
+	<span>From:&nbsp;%%from%%</span>
+	<span>To:&nbsp;%%to%%</span>
+	<span>%%submit%%</span> <span>%%addCurrency%%</span> %%exchange%%
+	<div class='clearfix'></div>
+	<table class='listing'>
+		<thead>
+			<tr><th>Currency</th><th>Effective Date</th><th>Exchange Rate</th></tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+	</table>
+</form>
+<script type='text/javascript'>
+initDateFields();
+</script>

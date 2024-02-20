@@ -1,0 +1,12 @@
+<div class='title'>Delete a Question</div>
+<form method='%%form:method%%' action='%%form:action%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/deleteArticle/question","popup");return false;' id='%%form:name%%'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div class='del-opt'>%%cancel%% Oops, Cancel delete</div>
+	<div class='del-opt'>%%one%% Delete from this folder only</div>
+	<div class='del-opt'>%%all%% Delete from all folders</div>
+	<input type='hidden' name='j_id' value='%%j_id%%' />
+	<input type='hidden' name='a_id' value='%%a_id%%' />
+	<input type='submit' value='Submit' class='btn btn-primary' />
+	%%deleteItem%%
+	<div class='break'></div>
+</form>

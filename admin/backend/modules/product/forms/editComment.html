@@ -1,0 +1,29 @@
+<div class="title">Edit A Review</div>
+%%errorMessage%%
+<form method="post" onsubmit='formCheck_add("edit-comment","/modit/ajax/editComment/product",$("#altPopup"));return false;' id="edit-comment">
+	<table>
+		<tr>
+			<th>First Name:</th><td>%%firstname%%</td>
+		</tr>
+		<tr>
+			<th>Last Name:</th><td>%%lastname%%</td>
+		</tr>
+		<tr>
+			<th>Email:</th><td>%%email%%</td>
+		</tr>
+		<tr>
+			<th>Approved:</th><td>%%approved%%</td>
+		</tr>
+		<tr>
+			<th>Review:</th><td>%%comment%%</td>
+		</tr>
+		<tr>
+			<th>Rating:</th><td>%%rating%%</td>
+		</tr>
+	</table>
+	%%editComment%% %%c_id%%
+	<div class="links">
+		%%save%%
+		<div class="clearfix"></div>
+	</div>
+</form>

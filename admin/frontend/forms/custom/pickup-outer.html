@@ -1,0 +1,101 @@
+<script type="text/javascript">
+function editPickup(address_id) {
+	if (address_id == -1) {
+		address_id = $("#pickupAddress").val();
+	}
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:5,a_id:address_id,customPickup:1},
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#pickupAddresses .editForm").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				step2Check();
+			} catch (err) {
+			}
+		}
+	});
+}
+setPickupAddress = function(a_id) {
+	if (a_id == 0) {
+		$.ajax({
+			url: "/ajax/render",
+			data: { t_id:57 },
+			context: { el: this },
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$(this.el).closest(".row").parent().find(".editForm").html(obj.html);
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else
+		editPickup(a_id);
+}
+</script>
+
+<div id="pickupAddresses">
+	<div class="row">
+		<div class="col-xs-16">
+			<h4>Pickup Address</h4>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-xs-10">
+			<select id="pickupAddress" class="form-control">
+				<option value="0">-</option>
+				%%addresses%%
+			</select>
+		</div>
+		<div class="col-xs-6">
+			<button onclick="document.location='/address-book/0/0'" class="btn btn-default form-control">New Address</button>
+		</div>
+	</div>
+	<div class="editForm">
+<!if("%%hasPickup%%"!="")!>
+<script type="text/javascript">setPickupAddress(%%hasPickup%%);</script>
+<!else!>
+		%%emptyAddress%%
+<!fi!>
+	</div>
+</div>
+<script type="text/javascript">
+$("#pickupAddress").change(function() {
+	setPickupAddress($(this).val());
+	$("#get-quote").html("");
+});
+function editMe(fld) {
+	var f = $(fld).closest("form");
+	$(f).ajaxSubmit({
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#editForm").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+function pickupHere(a_id) {
+	$.ajax({
+		url: "/ajax/render",
+		data: { t_id:6, a_id:a_id, a_type: "pickup" },
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+if ($("#pickupAddress").val() > 0) editPickup($("#pickupAddress").val());
+</script>

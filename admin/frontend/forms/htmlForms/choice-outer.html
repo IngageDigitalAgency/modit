@@ -1,0 +1,21 @@
+<div id="shipment"></div>
+<script type="text/javascript">
+<!if(0%%session:cart:header:inzone%%==0)!>
+m_id=38;
+<!else!>
+m_id=37;
+<!fi!>
+$.ajax({
+	url:"/ajax/render",
+	data:{t_id:m_id},
+	success: function( obj, status, xhr ) {
+		try {
+			obj = JSON.parse(obj);
+			$("#shipment").html(obj.html);
+			var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+		}
+		catch(err) {
+		}
+	}
+});
+</script>

@@ -1,0 +1,14 @@
+<!if("%%seq%%">"1")!>
+</div>
+<div class="row dim form-group p_%%row%%">
+<div class="xs-margin col-xs-offset-6 col-sm-offset-5 col-xs-4 col-sm-2 thirds"><span class="form-control">QTY:</span> %%quantity%%</div>
+<!else!>
+<div class="xs-margin col-xs-4 col-sm-2 thirds"><span class="form-control">QTY:</span> %%quantity%%</div>
+<!fi!>
+<div class="xs-margin col-xs-4 col-sm-2 thirds"><span class="form-control">WT:</span> %%weight%%</div>
+<div class="col-xs-4 col-xs-offset-2 col-sm-offset-0 col-sm-2 thirds"><span class="form-control">L:</span> %%depth%%</div>
+<div class="col-xs-4 col-sm-2 thirds"><span class="form-control">W:</span> %%width%%</div>
+<div class="col-xs-4 col-sm-2 thirds"><span class="form-control">H:</span> %%height%%</div>
+<div class="col-xs-1 col-sm-1 text-center"><label><!if(%%seq%%==1)!><a href="#" onclick="addDimension(this,%%row%%);return false;"><i class="fa fa-plus"></i></a><!fi!><!if(%%seq%%>1||0%%request:r_ct%%>1)!><a href="#" onclick="removeRow(this);return false"><i class="fa fa-trash"></i></a><!fi!></label></div>
+<!if("%%seq%%">"1")!>
+<!fi!>

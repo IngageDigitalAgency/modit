@@ -1,0 +1,21 @@
+<form method='post' onsubmit='formCheck("getInvoiceForm","/modit/ajax/getInvoice/credit","invoiceDetails");return false;' id='getInvoiceForm' class="top20">
+	<h3>Invoice #%%qb_invoice_id%% Details</h3>
+	<div class="row">
+		<div class="col-xs-6 col-xs-offset-3 text-center">%%errorMessage%%</div>
+	</div>
+	<div class="row invoice">
+		<div class="col-xs-3 form-group"><label>Company</label>%%parent_id%%</div>
+		<div class="col-xs-3 form-group"><label>Remove</label>%%delete%%</div>
+		<div class="col-xs-3 form-group"><label>&nbsp;</label>%%submit%%</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 form-group"><label>Order #</label></div>
+		<div class="col-xs-3 form-group"><label>Company</label></div>
+		<div class="col-xs-3 form-group"><label>Remove</label></div>
+	</div>
+	%%rows%%%%getInvoice%%%%i_id%%
+</form>
+<script type="text/javascript">
+$("#invoiceDetails select").chosen({width:"100%"});
+resetMember();
+</script>

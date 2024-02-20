@@ -1,0 +1,23 @@
+<div id='middleHeading'>
+	<div class="heading_title"><a href='#' onclick="getContent('moduleStatus','menu','#middleContent');return false;">Content</a></div>
+	<div class="heading_options">
+		<div class="buttons">
+			<div class="btn-group pull-right">
+					<a class="btn btn-primary" onclick='addItem("page");return false;'>
+            <i class="icon-white icon-plus-sign"></i>
+            Add Page
+        </a>
+        <a data-toggle="dropdown" href="#" class="btn btn-primary dropdown-toggle" onclick='toggleDropdown(this)'>
+        	<span class="caret"> </span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a onclick='toggleDropdown(this);addItem("page");return false;' href="#">Add Page</a></li>
+            <li><a onclick='toggleDropdown(this);addItem("folder");return false;' href="#">Add Menu</a></li>
+            <li><a onclick='toggleDropdown(this);addItem("internallink");return false;' href="#">Add Internal Link</a></li>
+            <li><a onclick='toggleDropdown(this);addItem("externallink");return false;' href="#">Add External Link</a></li>
+        </ul>
+       </div>
+		</div>
+	</div>
+	<div class="break"></div>
+</div>

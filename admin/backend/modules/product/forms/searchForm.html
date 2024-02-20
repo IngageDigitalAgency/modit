@@ -1,0 +1,92 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm listing'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/product","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					<tr>
+						<td><a href='#' onclick='editArticle(0);return false'>Add a product</a></td>
+					</tr>
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Code:</th><td>%%opt_code%% %%code%%</td>
+					</tr>
+					<tr>
+						<th>Name:</th><td>%%opt_name%% %%name%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%opt_created%% %%created%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%opt_expires%% %%expires%%</td>
+					</tr>
+					<tr>
+						<th>Folder:</th><td>%%folder%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='articleList'>
+				<div id='productFolderId' style='display:none'>%%id%%</div>
+				<div class="break"></div>
+				<table>
+					<thead>
+						<tr>
+							<th><span onclick='sort("code","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Code</span></th>
+							<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Name</span></th>
+							<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Created</span></th>
+							<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Expires</span></th>
+							<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Published</span></th>
+							<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Enabled</span></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Products per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+//]]> 
+</script> 
+</code>

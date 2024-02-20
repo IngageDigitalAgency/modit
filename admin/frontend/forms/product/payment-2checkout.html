@@ -1,0 +1,25 @@
+<div id='checkout-moneris'>
+	<h3>Paid via Moneris</h3>
+	<form method='post' id='pmt-moneris-frm' name='pmt-moneris-frm'>
+		<input type='hidden' name='isMoneris' value='1' />
+		<input type='hidden' name='response_code' value='027' />
+		<table>
+			<tr>
+				<th>Order #</th><td><input type='text' name='response_order_id' value='%%order_id%%' readonly='true' /></th>
+			</tr>
+			<tr>
+				<th>Amount Owing:</th><td><input type='text' value='$%%total%%' disabled='true' /></td>
+			</tr>
+			<tr>
+				<th>Paid Amount:</th><td><input type='text' name='charge_total' value='0.00' /></td>
+			</tr>
+			<tr>
+				<th>Auth Code:</th><td><input type='text' name='bank_approval_code' value='' /></td>
+			</tr>
+			<tr>
+				<th>Transaction Key:</th><td><input type='text' name='transactionKey' value='' /></td>
+			</tr>
+		</table>
+		<input type='submit' value='Submit' />
+	</form>
+</div>

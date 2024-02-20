@@ -1,0 +1,168 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://fedex.com/ws/rate/v14">
+   <SOAP-ENV:Body>
+      <RateRequest>
+         <WebAuthenticationDetail>
+           <UserCredential>
+               <Key>"Input Your Information"</Key>
+               <Password>"Input Your Information"</Password>
+            </UserCredential>
+         </WebAuthenticationDetail>
+         <ClientDetail>
+            <AccountNumber>"Input Your Information"</AccountNumber>
+            <MeterNumber>"Input Your Information"</MeterNumber>
+            <IntegratorId>12345</IntegratorId>
+            <Region>US</Region>
+            <Localization>
+               <LanguageCode>EN</LanguageCode>
+               <LocaleCode>ES</LocaleCode>
+            </Localization>
+         </ClientDetail>
+         <TransactionDetail>
+            <CustomerTransactionId>Rate FedEx Freight - LTL</CustomerTransactionId>
+            <Localization>
+               <LanguageCode>EN</LanguageCode>
+               <LocaleCode>ES</LocaleCode>
+            </Localization>
+         </TransactionDetail>
+         <Version>
+            <ServiceId>crs</ServiceId>
+            <Major>14</Major>
+            <Intermediate>0</Intermediate>
+            <Minor>0</Minor>
+         </Version>
+         <ReturnTransitAndCommit>1</ReturnTransitAndCommit>
+         <VariableOptions>FREIGHT_GUARANTEE</VariableOptions>
+         <RequestedShipment>
+            <ShipTimestamp>2013-08-16T09:30:47-05:00</ShipTimestamp>
+            <DropoffType>REGULAR_PICKUP</DropoffType>
+            <ServiceType>FEDEX_FREIGHT_PRIORITY</ServiceType>
+            <PackagingType>YOUR_PACKAGING</PackagingType>
+            <Shipper>
+               <AccountNumber>"Input Your Information"</AccountNumber>
+               <Contact>
+                  <PersonName>ROHIT BORSE</PersonName>
+                  <Title>Mr.</Title>
+                  <CompanyName>DEOYAROHIT0705</CompanyName>
+                  <PhoneNumber>9762308621</PhoneNumber>
+                  <PhoneExtension>02033469</PhoneExtension>
+                  <PagerNumber>9762308621</PagerNumber>
+                  <FaxNumber>9762308621</FaxNumber>
+                  <EMailAddress>Rohit*Borse@DeoyaRohit.com</EMailAddress>
+               </Contact>
+               <Address>
+                  <StreetLines>SHIPPER ADDRESS LINE 1</StreetLines>
+                  <StreetLines>SHIPPER ADDRESS LINE 2</StreetLines>
+                  <City>SPRING</City>
+                  <StateOrProvinceCode>TX</StateOrProvinceCode>
+                  <PostalCode>77388</PostalCode>
+                  <UrbanizationCode>AR</UrbanizationCode>
+                  <CountryCode>US</CountryCode>
+                  <Residential>0</Residential>
+               </Address>
+            </Shipper>
+            <Recipient>
+               <AccountNumber>"Input Your Information"</AccountNumber>
+               <Contact>
+                  <PersonName>DEOYANEE BHADANE</PersonName>
+                  <Title>Ms.</Title>
+                  <CompanyName>DEOYAROHIT0705</CompanyName>
+                  <PhoneNumber>9762308621</PhoneNumber>
+                  <PhoneExtension>02033469</PhoneExtension>
+                  <PagerNumber>9762308621</PagerNumber>
+                  <FaxNumber>9762308621</FaxNumber>
+                  <EMailAddress>Deoyanee*Bhadane@DeoyaRohit.com</EMailAddress>
+               </Contact>
+               <Address>
+                  <StreetLines>RECIPIENT ADDRESS LINE</StreetLines>
+                  <StreetLines>RECIPIENT ADDRESS LINE</StreetLines>
+                  <City>ETOBICOKE</City>
+                  <StateOrProvinceCode>ON</StateOrProvinceCode>
+                  <PostalCode>M9C5K6</PostalCode>
+                  <UrbanizationCode>ON</UrbanizationCode>
+                  <CountryCode>CA</CountryCode>
+                  <Residential>0</Residential>
+               </Address>
+            </Recipient>
+            <RecipientLocationNumber>DEN001</RecipientLocationNumber>
+            <Origin>
+               <Contact>
+                  <PersonName>ROHIT BORSE</PersonName>
+                  <Title>Mr.</Title>
+                  <CompanyName>DEOYAROHIT0705</CompanyName>
+                  <PhoneNumber>9762308621</PhoneNumber>
+                  <PhoneExtension>02033469</PhoneExtension>
+                  <PagerNumber>9762308621</PagerNumber>
+                  <FaxNumber>9762308621</FaxNumber>
+                  <EMailAddress>Rohit*Borse@DeoyaRohit.com</EMailAddress>
+               </Contact>
+               <Address>
+                  <StreetLines>SHIPPER ADDRESS LINE 1</StreetLines>
+                  <StreetLines>SHIPPER ADDRESS LINE 2</StreetLines>
+                  <City>SPRING</City>
+                  <StateOrProvinceCode>TX</StateOrProvinceCode>
+                  <PostalCode>77388</PostalCode>
+                  <UrbanizationCode>AR</UrbanizationCode>
+                  <CountryCode>US</CountryCode>
+                  <Residential>0</Residential>
+               </Address>
+            </Origin>
+            <ShippingChargesPayment>
+               <PaymentType>SENDER</PaymentType>
+            </ShippingChargesPayment>
+            <FreightShipmentDetail>
+               <FedExFreightAccountNumber>"Input Your Information"</FedExFreightAccountNumber>
+               <FedExFreightBillingContactAndAddress>
+                  <Address>
+                     <StreetLines>2200 FORWARD DR</StreetLines>
+                     <StreetLines>2200 FORWARD DR</StreetLines>
+                     <City>SPRING</City>
+                     <StateOrProvinceCode>TX</StateOrProvinceCode>
+                     <PostalCode>77388</PostalCode>
+                     <UrbanizationCode>AR</UrbanizationCode>
+                     <CountryCode>US</CountryCode>
+                     <Residential>0</Residential>
+                  </Address>
+               </FedExFreightBillingContactAndAddress>
+               <Role>SHIPPER</Role>
+               <CollectTermsType>STANDARD</CollectTermsType>
+               <Coupons/>
+               <ClientDiscountPercent>0</ClientDiscountPercent>
+               <PalletWeight>
+                  <Units>LB</Units>
+                  <Value>500.0</Value>
+               </PalletWeight>
+               <ShipmentDimensions>
+                  <Length>180</Length>
+                  <Width>93</Width>
+                  <Height>106</Height>
+                  <Units>IN</Units>
+               </ShipmentDimensions>
+               <Comment>ESBD2600 (FXF - QA-B) - PRODUCTION - 2011-02-01T12:47:00-06:00</Comment>
+               <LineItems>
+                  <FreightClass>CLASS_050</FreightClass>
+                  <Packaging>BAG</Packaging>
+                  <Description>LineItemsDescription</Description>
+                  <Weight>
+                     <Units>LB</Units>
+                     <Value>19999.0</Value>
+                  </Weight>
+                  <Dimensions>
+                     <Length>180</Length>
+                     <Width>93</Width>
+                     <Height>106</Height>
+                     <Units>IN</Units>
+                  </Dimensions>
+                  <Volume>
+                     <Units>CUBIC_FT</Units>
+                     <Value>28.43</Value>
+                  </Volume>
+               </LineItems>
+            </FreightShipmentDetail>
+            <DeliveryInstructions>DeliveryInstructions</DeliveryInstructions>
+            <BlockInsightVisibility>1</BlockInsightVisibility>
+            <RateRequestTypes>ACCOUNT</RateRequestTypes>
+            <PackageCount>1</PackageCount>
+         </RequestedShipment>
+      </RateRequest>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

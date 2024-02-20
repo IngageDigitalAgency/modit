@@ -1,0 +1,81 @@
+%%heading%%
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/advert","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Title:</th><td>%%opt_title%% %%title%%</td>
+					</tr>
+					<tr>
+						<th>Start Date:</th><td>%%opt_start_date%% %%start_date%%</td>
+					</tr>
+					<tr>
+						<th>End Date:</th><td>%%opt_end_date%% %%end_date%%</td>
+					</tr>
+					<tr>
+						<th>Folder:</th><td>%%folder%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='advertArticleList'>
+				<div id='advertFolderId' style='display:none'>%%id%%</div>
+				<table class='listing'>
+					<tr>
+						<th></th>
+						<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Title</span></th>
+						<th><span onclick='sort("start_date","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Starts</span></th>
+						<th><span onclick='sort("end_date","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Expires</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Published</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("featured","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Featured</span></th>
+						<th><span onclick='sort("deleted","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Deleted</span></th>
+						<th colspan='2'><span class="pagination-dropdown pull-right">Ads per page : %%pager%%</span></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div class='status'>%%statusMessage%%</div>
+				<div id='pagination'>%%pagination%%</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/advert';
+initSearch();
+//]]> 
+</script> 
+</code>
