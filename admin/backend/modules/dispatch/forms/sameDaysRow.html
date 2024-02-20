@@ -1,0 +1,97 @@
+<!if("%%service_type%%"=="")!>
+<tr>
+	<td rowspan='2' class='dragBoth'>%%pickup:order_id%%</td>
+	<td class="orderId">%%pickup:service_type%%</td>
+	<td>%%pickup:address:company%%<br/><strong>Placed by: %%pickup:custom_placed_by%%</strong></td>
+	<td>%%pickup:address:line1%%<br/>%%pickup:address:city%% %%pickup:address:postalcode%%</td>
+	<td>%%pickup:instructions%%</td>
+	<td><strong>%%services%%</strong></td>
+<!if("%%pickup:actual_date%%"=="")!>
+<!if("%%field:tag^pickup:scheduled_date%%" < "<!@@(date('Y-m-d H:i:s'))@@!>")!>
+	<td class="alert-danger alert-error">%%pickup:scheduled_date%%</td>
+<!else!>
+	<td>%%pickup:scheduled_date%%</td>
+<!fi!>
+<!else!>
+	<td class="alert alert-success">%%pickup:actual_date%%</td>
+<!fi!>
+	<td>%%pickup:deliveryName%%</td>
+	<td>%%pickup:drivername%%</td>
+	<td>
+		<a href="#" onclick='editPkg(%%pickup:id%%);return false;'><em class='icon-edit'></em></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%pickup:id%%/%%pickup:j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td>%%delivery:service_type%%</td>
+	<td>%%delivery:address:company%%</td>
+	<td>%%delivery:address:line1%%<br/>%%delivery:address:city%% %%delivery:address:postalcode%%</td>
+	<td>%%delivery:instructions%%</td>
+	<td></td>
+<!if("%%delivery:actual_date%%"=="")!>
+<!if("%%field:tag^delivery:scheduled_date%%" < "<!@@(date('Y-m-d H:i:s'))@@!>")!>
+	<td class="alert-danger alert-error">%%delivery:scheduled_date%%</td>
+<!else!>
+	<td>%%delivery:scheduled_date%%</td>
+<!fi!>
+<!else!>
+	<td class="alert alert-success">%%delivery:actual_date%%</td>
+<!fi!>
+	<td colspan="1"></td>
+	<td>%%delivery:drivername%%</td>
+	<td>
+		<a href="#" onclick='editPkg(%%delivery:id%%);return false;'><em class='icon-edit'></em></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%delivery:id%%/%%delivery:j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!else!>
+<!if("%%service_type%%"=="P")!>
+<tr>
+	<td>%%pickup:order_id%%</td>
+	<td class="orderId">%%pickup:service_type%%</td>
+	<td>%%pickup:address:company%%</td>
+	<td>%%pickup:address:line1%%</td>
+	<td>%%pickup:address:city%%</td>
+	<td>%%pickup:address:postalcode%%</td>
+	<td><!@@(date("h:i a",strtotime("%%pickup:scheduled_date%%")))@@!></td>
+	<td>%%pickup:deliveryName%%</td>
+	<td>%%pickup:drivername%%</td>
+	<td>
+		<a href="#" onclick='editPkg(%%pickup:id%%);return false;'><em class='icon-edit'></em></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%pickup:id%%/%%pickup:j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!else!>
+<tr>
+	<td>%%delivery:order_id%%</td>
+	<td>%%delivery:service_type%%</td>
+	<td>%%delivery:address:company%%</td>
+	<td>%%delivery:address:line1%%</td>
+	<td>%%delivery:address:city%%</td>
+	<td>%%delivery:address:postalcode%%</td>
+	<td><!@@(date("h:i a",strtotime("%%delivery:scheduled_date%%")))@@!></td>
+	<td>%%pickup:deliveryName%%</td>
+	<td>%%pickup:drivername%%</td>
+	<td>
+		<a href="#" onclick='editPkg(%%delivery:id%%);return false;'><em class='icon-edit'></em></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%delivery:id%%/%%delivery:j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!fi!>
+<!fi!>

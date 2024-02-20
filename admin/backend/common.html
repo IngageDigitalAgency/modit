@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>%%title%%</title>
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+
+	<!-- Template style -->
+	<link media="screen" type="text/css" rel="stylesheet" href="/admin/css/common.css" />
+	<link rel="stylesheet" href="/admin/dist/css/style.css">
+	<link rel="stylesheet" href="/admin/dist/css/chosen.css">
+	<link rel="stylesheet" href="/admin/dist/js/jquery-ui/jquery-ui.css">
+	<link rel="stylesheet" href="/admin/dist/et-line-font/et-line-font.css">
+	<link rel="stylesheet" href="/admin/dist/font-awesome/css/font-awesome.min.css">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="/admin/bootstrap-new/css/bootstrap.css">
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+	<!-- jQuery --> 
+	<script type='text/javascript' src='/node_modules/jquery/dist/jquery.min.js'></script>
+	<script src="/admin/js/jquery-ui.js" type="text/javascript"></script>
+	<script type='text/javascript' src='/admin/js/jquery.form.js'></script>
+	<script src="%%global:adminjs%%/jquery.ui.nestedSortable.js" type="text/javascript"></script>	
+	<!-- bickelscode -->
+	<!--
+	<script src="/admin/dist/js/jquery.min.js"></script> 
+	<script src="/admin/dist/js/jquery-ui/jquery-ui.js"></script> 
+	<script src="/admin/dist/js/jquery.form.js"></script> 
+	<script src="/admin/js/jquery.ui.nestedSortable.js"></script> 
+	-->
+	<script src="/admin/dist/js/ovio.js"></script> 
+	<script src="/admin/dist/js/chosen.js"></script> 
+	<script type="text/javascript">rootpath = "%%rootpath%%";</script>
+	<script type='text/javascript' src='/admin/js/common.js'></script>
+	<script src="/admin/tinymce/tinymce.min.js"  type="text/javascript"></script>
+
+<script type="text/javascript"> 
+//<![CDATA[ 
+function addFile(obj,el) {
+	moxman.browse({
+		myparms:[obj, el],
+		rootpath:"/%%rootpath%%/files/",
+		document_base_url:rootpath,
+		no_host:true,
+		view:'thumbs',
+		oninsert: function(args) {
+			if (args.files[0].isDirectory) {
+				alert("You must select a file, not a directory");
+			}
+			else {
+				$(this.myparms[0]).closest("form").find("input[name='".concat(this.myparms[1],"']")).val(args.files[0].meta.url);
+			}
+		}
+	})
+}
+
+function setImage(el,root) {
+	if (root == null) {
+		moxman.browse({
+			myparms:[el],
+			rootpath:"/%%rootpath%%/images/",
+			document_base_url:rootpath,
+			no_host:true,
+			view:'thumbs',
+			oninsert: function(args) {
+				if (args.files[0].isDirectory) {
+					alert("You must select a file, not a directory");
+				}
+				else {
+					$(this.myparms[0]).parent().find("img")[0].src = args.files[0].meta.url;
+					$(this.myparms[0]).parent().find("input[type=hidden]").val(args.files[0].meta.url);
+				}
+			}
+		})
+	}
+	else {
+		moxman.browse({
+			myparms:[el],
+			rootpath:"/%%rootpath%%/images/".concat(root),
+			document_base_url:rootpath,
+			no_host:true,
+			view:'thumbs',
+			oninsert: function(args) {
+				if (args.files[0].isDirectory) {
+					alert("You must select a file, not a directory");
+				}
+				else {
+					$(this.myparms[0]).parent().find("img")[0].src = args.files[0].meta.url;
+					$(this.myparms[0]).parent().find("input[type=hidden]").val(args.files[0].meta.url);
+				}
+			}
+		})
+	}
+}
+function clearImage(el) {
+	$(el).parent().find("img")[0].src = "/images/unknown.jpg";
+	$(el).parent().find("input[type=hidden]").val("");
+}
+//]]> 
+</script> 
+
+</head>
+
+<body class="sidebar-mini sidebar-collapse">
+	<div id='messages' style='display:none'>
+		<div class='closer'><a href='#' onclick='closeMessages()'><i class='fa fa-close'></i></a></div>
+		<div class='warnings'>%%warnings%%</div>
+		<div class='errors'>%%errors%%</div>
+	</div>
+	<div class="wrapper">
+		<!-- Main Header -->
+		<header class="main-header dark-bg">
+			<!-- Logo --> 
+			<a href="index.html" class="logo dark-bg">
+				<!-- mini logo for sidebar mini 50x50 pixels -->
+				<span class="logo-mini"><img src="/admin/images-new/round_logo.png" alt="Ingage Digital" class="scalewidth scaleheight"></span>
+				<!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><img src="/admin/images-new/logo.png" alt="Ingage Digital" class="scalewidth scaleheight"></span>
+			</a>
+			<!-- Header Navbar -->
+			<nav class="navbar navbar-static-top" role="navigation">
+				<!-- Sidebar toggle button-->
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"> <span class="sr-only">Toggle navigation</span> </a>
+				<div class="pull-left search-box">
+					<form action="/modit/ajax/adminSearch" method="post" class="search-form" onsubmit="adminSearchFn(this);return false;">
+						<div class="input-group">
+							<input type="text" name="search" class="form-control" placeholder="Search...">
+							<span class="input-group-btn">
+								<button type="button" onClick="adminSearchFn(this);return false;" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i> </button>
+								<input type="hidden" name="adminSearch" value="1" />
+							</span>
+						</div>
+					</form>
+					<!-- search form -->
+				</div>
+				<!-- Navbar Right Menu -->
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<!-- Notifications Menu -->
+<!if($this->checkArray("administrator:messages",$_SESSION) && count($_SESSION["administrator"]["messages"]) > 0)!>
+						<li class="dropdown notifications-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+								<i class="icon-megaphone"></i>
+								<div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="header">Notifications</li>
+								<li>
+									<ul class="menu">
+										%%custom:notifications%%
+									</ul>
+								</li>
+							</ul>
+						</li>
+<!fi!>
+						<!-- Tasks Menu -->
+						<!-- User Account Menu -->
+						<li class="dropdown user user-menu"> 
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
+								<img src="/admin/images-new/img1.jpg" class="user-image" alt="User Image"> <span class="hidden-xs">%%session:administrator:user:fname%% %%session:administrator:user:lname%%</span> 
+							</a>
+							<ul class="dropdown-menu">
+								<li class="user-header">
+									<div class="pull-left user-img"><img src="/admin/images-new/img1.jpg" class="img-responsive" alt="User"></div>
+									<p class="text-left">%%session:administrator:user:fname%% %%session:administrator:user:lname%% <small>%%session:administrator:user:email%%</small> </p>
+									<div class="view-link text-left"><a href="#" onclick="myAccount();return false;">View Profile</a> </div>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li><a href="/modit/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar dark-bg">
+			%%menu%%
+		</aside>
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- content -->
+			%%module%%
+		</div>
+		<!-- content-wrapper -->
+		<!-- Main Footer -->
+		<footer class="main-footer dark-bg">
+			<div class="pull-right hidden-xs"> Version 1.0</div>
+			Copyright &copy; 2017 Yourdomian. All rights reserved.
+		</footer>
+	</div>
+<!-- wrapper --> 
+	<div id="overlay" style='display:none'></div>
+	<div id='popupOverlay' class='wrapper'>
+		<div class='closer'>
+			<a href='#' onclick='closePopup();return false;'><i class='fa fa-close'></i></a>
+		</div>
+		<div id='popupMessages'>
+			<div class='closer'>
+				<a href='#' onclick='clearPopupErrors();return false;'><i class='fa fa-close'></i></a>
+			</div>
+			<div class='errors'>%%errors%%</div>
+		</div>
+		<div id='popup' class='propertyEditing'></div>
+	</div>
+	<div id='altOverlay' class='wrapper'>
+		<div class="closer">
+			<a onclick="closeAltPopup();return false;" href="#"><i class="fa fa-close"></i></a>
+		</div>
+		<div id='altPopupMessages'>
+			<div class='closer'>
+				<a href='#' onclick='clearAltPopupErrors();return false;'><i class='fa fa-close'></i></a>
+			</div>
+			<div class='errors'>%%errors%%</div>
+		</div>
+		<div id='altPopup' class='.ui-widget-content'></div>
+	</div>
+
+<script src="/admin/bootstrap-new/js/bootstrap.min.js"></script> 
+<!-- bickelscode -->
+<!-- <script src="/admin/dist/js/jquery.form.js"></script> -->
+<!-- charts --> 
+</body>
+</html>

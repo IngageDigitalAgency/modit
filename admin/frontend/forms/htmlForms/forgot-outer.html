@@ -1,0 +1,45 @@
+<div id="forgot-password">
+	<div class="container">
+		<div class="wrapper">
+			%%alert%%
+			<div class="row">
+				<div class="col-xs-16 col-sm-14 col-sm-offset-1 col-md-offset-2 col-md-12 inner">
+					<div class="row">
+						<div class="col-xs-16 text-center">
+							<h2>FORGOT PASSWORD?</h2>
+						</div>
+						<div class="col-xs-8 col-xs-offset-4 text-center">
+							<div class='errorMessage'>%%errorMessage%%</div>
+						</div>
+					</div>
+					<div class="row">
+						<form method="post" onsubmit="resend(this);return false;" action="/ajax/render">
+							<div class="col-xs-10 col-xs-offset-1">%%email%%</div>
+							<div class="col-xs-4">%%submit%%</div>%%forgotPassword%%%%t_id%%
+						</form>
+					</div>
+					<div class="row">
+						<div class="col-xs-16 text-center">
+							<h3>Don't have an account? <a href="/signup">Signup</a></h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+resend = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#forgot-password").replaceWith(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

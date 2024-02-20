@@ -1,0 +1,86 @@
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+<style>
+	.context-menu { cursor:help; }
+</style>
+<link rel="stylesheet" href="/contextMenu/jquery.contextMenu.css" type="text/css"/>
+<script src="/node_modules/jquery-contextmenu/dist/jquery.contextMenu.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript">
+showRoute = function(d_id)  {
+	window.open(`/driver-map?d_id=${d_id}`,"_map");
+}
+tmr = 0;
+setContext = function() {
+	$.contextMenu({
+		selector: '.context-menu', 
+		callback: function(key, options) {
+			id = this[0].id.split("_");
+			if (id[1] > 0) {
+				if (key=="order") {
+					window.open("/modit/orders/showOrder?o_id=".concat(id[1]),"queue");
+				}
+				if (key == "dispatch") {
+					if (id[0] == 1)
+						window.open("/modit/dispatch/sameDays?sameDays=1&order_id=".concat(id[1]),"queue");
+					else
+						window.open("/modit/dispatch?overnights=1&order_id=".concat(id[1]),"queue");
+				}
+			}
+		},
+		items: {
+			"order": {name: "Order", icon: "fa-info-circle"},
+			"dispatch": {name: "Dispatch", icon: "fa-truck"},
+			"sep1": "---------",
+			"quit": {name: "Quit", icon: function(){
+				return 'context-menu-icon context-menu-icon-quit';
+			}}
+		}
+	});
+/*
+	e = $("ul.context-menu-list");
+	for (x=1; x < e.length; x++) {
+		$(e[x]).remove();
+	}
+*/
+}
+loadData = function(md,byTime) {
+	if (md) {
+		$("#searchForm form").ajaxSubmit({
+			context: {byTime: byTime, md: md},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#queueForm").html(obj.html);
+					//$.contextMenu('update');
+					//setContext();
+					clearTimeout(tmr);
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else {
+		$.ajax({
+			url: "/ajax/render",
+			data: {t_id:132},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#queueForm").html(obj.html);
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+					setContext();
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+loadData(false);
+getResults = function(el) {
+	loadData(true,false);
+}
+</script>
+<!fi!>

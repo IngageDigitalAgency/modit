@@ -1,0 +1,38 @@
+<div id="address-editing">
+	<div class="row">
+		<div class="col-xs-6"><h1>Your Address Book</h1></div>
+		<div class="col-xs-10"><hr/></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-8 left">
+			<h2>Add or Edit Address</h2>
+			%%errorMessage%%
+			%%form%%
+		</div>
+		<div class="col-xs-8 right">
+			<h2>Your Addresses</h2>
+			%%addresses%%
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("#country_id").change(function() {
+	$("#provinceWrapper").html(loadProvinces(this.value,{"class":"form-control"}));
+});
+addAddress = function() {
+	$.ajax({
+		url: "/ajax/render",
+		data: { t_id:26, a_id:0 },
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#address-editing").replaceWith(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+</script>

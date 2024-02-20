@@ -1,0 +1,21 @@
+<!if("%%check_date%%"<"%%td%%")!>
+	<tr class="alert alert-danger">
+<!else!>
+	<!if("%%optimized%%"=="1" && "%%routed%%"!="1")!>
+		<tr class="alert alert-info">
+	<!else!>
+		<tr>
+	<!fi!>
+<!fi!>
+	<td class="a-right">%%order_id%% <a href="/modit/orders/showOrder?o_id=%%order_id%%" target="_blank"><em class="icon icon-edit"></em></a></td>
+	<td>%%scheduled_date%%</td>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%deliveryName%%</td>
+	<td>%%line1%%</td>
+	<td>%%city%%</td>
+	<td>%%postalcode%%</td>
+	<td>%%packageName%%</td>
+	<td class="a-right">%%weight%%</td>
+	<td>%%instructions%%</td>
+	<td><input type="hidden" name="r_id[]" value="%%id%%" /><a href="#" onclick="editPkg(%%id%%);return false;"><em class="icon-edit"></em></a><div class="id">%%id%%</div></td>
+</tr>	
