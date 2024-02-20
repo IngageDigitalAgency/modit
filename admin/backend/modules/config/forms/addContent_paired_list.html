@@ -1,0 +1,34 @@
+<div class='propertyEditing'>
+	<div class='title'>Editing %%pretty_name%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<table>
+				<tr>
+					<th>Description:</th><td>%%description%%</td>
+				</tr>
+				<tr>
+					<td colspan='2'>
+						<table id='pairedList' class='listing'>
+							<tr>
+								<th>Delete</th>
+								<th><div class='centered'>Name</div></th>
+								<th><div class='centered'>Email</div></th>
+							</tr>
+							%%rows%%
+						</table>
+						<div class='right'>
+							<a href='#' onclick='addPairedRow();return false;'>Add a new row</a>
+						</div>
+						<div class='break'></div>
+					</td>
+				</tr>
+			</table>
+			<table id='tempStorage' style='display:none'>
+				<tbody></tbody>
+			</table>
+			%%submit%% <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>

@@ -1,0 +1,133 @@
+<div class='propertyEditing'>
+	<div class='title'>Add a Store Category</div>
+	<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck_fldr("%%form:name%%","/modit/ajax/showPageProperties/stores","popup");return false;' id='%%form:name%%'>
+		<div class='errorMessage'>%%errorMessage%%</div>
+		<div id='tabs'>
+			<ul>
+				<li><a href="#tabs-1">Main Info</a></li>
+				<li><a href="#tabs-2">Images</a></li>
+				<li><a href="#tabs-3">Coupons</a></li>
+				<li><a href="#tabs-4">Products</a></li>
+			</ul>
+			<div id='tabs-1'>
+				<table class='propertyEditing'>
+					<tr>
+						<td>Folder Name:</td><td>%%title%% %%titleError%%</td>
+					</tr>
+					<tr>
+						<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%%</td>
+					</tr>
+					<tr>
+						<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+					</tr>
+					<tr>
+						<td>Enabled:</td><td>%%enabled%% %%enabledError%%</td>
+					</tr>
+					<tr>
+						<td>Notes:</td><td>%%notes%% %%notesError%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<td>
+							<img id="imagesel_a" src="%%image%%" style="border: 1px solid #D6D6D6; padding: 3px;" /><br/>
+							<input id="image_a" type="hidden" name="image" value="%%image%%" />
+							<a href="#" onclick="setImage(this);return false;">page image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<img id="imagesel_b" src="%%rollover_image%%" style="border: 1px solid #D6D6D6; padding: 3px;" /><br/>
+							<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+							<a href="#" onclick="setImage(this);return false;">rollover image</a> | <a href="#" onclick="clearImage(this);return false;">set no rollover</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div id='couponsTab'>
+					<div class='folders'>
+						%%couponFolders%%
+					</div>
+					<table>
+						<tr>
+							<td style='width:50%'>
+								<span>Available Coupons</span><br/>
+								<div class='dragger'>
+									<ul name="folderList" id="byStoreCouponSource" class="draggable byStoreCouponList ui-droppable"></ul>
+								</div>
+							</td>
+							<td>
+								<span>Assigned Coupons</span><br/>
+								%%destCoupons%%
+							</td>
+						</tr>
+					</table>
+					<select name='destCoupons[]' id='storeDestCoupons' multiple='multiple' style='display:none'></select>
+				</div>
+			</div>
+			<div id='tabs-4'>
+				<div class='title'>Stores Category by Product Categories</div>
+				<table>
+					<tr>
+						<td style='width:50%'>Available Categories:<br/>
+							%%sourceProductChains%%
+						</td>
+						<td>Assigned Categories: <span class='errorMessage'>%%destProductChainsError%%</span><br/>
+							%%destProductChains%%
+						</td>
+					</tr>
+				</table>
+				%%destProductChainsSelect%%
+				<div class='title'>Stores by Individual Products</div>
+				%%productChains%%
+				<table>
+					<tr>
+						<td style='width:50%'>Available Products:<br/>
+							<div id='sourceProductContainer'>
+								%%sourceProducts%%
+								<ul id='fromProductProductsList' class='draggable'></ul>
+							</div>
+						</td>
+						<td>Assigned Products: <span class='errorMessage'>%%destProductsError%%</span><br/>
+							%%destProducts%%
+						</td>
+					</tr>
+				</table>
+				%%destProductSelect%%
+			</div>
+		</div>
+		%%description%%
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showPageProperties%% %%test%% %%id%% %%type%% 
+	</form>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this);
+});
+$( "ul.draggable > li" ).draggable({
+	helper: "clone"
+});
+$( "ul.draggable" ).droppable({
+	drop: function( event, ui ) {
+		productDrop(this,event,ui);
+	}
+});
+$( "ol.draggable > li" ).draggable({
+	helper: folderCopyHelper
+});
+$( "ol.draggable" ).droppable({
+	drop: function( event, ui ) {
+		folderDrop(this,event,ui);
+	}
+});
+$("#storeProductChains").change(function() {
+	loadProductList(this);
+});
+
+</code>

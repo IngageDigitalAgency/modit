@@ -1,0 +1,75 @@
+<div id="addressList">
+	<div class='list'>
+		<form method="POST" id="addressListForm" onsubmit='formCheck_add("addressListForm","/modit/ajax/loadAddresses/members",$("#addressTab"));return false;'>
+			<div class="row">
+				<div class="col-xs-4 form-group"><label>Address Type:</label>%%addressType%%</div>
+				<div class="col-xs-4 form-group"><label>Search Text:</label>%%addressText%%</div>
+				<div class="col-xs-4 form-group"><label>Sort Order:</label>%%sortby%%</div>
+				<div class="col-xs-4 form-group"><label>&nbsp;</label><button class="btn btn-default form-control m-0" onclick="setFilter(this);">Search</button></div>
+			</div>
+			<table id="addresses" class='table'>
+				<thead>
+					<tr>
+						<th></th>
+						<th></th>
+						<th class="a-left">Company</th>
+						<th class="a-left">Address</th>
+						<th class="a-left">Phone</th>
+						<th class="a-left">Email</th>
+					</tr>
+				</thead>
+				<tbody>%%addresses%%</tbody>
+			</table>
+			<div class="row">
+				<div class="col-xs-12">%%loadAddresses%%%%o_id%%%%pagenum%%%%pagination%%</div>
+				<div class="col-xs-4">%%pager%%</div>
+			</div>
+		</form>
+		<div class='form-actions'>
+			<button class="def_field_submit" onclick='loadAddress(0);return false;'>Add an Address</a></button>
+			<button class="def_field_submit" onclick='exportAddresses(%%field:tag^o_id%%);return false;'>Export Addresses</a></button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+setFilter = function(el) {
+	var typ = $("select[name='addressType']").val();
+	var txt = $("input[name='addressText']").val();
+	$("#addresses tbody tr").each( function( idx, el ) {
+		if ($(el).hasClass(`type_${typ}`)) {
+			if (txt == "")
+				$(el).removeClass('hidden');
+			else {
+				var c = $(el).find("td")[3];
+				c = c.outerText.toLowerCase();
+				if (c.indexOf(txt) >= 0) {
+					$(el).removeClass('hidden');
+				}
+				else {
+					$(el).addClass('hidden');
+				}
+			}
+		}
+		else
+			$(el).addClass("hidden");
+	});
+}
+//setFilter($("select[name='addressType']"))
+exportAddresses = function( o_id ) {
+	document.location = `/modit/ajax/exportAddresses/members?o_id=${o_id}`;
+/*
+	$.ajax({
+		url: "/modit/ajax/exportAddresses/members",
+		data: { "o_id": o_id },
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				showAltError(h.messages);
+			}
+			catch(err) {}
+		}
+	})	
+*/
+}
+addressPager = function() { return '/modit//ajax/loadAddresses/members'; }
+</script>

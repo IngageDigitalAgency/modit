@@ -1,0 +1,19 @@
+<div class="alert alert-success">Address updated</div>
+<script type="text/javascript">
+$.ajax({
+	url: "/ajax/render",
+	data: {t_id:3},
+	context: {a_id: %%a_id%%},
+	success: function(obj,status,xhr) {
+		try {
+			obj = eval("("+obj+")");
+			$("#pickupAddresses").replaceWith(obj.html);
+			eval(obj.code);
+			$("#pickupAddress")[0].value = %%a_id%%;
+			editPickup(%%a_id%%);
+		}
+		catch(err) {
+		}
+	}
+});
+</script>

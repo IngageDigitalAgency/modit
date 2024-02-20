@@ -1,0 +1,115 @@
+<div class="monthly-cal-outer">
+	<div class="monthly_cal">
+		<div class='nav'>
+			<div class='wrapper'>
+				<a href='?month=%%prevMonth%%&year=%%prevYear%%'><img src='/images/backgrounds/month_arrow_back.png' alt='Previous Month' /></a>
+				<div class='currentDate'>%%fullMonth%% %%year%%</div>
+				<a href='?month=%%nextMonth%%&year=%%nextYear%%'><img src='/images/backgrounds/month_arrow_forward.png' alt='Next Month' /></a>
+				<div class='clearfix'></div>
+			</div>
+		</div>
+	</div>
+	<div class='hidden'>
+		<div class='currentMonth'>%%year%%-%%month%%</div>
+	</div>
+	<table class='fullMonth'>
+		<thead>
+			<tr>
+				<th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%weeks%%
+		</tbody>
+	</table>
+	<div id='days-events'>
+	</div>
+</div>
+<script type="text/javascript">
+$('.eventday').each(function(idx,el) {
+	var mth = $('.currentMonth')[0].innerHTML;
+	$(el).find('.eventsingle').each(function(jdx,evt) {
+		var dy = $(el).find('.header a')[0].innerHTML.replace(' ','0');
+		var dt = mth.concat('-',dy);
+		if ($(evt).find('span.hidden')[0].innerHTML != dt)
+			$(evt).remove();
+	});
+	$(el).find('.eventsingle:first').removeClass('hidden');
+});
+
+	$(document).ready(function() {
+		var w = 0;
+		$('.monthly-cal-outer .wrapper').children().each(function(idx,el) {
+			w += el.clientWidth;
+		});
+		w += 5;
+		$('.monthly-cal-outer .wrapper').css('width',w+'px');
+	});
+//
+//	grab the next 5 events
+//
+var p = document.location.search.replace('?','').split('&');
+p[p.length] = 't_id=52';
+p[p.length] = 'folder_id='.concat('%%folder_id%%');
+var retValue = $.ajax({
+	url: '/ajax/render?'.concat(p.join('&')),
+	type: 'get',
+	async:true,
+	success: function(data,status,jqXHR) {
+		try {
+			obj = eval('('+data+')');
+			$('#days-events')[0].innerHTML = obj.html;
+			eval(obj.code);
+		}
+		catch(err) {
+		}
+	}
+});
+
+	$('.monthly-cal-outer .header').each(function(idx,el) {
+		$(el).click(function () {
+			var dt = $(el).find('a')[0].search;
+			var retValue = $.ajax({
+				url: '/ajax/render'.concat(dt),
+				data: {t_id:39,folder_id:%%folder_id%%},
+				type: 'get',
+				async:false
+			});
+			try {
+				obj = eval('('.concat(retValue.responseText,')'));
+				var h = obj.html;
+				$('#days-events')[0].innerHTML = h;
+				eval(obj.code);
+			}
+			catch(err) {
+				alert(err.message);
+			}
+			return false;
+		});
+	});
+	$('.monthly-cal-outer .day-footer').each(function(idx,el) {
+		if ($(el).find('.event').length == 0) {
+			$(el).children('span').css('display','none');
+		}
+		else {
+			$('.monthly-cal-outer .cal-mid').mouseenter(function() {
+				if ($(this).find('.event').length > 0)
+					$(this).find('.eventList').css('visibility','visible');
+			});
+			$('.monthly-cal-outer .cal-mid').mouseleave(function() {
+				$(this).find('.eventList').css('visibility','');
+			});
+		}
+	});
+function fnShowDetails(obj) {
+	if ($(obj).hasClass('open')) {
+		$(obj).addClass('closed').removeClass('open');
+		$(obj).closest('.event').find('.hider').hide(500);
+	}
+	else {
+		$(obj).addClass('open').removeClass('closed');
+		$(obj).closest('.event').find('.hider').show(500);
+	}
+	return false;
+}
+</script>

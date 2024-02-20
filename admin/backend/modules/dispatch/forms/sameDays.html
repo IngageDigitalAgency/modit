@@ -1,0 +1,73 @@
+<div id="middleHeading" style="">
+	<div class="heading_title"><a href="#" onclick="getContent('moduleStatus','dispatch','#middleContent');return false;">Same Day Deliveries</a></div>
+	<div class="break"></div>
+</div>
+<div id="variableContent">
+	<div class='sameDays %%x2%%'>
+		<div class='status'>%%statusMessage%%</div>
+		<div id='search-tabs'>
+			<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent");return false;' id='%%form:name%%'>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td class="a-right">Date:</td><td>%%opt_scheduled_date%% %%scheduled_date%%</td>
+							<td class="a-right">Driver:</td><td>%%driver_id%%</td>
+						</tr>
+						<tr>
+							<td class="a-right">Type:</td><td>%%service_type%%</td>
+							<td class="a-right">Service:</td><td>%%delivery_type%%</td>
+						</tr>
+						<tr>
+							<td class="a-right">Show Completed:</td><td>%%opt_delivered%%</td>
+							<td class="a-right">Order #:</td><td>%%order_id%%</td>
+						</tr>
+						<tr>
+							<td class="a-right">3<sup>rd</sup> Party:</td><td>%%third_party%% </td>
+							<td class="a-right">Partial Address:</td><td>%%address%%</td>
+						</tr>
+						<tr>
+							<td></td><td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div id='articleList' class="listing">
+					<table>
+						<thead>
+							<tr>
+								<th><span onclick='sort("order_id","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Order #</span></th>
+								<th>Type</th>
+								<th>Company</th>
+								<th>Address</th>
+								<th>Instructions</th>
+								<th>Special Needs</th>
+								<th><span onclick='sort("scheduled_date","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Time</span></th>
+								<th>Service</th>
+								<th><span onclick='sort("drivername","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Driver</span></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						%%deliveries%%
+					</table>
+					<div id='pagination'>
+						<span class="pagination-dropdown pull-right">Deliveries per page : %%pager%%</span>
+						%%pagination%%
+						<div class="break"></div>
+					</div>
+				</div>
+				%%sameDays%%%%pagenum%%%%sortorder%%%%sortby%%%%resort%%%%resortId%%%%resortTo%%
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+sameDayDraggable();
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+initDateFields();
+//]]> 
+</script>

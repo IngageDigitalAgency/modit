@@ -1,0 +1,40 @@
+<div class='errmsg'>%%errorMessage%%</div>
+<div id='checkout-moneris'>
+<form action='%%global:2checkout:url%%' method='post'>
+    <input type='hidden' name='sid' value='%%global:2checkout:%%' />
+    <input type='hidden' name='mode' value='2CO' />
+    <input type='hidden' name='cart_order_id' value='Order #%%order_id%%' />
+    <input type='hidden' name='total' value='%%formattedTotal%%' />
+    <input type='hidden' name='card_holder_name' value='%%bill_firstname%% %%bill_lastname%%' />
+    <input type='hidden' name='street_address' value='%%bill_line1%%' />
+    <input type='hidden' name='street_address2' value='%%bill_line2%%' />
+    <input type='hidden' name='city' value='%%bill_city%%' />
+    <input type='hidden' name='state' value='%%bill_province%%' />
+    <input type='hidden' name='zip' value='%%bill_postalcode%%' />
+    <input type='hidden' name='country' value='%%bill_country%%' />
+    <input type='hidden' name='email' value='%%email%%' />
+    <input type='hidden' name='phone' value='%%bill_phone1%%' />
+    <input name='submit' type='submit' value='Checkout' />
+		<span class='save'>
+			<a class="button red bigrounded" href="#" onclick='formSubmit(this)'>Confirm Secure Payment
+				<span class="button_arrow">
+					<img src="/images/backgrounds/button_arrow.png">
+				</span>
+			</a>
+		</span>
+	</form>
+	%%2checkout_error%%
+	%%errmsg%%
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var t = "%%order_id%%";
+	if (t.length == 0) {
+		parent.location = '/';
+	}
+	document.forms["2checkout"]["order_id"].value = document.forms["2checkout"]["order_id"].value.concat("-").concat(Math.floor(Math.random()*100));
+	if (document.location.host.indexOf("modit") >= 0)
+		document.forms["2checkout"]["charge_total"].value = "1.00";
+});
+</script>
+	

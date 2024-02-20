@@ -1,0 +1,20 @@
+<table class='listing'>
+	<thead>
+		<tr><th>Cycle</th><th>Scheduled Date</th><th></th></tr>
+	</thead>
+	<tbody>
+		%%rows%%
+	</tbody>
+</table>
+<div class='pagination'>
+	<form method='post' id='getRemainingForm'>
+		%%pagination%%
+		%%pagenum%% %%o_id%%
+	</form>
+</div>
+<script type='text/javascript'>
+altPagination = function(pgNum, obj) {
+	$('#getRemainingForm input[name=pagenum]').val(pgNum);
+	formCheck('getRemainingForm','/modit/ajax/getRemaining/credit','tabs-3');
+}
+</script>

@@ -1,0 +1,72 @@
+<!if("%%needs_approval%%"!="0")!>
+<tr class="alert alert-info">
+	<td class='a-right'><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%% <i class="icon icon-edit"></i></a></td>
+	<td>%%scheduled_date%%</td>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%name%%</td>
+	<td>%%line1%%<br/>%%city%% %%postalcode%%</td>
+	<td>%%instructions%%</td>
+	<td>%%services%%</td>
+<!if(strlen("%%drivername%%")==0)!>
+	<td class="alert alert-warning">Unassigned</td>
+<!else!>
+	<td>%%drivername%%</td>
+<!fi!>
+	<td>
+		<a href="#" onclick='editPkg(%%id%%);return false;'><i class='icon-edit'></i></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!else!>
+<!if("%%cd%%"<"%%td%%")!>
+<tr class="alert alert-danger">
+	<td class='a-right'><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%% <i class="icon icon-edit"></i></a></td>
+	<td>%%scheduled_date%%</td>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%name%%</td>
+	<td>%%line1%%</td>
+	<td>%%city%%</td>
+	<td>%%postalcode%%</td>
+<!if(strlen("%%drivername%%")==0)!>
+	<td class="alert alert-warning">Unassigned</td>
+<!else!>
+	<td>%%drivername%%</td>
+<!fi!>
+	<td>
+		<a href="#" onclick='editPkg(%%id%%);return false;'><i class='icon-edit'></i></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!else!>
+<tr>
+	<td class='a-right'><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%% <i class="icon icon-edit"></i></a></td>
+	<td>%%scheduled_date%%</td>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%name%%</td>
+	<td>%%line1%%<br/>%%city%% %%postalcode%%</td>
+	<td>%%instructions%%</td>
+	<td>%%services%%</td>
+<!if(strlen("%%drivername%%")==0)!>
+	<td class="alert alert-warning">Unassigned</td>
+<!else!>
+	<td>%%drivername%%</td>
+<!fi!>
+	<td>
+		<a href="#" onclick='editPkg(%%id%%);return false;'><i class='icon-edit'></i></a>
+		<div id='productdrag_%%id%%'>
+			<div class="productDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+</tr>
+<!fi!>
+<!fi!>

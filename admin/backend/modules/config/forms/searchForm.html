@@ -1,0 +1,39 @@
+<div class='searchForm propertyEditing'>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/config","middleContent");return false;' id='%%form:name%%'>
+			<div id='configArticleList'>
+				<div id='configFolderId' style='display:none'>%%id%%</div>
+				<table class='articleList'>
+					<tr>
+						<th></th>
+						<th></th>
+						<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/config","middleContent")'>Name</span></th>
+						<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/config","middleContent")'>Description</span></th>
+						<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/config","middleContent")'>Value</span></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>%%pagination%%</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/config/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/config';
+
+var getUrl = function () {
+	return pagingUrl;
+}
+initSearch();
+//]]> 
+</script> 
+</code>

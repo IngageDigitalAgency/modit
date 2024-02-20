@@ -1,0 +1,54 @@
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<div class="container" id="accountSearch">
+	<div class="row">
+		<div class="col-xs-16 text-center"><h1>Order Search</h1></div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-4 text-center">%%errorMessage%%</div>
+	</div>
+	<form method="POST" action="/ajax/render" onsubmit="getResults(this);return false;">
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="form-group"><label class="form-group">Start Date</label> %%sd%%</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group"><label class="form-group">End Date</label> %%ed%%</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="form-group"><label>Address</label> %%address_id%%</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group"><label>Service Type</label> %%product_id%%</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-md-offset-4">
+				<div class="form-group"><label>Order #</label> %%order_id%%</div>
+			</div>
+			<div class="col-md-4">
+				<div class="form-group"><label>Orders per Page</label> %%pager%%</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 text-center">%%query%%%%accountSearch%%%%pagenum%%%%t_id%%</div>
+		</div>
+	</form>
+	<div class="results">
+	</div>
+</div>
+<script type="text/javascript">
+getResults = function(el) {
+	$(el).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = eval("("+obj+")");
+				$("#accountSearch").replaceWith(obj.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

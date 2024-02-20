@@ -1,0 +1,63 @@
+<h2 class="text-center">Get An Estimate</h2>
+<!if("<!@@($this->getUserInfo("id"))@@!>"=="0")!>
+<div class="row">
+<div class="col-xs-16 col-sm-offset-4 col-sm-8 col-md-offset-4 col-md-8 text-center">
+<div class="alert alert-info">
+If you have an account, please <a href="/login">log in</a> to get your customized rate. <br/>Need an account? Create one <a href="/signup">here</a>.
+</div>
+</div>
+</div>
+<!fi!>
+<div class="row">
+<div class="col-xs-16 col-sm-offset-4 col-sm-8 col-md-offset-5 col-md-6 text-center">
+%%errorMessage%%<!@@($this->getUserInfo("id")==0)@@!>
+</div>
+</div>
+<form method="post">
+	<div class="row">
+		<div class="col-xs-8 form-group">	
+			<label>Service</label>%%serviceType%%
+		</div>
+		<div class="col-xs-8 form-group">	
+			<label>Packaging</label>%%product_id%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 form-group">
+			<label>Weight Units</label>%%custom_weight_code%%
+		</div>
+		<div class="col-xs-4 form-group">	
+			<label>Dimension Units</label>%%custom_dimension_code%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 form-group">
+			<label>From Postal Code</label>%%from%%
+		</div>
+		<div class="col-xs-4 form-group">	
+			<label>To Postal Code</label>%%to%%
+		</div>
+		<div class="col-xs-4 form-group">
+			<label>Quantity</label>%%quantity%%
+		</div>
+		<div class="col-xs-4 form-group">
+			<label>Weight (Each)</label>%%weight%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 form-group">
+			<label>Height</label>%%height%%
+		</div>
+		<div class="col-xs-4 form-group">
+			<label>Width</label>%%width%%
+		</div>
+		<div class="col-xs-4 form-group">
+			<label>Depth</label>%%depth%%
+		</div>
+		<div class="col-xs-4 form-group">
+			<label> </label>%%quoteMe%%
+		</div>
+	</div>
+%%getAQuote%%
+</form>
+%%result%%

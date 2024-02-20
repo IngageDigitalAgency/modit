@@ -1,0 +1,66 @@
+<div id='customerListing'>
+	<div class='page-top'>
+		<div class='banner'>Search Customers</div>
+	</div>			
+	<form method='post'>
+		<div class='middle search'>
+			<a href='#'><img src='/images/backgrounds/search-btn.png' alt='Search' onclick='pagination(0,this);' class='submit' /></a>%%searchField%%
+		</div>
+		%%pagenum%%
+		%%memberListing%%
+		<div class='results'>
+			<table class='customers'>
+				<thead>
+					<tr><th>&nbsp;</th><th>Name</th><th>Address</th><th>City</th></tr>
+				</thead>
+				<tbody>
+					%%members%%
+				</tbody>
+			</table>
+			<div class='results'>We found %%recordcount%% results</div>
+			%%pagination%%
+		</div>
+	</form>
+</div>
+
+<script type='text/javascript'>
+function pagination(pg,obj) {
+	$(obj).closest('form').find('input[name=pagenum]')[0].value = pg;
+	formSubmit($(obj).closest('form'));
+}
+function doSearch(obj) {
+	$(obj).closest('form').find('input[name=pagenum]')[0].value = 0;
+	formSubmit($(obj).closest('form'));
+}
+function viewCustomer(c_id) {
+	$.ajax({
+		url:'/ajax/render',
+		data:{t_id:22,member_id:c_id},
+		success:function(msg,status,xhr) {
+			try {
+				var obj = eval('('+msg+')');
+				$('#customerListing .results').html(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+function pageOrders(m_id,pg) {
+	$.ajax({
+		url:'/ajax/render',
+		data:{'t_id':23,'m_id':m_id,'use_passed':1,'pagenum':pg},
+		context: {id:m_id},
+		success:function(msg,status,xhr) {
+			try {
+				obj = eval('('+msg+')');
+				$('#salesListing .orders').html(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

@@ -1,0 +1,29 @@
+<div class='title'>Add/Edit Tax Rates</div>
+<div class='errorMessage'>%%errorMessage%%</div>
+<form id='%%form:name%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/config",$("#popup"));return false;' method='%%form:method%%'>
+	<table>
+		<tr>
+			<td>Country</td><td>%%country_id%% <span class='errorMessage'>%%country_idError%%</span></td>
+		</tr>
+		<tr>
+			<td>Province</td><td><div id='province_selector'>%%province_id%%</div> <span class='errorMessage'>%%province_idError%%</span></td>
+		</tr>
+		<tr>
+			<td>Tax Code</td><td>%%name%%  <span class='errorMessage'>%%nameError%%</span></td>
+		</tr>
+		<tr>
+			<td>Rate</td><td>%%tax_rate%% <span class='errorMessage'>%%tax_rateError%%</span></td>
+		</tr>
+		<tr>
+			<td>Deleted</td><td>%%deleted%% </td>
+		</tr>
+	</table>
+	%%submit%% %%taxEditor%%
+	<input type='hidden' value='%%id%%' name='t_id' />
+	<div class='break'></div>
+</form>
+<code>
+	$('#country_id').change(function() {
+		getContent('loadProvinces',null,$('#province_selector')[0],'?c_id='.concat(this.value));
+	});
+</code>

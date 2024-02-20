@@ -1,0 +1,25 @@
+<div id='checkout-other' class='container_12'>
+	<div class="header">
+		<img alt="Checkout Step 3" src="/images/backgrounds/step3.png">
+	</div>
+	<h2>Checkout Confirmation</h2>
+	<form method='post' id='pmt-other-frm' name='pmt-other-frm' action=''>
+		<input type='hidden' value='1' id='other' name='isOther' />
+		<input type='hidden' value='%%session:cart:header:order_id%%' name='orderNumber' />
+		<a href='#' onclick='formSubmit(this);'><img src='/images/backgrounds/payment-other.png' /></a>
+		<div class='clearfix'></div>
+		<div class='grid_6 alpha'>
+			<div class='wrapper'>
+				<p>Our processing is handled via email <a href='mailto:%%config:mailing-address:email%%'>%%config:mailing-address:email%%</a></p>
+				<p>We do not collect or store any of your credit card information wighout notification. All payments are processed through one of our sales agents.</p>
+			</div>
+		</div>
+		<div class='fleft divider'></div>
+		<div class='grid_6 omega'>
+			<div class='wrapper'>
+				<p>FULL ON-LINE PAYMENT GATEWAY COMING SOON!</p>
+			</div>
+		</div>
+		<div class='clearfix'></div>
+	</form>
+</div>

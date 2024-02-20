@@ -1,0 +1,24 @@
+<div class='title'>Pick List</div>
+<form method='post' action='' id='pickForm'>
+	<span>Start Date:&nbsp;%%start_date%%</span>
+	<span>End Date:&nbsp;%%end_date%%</span>
+	<span>%%submit%%</span> <span>%%export%%</span>
+	%%pickList%%
+</form>
+<div class='info'>Records Found: %%count%%</div>
+<table class='listing'>
+	<thead>
+		<tr>
+			<th>Product Code</th>
+			<th>Name</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>%%products%%</tbody>
+</table>
+<script type='text/javascript'>
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+</script>

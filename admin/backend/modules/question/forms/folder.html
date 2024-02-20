@@ -1,0 +1,28 @@
+<div class='title'>Add an Question Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("questionForm","/modit/ajax/showPageProperties/question","popup");return false;' id='questionForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<table class='propertyEditing'>
+			<tr>
+				<td>Folder Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+			</tr>
+			<tr>
+				<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+			</tr>
+			<tr>
+				<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+			</tr>
+			<tr>
+				<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+			</tr>
+		</table>
+	</div>
+	<input type='hidden' action='%%form:action%%'>
+	%%submit%%
+	%%showPageProperties%% %%test%% %%id%% %%type%% 
+	<div class='break'></div>
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

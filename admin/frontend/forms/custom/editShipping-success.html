@@ -1,0 +1,19 @@
+<div class="alert alert-success">Address updated</div>
+<script type="text/javascript">
+$.ajax({
+	url: "/ajax/render",
+	data: {t_id:4},
+	context: {a_id: %%a_id%%},
+	success: function(obj,status,xhr) {
+		try {
+			obj = eval("("+obj+")");
+			$("#shippingAddresses").replaceWith(obj.html);
+			eval(obj.code);
+			$("#shippingAddress")[0].value = %%a_id%%;
+			editShipping(%%a_id%%);
+		}
+		catch(err) {
+		}
+	}
+});
+</script>

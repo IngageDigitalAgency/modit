@@ -1,0 +1,30 @@
+<div id='blogComments' class='listing'>
+	<div class='title'>Blog Comments</div>
+	<form id='%%form:name%%' name='%%form:name%%' method='%%form:method%%' onsubmit='formCheck("%%form:name%%","%%form:action%%","blogComments");return false;'>
+		<table>
+			<tr>
+				<th></th>
+				<th></th>
+				<th><span onclick='sort("approved","%%form:name%%","%%form:action%%","blogComments")'>Accepted</span></th>
+				<th><span onclick='sort("created","%%form:name%%","%%form:action%%","blogComments")'>Created</span></th>
+				<th><span onclick='sort("author","%%form:name%%","%%form:action%%","blogComments")'>Author</span></th>
+				<th><span onclick='sort("rating","%%form:name%%","%%form:action%%","blogComments")'>Rating</span></th>
+				<th><span onclick='sort("author","%%form:name%%","%%form:action%%","blogComments")'>Attachment</span></th>
+				<th>Comment</th>
+			</tr>
+			%%comments%%
+		</table>
+		%%pagenum%% 
+		%%loadComments%% 
+		%%sortby%%
+		%%sortorder%%
+		<input type='hidden' name='b_id' value='%%id%%' />
+		<div class='pagination'>%%pagination%%</div>
+	</form>
+</div>
+<div id='blogCommentEdit'></div>
+<script type='text/javascript'>
+closePopup = function() {
+	loadFromEdit();
+}
+</script>

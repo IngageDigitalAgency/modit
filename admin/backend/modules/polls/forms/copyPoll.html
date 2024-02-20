@@ -1,0 +1,25 @@
+<div class='copyPoll'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div class='title'>Copy A Poll</div>
+	<form method='post' id='copyPoll' name='copyPoll' onsubmit='formCheck("copyPoll","/modit/ajax/copyPoll/polls",$("#popup"));return false;'>
+		<table>
+			<tr>
+				<th>Source:</th>
+				<td>%%p_id%% <span class='errorMessage'>%%originalError%%</span></td>
+			</tr>
+			<tr>
+				<th>Title:</th>
+				<td>%%title%% <span class='errorMessage'>%%titleError%%</span></td>
+			</tr>
+			<tr>
+				<th>Member Of:</th>
+				<td>%%destFolders%% <span class='errorMessage'>%%destFoldersError%%</span></td>
+			</tr>
+		</table>
+		%%submit%% %%copyPoll%%
+		<div class='clearfix'></div>
+	</form>
+</div>
+<code>
+	$('#copyPoll').find('select').chosen();
+</code>

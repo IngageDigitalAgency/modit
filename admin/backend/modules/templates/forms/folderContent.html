@@ -1,0 +1,42 @@
+%%heading%%
+<div id='articleList' class='listing'>
+	<div id='category_heading'>
+		<div class="heading_title">
+			<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='templateFolderId' style='display:none'>%%id%%</div>
+	<form name='%%form:name%%' method='%%form:method%%' id='%%form:name%%'>
+		%%sortby%%
+		%%sortorder%%
+		%%showFolderContent%%
+		%%pagenum%%
+		<input type='hidden' name='t_id' value='%%id%%' />
+		<table>
+			<tr>
+				<th>Template Name</th><th>Special Type</th><th>Pages using this template</th><th>Version</th><th></th><th></th><th></th>
+			</tr>
+			%%articles%%
+		</table>
+		<div id='pagination'><span class="pagination-dropdown pull-right">Templates per page : %%pager%%</span> %%pagination%%</div>
+	</form>
+</div>
+<code>
+pagingUrl = '/modit/ajax/%%form:action%%/templates';
+$('#showFolderContent select[name=versions]').change(function(idx,el) {
+	loadVersion(this);
+});
+$('#showFolderContent select[name=pages]').change(function(idx,el) {
+	loadPage(this);
+});
+$('#pager').change(function() {
+	formCheck("%%form:name%%","/modit/ajax/showPageContent/templates","middleContent");
+});
+</code>

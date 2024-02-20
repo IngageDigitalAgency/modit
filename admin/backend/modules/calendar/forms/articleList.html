@@ -1,0 +1,17 @@
+<tr>
+	<td>%%name%%</td>
+	<td>%%start_date%%</td>
+	<td>%%end_date%%</td>
+	<td><div class='centered'>%%published%%</div></td>
+	<td><div class='centered'>%%enabled%%</div></td>
+	<td><div class='centered'>%%featured%%</div></td>
+	<td>
+		<a href="#" onclick='editArticle(%%id%%);return false;' class='centered'><i class='icon-edit'></i></a>
+		<div id='calendardrag_%%id%%'>
+			<div class="calendarDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+	<td><a href="#" onclick='deleteArticle(%%id%%,%%j_id%%);return false;' class='centered'><i class='icon-trash'></i></a></td>
+</tr>

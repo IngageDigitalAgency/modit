@@ -1,0 +1,30 @@
+<!if("%%unavailable%%"=="1")!>
+	<tr>
+		<td>%%name%%</td>
+		<td colspan="16"></td>
+		<td class="center"><a href="#" onclick="editProduct(%%id%%,%%member_id%%,%%isgroup%%);return false;"><i class="icon-edit"></i></a></td>
+		<td class="center"><a href="#" onclick="removeProduct(%%id%%,%%member_id%%,%%isgroup%%,this);return false;"><i class="icon-remove"></i></a></td>
+		</tr>
+<!else!>
+<tr>
+	<td>%%name%%</td>
+	<td class="a-right"><!if("%%minimum_charge%%"!="0.00")!><div class="contentInfo">%%minimum_charge%%%</div><!fi!></td>
+	<td class="a-right">%%gMinimum%%</td>
+	<td class="a-right"><!if("%%zone_surcharge%%"!="0.00")!><div class="contentInfo">%%zone_surcharge%%%</div><!fi!></td>
+	<td class="a-right">%%gZone%%</td>
+	<td class="a-right"><!if("%%downtown_surcharge%%"!="0.00")!><div class="contentInfo">%%downtown_surcharge%%%</div><!fi!></td>
+	<td class="a-right">%%gDowntown%%</td>
+	<td class="a-right"><!if("%%km_mincharge%%"!="0.00")!><div class="contentInfo">%%km_mincharge%%</div><!fi!></td>
+	<td class="a-right">%%gKmMin%%</td>
+	<td class="a-right"><!if("%%km_maxcharge%%"!="0.00")!><div class="contentInfo">%%km_maxcharge%%</div><!fi!></td>
+	<td class="a-right">%%gKmMax%%</td>
+	<td class="a-right"><!if("%%km_charge%%"!="0.00")!><div class="contentInfo">%%km_charge%%</div><!fi!></td>
+	<td class="a-right">%%gKmRate%%</td>
+	<td class="a-right"><!if("%%out_of_zone_rate%%"!="0.00")!><div class="contentInfo">%%out_of_zone_rate%%%</div><!fi!></td>
+	<td class="a-right">%%gOutOfZoneRate%%</td>
+	<td><!if("%%cutoff_time%%"!="12:00 am")!><div class="contentInfo">%%cutoff_time%%</div><!fi!></td>
+	<td class="centered">%%fuel_exempt%%</td>
+	<td class="center"><a href="#" onclick="editProduct(%%id%%,%%member_id%%,%%isgroup%%);return false;"><i class="icon-edit"></i></a></td>
+	<td class="center"><a href="#" onclick="removeProduct(%%id%%,%%member_id%%,%%isgroup%%,this);return false;"><i class="icon-remove"></i></a></td>
+</tr>
+<!fi!>

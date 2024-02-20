@@ -1,0 +1,20 @@
+<div>%%errorMessage%%</div>
+<script type="text/javascript">
+closePopup();
+<!if("%%request:method%%"=="deductions")!>
+	$.ajax({
+		url: "/modit/ajax/deductions/drivers",
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				d = $("<div></div>").html(h.html);
+				$("#variableContent").replaceWith(d.find("#variableContent"));
+			}
+			catch(err) {
+			}
+		}
+	});
+<!else!>
+$("#searchForm").submit();
+<!fi!>
+</script>

@@ -1,0 +1,38 @@
+<div class='title'>Daily Processing Log</div>
+%%errorMessage%%
+<form method='post' action='/modit/credit/dailyLog' id='dailyLogForm'>
+	<span>From Date:&nbsp;%%from%%</span>
+	<span>To Date:&nbsp;%%to%%</span>
+	<span>%%submit%%</span>
+	<table class='listing'>
+		<thead>
+			<tr>
+				<th>Bill Date</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Started</th>
+				<th>Completed</th>
+				<th>Billed</th>
+				<th>Errors</th>
+				<th>Warnings</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+	</table>
+	<div id='pagination'>
+		<span class="pagination-dropdown pull-right">
+			%%pagination%%
+			%%pager%%
+		</span>
+	</div>
+	%%dailyLog%%
+</form>
+<script type='text/javascript'>
+initDateFields();
+$('#pager').change(function() {
+	formCheck("dailyLogForm","/modit/ajax/dailyLog/credit","middleContent");
+});
+</script>

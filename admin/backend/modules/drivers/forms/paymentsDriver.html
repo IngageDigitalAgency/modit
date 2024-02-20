@@ -1,0 +1,23 @@
+<table class='listing'>
+	<thead>
+		<tr>
+			<th class="a-left"><a href="#" onclick="sortPmt('name');return false;">Name</a></th>
+			<th class="a-left"><a href="#" onclick="sortPmt('service_type');return false;">Type</a></th>
+			<th class="a-left"><a href="#" onclick="sortPmt('actual_date');return false;">Actual Date</a></th>
+			<th>Paid</th>
+			<th>Paid Date</th>
+			<th class="a-right"><a href="#" onclick="sortPmt('order_id');return false;">Order #</a></th>
+			<th class="a-right"><a href="#" onclick="sortPmt('value');return false;">Commissionable $</a></th>
+			<th class="a-right">%-age</th>
+			<th class="a-right">Payment</th>
+			<th colspan='2'></th>
+		</tr>
+	</thead>
+	<tbody>%%payment%%</tbody>
+	<tfoot>
+		<tr>
+			<th colspan="8" class="a-right">Total:</th>
+			<th class="a-right">%%paymentTotal%%</th>
+		</tr>
+	</tfoot>
+</table>

@@ -1,0 +1,90 @@
+<div id='middleHeading'>
+	<div class="heading_title"><h1><a href='#' onclick="getContent('moduleStatus','members','#middleContent');return false;">Companies</a></h1></div>
+	<div class="heading_options">
+		<div class="buttons">
+			<a class="btn btn-primary" href='#' onclick='editArticle(0);return false'>Add a Company</a>
+			<a class="btn" href='#' onclick='addItem();return false;'><i class='icon-plus'></i>Add a Category</a>
+		</div>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:id%%","/modit/ajax/showSearchForm/members","middleContent");return false;' id='%%form:id%%'>
+			%%opt_quicksearch%%
+			%%showSearchForm%%
+			<input type="text" class="search_input" name="quicksearch" placeholder="Enter your search here..." />
+			<div class="btn-group pull-right">
+				<button type="submit" class="search_button btn"><i class="icon-search"></i></button>
+				<a class="btn dropdown-toggle" href="#" data-toggle="dropdown" onclick='toggleForm("advancedSearch");return false;'><span class="caret"></span></a>
+				<div class="dropdown-menu hidden" id="advancedSearch">
+					<div class='closer'><a href='#' onclick='toggleForm("advancedSearch");return false;'>x</a></div>
+					<table>
+						<tr>
+							<th></th><td><button onclick='resetSearchForm(this);return false;'>Reset Search Parameters</button></td>
+						</tr>
+						<tr>
+							<th colspan='2'><div class='centered'>Name (First, Last or Company)</div></th>
+						</tr>
+						<tr>
+							<th>Value:</th><td><input type='hidden' name='opt_name' value='like' />%%name%%</td>
+						</tr>
+						<tr>
+							<th colspan='2'><div class='centered'>Email</div></th>
+						</tr>
+						<tr>
+							<th>Value:</th><td><input type='hidden' name='opt_email' value='like' />%%email%%</td>
+						</tr>
+						<tr>
+							<th colspan='2'><div class='centered'>User Name</div></th>
+						</tr>
+						<tr>
+							<th>Value:</th><td><input type='hidden' name='opt_username' value='like' />%%username%%</td>
+						</tr>
+						<tr>
+							<th colspan='2'><div class='centered'>Created</div></th>
+						</tr>
+						<tr>
+							<th>Criteria:</th><td>%%opt_created%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%created%%</td>
+						</tr>
+						<tr>
+							<th colspan='2'><div class='centered'>Expires</div></th>
+						</tr>
+						<tr>
+							<th>Criteria:</th><td>%%opt_expires%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%expires%%</td>
+						</tr>
+						<tr>
+							<th>Zone</th><td>%%custom_zones%%</td>
+						</tr>
+						<tr>
+							<th>Enabled:</th><td>%%opt_enabled%% %%enabled%%</td>
+						</tr>
+						<tr>
+							<th>Featured:</th><td>%%opt_featured%% %%featured%%</td>
+						</tr>
+						<tr>
+							<th>Deleted:</th><td>%%deleted%%</td>
+						</tr>
+						<tr>
+							<th>Folder:</th><td>%%folder%% Or Not in a group: %%nonmember%%</td>
+						</tr>
+						<tr>
+							<td colspan='2'>%%submit%%</td>
+						</tr>
+					</table>
+					<input type='hidden' name='pager' value='%%session:formData:membersSearchForm:pager%%' />
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<script type='text/javascript'>
+$(document).ready(function () {
+	$('.def_field_datepicker').datepicker({
+        changeMonth: true,
+        changeYear:true
+	});
+});
+</script>

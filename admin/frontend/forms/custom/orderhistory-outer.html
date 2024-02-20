@@ -1,0 +1,161 @@
+<div id="history-account" class="bottom40">
+	<div id="order-history">
+		<div class="row">
+			<div class="col-sm-16">
+				<table class="table table-striped table-hover" style="font-size:14px;">
+					<thead>
+						<tr>
+							<th class="text-center">Order #</th>
+<th>Created</th>
+<th>Status</th>
+							<th class="text-center">Delivery</th>
+							<th class="text-center">Type</th>
+							<th class="text-center"># of Items</th>
+							<th class="text-right">Total</th>
+							<th class="text-center"></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%orders%%
+					</tbody>
+					<tfoot>
+						<tr>
+							<th class="text-right" colspan='5'>Page Total:</th>
+							<th class="text-center">%%p_ct%%</th>
+							<th class="text-right"><!@@(money_format(GLOBAL_DEFAULT_CURRENCY_FORMAT,%%p_total%%))@@!></th>
+							<th class="text-center"></th>
+						</tr>
+						<tr>
+							<th class="text-right" colspan='5'>Grand Total:</th>
+							<th class="text-center">%%g_ct%%</th>
+							<th class="text-right"><!@@(money_format(GLOBAL_DEFAULT_CURRENCY_FORMAT,%%g_total%%))@@!></th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row text-center">
+			<div class="col-md-16 text-right">
+				%%pagination%%
+			</div>
+		</div>
+	</div>
+	<div id="order-details" class="top40"></div>
+	<div class="row">
+		<div class="col-xs-4">Build Your Report</div>
+		<div class="col-xs-12"><hr class="red" /></div>
+	</div>
+	<form class="form" method="POST" role="form" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+		<div class="row">
+			<div class="col-xs-8 form-group"><label>Status</label>%%order_status%%</div>
+			<div class="col-xs-8 form-group">%%mgmt%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-3 form-group">
+				<label>Start Date</label>
+				%%startDate%%
+			</div>
+			<div class="col-xs-3 form-group">
+				<label>End Date</label>
+				%%endDate%%
+			</div>
+			<div class="col-xs-8 col-xs-offset-2 form-group">
+				<label>Delivery Service</label>
+				%%serviceType%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 form-group">
+				<label>Pick-Up Address</label>
+				%%pickupAddress%%
+			</div>
+			<div class="col-xs-8 form-group">
+				<label>Delivery Address</label>
+				%%deliveryAddress%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4 form-group">
+				<label>Package Type</label>
+				%%packageType%%
+			</div>
+			<div class="col-xs-4 form-group">
+				<label>Late Delivery</label>
+				%%onTime%%
+			</div>
+			<div class="col-xs-8 form-group">
+				<label>Special Service</label>
+				%%extras%%
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 top40"><hr class="red" /></div>
+			<div class="col-xs-4"><label>Order #:</label>%%order_id%%</div>
+			<div class="col-xs-2"><label> </label>%%submitBtn%%</div>
+			<div class="col-xs-2"><label> </label>%%export%%%%exportBtn%%</div>
+		</div>
+		%%orderHistory%% %%pagenum%%
+	</form>
+</div>
+<script type="text/javascript">
+exportCSV = function(el) {
+	f = $(el).closest("form");
+	$(f).find("input[name=export]").val(1);
+	$(f).submit();
+	$(f).find("input[name=export]").val(0);
+}
+$("#history-account select").chosen({width:"100%"});
+setCompany = function(el) {
+	$(el).closest("form").ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = eval("("+obj+")");
+				$("#history-account").replaceWith(obj.html);
+				eval(obj.code);
+				initDateFields();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+$("#order-history tbody .order-status").each(function(idx,el) {
+	$(el).html($(el).html().replace(/,/g,"<br/>"));
+});
+$("#order-history tbody tr:odd").addClass('odd');
+function viewOrder(o_id) {
+	var retStatus = $.ajax({
+		url: '/ajax/render',
+		data: {'t_id':30,'o_id':o_id},
+		type: 'POST',
+		success: function(obj,status,xhr) {
+			try {
+				var obj = eval('('+retStatus.responseText+')');
+				$('#order-details').html(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+function pagination(pg,el) {
+	f = $("#history-account form");
+	$(f).find("input[name=pagenum]").val(pg);
+	$(f).ajaxSubmit({
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval('('+obj+')');
+				if (obj.status == 'true') {
+					obj.html = obj.html;
+					tmp = $("<div></div>").append(obj.html);
+					$('#order-history').replaceWith($(tmp).find("#order-history"));
+					eval(obj.code);
+				}
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

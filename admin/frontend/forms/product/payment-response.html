@@ -1,0 +1,19 @@
+<div id='payment'>
+	<div class='container_12'>
+		<div class="header">
+			<img alt="Checkout Step 4" src="/images/backgrounds/step4.png">
+		</div>
+		<h2>Your Order has been accepted</h2>
+		%%errorMessage%%
+		<div class='payment-accepted'>
+			<div class='alert alert-success'>
+				<div class='msg'>STATUS: Your Order Has Been Placed</div>
+				<div class='msg'>Transaction Amount: %%cart:header:formattedTotal%%</div>
+				<div class='msg'>Order #: %%cart:header:order_id%%</div>
+			</div>
+		</div>
+	</div>
+	%%receipt%%
+	<a href='/my-account'>Your Account</a>
+	<div class='clearfix'></div>
+</div>

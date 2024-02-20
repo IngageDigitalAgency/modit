@@ -1,0 +1,36 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Code</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Type:</th><td>%%type%% <span class='errorMessage'>%%typeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Code:</th><td>%%code%% <span class='errorMessage'>%%codeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Value:</th><td>%%value%% <span class='errorMessage'>%%valueError%%</span></td>
+					</tr>
+					<tr>
+						<th>Extra:</th><td>%%extra%% <span class='errorMessage'>%%extraError%%</span></td>
+					</tr>
+					<tr>
+						<th>Sort Order:</th><td>%%sort%% <span class='errorMessage'>%%sortError%%</span></td>
+					</tr>
+				</table>
+			</div>
+			<div class="form-actions">
+				%%submit%% 
+        <a class="btn" onclick="closePopup();return false;" href="#">Cancel</a>
+      </div>
+      <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%% %%p_id%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$('.popovers').popover();
+</code>

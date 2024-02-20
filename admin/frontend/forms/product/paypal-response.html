@@ -1,0 +1,36 @@
+<div id="my-cart" class="container">
+	<div class="header">
+		<div class="row">
+			<div class='steps step1 col-xs-3 col-md-2 col-md-offset-2'>Review Your Cart</div>
+			<div class='steps step2 col-xs-3 col-md-2'>Billing Information</div>
+			<div class='steps step1 col-xs-3 col-md-2'>Pay For Your Order</div>
+			<div class='steps step1 col-xs-3 col-md-2'>View Your Receipt</div>
+		</div>
+		<div class="row"><div class="col-sm-12"><img alt="Checkout Step 4" src="/images/nav/step-4.png"></div></div>
+	</div>
+	<div class="paypal-checkout">
+		<div class="text row">
+			<div class='col-xs-8 col-xs-offset-2 alert alert-success'>Thank you for your order.</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<div id="order-history-details"></div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+<script type="text/javascript">
+$.ajax({
+	url: '/ajax/render',
+	data: {t_id:72},
+	success: function(obj,status,xhr) {
+		try {
+			obj = eval("("+obj+")");
+			$("#order-history-details").replaceWith(obj.html);
+		} catch(err) {
+		}
+	}
+});
+</script>
+<link rel="stylesheet" media="print" href="/css/print.css" />

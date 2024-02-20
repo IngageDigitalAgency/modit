@@ -1,0 +1,174 @@
+<div class='title'>Add a Calendar</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck_fldr("calendarForm","/modit/ajax/showPageProperties/calendar","popup");return false;' id='calendarForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-7">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-3">Coupons</a></li>
+			<li><a href="#tabs-4">News</a></li>
+			<li><a href="#tabs-5">Stores</a></li>
+			<li><a href="#tabs-6">Blog</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<table class='propertyEditing'>
+				<tr>
+					<td>Calendar Name:</td><td>%%title%% %%titleError%% %%tooltip:CalTitle%%</td>
+				</tr>
+				<tr>
+					<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%% %%tooltip:SecondLine%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<td>Template Folder:</td><td>%%template_id%% %%templateError%% %%tooltip:TemplateFolder%%</td>
+				</tr>
+				<tr>
+					<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+				</tr>
+				<tr>
+					<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+			<table>
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-3'>
+			<div class='title'>Deal or Offer Categories Assigned to this Category</div>
+			%%destCouponFolders%% %%tooltip:DealCatRel%%
+			<div class='title'>Individual Deal or Offer Assigned to this Category</div>
+			<table>
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%couponFolders%%
+					</td>
+					<td>
+						<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+						<div id='offerCatSelection'>
+							%%destCoupons%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-4'>
+			<div id='newsTab'>
+				<div class='folders'>
+					<div class='title'>Article Categories Assigned to this Category</div>
+					%%destNewsFolders%% %%tooltip:ArticleCatRel%%
+				</div>
+				<div class='items'>
+					<div class='title'>Individual Articles Assigned to this Category</div>
+					<table>
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%newsFolders%%
+							</td>
+							<td>
+								<div>Select the Article(s) %%tooltip:ArticleRel%%</div>
+								<div id='newsCatSelection'>
+									%%destNews%%
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id='tabs-5'>
+			<div class='title'>Store or Location Categories Assigned to this Category</div>
+			%%destStoreFolders%% %%tooltip:LocationCatRel%%
+			<div class='title'>Individual Stores or Locations Assigned to this Category</div>
+			<table>
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%storeFolders%%
+					</td>
+					<td>
+						<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+						<div id='storeCatSelection'>
+							%%destStores%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-6'>
+			<div class='title'>Blog Categories Assigned to this Category</div>
+			%%destBlogFolders%% %%tooltip:BlogCatRel%%
+			<div class='title'>Individual Blogs Assigned to this Category</div>
+			<table>
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%blogFolders%%
+					</td>
+					<td>
+						<div>Select the Blog(s) %%tooltip:BlogRel%%</div>
+						<div id='blogCatSelection'>
+							%%destBlogs%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-7'>
+			<div class='title'>Teaser</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		<div class='break'></div>
+		%%showPageProperties%% 
+		%%test%% 
+		<input type='hidden' name='id' value='%%id%%' />
+		%%type%% 
+	</div>
+</form>
+<code>
+$('#destCoupons').chosen();
+$('#destCouponFolders').chosen();
+$('#destNews').chosen();
+$('#destNewsFolders').chosen();
+$('#destStores').chosen();
+$('#destStoreFolders').chosen();
+$('#destBlogs').chosen();
+$('#destBlogFolders').chosen();
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'calendar');
+});
+$('#newsFolderSelector').change(function() {
+	loadNewsList(this,'#newsCatSelection',true,'calendar');
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true,'calendar');
+});
+$('#blogFolderSelector').change(function() {
+	loadBlogList(this,'#blogCatSelection',true,'calendar');
+});
+$('.popovers').popover();
+$( "#tabs" ).tabs();
+</code>
