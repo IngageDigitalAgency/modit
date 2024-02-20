@@ -1,0 +1,16 @@
+<tr>
+	<td>%%company%% - %%firstname%% %%lastname%%</td>
+	<td>%%actual_date%%</td>
+	<td class="a-right">%%id%%
+	<td class="centered">%%formattedStatus%%</td>
+	<td class="a-right">%%total%%</td>
+	<td class="a-right"><!if(%%field:tag^owing%% > %%field:tag^limit%%)!><div class="alert alert-warning">%%owing%%</div><!else!>%%owing%%<!fi!></td>
+	<td class="a-right">%%authorized_amount%%</td>
+	<td class="a-right">%%authorization_amount%%</td>
+	<td class="centered"><!if("%%paid%%"=="0.00")!>%%process%%<!fi!></td>
+	<td class="centered"><a href="#" onclick="authView(%%id%%);return false;"><i class="icon icon-eye-open"></i></a></td>
+	<td class="centered"><a href="/modit/orders/showOrder?o_id=%%id%%" target="_blank">
+		<!-- Replacing <i class='icon-pencil'></i> with <em class='icon-pencil'></em> -->
+		<em class="icon icon-pencil"></em>
+	</a></td>
+</tr>

@@ -1,0 +1,16 @@
+<table style="padding-top:10px;width:100%;">
+	<tr>
+		<td style="width:5%;"><a href="http://%%FULLDOMAIN%%/modit/dispatch/editDelivery?d_id=%%id%%" target="_blank">%%order_id%%</a></td>
+<!if("%%driver_id%%"=="0")!>
+		<td style="width:12%;">** Unassigned **</td>
+<!else!>
+		<td style="width:12%;">%%lastname%% %%firstname%%</td>
+<!fi!>
+		<td style="width:2%;"><div style="border:1px solid #000000;display:inline-block;height:30px;width:10px;">&nbsp;</div></td>
+		<td style="width:2%;"></td>
+		<td style="width:18%;">%%scheduled_date%%</td>
+		<td style="width:20%;">%%product:name%%</td>
+		<td style="width:26%;">%%address:company%%<br/>%%address:line1%%<!if(strlen("%%address:line2%%")>0)!><br/>%%address:line2%%<!fi!><br/>%%address:city%% %%address:postalcode%%</td>
+		<td style="width:15%;">%%packages%%<br/>%%specials%%</td>
+	</tr>
+</table>

@@ -1,0 +1,33 @@
+<div class='propertyEditing'>
+	<div class='title'>My Account</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%",$("#altPopup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>First Name:</th><td>%%fname%% %%fnameError%%</td>
+					</tr>
+					<tr>
+						<th>Last Name:</th><td>%%lname%% %%lnameError%%</td>
+					</tr>
+					<tr>
+						<th>E-mail:</th><td>%%email%% %%emailError%%</td>
+					</tr>
+					<tr>
+						<th></th><td><div class='statusMsg'>Leave the password field empty to keep the same password</div></td>
+					<tr>
+						<th>Password:</th><td>%%password%% %%passwordError%%</td>
+					</tr>
+					<tr>
+						<th>Confirm Password:</th><td>%%passwordConfirm%% %%passwordConfirmError%%</td>
+					</tr>
+				</table>
+			</div>
+			%%submit%% %%myAccount%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+</code>

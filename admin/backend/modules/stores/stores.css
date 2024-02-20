@@ -1,0 +1,114 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.coupondraggable,
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+#showFolderContent .image {
+	border: 1px solid;
+	padding:5px;
+}
+#showFolderContent img {
+	max-width: 150px;
+	max-height:150px;
+}
+
+.imageDragger {
+	height:20px;
+	width: 100px;
+	border:1px solid
+}
+
+.makeMeDraggable.ui-draggable-dragging {
+	height:20px;
+	width: 100px;
+	font-style:italic;
+}
+
+#contentTree a.active {
+	font-style: italic;
+	font-weight:bold;
+}
+
+.propertyEditing #tabs table {
+	width:100%;
+}
+
+a {
+	text-decoration:none;
+}
+
+#middleContent {
+	padding:15px;
+}
+
+.contentInfo th {
+	text-align:right;
+	padding:5px;
+}
+
+#leftContent {
+	max-width:250px;
+}
+/*
+#middleContent .title {
+	font-size:14px;
+	font-weight:bold;
+	padding:5px 0;
+}
+
+#middleContent .listing {
+	background-color: #F5F5F5;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 4px 4px 4px 4px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+	padding:15px;
+	margin:15px;
+}
+
+#middleContent td {
+	padding:10px;
+}
+*/
+.storeDragger {
+	display:none;
+}
+
+.storeDragger .id {
+	display:none;
+}

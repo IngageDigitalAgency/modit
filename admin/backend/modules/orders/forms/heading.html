@@ -1,0 +1,86 @@
+<div id='middleHeading'>
+	<div class="heading_title"><a href='#' onclick="getContent('moduleStatus','orders','#middleContent');return false;">Orders</a></div>
+	<div class="heading_options">
+		<div class="buttons">
+			<a class="btn btn-primary" href='#' onclick='editArticle(0);return false'>Add an Order</a>
+			<a class='btn' href='/modit/product/inventorySearch'><i class='icon-search'></i>Inventory</a>
+		</div>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:id%%","/modit/ajax/showSearchForm/orders","middleContent");return false;' id='%%form:id%%'>
+			%%opt_quicksearch%%
+			%%showSearchForm%%
+			<input type="text" class="search_input" name="quicksearch" placeholder="Enter your search here..." />
+			<div class="btn-group pull-right">
+				<button type="submit" class="search_button btn"><em class='icon-search'></em></button>
+				<a class="btn dropdown-toggle" href="#" data-toggle="dropdown" onclick='toggleForm("advancedSearch");return false;'><span class="caret"></span></a>
+				<div class="dropdown-menu hidden" id="advancedSearch">
+					<div class='closer'><a href='#' onclick='toggleForm("advancedSearch");return false;'>x</a></div>
+					<table>
+						<tr>
+							<th scope="col"></th><td><button onclick='resetSearchForm(this);return false;'>Reset Search Parameters</button></td>
+						</tr>
+						<tr>
+							<th scope="col">Name:</th><td>%%opt_name%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%name%% [First or Last]</td>
+						</tr>
+						<tr>
+							<th scope="col">Order #:</th><td>%%opt_order_id%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%order_id%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Total:</th><td>%%opt_total%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%total%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Owing:</th><td>%%opt_owing%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%owing%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Status:</th><td>%%order_status%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Pickup:</th><td>%%pu_driver%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Delivery:</th><td>%%del_driver%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Product:</th><td>%%product%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Coupon:</th><td>%%coupon%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Created:</th><td>%%opt_created%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%created%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Deleted:</th><td>%%deleted%%</td>
+						</tr>
+						<tr>
+							<th scope="col">QB Inv #:</th><td>%%custom_qb_order%%</td>
+						</tr>
+						<tr>
+							<td colspan='2'>%%submit%%</td>
+						</tr>
+					</table>
+					%%perpage%%
+					%%pagenum%%
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<script type="text/javascript">
+$("#advancedSearch select[multiple]").chosen({width:"100%"});
+</script>

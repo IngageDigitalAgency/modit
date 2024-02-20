@@ -1,0 +1,22 @@
+<div class='title'>Add a Processing Date</div>
+%%errorMessage%%
+<form method='post' id='addScheduleForm' onsubmit='formCheck("addScheduleForm","/modit/ajax/addSchedule/credit","popup");return false;'>
+	<table>
+		<tr>
+			<th>Date to Process:</th><td>%%bill_date%%</td>
+		</tr>
+		<tr>
+			<th>Start Billing Date:</th><td>%%start_date%%</td>
+		</tr>
+		<tr>
+			<th>End Billing Date:</th><td>%%end_date%%</td>
+		</tr>
+	</table>
+	%%submit%%
+	%%addSchedule%%
+	%%s_id%%
+	<div class='clearfix'></div>
+</form>
+<script type='text/javascript'>
+	initDateFields();
+</script>

@@ -1,0 +1,206 @@
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot");
+    src: url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.eot?#iefix") format('embedded-opentype'),url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff2") format('woff2'),url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.woff") format('woff'),url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.ttf") format('truetype'),url("https://netdna.bootstrapcdn.com/bootstrap/3.3.2/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format('svg')
+}
+
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.newsDragger {
+}
+.newsDragger:hover {
+	cursor:move;
+}
+.newsDragger .id {
+	display:none;
+}
+
+
+
+.draggerClone {
+	border: 1px solid #e0e0e0;
+	padding:5px;
+	background-color:#e0e0e0;
+}
+
+.draggerClone span {
+	float:left;
+	padding-right:5px;
+}
+#confirmationListing textarea {
+	height:75px;
+	width:500px;
+}
+tr.details td {
+	padding:0px;
+}
+table.sublisting td {
+	padding:3px;
+}
+.sublisting input.shipped {
+	text-align:right;
+	width:100px;
+}
+.subheading {
+	border-bottom:1px solid #eeeeee;
+	font-size:1.2em;
+	letter-spacing:2px;
+	margin-bottom:10px;
+	padding-bottom:10px;
+	text-transform:uppercase;
+	text-align:center !important;
+}
+table.billingInfo {
+	width:100%;
+}
+table.billingInfo th {
+	width:30%;
+}
+span.amt {
+	width:100px;
+	text-align:right;
+	display:inline-block;
+}
+#salesReportsForm .fields {
+	padding:10px 0;
+}
+#salesReportsForm .fields span {
+	display:inline-block;
+}
+#salesReportsForm .fields .chosen-container {
+	top:-4px;
+	position:relative;
+}
+#leftContent {
+	width:1%;
+	min-width:1%;
+	max-width:1%;
+}
+#contentTree {
+	display:none;
+}
+#middleContent {
+	width:90% !important;
+}
+#recurringOrdersForm,
+#salesReportsForm,
+#exchangeForm,
+#nightlyProcessingForm,
+#dailyLogForm {
+	padding-top:15px;
+}
+#recurringOrdersForm span,
+#salesReportsForm span,
+#exchangeForm span,
+#nightlyProcessingForm span,
+#dailyLogForm span {
+	margin-right:15px;
+}
+#recurringOrdersForm .def_field_submit,
+#salesReportsForm .def_field_submit,
+#exchangeForm .def_field_submit,
+#nightlyProcessingForm .def_field_submit,
+#dailyLogForm .def_field_submit {
+	margin-top:-10px;
+}
+#recurringOrdersForm .chosen-container {
+	top:-4px;
+}
+
+.qb-connect {
+	width:107px !important ; height:38px !important ; display:inline-block; border:none !important;
+	background: url("https://appcenter.intuit.com/Content/IA/connect_to_quickbooks.png") no-repeat 0 0;
+}
+.glyphicon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size:30px;
+}
+.glyphicon.fast-right-spinner {
+    -webkit-animation: glyphicon-spin-r 1s infinite linear;
+    animation: glyphicon-spin-r 1s infinite linear;
+}
+.glyphicon.normal-right-spinner {
+    -webkit-animation: glyphicon-spin-r 2s infinite linear;
+    animation: glyphicon-spin-r 2s infinite linear;
+}
+.glyphicon-repeat:before {
+    content: "\e030"
+}
+@-webkit-keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+
+@keyframes glyphicon-spin-r {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+.bg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: rgba(0,0,0,.2);
+    top: 0;
+    left: 0;
+}

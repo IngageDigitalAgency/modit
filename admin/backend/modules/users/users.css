@@ -1,0 +1,54 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.newsDragger {
+    background-color: lightGray;
+    background-image: url("/admin/images/dragger.png");
+    height: 14px;
+    width: 14px;
+}
+.newsDragger .id {
+	display:none;
+}
+
+.contentTree li a.active {
+	font-style:italic;
+	font-weight:bold;
+}

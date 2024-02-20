@@ -1,0 +1,574 @@
+<script type="text/javascript">
+getDateOptions = function(el) {
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		url: "/ajax/render?t_id=11",
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#delivery-options").replaceWith($(h.html).find("#delivery-options"))
+				$("input[name='optType']").change(function () {
+					getOutOfZone(this,this.value);
+				});
+				if ($("#your-quote").length == 0) 
+					$("#delivery-options").addClass("col-sm-8");
+				else
+					$("#delivery-options").removeClass("col-sm-8");
+			}
+			catch(err) {
+			}
+		}
+	})
+}
+
+serviceChange = function() {
+	$("#your-quote").remove();
+}
+
+confirmOrder = function(el) {
+	$(".bg").removeClass("hidden");
+	$("#confirmation").removeClass("hidden");
+}
+
+cancelOrder = function(el) {
+	$(".bg").addClass("hidden");
+	$("#confirmation").addClass("hidden");
+}
+
+$("#mgmt-check select").chosen();
+getDim = function(el) {
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:61,p_id:$(el).val()},
+		context: { el:el },
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+				r = $(this.el).closest(".packages");
+				ht = $(r).find("input.height")[0];
+				if (p_height > 0) ht.value = p_height;
+				wd = $(r).find("input.width")[0];
+				if (p_width > 0) wd.value = p_width;
+				dp = $(r).find("input.depth")[0];
+				if (p_depth > 0) dp.value = p_depth;
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+getPackages = function(el) {
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:11},
+		context: {el:el},
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#define-packages").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				scrollToItem("#define-packages");
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+in_zone = 37;
+//out_of_zone = 38;
+getRate = function(el) {
+	$("#get-quote").html("");
+	$("#spinner").removeClass("hidden");
+	$(el).closest("form").ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#define-packages").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				err = $("#define-packages").find(".alert-error");
+				if (err.length == 0) {
+					getQuote(this.el);
+				}
+				else
+					$("#spinner").addClass("hidden");
+				$("#mgmt-check select").chosen({width:"100%"});
+			}
+			catch(err) {
+			}
+		}
+	})
+}
+getQuote = function(el) {
+	var f = $("form#get-a-rate");
+	if (f.length > 0) {
+		//$(f).find("input[name=t_id]").val(z_t_id == 1 ? in_zone : out_of_zone);
+		$(f).find("input[name=t_id]").val(in_zone);
+		$(f).ajaxSubmit({
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#get-quote").html(obj.html);
+					$("#spinner").addClass("hidden");
+					var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+					scrollToItem("#pickup-info");
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+removePkg = function(el) {
+	$(el).closest("tr").remove();
+	setWeight(el);
+	setQty(el);
+}
+removeRow = function(el) {
+	//r = $(el).closest("tr");
+	//r.next(".dimensions").remove();
+	//r.remove();
+	r = $(el).closest(".line").prev(".line")[0];
+	$(el).closest(".line").remove();
+	setWeight(r);
+	setQty(r);
+}
+
+addPackage = function(md) {
+	//
+	//	md == false - verify only
+	//
+	$(".packages .row.all").each( function(idx,p) {
+		seq = $(p).find("input[name='sequence']").val();
+		f = Array();
+//		$(p).find("input[type='text']").each(function(jdx,d) {
+		$(p).find("input.input-sm").each(function(jdx,d) {
+			if ($(d).val() <= 0) {
+				switch(jdx) {
+				case 0:
+					f.push("Quantity");
+					break;
+				case 1:
+					f.push("Weight");
+					break;
+				case 2:
+					f.push("Height");
+					break;
+				case 3:
+					f.push("Width");
+					break;
+				case 4:
+					f.push("Depth");
+					break;
+				default:
+				}
+			}
+		});
+		if (f.length > 0) {
+			alert("Package ".concat(seq," is incomplete [",f.join(", "),"]"));
+			md = false;
+		}
+	});
+	//
+	//	Add or verify only check
+	//
+	if (!md) return f.length == 0;
+	var pkg = [];
+	$(".packages select.product").each(function(idx,el) {
+		pkg.push(el.value);
+	});
+	$.ajax({
+		url: '/ajax/render',
+		data: {t_id:11,r_ct:Math.floor($($("#selectService .packages input[name=sequence]")[$("#selectService .packages input[name=sequence]").length-1]).val())+1,addPkg:1,pkg:pkg},
+		success: function(obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$($("#selectService .packages")[0]).append(obj.html);
+			}
+			catch(err) {
+				alert(err.message);
+			}
+		}
+	});
+}
+
+xxaddPackage = function() {
+	v = 1;
+	$("tr.packages").each(function(idx,t) {
+		seq = $(t).find("input[name=sequence]").val();
+		$(t).find("input.input-sm").each(function(jdx,i) {
+			if ($(i).val() <= 0) {
+				if (v == 1) {
+					switch(jdx) {
+					case 0:
+						f = "Weight";
+						break;
+					case 1:
+						f = "Height";
+						break;
+					case 2:
+						f = "Width";
+						break;
+					case 3:
+						f = "Depth";
+						break;
+					default:
+					}
+					alert("Package ".concat(seq," is incomplete [",f,"]"));
+				}
+				v = 0;
+			}
+		});
+	});
+	if (v == 0) return;
+	var pkg = [];
+	$(".packages select.product").each(function(idx,el) {
+		pkg.push(el.value);
+	});
+	$.ajax({
+		url: '/ajax/render',
+		data: {t_id:11,r_ct:Math.floor($($("#selectService tbody .packages input[name=sequence]")[$("#selectService tbody .packages input[name=sequence]").length-1]).val())+1,addPkg:1,pkg:pkg},
+		success: function(obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$($("#selectService .table.table-striped > tbody")[0]).append(obj.html);
+			}
+			catch(err) {
+				alert(err.message);
+			}
+		}
+	});
+}
+
+addDimension = function(el,row) {
+	if (!addPackage(false))
+		return false;
+	p = $(el).closest(".row").find("input[name='sequence']").val();
+	rows = $(".row.p_".concat(p));
+	d = rows[rows.length-1];
+	$.ajax({
+		url: "/ajax/render",
+		context: {el:el, row: row, d:d},
+		data: {qty: $(d).find("input.quantity").val(), t_id:34, row: row, wt: $(d).find("input.weight").val(), ht:$(d).find("input.height").val(), wd:$(d).find("input.width").val(), dp:$(d).find("input.depth").val(), seq: rows.length+1},
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				tmp = $(obj.html);
+				$(obj.html).insertAfter($(this.d));
+//				$(this.d).insertAfter(obj.html);
+				setWeight(el);
+				setQty(el);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+
+xxaddDimension = function(el,row) {
+	v = 1;
+	t = $(el).closest("table.table");
+	r = $(t).find("td.dimensions");
+	$(r).each(function(jdx,sel) {
+		$(sel).find("input").each(function(kdx,f) {
+			if ($(f).val() <= 0 && v == 1) {
+				alert("Incomplete Data");
+				v = 0;
+			}
+		});
+	});
+	if (v == 0) return;
+	a = r;
+	m = -1;
+	$(t).find("input[name=sequence]").each(function(idx,e) {
+		m = Math.max(m,e.value);
+	});
+	$.ajax({
+		url: "/ajax/render",
+		context: {el:el, row: row, r:r},
+		data: {qty: a.find("input.quantity").val(), t_id:34, row: row, wt: a.find("input.weight").val(), ht:a.find("input.height").val(), wd:a.find("input.width").val(), dp:a.find("input.depth").val(), seq: m+1},
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				tmp = $(obj.html);
+				$(this.el).closest(".dimensions").append(obj.html);
+				setWeight(el);
+				setQty(el);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+setWeight = function(el) {
+	wt = 0;
+	t = $(el).closest("table")
+	t.find("input.weight").each(function(idx,e) {
+		wt += parseFloat(e.value);
+	});
+	t.closest("tr.dimensions").prev("tr.packages").find("input.weight").val(wt);
+}
+setQty = function(el) {
+	qt = 0;
+	wt = 0;
+	t = $(el).closest("td.dimensions");
+	t.find("input.quantity").each(function(idx,e) {
+		qt += parseInt(e.value);
+		wt += $(e).closest(".line").find("input.weight").val() * parseInt(e.value);
+	});
+	t.closest("tr.packages").find("td.product input.quantity").val(qt);
+	t.closest("tr.packages").find("td.product input.weight").val(wt);
+}
+
+addExtra = function() {
+	e = 0;
+	$(".extras select").each(function(idx,el) {
+		e = el.selectedIndex==0;
+	});
+	if (e==0) {
+		$.ajax({
+			url: '/ajax/render',
+			data: {t_id:83},
+			success: function(obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$($("#extras .table.table-striped > tbody")[0]).append(obj.html);
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+
+removeExtra = function(el) {
+	$(el).closest("tr").remove();
+}
+
+</script>
+%%alerts%%
+<!if("%%session:user:info:custom_on_account%%" != "1")!>
+<div id="mgmt-check">
+<!if(%%companyCount%%>0)!>
+	<div class="row top20">
+		<div class="col-xs-16 form-group"><label>Select a Company</label>
+			<form method="post" id="company-selector">
+				<select name="c_id" class="form-control">
+					<option value="0">%%company%%</option>
+					%%companies%%
+				</select>
+				<input type="hidden" name="checkSubsidiary" value="1" />
+			</form>
+		</div>
+	</div>
+<!fi!>
+	<div class="row">
+		<div class="col-sm-5"><h2>Select Pickup/Delivery</h2></div>
+		<div class="col-sm-11"><hr/></div>
+	</div>
+	<div class="row">
+		<div class="alert alert-danger col-md-8 col-md-offset-4  text-center top20">Please call the office - %%config:mailing-address:phone1%%</div>
+	</div>
+</div>
+<!else!>
+<div id="mgmt-check">
+<!if(%%companyCount%%>0)!>
+	<div class="row top20">
+		<div class="col-xs-16 form-group"><label>Select a Company</label>
+			<form method="post" id="company-selector">
+				<select name="c_id" class="form-control">
+					<option value="0">%%company%%</option>
+					%%companies%%
+				</select>
+				<input type="hidden" name="checkSubsidiary" value="1" />
+			</form>
+		</div>
+	</div>
+<!fi!>
+%%officeIsClosed%%
+	<div class="row">
+		<div class="col-sm-5"><h2>Select Pickup/Delivery</h2></div>
+		<div class="col-sm-11"><hr/></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-8">%%pickup%%</div>
+		<div class="col-sm-8">%%shipping%%</div>
+	</div>
+%%reset%%
+%%step2%%
+	<div id="define-packages">
+		<div id="selectService">
+			<div class="row form-group">
+				<div class="col-xs-5"><h2>What Are You Shipping?</h2></div>
+				<div class="col-xs-11"><hr/></div>
+			</div>
+			<div class="row form-group">
+				<div class="col-xs-3 col-sm-3 col-md-2"><label>Weight:</label></div>
+				<div class="col-xs-4 col-sm-5 col-md-4 col-lg-3">%%custom_weight_code%%</div>
+				<div class="col-xs-3 col-sm-3 col-md-2"><label>Dimensions:</label></div>
+				<div class="col-xs-4 col-sm-5 col-md-4 col-lg-3">%%custom_dimension_code%%</div>
+			</div>
+
+<div class="packages">
+	<div class="row form-group form-control header">
+		<div class="col-xs-2 col-sm-1 text-right">SEQ</div>
+		<div class="col-xs-4 sm-center">TYPE</div>
+		<div class="col-xs-10 col-sm-11 text-center">QTY/DIM <span style="color:#ee3823;font-weight:bold;font-style:italic">(PER PACKAGE)</span></div>
+	</div>
+	<div class="package">
+		<div class="row all p_1 form-group sm-gutters">
+			<div class="xs-margin col-xs-2 col-sm-1 text-right"><label>1.</label></div>
+			<div class="xs-margin col-xs-4 col-sm-4" style=""><select class="form-control"><option value="-">-</option></select></div>
+			<div class="xs-margin col-xs-4 col-sm-2 thirds"><span class="form-control">QTY:</span> <input class="form-control" type="text" value="0"></div>
+			<div class="xs-margin col-xs-4 col-sm-2 thirds"><span class="form-control">WT:</span> <input class="form-control" type="text" value="0"></div>
+			<div class="col-xs-4 col-xs-offset-2 col-sm-offset-0 col-sm-2 thirds"><span class="form-control">L:</span> <input class="form-control text-right" type="text" value="0"></div>
+			<div class="col-xs-4 col-sm-2 thirds"><span class="form-control">W:</span> <input class="form-control text-right" type="text" value="0"></div>
+			<div class="col-xs-4 col-sm-2 thirds "><span class="form-control">H:</span> <input class="form-control text-right" type="text" value="0"></div>
+			<div class="col-xs-1 col-sm-1 text-center"><label><i class="fa fa-plus"></i></label></div>
+		</div>
+	</div>
+</div>
+
+			<div id="pickup-info">
+				<h4>Pickup/Delivery Time</h4>
+				<div class="row">
+					<div class="col-xs-16 col-sm-8">
+						<div class="form-group">
+							<label for="">Date:</label>
+							<div class="row">
+								<div class="xs-margin col-xs-7 col-sm-5 datepicker p-form-control">
+								</div>
+								<div class="xs-margin col-xs-3 col-sm-3 hourpicker p-form-control">
+								</div>
+								<div class="xs-margin col-xs-3 col-sm-3 minutepicker p-form-control">
+								</div>
+								<div class="xs-margin col-xs-3 col-sm-4 ampmpicker p-form-control">
+								</div>
+							</div>
+							<div class="hidden">%%pickup_datetime%%</div>
+						</div>
+					</div>
+					<div class="col-xs-16 col-sm-8">
+						<div class="form-group">
+							<label for="">Delivery Service:</label>
+							%%serviceType%%
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="spinner" class="hidden">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-4 text-center">
+			<div class="alert alert-info">We're getting your quote. Please wait.</div>
+		</div>
+	</div>
+</div>
+<!fi!>
+<script type="text/javascript">
+setDatePicker = function() {
+	$(".def_field_datetimepicker").appendTo(".datepicker");
+	$("select[name='pickup_datetime_hh']").appendTo(".hourpicker");
+	$("select[name='pickup_datetime_mm']").appendTo(".minutepicker");
+	$("select[name='pickup_datetime_ampm']").appendTo(".ampmpicker");
+}
+setDatePicker();
+$("#mgmt-check select").chosen({width:"100%"});
+if (%%companyCount%% > 0) {
+	$("select[name=c_id]").change(function() {
+		$(this).closest("form").submit();
+	});
+}
+saveAddress = function(el) {
+	$(el).closest("form").ajaxSubmit({
+		context: { el: el },
+		success: function( obj, status, xhr ) {
+			try {
+				var typ = $(this.el).closest(".editForm").parent();
+				obj = JSON.parse(obj);
+				$(this.el).closest("form").replaceWith(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+				if (addressEdit==1) resetAddresses(typ,a_id);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+resetAddresses = function(el,a_id) {
+	if ($(el)[0].id.indexOf("pickup") >= 0) {
+		t_id = 3;
+	}
+	else {
+		t_id = 4;
+	}
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:t_id},
+		context: { el:el, a_id:a_id, t_id:t_id },
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$(this.el).html(obj.html);
+				$($(this.el).find("select")[0]).val(a_id);
+				if (this.t_id == 3)
+					setPickupAddress(this.a_id);
+				else {
+					setShippingAddress(this.a_id);
+				}
+			}
+			catch(err) {
+			}
+		}
+		
+	});
+}
+setCountrySelectors = function() {
+	$("#mgmt-check #country_id").change(function() {
+		h = loadProvinces($(this).val(),{"class":"form-control"});
+		$(this).closest("form").find("#provinceWrapper").html(h);
+	});
+}
+setCountrySelectors();
+getRecurringInfo = function(el) {
+	$.ajax({
+		url: "/ajax/render",
+		data: { t_id: 79, r_opt: el.value },
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#recurringDetails").html(obj.html);
+				//$("#recurringDetails select").chosen();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+toggleRecurring = function(el) {
+	$(el).closest(".row").find("select")[0].disabled = !el.checked;
+	
+}
+setByPosition = function(el) {
+	$(el).closest(".row").find(".controlled select").each(function(idx,s) {
+		s.disabled = !el.checked;
+	});
+}
+
+getOutOfZone = function(el,s_type) {
+	f = $(el).closest("form");
+	o_t_id = $(f).find("input[name='t_id']").val();
+	$(f).find("input[name='t_id']").val(82);
+	$(f).find("input[name='s_type']").val(s_type);
+	$(f).ajaxSubmit({
+		success: function(obj, status, xhr) {
+			h = JSON.parse(obj);
+			$("#zoneOptions").html(h.html);
+			var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+		}
+	});
+	$(f).find("input[name='t_id']").val(o_t_id);
+}
+</script>

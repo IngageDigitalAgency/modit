@@ -1,0 +1,31 @@
+<code>
+<link media="all" type="text/css" rel="stylesheet" href="%%global:modules%%/shipping/shipping.css" />
+<script type="text/javascript" src="%%global:modules%%/shipping/shipping.js"></script>
+</code>
+<div id='page'>
+	<div id='mainContent'>
+		<div id='mainNav'>
+			<div class='closer'><a href='#' onclick='toggleNav(this);return false;'><img src='/admin/images/right-arrow.png' alt='open menu' /></a></div>
+			<div class='inner'></div>
+			<div class='break'></div>	
+		</div>
+		<div class='contentWrapper'>
+			<div id='leftContent'>
+				<div id='contentTree'></div>
+				<div id='pageInfo'></div>
+				<div id='status'></div>
+				<div class='break'></div>
+			</div>
+			<div id='middleContent'>
+				%%injector%%
+				<div class='break'></div>
+			</div>
+		</div>
+	</div>
+	<div id='rightContent'>
+	</div>
+	<div class='break'></div>
+</div>
+<div id="dialog-confirm" title="Copy or Move the Article?" style='display:none'>
+</div>
+<script type='text/javascript' src='%%global:modules%%/shipping/finalize.js'></script>

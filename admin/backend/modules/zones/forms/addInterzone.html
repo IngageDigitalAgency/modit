@@ -1,0 +1,20 @@
+<div class="title">Add/Edit an Interzone Rate</div>
+%%errorMessage%%
+<form method="post" onsubmit='formCheck_add("addInterzone","/modit/ajax/addInterzone/zones",$("#altPopup"));return false;' id='addInterzone'>
+	<table>
+		<tbody>
+			<tr>
+				<td>From:</td><td>%%junction:title%%</td>
+			</tr>
+			<tr>
+				<td>To:</td><td>%%dest:title||zone_add%%</td>
+			</tr>
+			<tr>
+				<td>Rate:</td><td>%%cost%%</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class='form-actions'>
+	%%submit%% %%addInterzone%% %%j_id%% %%zz_id%%
+	</div>
+</form>

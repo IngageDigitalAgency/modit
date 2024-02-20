@@ -1,0 +1,88 @@
+<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/modules","middleContent");return false;' id='%%form:name%%'>
+	<div class='searchForm'>
+		<div id='search-tabs'>
+			<div id='tabs-s2'>
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Id:</div>
+						<div class="col-xs-6 form-group"></div>
+						<div class="col-xs-6 form-group">%%t_id%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Name:</div>
+						<div class="col-xs-6 form-group">%%opt_module_name%%</div>
+						<div class="col-xs-6 form-group">%%module_name%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Type:</div>
+						<div class="col-xs-6 form-group">%%opt_module_id%%</div>
+						<div class="col-xs-6 form-group">%%module_id%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Function:</div>
+						<div class="col-xs-6 form-group">%%opt_module_function%%</div>
+						<div class="col-xs-6 form-group">%%module_function%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Outer Html:</div>
+						<div class="col-xs-6 form-group">%%opt_outer_html%%</div>
+						<div class="col-xs-6 form-group">%%outer_html%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group">Inner Html:</div>
+						<div class="col-xs-6 form-group">%%opt_inner_html%%</div>
+						<div class="col-xs-6 form-group">%%inner_html%%</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group"></div>
+						<div class="col-xs-6 form-group">%%submit%%</div>
+						<div class="col-xs-6 form-group"></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+					</div>
+					<div class="row">
+						<div class="col-xs-4 a-right form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+						<div class="col-xs-6 form-group"></div>
+					</div>
+				</div>
+			</div>
+			<div id='modulesArticleList'>
+				<div id='modulesFolderId' style='display:none'>%%id%%</div>
+				<table>
+					<tr>
+						<th></th>
+						<th></th>
+						<th><span onclick='sort("module_name","%%form:name%%","/modit/ajax/%%form:action%%/modules","middleContent")'>Name</span></th>
+						<th><span onclick='sort("class","%%form:name%%","/modit/ajax/%%form:action%%/modules","middleContent")'>Class</span></th>
+						<th><span onclick='sort("module_function","%%form:name%%","/modit/ajax/%%form:action%%/modules","middleContent")'>Function</span></th>
+						<th><span onclick='sort("outer_html","%%form:name%%","/modit/ajax/%%form:action%%/modules","middleContent")'>Outer Html</span></th>
+						<th><span onclick='sort("inner_html","%%form:name%%","/modit/ajax/%%form:action%%/modules","middleContent")'>Inner Html</span></th>
+					</tr>
+					%%articles%%
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id='pagination'><span class="pagination-dropdown pull-right">Modules per page : %%pager%%</span> %%pagination%%</div>
+	%%showSearchForm%% 
+	%%pagenum%%
+	%%sortorder%%
+	%%sortby%%
+</form>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/modules';
+initSearch();
+//]]> 
+</script> 
+</code>

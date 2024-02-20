@@ -1,0 +1,195 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Poll/Questionnaire</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-5">Demographics</a></li>
+			<li><a href="#tabs-4">Questions</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table class='content'>
+					<tr>
+						<th>Title:</th><td>%%title%% <span class='errorMessage'>%%titleError%%</span></td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Start:</th><td>%%start_date%% <span class='errorMessage'>%%start_dateError%% %%tooltip:Starts%%</span></td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%end_date%% <span class='errorMessage'>%%end_dateError%% %%tooltip:Expires%%</span></td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>A Member of:</th><td>%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span></td>
+					</tr>
+				</table>
+			%%submit%% 
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			%%submit%% 
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			%%submit%% 
+			</div>
+			<div id='tabs-4'>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th>Question</th>
+							<th>Required</th>
+							<th>'Other'</th>
+							<th>'Other' Prompt</th>
+							<th># Responses</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%questions%%
+					</tbody>
+				</table>
+				<a href='/modit/question/editQuestion?q_id=0' target='_new' class='def_field_submit'>Create a Question</a>
+				<div class='clearfix'></div>
+				<div class='picker'>
+					<div class='title'>Questions to Add</div>
+					<div class='catlist'>%%categories%%</div>
+					<div class='questions'></div>
+					<div class='clearfix'></div>
+				</div>
+			</div>
+			<div id='tabs-5'>
+				<div class='title'>Collect Demographics: %%contact_info%% %%tooltip:Demograhpics%%<span class='errorMessage'>%%contact_infoError%%</span></div>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>Required</th>
+							<th>Prompt</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>First Name:</td>
+							<td>%%contact_firstname%%</td>
+							<td class='centered'>%%firstname_required%%</td>
+							<td>%%firstname_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Last Name:</td>
+							<td>%%contact_lastname%%</td>
+							<td class='centered'>%%lastname_required%%</td>
+							<td>%%lastname_prompt%%</td>
+						</tr>
+						<tr>
+							<td>email:</td>
+							<td>%%contact_email%%</td>
+							<td class='centered'>%%email_required%%</td>
+							<td>%%email_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td>%%contact_phone%%</td>
+							<td class='centered'>%%phone_required%%</td>
+							<td>%%phone_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Address:</td>
+							<td>%%contact_address%%</td>
+							<td class='centered'>%%address_required%%</td>
+							<td>%%address_prompt%%</td>
+						</tr>
+						<tr>
+							<td>City:</td>
+							<td>%%contact_city%%</td>
+							<td class='centered'>%%city_required%%</td>
+							<td>%%city_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Province:</td>
+							<td>%%contact_province%%</td>
+							<td class='centered'>%%province_required%%</td>
+							<td>%%province_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Country:</td>
+							<td>%%contact_country%%</td>
+							<td class='centered'>%%country_required%%</td>
+							<td>%%country_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Postal Code:</td>
+							<td>%%contact_postalcode%%</td>
+							<td class='centered'>%%postalcode_required%%</td>
+							<td>%%postalcode_prompt%%</td>
+						</tr>
+						<tr>
+							<td>Comments:</td>
+							<td>%%contact_comments%%</td>
+							<td class='centered'>%%comments_required%%</td>
+							<td>%%comments_prompt%%</td>
+						</tr>
+					</tbody>
+				</table>
+				%%submit%%
+			</div>
+			<input type='hidden' id='p_id' name='p_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+		<div id='tabs-3'>
+		</div>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("#content-tabs" ).tabs();
+$('#destFolders').chosen();
+closePopup = function() {
+	loadFromEdit();
+}
+$('.popovers').popover();
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+fnSetContact();
+fnSortableQuestions();
+</code>

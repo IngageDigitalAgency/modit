@@ -1,0 +1,29 @@
+<div class="slider_info 12u" id='home-slider'>
+	<ul class='items'>
+		%%ads%%
+	</ul>
+	<div class="clearfix"></div>
+</div>
+<script type='text/javascript'>
+if ($("#home-slider ul.items li").length == 0) {
+	$("#home-slider").css("display","none");
+}
+else {
+	$('#home-slider .items .buy-now').each(function(idx,el) {
+		$(el).closest(".wrapper").find(".ad").append(el);
+	});
+	$(document).ready(function() {
+		$('#home-slider .items').anythingSlider({
+			buildArrows:false,
+			buildNavigation:false,
+			buildStartStop:false,
+			hashTags:false,
+			autoPlay:true,
+			startPanel:1,
+			delay:5000,
+			mode:"fade",
+			enableNavigation:false
+		});
+	});
+}
+</script>

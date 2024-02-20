@@ -1,0 +1,146 @@
+<tr>
+	<td class="text-right">%%order_id%% <a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new"><i class="fa fa-info-circle"></i></a> <a href="/modit/dispatch?order_id=%%order_id%%&overnights=1" target="new"><i class="fa fa-truck"></i></a></td>
+<!if(strlen("%%custom_color_coding%%")>0)!>
+	<td style="background-color:%%custom_color_coding%%">%%product_name%%</td>
+<!else!>
+	<td>%%product_name%%</td>
+<!fi!>
+	<!if("%%needs_approval%%"!="0")!>
+
+		<td class="alert alert-info">
+			%%pickup:address:company%%
+			<!if(strlen("%%pickup:address:firstname%%")>0)!>
+				<br/>%%pickup:address:firstname%% %%pickup:address:lastname%%
+			<!fi!>
+			<br/>Placed by: %%custom_placed_by%%
+		</td>
+		<td class="alert alert-info">
+			%%pickup:address:line1%%
+			<!if(strlen("%%pickup:address:line2%%")>0)!>
+				<br/>%%pickup:address:line2%%
+			<!fi!>
+			<br/>%%pickup:address:city%% %%pickup:address:postalcode%%
+<!if(strlen("%%pickup:address:phone1%%")>0)!>
+			<br/>%%pickup:address:phone1%%
+<!fi!>
+		</td>
+		<td class='alert alert-info'>%%pickup:scheduled_date,false%%</td>
+		<td class="alert alert-info">%%pickup:instructions%%<br/>%%packages%%
+<!if((int)"%%custom_declared_value%%" > 0)!>
+		<div class="alert alert-info"><b>Declared: <!@@($this->my_money_format(%%custom_declared_value%%))@@!></b></div>
+<!fi!>
+<!if(strlen("%%services%%") > 0)!>
+		<div class="alert alert-warning"><b>%%services%%</b></div>
+<!fi!>
+		</td>
+		<!if("%%pickup:driver:id%%"=="0")!>
+			<td class="alert alert-warning">Unassigned</td>
+		<!else!>
+			<td class="alert alert-info">%%pickup:driver:company%% %%pickup:driver:lastname%% %%pickup:driver:firstname%%</td>
+		<!fi!>
+
+
+	<!else!>
+		<!if("%%pickup:sd%%"<"%%pickup:td%%" && "%%pickup:completed%%"=="0")!>
+			<td class="alert alert-danger">
+				%%pickup:address:company%%
+				<!if(strlen("%%pickup:address:firstname%%")>0)!>
+					<br/>%%pickup:address:firstname%% %%pickup:address:lastname%%
+				<!fi!>
+				<br/>Placed by: %%custom_placed_by%%
+			</td>
+			<td class="alert alert-danger">
+				%%pickup:address:line1%%
+				<!if(strlen("%%pickup:address:line2%%")>0)!>
+					<br/>%%pickup:address:line2%%
+				<!fi!>
+				<br/>%%pickup:address:city%% %%pickup:address:postalcode%%
+<!if(strlen("%%pickup:address:phone1%%")>0)!>
+			<br/>%%pickup:address:phone1%%
+<!fi!>
+			</td>
+			<td class='alert alert-danger'>%%pickup:scheduled_date,false%%</td>
+			<td class="alert alert-danger">%%pickup:instructions%%<br/>%%packages%%
+<!if((int)"%%custom_declared_value%%" > 0)!>
+		<div class="alert alert-info"><b>Declared: <!@@($this->my_money_format(%%custom_declared_value%%))@@!></b></div>
+<!fi!>
+<!if(strlen("%%services%%") > 0)!>
+		<div class="alert alert-warning"><b>%%services%%</b></div>
+<!fi!>
+			</td>
+			<!if("%%pickup:driver:id%%"=="0")!>
+				<td class="alert alert-warning">Unassigned</td>
+			<!else!>
+				<td class="alert alert-danger">%%pickup:driver:company%% %%pickup:driver:lastname%% %%pickup:driver:firstname%%</td>
+			<!fi!>
+		<!else!>
+			<td>
+				%%pickup:address:company%%
+				<!if(strlen("%%pickup:address:firstname%%")>0)!>
+					<br/>%%pickup:address:firstname%% %%pickup:address:lastname%%
+				<!fi!>
+				<br/>Placed by: %%custom_placed_by%%
+			</td>
+			<td>
+				%%pickup:address:line1%%
+				<!if(strlen("%%pickup:address:line2%%")>0)!>
+					<br/>%%pickup:address:line2%%
+				<!fi!>
+				<br/>%%pickup:address:city%% %%pickup:address:postalcode%%
+<!if(strlen("%%pickup:address:phone1%%")>0)!>
+			<br/>%%pickup:address:phone1%%
+<!fi!>
+			</td>
+			<!if("%%pickup:completed%%"=="0")!>
+				<!if(%%pickup:et%%<0)!>
+					<td class="alert-danger">%%pickup:scheduled_date,false%%</td>
+				<!else!>
+					<!if(%%pickup:et%%<=30)!>
+						<td class="alert-warning">%%pickup:scheduled_date,false%%</td>
+					<!else!>
+						<td>%%pickup:scheduled_date%%</td>
+					<!fi!>
+				<!fi!>
+			<!else!>
+				<td class="alert-success">%%pickup:actual_date,false%%</td>
+			<!fi!>
+			<td>%%pickup:instructions%%<br/>%%packages%%
+<!if((int)"%%custom_declared_value%%" > 0)!>
+		<div class="alert alert-info"><b>Declared: <!@@($this->my_money_format(%%custom_declared_value%%))@@!></b></div>
+<!fi!>
+<!if(strlen("%%services%%") > 0)!>
+		<div class="alert alert-warning"><b>%%services%%</b></div>
+<!fi!>
+			</td>
+			<!if("%%pickup:driver:id%%"=="0")!>
+				<td class="alert-warning">Unassigned</TD>
+			<!else!>
+				<td>%%pickup:driver:company%% %%pickup:driver:lastname%% %%pickup:driver:firstname%%</td>
+			<!fi!>
+		<!fi!>
+	<!fi!>
+	<td class="disabled">
+		%%delivery:address:company%%
+		<!if(strlen("%%delivery:address:firstname%%")>0)!>
+			<br/>%%delivery:address:firstname%% %%delivery:address:lastname%%
+		<!fi!>
+	</td>
+	<td class="disabled">
+		%%delivery:address:line1%%
+		<!if(strlen("%%delivery:address:line2%%")>0)!>
+			<br/>%%delivery:address:line2%%
+		<!fi!>
+		<br/>%%delivery:address:city%% %%delivery:address:postalcode%%
+<!if(strlen("%%delivery:address:phone1%%")>0)!>
+			<br/>%%delivery:address:phone1%%
+<!fi!>
+	</td>
+	<td class="disabled">%%delivery:scheduled_date,false%%</td>
+	<td class="disabled">%%custom_signature_required%%</td>
+	<td>%%delivery:instructions%%</td>
+	<!if("%%delivery:driver:id%%"=="0")!>
+		<td class="disabled alert alert-warning">Unassigned</td>
+	<!else!>
+		<td class="disabled">%%delivery:driver:company%% %%delivery:driver:lastname%% %%delivery:driver:firstname%%</td>
+	<!fi!>
+</tr>

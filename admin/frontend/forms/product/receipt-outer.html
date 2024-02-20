@@ -1,0 +1,44 @@
+<div id='steps'></div>
+<span class="title">Your receipt</span>
+<div class='save'>
+	<a class="button red bigrounded" href="/my-account">Your Account History
+		<span class="button_arrow">
+			<img src="/images/backgrounds/button_arrow.png">
+		</span>
+	</a>
+</div>
+<div id='order-history-details' class='il-module-header'>
+	<div class='title'>Order Details: %%id%%</div>
+	<div class='top'></div>
+	<div class='mid'>
+		<table id='order-history-table' class="table-dropshadow" style="width:100%">
+			<tr>
+				<th class='product'>Product Name</th>
+				<th class='option'>Product Option</th>
+				<th class='qty'>Qty</th>
+				<th class='price'>Unit Price</th>
+				<th class='extended'>Ext Price</th>
+			</tr>
+			%%lines%%
+		</table>
+	</div>
+	<div class='bot'></div>
+</div>
+%%addresses%%
+<div class="il-module-header" id="order-history-address">
+    <div class="title">Payment Information</div>
+    <div class="top"></div>
+    <div class="mid">
+        <table style="width:50%;" class="table-dropshadow" id="order-history-address-table">
+            <tbody><tr><th align="left">Payment Method</th><td align="left">%%authorization_type%%</td></tr>
+            <tr><th align="left">Trans Code</th><td align="left">%%authorization_transaction%%</td></tr>
+            <tr><th align="left">Auth Code</th><td align="left">%%authorization_code%%</td></tr>
+            <tr><th align="left">Amount Paid</th><td align="left">%%authorization_amount%%</td></tr>
+            <tr><th align="left">Ship Via</th><td align="left">%%ship_via%%</td></tr>
+            <tr><th align="left">Tracking Id</th><td align="left">%%ship_tracking_code%%</td></tr>
+            <tr><th align="left">Order Date</th><td align="left">%%order_date%%</td></tr>
+            <tr><th align="left">Ship Date</th><td align="left">%%ship_date%%</td></tr>
+        </tbody></table>
+    </div>
+    <div class="bot"></div>
+</div>

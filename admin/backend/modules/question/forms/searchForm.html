@@ -1,0 +1,56 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/question","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					<tr>
+						<td><a href='#' onclick='editArticle(0);return false'>Add an Order</a></td>
+					</tr>
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+			</div>
+			<div id='orderArticleList'>
+				<div class="break"></div>
+				<table class='listing'>
+					<tr>
+						<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/question","middleContent")'>Title</span></th>
+						<th><span onclick='sort("type","%%form:name%%","/modit/ajax/%%form:action%%/question","middleContent")'>Type</span></th>
+						<th>Used By</th>
+						<th>Responses</th>
+						<th>Enabled</th>
+						<th>Published</th>
+						<th></th>
+						<th></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Questions per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+//]]> 
+</script> 
+</code>
