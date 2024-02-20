@@ -1,0 +1,94 @@
+<div class='title'>Cheque Allocation</div>
+%%errorMessage%%
+<form method='post' action='' id='allocation'>
+<table aria-label="">
+		<tr>
+			<th scope="col">Customer:</th><td>%%member_id%%</td>
+			<th scope="col">Start Date:</th><td>%%start_date%%</td>
+			<th scope="col">End Date:</th><td>%%end_date%%</td>
+			<td>%%submit%%</td>
+		</tr>
+	</table>
+	%%allocation%%
+	<div class='info'>Records Found: %%count%%</div>
+<table aria-label="" class='listing' id='confirmationListing'>
+		<thead>
+			<tr>
+				<th>Company</th>
+				<th>Customer</th>
+				<th class="a-right">Order #</th>
+				<th>Date</th>
+				<th>Status</th>
+				<th class="a-right">Invoiced Amt</th>
+				<th class="a-right">Paid Amt</th>
+				<th class="centered">Pay</th>
+				<th class="a-right">Balance</th>
+				<th>View</th>
+			</tr>
+		</thead>
+		<tbody>%%orders%%</tbody>
+	</table>
+<!if("0%%ct%%"!="0")!>
+<table aria-label="">
+		<tr>
+			<th scope="col">Cheque #:</th><td>%%checkNumber%%</td>
+			<th scope="col">Cheque Amount:</th><td>%%checkAmount%%</td>
+		</tr>
+		<tr>
+			<th scope="col">Paid Amount:</th><td>%%total%%</td>
+			<th scope="col">Unallocated:</th><td>%%unallocated%%</td>
+		</tr>
+	</table>
+<!fi!>
+	%%update%%
+</form>
+<script type='text/javascript'>
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$("select[name=member_id]").chosen();
+$('#allocation .chosen-search input').autocomplete({
+	delay:1000,
+	minLength:3,
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getMembers/credit',
+			data:{'s':request.term,'m':$("select[name=member_id]").val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=member_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+calcAllocated = function() {
+	t = 0;
+	c = parseFloat($("input[name='checkAmount']").val());
+	$("#confirmationListing input[name^='pay']").each(function(idx,el) {
+		if (el.checked) {
+			o = $("#confirmationListing input[name='".concat(el.name.replace('pay','balance'),"']"));
+			t += parseFloat(o[0].value);
+		}
+	});
+	$("input[name='total']").val(Math.round(t*100)/100);
+	if (c > 0)
+		$("input[name='unallocated']").val(Math.round(100*(parseFloat($("input[name='checkAmount']").val()) - parseFloat(t)))/100);
+	else
+		$("input[name='unallocated']").val(0);
+}
+calcAllocated();
+$("input[name='checkAmount']").change(function() {
+	calcAllocated();
+});
+$("#confirmationListing input[name='balance']").change(function() {
+	calcAllocated();
+});
+</script>

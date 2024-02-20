@@ -1,0 +1,46 @@
+<div id='recurringTab'>
+	<form id='recurringBilling' method='post' action='/modit/ajax/getRecurring/orders'>
+		<div class="row">
+			<div class="col-xs-4 form-group"><label>Pickup Driver</label>%%custom_recurring_pu_driver%%</div>
+			<div class="col-xs-4 form-group"><label>Delivery Driver</label>%%custom_recurring_del_driver%%</div>
+			<div class="col-xs-4 form-group"><label>Pickup Time:</label>%%custom_recurring_pu_time%%</div>
+			<div class="col-xs-4 form-group"><label>Route Id:</label>%%route_id%%</div>
+		</div>
+		<div class="row bottom20"><div class="col-xs-16">%%submit%%</div></div>
+<table aria-label="recurringBilling" class='listing'>
+			<thead>
+				<tr>
+					<th>Scheduled Date</th>
+					<th>Order #</th>
+					<th>Billed</th>
+					<th>Billing Date</th>
+					<th>Message</th>
+					<th>Attempts</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%data%%
+			</tbody>
+		</table>
+		<input type='hidden' name='o_id' value='%%o_id%%' />
+		<input type='hidden' name='pagenum' value='%%pagenum%%' />
+		%%pagination%%%%getRecurring%%
+	</form>
+</div>
+<script type="text/javascript">
+updateDrivers = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#tabs-6").html(h.html);
+				showPopupMessages("Changes saved");
+			}
+			catch(err) {
+			}
+		}
+	})
+}
+</script>

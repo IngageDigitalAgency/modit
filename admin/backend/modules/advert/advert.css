@@ -1,0 +1,52 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	background-image: url("/admin/images/cut.png");
+	
+}
+
+#contentTree a.icon_folder {
+	background-image: url("/admin/images/icons/folder.png");
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.advertInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.advertDragger {
+		display:none;
+}
+.advertDragger .id {
+	display:none;
+}
+
+.def_field_input_sml {
+	width:75px;
+}

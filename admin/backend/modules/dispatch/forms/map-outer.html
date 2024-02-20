@@ -1,0 +1,15 @@
+<script type='text/javascript'>
+stores = Array();
+route = Array();
+%%addresses%%
+%%route%%
+mapDriver(stores,route);
+</script>
+%%errorMessage%%
+<div id="map"></div>
+<div id="instructions">
+<table aria-label="">
+		<thead><tr><th>Step</th><th>Instruction</th></tr></thead>
+		<tbody>%%directions%%</tbody>
+	</table>
+</div>

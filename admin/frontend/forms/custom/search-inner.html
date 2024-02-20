@@ -1,0 +1,14 @@
+<div class="row bottom20">
+	<div class="col-xs-8"><strong>Order:</strong> %%id%%</div>
+	<div class="col-xs-8"><strong>Scheduled:</strong> <!@@(date("d-M h:i:s a", strtotime("%%scheduled_date%%")))@@!></div>
+	<div class="col-xs-8">
+		%%line1%%<br/>
+		%%city%% %%postalcode%%
+	</div>
+	<div class="col-xs-8">
+		<strong>Driver:</strong>%%firstname%% %%lastname%%
+	</div>
+	<div class="col-xs-16">
+		<button class="btn" onclick="divert(%%delivery_id%%,%%id%%);return false;">Assume Delivery</button>
+	</div>
+</div>

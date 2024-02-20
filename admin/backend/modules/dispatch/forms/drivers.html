@@ -1,0 +1,40 @@
+<ol id="driverList">
+%%drivers%%
+</ol>
+<script type="text/javascript">
+makeDroppable();
+$.contextMenu({
+	selector: '.context-menu-driver', 
+	callback: function(key, options) {
+		id = this.context.id.split("_")[1];
+		if (id > 0) {
+			if (key=="enable") {
+				$.ajax({
+					url: "/modit/ajax/enableDriver/dispatch",
+					data: { enableDriver : 1, d_id: id },
+					success: function( obj, status, xhr ) {
+						getDrivers();
+					}
+				});
+			}
+			else {
+				$.ajax({
+					url: "/modit/ajax/disableDriver/dispatch",
+					data: { disableDriver : 1, d_id: id },
+					success: function( obj, status, xhr ) {
+						getDrivers();
+					}
+				});
+			}
+		}
+	},
+	items: {
+		"enable": {name: "Enable Driver", icon: "fa-thumbs-up"},
+		"disable": {name: "Disable Driver", icon: "fa-thumbs-down"},
+		"sep1": "---------",
+		"quit": {name: "Quit", icon: function(){
+			return 'context-menu-icon context-menu-icon-quit';
+		}}
+	}
+});
+</script>

@@ -1,0 +1,10 @@
+<div class='header-ecom'>
+%%menu%%
+</div>
+<script type="text/javascript">
+<!if("0%%session:user:info:id%%"!="0")!>
+	$(".header-ecom ul.level_0").append("<li><a href='/logout'>Logout</a></li>");
+<!else!>
+	$(".header-ecom ul.level_0").append("<li><a href='/login'>Login</a></li>");
+<!fi!>
+</script>

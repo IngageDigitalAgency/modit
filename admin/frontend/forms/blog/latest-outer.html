@@ -1,0 +1,36 @@
+<div id="blog-latest">
+	<div id='blog-column-left'></div>
+	<div id='blog-column-right'></div>
+	<div class='clearfix'></div>
+	<form method='post'>
+		<input type='hidden' name='pagenum' value='%%pagenum%%' />
+		%%pagination%%
+	</form>
+	<div class='temp'>
+		%%entries%%
+	</div>
+</div>
+<script type='text/javascript'>
+$('#blog-latest .temp .post').each(function(idx,el) {
+	if (idx%2 == 0)
+		$('#blog-column-left').append($(el))
+	else
+		$('#blog-column-right').append($(el))
+});
+function pagination(pg,el) {
+	$.ajax({
+		url: '/ajax/render',
+		data: {'t_id':15,'pagenum':pg,'f_id':0},
+		success: function(obj,success,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$('#blog-latest').html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err.message);
+			}
+		}
+	});
+}
+</script>
