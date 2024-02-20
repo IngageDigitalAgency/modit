@@ -1,0 +1,264 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Blog Entry</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-8">Text</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-10">SEO</a></li>
+			%%customTab%%
+			<li><a href="#tabs-9">External Multimedia</a></li>
+<!if(array_key_exists('blog:coupons',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-4">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('blog:calendar',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-5">Events</a></li>
+<!fi!>
+<!if(array_key_exists('blog:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-6">Stores</a></li>
+<!fi!>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-7">Products</a></li>
+<!fi!>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Title:</th><td>%%title%% %%titleError%% %%tooltip:Title%%</td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Author:</th><td id="author">%%author%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%expires%% %%expiresError%% %%tooltip:Expires%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% %%publishedError%% %%tooltip:Published%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% %%deletedError%% %%tooltip:Deleted%%</td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Member of Category:</th>
+						<td>
+							%%destFolders%%  %%destFoldersError%% %%tooltip:Category%%
+						</td>
+					</tr>
+				</table>
+				<div>
+					%%destFoldersSelect%%
+				</div>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+<!if(array_key_exists('blog:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-4'>
+				<div class='title'>Deal or Offer Categories Assigned to this Blog</div>
+				%%destCouponFolders%% %%tooltip:DealCatRel%%<span class='errorMessage'>%%destCouponFoldersError%% %%tooltip:DealtRel%%</span>
+				<div class='title'>Individual Deals or Offers Assigned to this Blog</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%couponFolders%%
+						</td>
+						<td>
+							<div>Select the Coupon(s) <span class='errorMessage'>%%destCouponsError%% %%tooltip:DealRel%%</span></div>
+							<div id='offerCatSelection'>
+								%%destCoupons%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('blog:calendar',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-5'>
+				<div class='title'>Calendars Assigned to this Blog</div>
+				%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%% %%tooltip:CalendarRel%%</span>
+				<div class='title'>Individual Events Assigned to this Blog</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%eventFolders%%
+						</td>
+						<td>
+							<div>Select the Event(s) <span class='errorMessage'>%%destEventsError%% %%tooltip:EventRel%%</span></div>
+							<div id='eventCatSelection'>
+								%%destEvents%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('blog:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-6'>
+				<div class='title'>Store or Location Categories Assigned to this Blog</div>
+				%%destStoreFolders%% <span class='errorMessage'>%%destStoreFoldersError%% %%tooltip:LocationCatRel%%</span>
+				<div class='title'>Individual Stores or Locations Assigned to this Blog</div>
+			<table>
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%storeFolders%%
+					</td>
+					<td>
+						<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+						<div id='storeCatSelection'>
+							%%destStores%%
+						</div>
+					</td>
+				</tr>
+			</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div class='title'>Product Categories Assigned to this Blog</div>
+				%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Products Assigned to this Blog</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</td>
+						<td>
+							<div>Select the Product(s) <span class='errorMessage'>%%destProductsError%% %%tooltip:CatToProd%%</span></div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%% %%tooltip:ProductRel%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			%%customInfo%%
+			<div id='tabs-8'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+<!if(array_key_exists('twitter',$GLOBALS))!>
+				<div id='twitter'>%%twitterPublish%% Publish to Twitter</div>
+<!fi!>
+<!if(array_key_exists('facebook',$GLOBALS))!>
+	<!if("%%session:facebook:status%%"=="connected")!>
+				<div id='facebook'>%%facebookPublish%% Publish to Facebook</div>
+	<!fi!>
+<!fi!>
+				<div class='title'>Blog Content: %%tooltip:Description%%<span class='errorMessage'>%%bodyError%%</span></div>
+				%%body%%
+			</div>
+			<div id='tabs-9'>
+				%%video%%
+			</div>
+			<div id='tabs-10'>
+				<div class='title'>SEO Content for this blog</div>
+				<table>
+					<tr>
+						<th>Keywords:</th><td>%%meta_keywords%% %%browser_keywordsError%%</td>
+					</tr>
+					<tr>
+						<th>Description:</th><td>%%meta_description%% %%browser_descriptionError%%</td>
+					</tr>
+					<tr>
+						<th>Browser Title:</th><td>%%browser_title%% %%browser_titleError%%</td>
+					</tr>
+				</table>
+			</div>
+			%%submit%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$('#destFolders').chosen();
+$('#destCoupons').chosen();
+$('#destCouponFolders').chosen();
+$('#destEvents').chosen();
+$('#destEventFolders').chosen();
+$('#destStores').chosen();
+$('#destStoreFolders').chosen();
+$('#relatedDestProducts').chosen();
+$('#destProductFolders').chosen();
+$('#destSearch').chosen();
+$('select[name=author]').chosen();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'blog');
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true,'blog');
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true,'blog');
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'blog');
+});
+$('.popovers').popover();
+$( "#tabs" ).tabs();
+$('td#author .chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getAuthor/blog',
+			data:{'s':request.term,'m':$("select[name=author]").val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=author]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+</code>

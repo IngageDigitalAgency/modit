@@ -1,0 +1,17 @@
+<div id='checkout-payflow' class='container_12'>
+<!if("0%%session:cart:reauthorize:o_id"!="0")!>
+	<div class='alert alert-warning'>This is an authorization only. Your card will be billed on the next shipment</div>
+<!fi!>
+	%%errorMessage%%
+	<form method='post' action='%%gateway%%'>
+		<input type='hidden' name='SECURETOKEN' value='%%SECURETOKEN%%' />
+		<input type='hidden' name='SECURETOKENID' value='%%SECURETOKENID%%' />
+<!if(strlen('%%addresses:billing:firstname%%') > 0)!>
+		<input type='hidden' name='PARMLIST' value='INVNUM=Order#%%header:order_id%%&CURRENCY=%%currency%%&FIRSTNAME=%%addresses:billing:firstname%%&LASTNAME=%%addresses:billing:lastname%%&STREET=%%addresses:billing:line1%%&CITY=%%addresses:billing:city%%&ZIP=%%addresses:billing:postalcode%%&STATE=%%addresses:billing:provinceCode%%&PHONENUM=%%addresses:billing:phone1%%&EMAIL=%%addresses:billing:email%%' />
+<!else!>
+		<input type='hidden' name='PARMLIST' value='INVNUM=Order#%%header:order_id%%&CURRENCY=%%currency%%&FIRSTNAME=%%addresses:shipping:firstname|addresses:shipping:firstname%%&LASTNAME=%%addresses:shipping:lastname%%&STREET=%%addresses:shipping:line1%%&CITY=%%addresses:shipping:city%%&ZIP=%%addresses:shipping:postalcode%%&STATE=%%addresses:shipping:provinceCode%%&PHONENUM=%%addresses:shipping:phone1%%&EMAIL=%%addresses:shipping:email%%' />
+<!fi!>
+		<input type='hidden' name='MODE' value='%%mode%%' />
+		<img onclick='formSubmit(this);' src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" />
+	</form>
+</div>

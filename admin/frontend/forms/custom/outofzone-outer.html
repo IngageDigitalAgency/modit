@@ -1,0 +1,17 @@
+<div class="row">
+	<div class="col-xs-16 text-center">%%errorMessage%%%%ecomErrors%%</div>
+</div>
+<!--
+<select name='serviceType' class='form-control' onchange='serviceChange();'>
+-->
+%%options%%
+<!--
+</select>
+-->
+<script type="text/javascript">
+if ("%%reset%%"=="1") {
+	$("input[name='optType']").each(function(idx,el) {
+		el.checked = false;
+	});
+}
+</script>

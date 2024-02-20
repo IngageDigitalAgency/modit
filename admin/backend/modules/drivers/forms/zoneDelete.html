@@ -1,0 +1,23 @@
+<div></div>
+<script type="text/javascript">
+<!if("%%id%%"=="")!>
+alert("We couldn't find that record");
+<!else!>
+<!if("%%ct%%"=="0")!>
+	$.ajax({
+		url: "/modit/ajax/zones/drivers",
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#middleContent").html(h.html);
+			}
+			catch(err) {
+				showError(err.message);
+			}
+		}
+	});
+<!else!>
+	alert("There are associated FSA's still on this route");
+<!fi!>
+<!fi!>
+</script>

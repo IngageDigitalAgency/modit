@@ -1,0 +1,33 @@
+<div class='propertyEditing'>
+	<div class='title'>Add a Template Category</div>
+	<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/showFolderProperties/templates","popup");return false;' id='%%form:name%%'>
+		<div class='errorMessage'>%%errorMessage%%</div>
+		<div id='tabs'>
+			<ul>
+				<li><a href="#tabs-1">Main Info</a></li>
+			</ul>
+			<div id='tabs-1'>
+				<table class='propertyEditing'>
+					<tr>
+						<td>Template Category Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+					</tr>
+					<tr>
+						<td>Parent Category:</td><td>%%p_id%% %%pidError%% %%tooltip:Parent%%</td>
+					</tr>
+					<tr>
+						<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		%%description%%
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showFolderProperties%% %%test%% %%id%% %%type%% 
+		<div class="break"></div>
+	</form>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

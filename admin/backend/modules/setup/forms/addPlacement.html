@@ -1,0 +1,14 @@
+<div class='title'>Add/Edit a Form Placement</div>
+<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/addPlacement/modules",$("#altPopup"));return false;' name='%%form:name%%' id='%%form:name%%'>
+	<table>
+		<tr>
+			<th>Template:</th><td>%%template_id%%</td>
+		</tr>
+		<tr>
+			<th>Location:</th><td>%%module_name%%</td>
+		</tr>
+	</table>
+	%%save%% %%addPlacementForm%%%%fetemplate_id%%
+	<input type='hidden' name='s_id' value='%%id%%' />
+	<div class='break'></div>
+</form>

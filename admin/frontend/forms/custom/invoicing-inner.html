@@ -1,0 +1,16 @@
+<!if("%%consolidate_id%%"!="")!>
+<tr class="inv-%%consolidate_id%%" style="display:none;">
+<!else!>
+<tr>
+<!fi!>
+<td>%%invoice:qb_invoice_id%%</td>
+<td>%%member:company%%</td>
+<td class="text-right">%%invoice:order_count%%</td>
+<td class="text-right">%%invoice:invoice_amount%%</td>
+<td class="text-right">%%invoice:nontaxable%%</td>
+<td class="text-right">%%invoice:tax_amount%%</td>
+<td class="text-right">%%invoice:invoice_total%%</td>
+<td class="text-right">%%invoice:paid_amount%%</td>
+<td class="text-right">%%invoice:net%%</td>
+<td>%%errorMessage%%</td>
+</tr>

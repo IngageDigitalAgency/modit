@@ -1,0 +1,83 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/polls","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+					<table>
+						<tr>
+							<th>Criteria:</th><td>%%opt_title%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%title%%</td>
+						</tr>
+						<tr>
+							<th>Criteria:</th><td>%%opt_created%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%created%%</td>
+						</tr>
+						<tr>
+							<th>Criteria:</th><td>%%opt_start_date%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%start_date%%</td>
+						</tr>
+						<tr>
+							<th>Criteria:</th><td>%%opt_end_date%%</td>
+						</tr>
+						<tr>
+							<th>Value:</th><td>%%end_date%%</td>
+						</tr>
+						<tr>
+							<th>Enabled:</th><td>%%enabled%%</td>
+						</tr>
+						<tr>
+							<th>Published:</th><td>%%published%%</td>
+						</tr>
+					</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+			</div>
+			<div id='pollArticleList'>
+				<div class="break"></div>
+				<table class='listing'>
+					<tr>
+						<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/polls","middleContent")'>Title</span></th>
+						<th><span onclick='sort("start_date","%%form:name%%","/modit/ajax/%%form:action%%/polls","middleContent")'>Start Date</span></th>
+						<th><span onclick='sort("end_date","%%form:name%%","/modit/ajax/%%form:action%%/polls","middleContent")'>End Date</span></th>
+						<th>Completed/Abandoned</th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/polls","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/polls","middleContent")'>Published</span></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Polls per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+		<div id='pollResults'></div>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+fnShowComparison(0);
+//]]> 
+</script> 
+</code>

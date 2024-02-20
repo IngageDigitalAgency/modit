@@ -1,0 +1,29 @@
+<div class='title'>Add a Lookup Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("lookupsForm","/modit/ajax/showPageProperties/lookups","popup");return false;' id='lookupsForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Folder Information</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<table class='propertyEditing'>
+				<tr>
+					<td>Folder Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%p_idError%% %%tooltip:FolderName%%</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-actions">
+    	%%submit%%
+        <a class="btn" onclick="closePopup();return false;" href="#">Cancel</a>
+    </div>
+	<input type='hidden' action='%%form:action%%'>
+	%%showPageProperties%% %%test%% %%id%% %%type%% %%tablename%%
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

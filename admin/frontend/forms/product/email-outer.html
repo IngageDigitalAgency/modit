@@ -1,0 +1,38 @@
+<div style='font-size:18px;width:100%'>
+	<div style='color:#616263;padding-left:50px;font-size:22px;line-height:1;'>Thank you for your order</div>
+	<div style='color:#616263;padding-left:50px;font-size:22px;;line-height:1;'>Here is your receipt:</div>
+	<hr/>
+	<table cellpadding='0' style='color: #616263;font-size:16px;min-width:600px;'>
+		%%addresses%%
+	</table>
+	<table cellpadding='5' style='color: #616263;font-size:16px;min-width:600px;'>
+		<thead>
+			<tr style="color:#006633;font-size:16px;">
+				<th style='text-align:right;width:10%'>Quantity</th>
+				<th style='text-align:left;width:40%'>Product</th>
+				<th style='text-align:left;width:15%'>Options</th>
+				<th style='text-align:left;width:25%'>Recurring</th>
+				<th style='text-align:right;'>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%lines%%
+		</tbody>
+	</table>
+	<hr/>
+	<div style='color:#616263;font-size:22px;padding-left:50px;'>Payment Information</div>
+	<hr/>
+	<table cellpadding='5' style='color: #616263;'>
+		<tbody>
+			<tr><th style='text-align:right;color:#006633;'>Ship Via:</th><td>%%formattedShipVia%%</td></tr>
+			<tr><th style='text-align:right;color:#006633;'>Payment Method:</th><td>%%authorization_type%%</td></tr>
+		  <tr><th style='text-align:right;color:#006633;'>Status:</th><td>%%formattedStatus%%</td></tr>
+		  <tr><th style='text-align:right;color:#006633;'>Trans Code:</th><td>%%authorization_transaction%%</td></tr>
+		  <tr><th style='text-align:right;color:#006633;'>Auth Code:</th><td>%%authorization_code%%</td></tr>
+		  <tr><th style='text-align:right;color:#006633;'>Amount Paid:</th><td>$%%authorization_amount%%</td></tr>
+		  <tr><th style='text-align:right;color:#006633;'>Order Date:</th><td>%%formattedOrderDate%%</td></tr>
+		</tbody>
+	</table>
+	<hr/>
+	%%advertisement%%
+</div>

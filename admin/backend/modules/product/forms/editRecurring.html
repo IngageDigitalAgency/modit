@@ -1,0 +1,37 @@
+<div class='title'>Add/Edit Recurring Billing</div>
+<span class='errorMessage'>%%errorMessage%%</span>
+<form name='%%form:name%%' method='%%form:method%%' onsubmit='formCheck_add("%%form:name%%","/modit/ajax/%%form:action%%/product",$("#altPopup"));return false;' id='%%form:name%%'>
+	<table>
+		<tr>
+			<th>Code:</th><td>%%lookup_id%% <span class='errorMessage'>%%lookup_idError%%</span></td>
+		</tr>
+		<tr>
+			<th>1 Line Description:</th><td>%%teaser%% <span class='errorMessage'>%%teaserError%%</span></td>
+		</tr>
+		<tr>
+			<th>Discount:</th><td>%%discount_rate%% <span class='errorMessage'>%%discount_rateError%%</span> %%percent_or_dollar%%</td>
+		</tr>
+		<tr>
+			<th>S&amp;H Only:</th><td>%%shipping_only%% <span class='errorMessage'>%%shipping_onlyError%%</span></td>
+		</tr>
+		<tr>
+			<th>Min. Amount:</th><td>%%min_amount%% <span class='errorMessage'>%%min_amountError%%</span></td>
+		</tr>
+		<tr>
+			<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%%</span></td>
+		</tr>
+		<tr>
+			<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%%</span></td>
+		</tr>
+		<tr>
+			<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%%</span></td>
+		</tr>
+	</table>
+	<input type='hidden' name='p_id' value='%%p_id%%' />
+	<input type='hidden' name='o_id' value='%%id%%' id='o_id' />
+	<input type='hidden' value='%%ownerid%%' name='ownerid' />
+	%%product_id%%
+	%%editRecurring%%
+	%%save%%
+	<div class='break'></div>
+</form>

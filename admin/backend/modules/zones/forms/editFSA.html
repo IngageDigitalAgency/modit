@@ -1,0 +1,35 @@
+<div class="propertyEditing">
+	<div class="title">Add/Edit an FSA</div>
+	<form method="post" name="editFSAFrm" id="editFSAFrm" onsubmit='formCheck_add("editFSAFrm","/modit/ajax/editFSA/zones",$("#popup"));return false;' >
+		<table>
+			<tbody>
+				<tr>
+					<td colspan='2' class='centered'>%%errorMessage%%</td>
+				</tr>
+				<tr>
+					<th scope="col">FSA:</th><td>%%fsa%%</td>
+				</tr>
+				<tr>
+					<th scope="col">Enabled:</th><td>%%enabled%%</td>
+				</tr>
+				<tr>
+					<th scope="col">Downtown:</th><td>%%downtown%%</td>
+				</tr>
+				<tr>
+					<th scope="col">Deleted:</th><td>%%deleted%%</td>
+				</tr>
+				<tr>
+					<th scope="col"></th><td>%%submit%%%%editFSA%%%%fsa_id%%</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<table class="table">
+		<thead>
+			<tr><th class="centered">Folder</th><th class="centered">Zone</th><th class="centered">Enabled</th><th></th></tr>
+		</thead>
+		<tbody>
+			%%usedIn%%
+		</tbody>
+	</table>
+</div>

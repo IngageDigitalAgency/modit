@@ -1,0 +1,113 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Question</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-5">Responses</a></li>
+			<li><a href="#tabs-4">Used By</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table class='content'>
+					<tr>
+						<th>Name:</th><td>%%name%% <span class='errorMessage'>%%nameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Type:</th><td>%%type%% %%typeError%% %%tooltip:QuestionType%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>A Member of:</th><td>%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span></td>
+					</tr>
+				</table>
+			%%submit%% 
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="javascript:mcImageManager.open('editorform','image_a','','updateimage_a');">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="javascript:mcImageManager.open('editorform','image_a','','updateimage_a');">select image 1</a> | <a href="javascript:imagesetnone_a('image_a');">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="javascript:mcImageManager.open('editorform','image_b','','updateimage_b');">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="javascript:mcImageManager.open('editorform','image_b','','updateimage_b');">select image 2</a> | <a href="javascript:imagesetnone_b('image_b');">set no image</a>
+						</td>
+					</tr>
+				</table>
+			%%submit%% 
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			%%submit%% 
+			</div>
+			<div id='tabs-4'>
+				<div class='title'>Polls Using This Question</div>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th>Survey/Poll</th>
+						</tr>
+					</thead>
+					<tbody>
+						%%usedBy%%
+					</tbody>
+				</table>
+			</div>
+			<div id='tabs-5'>
+				<div class='title'>Allowed Responses</div>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th>Text</th>
+							<th>Answered</th>
+							<th>Responses</th>
+							<th>Image</th>
+							<th>Deleted</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%responses%%
+					</tbody>
+				</table>
+				<button onclick='fnEditResponse(0,%%id%%);return false;' class='def_field_submit'>Add a Response</button>
+			</div>
+			<input type='hidden' id='p_id' name='p_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("#content-tabs" ).tabs();
+$('#destFolders').chosen();
+closePopup = function() {
+	loadFromEdit();
+}
+$('.popovers').popover();
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+fnSortableResponses();
+setImageViewing();
+</code>

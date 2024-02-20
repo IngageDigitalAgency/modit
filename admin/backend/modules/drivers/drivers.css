@@ -1,0 +1,55 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	background-image: url("/admin/images/cut.png");
+	
+}
+
+#contentTree a.icon_folder {
+	background-image: url("/admin/images/icons/folder.png");
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.driversInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.driversDragger {
+		display:none;
+}
+.driversDragger .id {
+	display:none;
+}
+
+.def_field_input_sml {
+	width:75px;
+}
+
+#map { height:800px; width:100%; }
+.subtitle { color:#0088cc; font-size: 30px; line-height:36px; padding:10px 0; }

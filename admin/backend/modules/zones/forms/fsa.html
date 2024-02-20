@@ -1,0 +1,67 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/zones","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th scope="col">Title:</th><td>%%opt_title%% %%title%%</td>
+					</tr>
+					<tr>
+						<th scope="col">Folder:</th><td>%%folder%%</td>
+					</tr>
+					<tr>
+						<th scope="col">Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th scope="col">Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='articleList'>
+				<div id='zonesFolderId' style='display:none'>%%id%%</div>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Title</span></th>
+							<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Created</span></th>
+							<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Enabled</span></th>
+							<th><span onclick='sort("delievery_surcharge","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Delivery Surcharge</span></th>
+							<th colspan='2' scope="col"></th>
+						</tr>
+					</thead>
+					%%articles%%
+				</table>
+				<div id='pagination'><span class="pagination-dropdown pull-right">Ads per page : %%pager%%</span> %%pagination%%</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/zones';
+initSearch();
+//]]> 
+</script> 
+</code>

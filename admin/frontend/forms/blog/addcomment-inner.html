@@ -1,0 +1,30 @@
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'white'
+ };
+</script>
+<form method='post' id='commentForm'>
+	%%errorMessage%%
+	<h2>Leave a Comment</h2>
+	<table>
+		<tr>
+			<td>%%firstname%% %%firstnameError%%</td>
+			<td>%%lastname%% %%lastnameError%%</td>
+			<td>%%email%% %%emailError%%</td>
+		</tr>
+		<tr>
+			<td colspan='3'>%%content%%</td>
+		</tr>
+		<tr>
+			<td>Rating:&nbsp;%%rating%%</td>
+		</tr>
+		<tr>
+			<td colspan='3'>
+				%%captcha%%
+				%%addComment%%
+				<button class="btn btn-danger btn-block" type="submit" onClick="validateSubmit(this,'commentReal');return false;">SUBMIT</button>
+			</td>
+		</tr>
+	</table>
+	%%r_id%%
+</form>

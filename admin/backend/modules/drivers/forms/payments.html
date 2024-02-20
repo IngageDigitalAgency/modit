@@ -1,0 +1,74 @@
+%%heading%%
+<div class='searchForm' id="variableContent">
+	<div class='status'>%%statusMessage%%</div>
+	<div class='subtitle'>Payout Report</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">%%errorMessage%%</div>
+	</div>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/drivers","middleContent");return false;' id='%%form:name%%'>
+			<table>
+				<tbody>
+					<tr>
+						<td>Driver:</td><td>%%driver_id%%</td>
+						<td>From/To:</td><td>%%start_date%% / %%end_date%%</td>
+					</tr>
+					<tr>
+						<td>Service:</td><td>%%service_type%%</td>
+						<td>Delivery Type:</td><td>%%product_id%%</td>
+					</tr>
+					<tr>
+						<td>Order #:</td><td>%%order_id%%</td>
+						<td>Completed:</td><td>%%completed%%</td>
+					</tr>
+					<tr>
+						<td>Paid:</td><td>%%paid%%</td>
+						<td>Overrides:</td><td>%%overridden%%</td>
+					</tr>
+					<tr>
+						<td></td><td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+					</tr>
+				</tbody>
+			</table>
+			%%payment%%
+			<div id='articleList'>
+				%%table%%
+			</div>
+			%%payments%%
+			%%sortorder%%
+			%%sortby%%
+<div id="results"></div>
+<!if("%%ct%%"!="0")!>
+			<a class="btn btn-default" href="/modit/drivers/printPayout" target="_blank">Print PDF</a>
+			<a class="btn btn-default" href="#" onclick="setPaid(this);return false;">Mark as Paid</a>%%mark_as_paid%%
+			<!if("%%field:tag^driver_id%%"!="")!>
+			<a class="btn btn-default" href="#" onclick="sendPDF(this);return false;">Email to Driver</a>
+			<!fi!>
+<!fi!>
+		</form>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+setPaid = function(el) {
+	f = $(el).closest("form");
+	$(f).find("input[name=mark_as_paid]").val(1);
+	$(f).submit();
+}
+pagingUrl = '/modit/ajax/%%form:action%%/drivers';
+initDrivers();
+initSearch();
+sortPmt = function(typ) {
+	console.log(typ);
+	cSortBy = $("input[name='sortby']").val();
+	cSortOrder = $("input[name='sortorder']").val();
+	if (cSortBy == typ) {
+		$("input[name='sortorder']").val(cSortOrder=="asc"?"desc":"asc");
+	}
+	else {
+		$("input[name='sortby']").val(typ);
+	}
+	$("#%%form:name%%").submit();
+}
+//]]> 
+</script> 

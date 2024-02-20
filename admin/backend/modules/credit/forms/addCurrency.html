@@ -1,0 +1,22 @@
+<div class='title'>Add a Currency Conversion</div>
+%%errorMessage%%
+<form method='post' id='addCurrencyForm' onsubmit='formCheck("addCurrencyForm","/modit/ajax/addCurrency/credit","popup");return false;'>
+	<table>
+		<tr>
+			<th>Currency:</th><td>%%currency_id%%</td>
+		</tr>
+		<tr>
+			<th>Effective Date:</th><td>%%effective_date%%</td>
+		</tr>
+		<tr>
+			<th>Exchange Rate:</th><td>%%exchange_rate%%</td>
+		</tr>
+	</table>
+	%%save%%
+	%%addCurrency%%
+	%%e_id%%
+	<div class='clearfix'></div>
+</form>
+<script type='text/javascript'>
+	initDateFields();
+</script>

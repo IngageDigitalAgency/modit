@@ -1,0 +1,25 @@
+<article class="grid_4 seq_%%sequence%% ">
+	<figure class="page1-img1 img-bot">%%img_image1%%</figure>
+	<div class="link1">
+		<a href="%%url%%">%%name%%</a>
+	</div>
+	<div class='teaser'>
+		%%teaser%%
+	</div>
+	<div class='pricing'>
+		<div class='fleft'>
+			<div class='saleText'>
+<!if('%%onSale%%' == '1')!>ON SALE<!fi!>
+			</div>
+<!if(%%price%%>0)!>
+			%%price_fmt%%
+<!else!>
+			<div class='call-us'>CONTACT US FOR PRICING</div>
+<!fi!>
+		</div>
+		<div class='fright'>
+			<a href='%%url%%'>MORE</a>
+		</div>
+		<div class='clearfix'></div>
+	</div>
+</article>

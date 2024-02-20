@@ -1,0 +1,60 @@
+<style type="text/css">
+<!--
+body {
+	background-color: #ebebeb;
+	 margin: 2px auto 0 auto;
+}
+}
+-->
+</style>
+<div id="page">
+	<div id="wrapper">
+		<div class='top'>
+			<div class='left'>
+				<div class='cms-logo'><img src='%%global:brandingLogo%%' alt='EckoCS logo' /></div>
+			</div>
+			<div class='right'>
+				<div class='title'>Login</div>
+				<div class='legal'>First time Administrators must accept the <a href='#'>Licensing Agreement</a>. Username and IP Address will be stamped and recorded.</div>
+			</div>
+			<div class="break"></div>
+		</div>
+		<div class='hr'><hr/></div>
+		<div class='bottom'>
+			<div class='left'>
+				<div class='site-logo'>%%logo%%</div>
+			</div>
+			<div class='right'>
+				<form name='%%form:name%%' method='%%form:method%%' action='%%form:action%%'>
+					<table>
+						<tr>
+							<td>Email:</td><td>%%email%%&nbsp;%%emailError%%</td>
+						</tr>
+						<tr>
+							<td>Password:</td><td>%%password%%&nbsp;%%passwordError%%</td>
+						</tr>
+						<tr>
+							<td colspan='2' style='text-align:right'><a href='#'>Forgot Password?</a></td>
+						</tr>
+						<tr>
+							<td colspan='2'>
+								<div class='agreement'>
+									<div class='left'>%%agreement_error%%%%agreement%% I accept the <a href='#'>Licensing Terms</a></div>
+									<div class='right'>%%submit%%</div>
+									<div class='break'></div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="break"></div>
+		</div>
+	</div>
+</div>
+<code>
+<link media="screen" type="text/css" rel="stylesheet" href="/admin/backend/modules/login/login.css" />
+<script type="text/javascript" src="/admin/backend/modules/login/login.js"></script>
+<link media="screen" type="text/css" rel="stylesheet" href="/admin/css/c-css.php" />
+</code>
+<div align="center"></div>

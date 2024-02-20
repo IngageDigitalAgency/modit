@@ -1,0 +1,51 @@
+<code>
+<link media="screen" type="text/css" rel="stylesheet" href="/admin/jqplot/css/jquery.jqplot.css" />
+<script type="text/javascript" src="/admin/jqplot/js/jquery.jqplot.js"></script>
+<!--[if lt IE 9]><script language="javascript" type="text/javascript" src="/admin/jqplot/js/excanvas.js"></script><![endif]-->
+<link media="screen" type="text/css" rel="stylesheet" href="%%global:modules%%/polls/polls.css" />
+<script type="text/javascript" src="%%global:modules%%/polls/polls.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.pieRenderer.min.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.barRenderer.min.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.pointLabels.min.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+<script class="include" language="javascript" type="text/javascript" src="/admin/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
+</code>
+<div id='page'>
+	<div id='mainContent'>
+		<div id='mainNav'>
+			<div class='closer'><a href='#' onclick='toggleNav(this);return false;'><img src='/admin/images/right-arrow.png' alt='open menu' /></a></div>
+			<div class='inner'></div>
+			<div class='break'></div>	
+		</div>
+		<div id='leftContent'>
+			<div id='contentTree'></div>
+			<div id='comparator' class='contentInfo'>
+				<div class='status'>Poll Comparison</div>
+				<table id='comparisons' style='width:100%' class='listing'>
+					<thead>
+						<tr>
+							<th>Poll</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			<a onclick='fnComparePolls(this);return false;' href='#'>Compare</a>
+			</div>
+			<div class='break'></div>
+		</div>
+		<div id='middleContent'>
+			%%injector%%
+			<div class='break'></div>
+		</div>
+	</div>
+	<div id='rightContent'>
+			
+	</div>
+	<div class='break'></div>
+</div>
+<div id="dialog-confirm" title="Copy or Move the Poll?" style='display:none'>
+</div>
+<script type='text/javascript' src='%%global:modules%%/polls/finalize.js'></script>
