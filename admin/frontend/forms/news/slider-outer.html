@@ -1,0 +1,28 @@
+<div class="slider_info" id='Slider'>
+	<ul class='items'>
+		%%articles%%
+	</ul>
+	<div class="clearfix"></div>
+</div>
+<script type='text/javascript'>
+
+$(document).ready(function() {
+	$('#Slider .items').anythingSlider({
+		buildArrows:false,
+		buildNavigation:true,
+		buildStartStop:false,
+		hashTags:false,
+		autoPlay:true,
+		playRtl:true,
+		enableNavigation:true,
+		navigationFormatter: function(idx,panel) {
+			return navFormatter(idx,panel);
+		},
+		onSlideComplete: function(slider) {
+		}
+	});
+});
+function navFormatter(idx,panel) {
+	return "<div class='nav'></div>"
+}
+</script>

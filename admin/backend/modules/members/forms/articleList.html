@@ -1,0 +1,19 @@
+<tr>
+	<td>%%lastname%% %%firstname%%</td>
+	<td>%%company%%</td>
+	<td>%%title%%</td>
+	<td>%%created%%</td>
+	<td>%%expires%%</td>
+	<td><div class='centered'>%%enabled%%</div></td>
+	<td><div class='centered'>%%featured%%</div></td>
+	<td><a href='#' onclick='showOrders(%%id%%);'><em class='icon-edit'></em> Orders</a></td>
+	<td>
+		<a href="#" onclick='editArticle(%%id%%,%%j_id%%);return false;'><em class='icon-edit'></em></a>
+		<div id='membersdrag_%%id%%'>
+			<div class="membersDragger draggable">
+				<div class='id' style='display:none'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+	<td><a href="#" onclick='deleteArticle(%%id%%,%%j_id%%);return false;'><em class='icon-trash'></em></a></td>
+</tr>

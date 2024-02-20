@@ -1,0 +1,12 @@
+<div class='title'>Audit History for Product %%code%% - %%name%%</div>
+<form id='%%form:name%%' method='%%form:method%%' onsubmit='formCheck("%%form:name%%","http://dev.ediinabox.com/modit/ajax/inventoryAudit/product","inventoryAudit");return false;'>
+	<table class='info'>
+		<tr>
+			<th>Date</th><th>Quantity</th><th>Order</th><th>Comment</th>
+		</tr>
+		%%audit%%
+	</table>
+	%%pagination%%
+	%%pagenum%%
+	<input type='hidden' name='i_id' value='%%inventory_id%%' />
+</form>

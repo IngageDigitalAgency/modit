@@ -1,0 +1,70 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit User Rights</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">User Info</a></li>
+			<li><a href="#tabs-2">Access Rights</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>First Name:</th><td>%%fname%% %%fnameError%%</td>
+					</tr>
+					<tr>
+						<th>Last Name:</th><td>%%lname%% %%lnameError%%</td>
+					</tr>
+					<tr>
+						<th>E-mail:</th><td>%%email%% %%emailError%%</td>
+					</tr>
+					<tr>
+						<th>Password:</th><td>%%password%% %%passwordError%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%expires%% %%expiresError%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+					</tr>
+					<tr>
+						<th>Delete:</th><td>%%deleted%% %%deletedError%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Enable All Access:</th><td>%%enableAllModules%% as %%enableAllRole%%</td>
+					<tr>
+						<th>Has Access To:<br/><input type='button' value='Add Role' onclick='showRole(0);return false;' /></th>
+						<td>
+							<table id='allRoles'>
+								<tr>
+									<th>Delete</th><th>Module</th><th>Privileges</th>
+								</tr> 
+								%%destFolders%%
+							</table>
+						</td>
+					</tr>
+				</table>
+			</div>
+			%%submit%% <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+			<table id='tempStorage' style='display:none'><tbody></tbody></table>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$('#tabs').tabs();
+$('#destEvents').chosen();
+$('#destEventFolders').chosen();
+$('#destCoupons').chosen();
+$('#destCouponFolders').chosen();
+$('#destFolders').chosen();
+$('#destProducts').chosen();
+$('#destProductFolders').chosen();
+</code>

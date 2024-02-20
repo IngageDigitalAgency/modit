@@ -1,0 +1,79 @@
+/**********************************************************************************************
+	Website		: KJV Courier
+	Author		: Ecko Creative Services
+	URL			: vitatree.com
+	
+	Created		: January, 2018
+	
+	Copyright (c) IngageDigital.
+	
+***********************************************************************************************/
+
+/* Large desktop */
+@media (min-width: 992px) and (max-width: 1200px) {
+	.footer-nav .name { color:red; }
+	.packages .form-control { font-size:1.0vw; }
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 991px) {
+	.footer-nav .name { color:white; }
+	#homeCarousel .item { height:470px; }
+	#homeCarousel h2 { font-size:44px; }
+	#homeCarousel h3 { font-size:16px; }
+	#home-login .fa { font-size:20px; }
+	#home-login h3 { font-size:14px; }
+	#home-login h4 { font-size:14px; }
+	#home-login .icon { padding-top:20px; }
+	#home-x2 .gray { padding:10px; }
+	#home-x1 > .row { height:280px; }
+	#home-x1 .p1 { margin-top:55px; }
+	.bg.collapse.in { display:none; }
+	#contactus .btn { margin-top:10px; }
+	.row.sm-gutters { margin-right: 0; margin-left: 0; }
+	.row.sm-gutters > [class^="col-"], 
+	.row.sm-gutters > [class*=" col-"] { padding-right: 0; padding-left: 0; }
+	.sm-center { text-align:center; }
+	#inner > .container { width:100%; }
+	.sm-gutters > .col-sm-1.text-right { padding-right:30px; }
+	.xs-margin { padding-left:5px; padding-right:5px; }
+	.xs-margin select { padding-left:5px; }
+	.packages .form-control { font-size:1.5vw; }
+	.packages .col-xs-4 { padding-left:0; padding-right:0; }
+	#selectService h1 { font-size:3vw; }
+}
+
+@media (max-width: 767px) {	
+	.footer-nav .name { color:green; }
+	#homeCarousel .item { height:375px; }
+	#homeCarousel h2 { font-size:32px; }
+	#home-login .wrapper { margin-top:0; }
+	#home-x1 > .row { height:220px; }
+	#home-x1 .p1 { margin-top:30px; font-size:9px; }
+	#home-x1 .p2 { font-size:16px; }
+	#home-x1 .p3 { font-size:12px; }
+	#home-x1 .p4 { font-size:12px; }
+	#home-x2 .img { height:40vw; }
+	.navbar-header { background-color:#ee3823; }
+	.navbar-brand img { height:50px; width:50px; }
+	header .clear { text-align:center; }
+	header .dark { background-color:inherit; text-align:center; }
+	#home-x2 article { margin-bottom:20px; }
+	#home-x2 { margin-bottom:0; }
+	footer { text-align:center; }
+	.footer-nav li { display:inline-block; padding: 5px 10px; }
+	.navbar-collapse { border-top:none; }
+	.g-recaptcha { transform:scale(.65);-webkit-transform:scale(.65);transform-origin:0 0;-webkit-transform-origin:0 0; }
+	.delim { display:none; }
+	#our-services article { text-align:center; margin-top:20px; }
+	.xs-margin { margin-bottom:15px; }
+}
+
+@media only screen and (max-width: 479px) and (orientation:portrait) {
+	.footer-nav .name { color:blue; }
+}
+
+@media (max-width: 479px) {
+	.footer-nav .name { color:yellow; }
+	.g-recaptcha { transform:scale(.45);-webkit-transform:scale(.45);transform-origin:0 0;-webkit-transform-origin:0 0; }
+}

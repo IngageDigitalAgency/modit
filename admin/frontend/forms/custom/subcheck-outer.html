@@ -1,0 +1,12 @@
+<!if(%%companyCount%%>0)!>
+<div id="company-selector">
+	<label class="control-label">Company:</label>
+	<select name="c_id" class="form-control" onchange="setCompany(this);return false;">
+		<option value="0">-</option>
+		%%companies%%
+	</select>
+	<input type="hidden" name="checkSubsidiary" value="1" />
+</div>
+<!else!>
+<label> </label>
+<!fi!>

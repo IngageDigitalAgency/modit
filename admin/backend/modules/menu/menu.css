@@ -1,0 +1,110 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree a.info.active {
+	font-weight:bold;
+	font-style:italic;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+
+}
+
+#contentTree a.icon_folder {
+
+}
+
+select.contentClass option.page {
+	background-image: url("/admin/images/icons/page.png");
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 18px;
+}
+
+select.contentClass option.folder {
+	background-image: url("/admin/images/icons/folder.png");
+	background-position: left top;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+select.contentClass option.internallink,
+#contentTree a.icon_internallink {
+	background-image: url("/admin/images/icon-internal.png");
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+select.contentClass option.externallink,
+#contentTree a.icon_externallink {
+	background-image: url("/admin/images/icon-external.png");
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+#contentTree a.icon_externallink {
+	background-image: url("/admin/images/icon-external.png");
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+}
+
+#leftContent {
+	float:left;
+	overflow:hidden;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.menuInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+
+.thumbnail-item { 
+	/* position relative so that we can use position absolute for the tooltip */
+	position: relative; 
+	float: left;  
+	margin: 0px 5px; 
+}
+
+.thumbnail-item a { 
+	display: block; 
+}
+
+.thumbnail-item img.thumbnail {
+	border:3px solid #ccc;	
+}
+		
+.img_tooltip { 
+	/* by default, hide it */
+	display: none; 
+	/* allow us to move the tooltip */
+	position: absolute; 
+	/* align the image properly */
+	padding: 8px 0 0 8px; 
+}
+
+	.img_tooltip span.overlay { 
+		/* put this overlay on the top of the tooltip image */
+		position: absolute; 
+		top: 0px; 
+		left: 0px; 
+		display: block; 
+		width: 350px; 
+		height: 200px;
+	}

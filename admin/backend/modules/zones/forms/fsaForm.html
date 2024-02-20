@@ -1,0 +1,59 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<form method='POST' action='' name='fsaForm' onsubmit='formCheck("fsaForm","/modit/ajax/fsa/zones","middleContent");return false;' id='fsaForm'>
+			<div id='articleList'>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th><span onclick='sort("fsa","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>FSA</span></th>
+							<th><span onclick='sort("downtown","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Downtown</span></th>
+							<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Enabled</span></th>
+							<th><span onclick='sort("deleted","%%form:name%%","/modit/ajax/%%form:action%%/zones","middleContent")'>Deleted</span></th>
+							<th colspan='2' scope="col"></th>
+						</tr>
+					</thead>
+					%%rows%%
+				</table>
+				<div id='pagination'><span class="pagination-dropdown pull-right">FSA's per page : %%pager%%</span> %%pagination%%</div>
+			</div>
+			%%fsaForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<script type="text/javascript"> 
+pagingUrl = '/modit/ajax/%%form:action%%/zones';
+pagination = function(pg,el) {
+	if (el)
+		f = $(el).closest("form");
+	else
+		f = $("form#fsaForm");
+	if (pg >= 0) {
+		$(f).find("input[name='pagenum']").val(pg);
+	}
+	formCheck("fsaForm","/modit/ajax/fsa/zones","middleContent");
+	return false;
+}
+$('#pager').change(function() {
+	pagination(-1);
+});
+sort = function(fld, nm, act, dest) {
+	f = $("form#fsaForm");
+	if ($(f).find("input[name='sortby']").val() == fld) {
+		if ($(f).find("input[name='sortorder']").val()=="asc")
+			$(f).find("input[name='sortorder']").val("desc");
+		else {
+				$(f).find("input[name='sortorder']").val("asc");
+			}
+	}
+	else {
+		$(f).find("input[name='sortby']").val(fld);
+		$(f).find("input[name='sortorder']").val("asc");
+	}
+	formCheck("fsaForm","/modit/ajax/fsa/zones","middleContent");
+}
+</script> 

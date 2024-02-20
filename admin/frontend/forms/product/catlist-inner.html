@@ -1,0 +1,20 @@
+<div class='product'>
+	<div class='image'><a href='%%url%%'>%%img_image1%%</a></div>
+	<h3 class='itemTitle'><a href='%%url%%'>%%name%%</a></h3>
+	<div class='price'>%%price_fmt%%</div>
+	<div class='savings'>
+<!if("%%onSale%%"=="1")!>
+		<span>(Save %%salePercentFormatted%%%)</span>
+<!else!>
+		&nbsp;
+<!fi!>
+	</div>
+	<div class='ratings'>
+		%%comment_count%%
+	</div>
+	%%options%%
+	<input type='button' value="Add To Cart" onclick="buyIt(%%id%%,this); return false;"/>
+</div>
+<script type='text/javascript'>
+p_urls.push("%%url%%");
+</script>

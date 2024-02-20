@@ -1,0 +1,133 @@
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=places&key=%%config:google_maps_key%%"></script>
+<script type="text/javascript">
+var locations = Array(), markers = [], map = null, mc = null, geocoder = null, idx, centered = false, openWindow = null, polyline = Array(), plot = null;
+%%rows%%
+function removeMarkers( m ) {
+	while(m.length) {
+		m.pop().setMap(null);
+	}
+	if (plot != null) plot.setMap(null); 
+}
+
+function plotDrivers(locs,routing) {
+		removeMarkers(markers);
+		if (routing == 0) {
+			for(i = 0; i < locs.length; i++) {
+				setPt(new google.maps.LatLng(locs[i].latitude,locs[i].longitude), locs[i].info, "/images/map_markers/yellow.png", locs[i].label)
+			}
+		}
+		else {
+			polyline = Array();
+			for(i = 0; i < locs.length; i++) {
+				switch(i) {
+					case 0:
+						marker = "/images/map_markers/green.png";
+						break;
+					case locs.length-1:
+						marker = "/images/map_markers/yellow.png";
+						break;
+					default:
+						marker = "/images/map_markers/red.png";
+						break;
+				}
+				polyline.push(new google.maps.LatLng(locs[i].latitude,locs[i].longitude));
+				setPt(new google.maps.LatLng(locs[i].latitude,locs[i].longitude), locs[i].info, marker)
+			}
+			plot = new google.maps.Polyline({
+				path: polyline,
+				geodesic: true,
+				strokeColor:"#ff0000",
+				strokeWeight:2
+			});
+			plot.setMap(map);
+		}
+}
+function mapInitialize() {
+		var myOptions = {
+			zoom: 12,
+			center: new google.maps.LatLng(43.7, -79.38),
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var myStyles = {
+			hide: [{
+				featureType: "poi.business",
+				styles: [{ visibility: "off" }]
+			}]
+		};
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+		map.setOptions({styles: myStyles["hide"]});
+		geocoder = new google.maps.Geocoder();
+		plotDrivers(locations,0);
+}
+function setPt(point, info, image, driverLabel) {
+	if (point) {
+		var marker = new google.maps.Marker({
+			position: point,
+			map: map,
+			label: driverLabel
+		});
+		markers.push(marker);
+		google.maps.event.addListener(marker,'mouseover',function (event) {
+			openMarker(this, info, event);
+		});
+		google.maps.event.addListener(marker,'mouseout',function (event) {
+			this.close;
+		});
+	}
+}
+
+	$(document).ready( function () {
+		mapInitialize();
+	});
+
+function openMarker(marker, info, event) {
+	var w = new google.maps.InfoWindow();
+	if (openWindow) openWindow.close();
+	openWindow = w;
+	w.setContent(info);
+	w.setPosition(event.latLng);
+	w.open(map);
+}
+</script>
+
+
+<div id="driver-locations">
+	<div class="row">
+		<div class="col-xs-16">
+			<div id="map" style="height:80vh;"></div>
+		</div>
+	</div>
+	<form method="post" action="/ajax/render">
+		<div class="row top20">
+			<div class="col-xs-offset-3 col-xs-5 form-group"><label>Driver</label>%%driver_id%%</div>
+			<div class="col-xs-3 form-group"><label>Refresh Rate</label>%%i_delay%%</div>
+			<div class="col-xs-3 form-group"><label> </label>%%refresh%%</div>
+		</div>
+		%%driverLocations%%<input type="hidden" name="t_id" value="138"/>
+	</form>
+</div>
+<script type="text/javascript">
+iTimer = $("select[name='i_delay']").val();
+getLocations = function() {
+	f = $("#driver-locations").find("form");
+	iDelay = $(f).find("select[name='i_delay']").val();
+	if (iDelay != iTimer) {
+		iTimer = iDelay;
+		clearInterval(iInterval);
+		iInterval = setInterval(getLocations,iTimer);
+	}
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				routeIt = 0;
+				h = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+				plotDrivers(locations,routeIt);
+			}
+			catch(err) {}
+		}
+	})
+}
+iInterval = setInterval(getLocations,iTimer);
+</script>

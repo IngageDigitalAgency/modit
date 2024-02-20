@@ -1,0 +1,145 @@
+<div id='lineEditing'>
+	<div class='title'>Add/Edit a Product</div>
+	<div class="errorMessage centered">%%errorMessage%%</div>
+	<div id='lineTabs'>
+		<ul class='tabs'>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-coupon">Coupon Discounting</a></li>
+<!if((int)$this->getConfigVar('recurringBilling','system')>0)!>
+			<li><a href="#tabs-recurring">Recurring Discounting</a></li>
+<!fi!>
+			%%customTab%%
+<!if(%%id%% > 0 && ("%%field:tag^custom_package%%"=="P" || "%%field:tag^product_id%%" == FEDEX_RECALC))!>
+			<li><a href="#tabs-wt">Weight/Dimensions</a></li>
+<!fi!>
+		</ul>
+		<form name='%%form:name%%' action='' method='post' onsubmit="saveLine('%%form:name%%');return false;" id='%%form:name%%'>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Product:</th><td>%%product_id%% <span class='errorMessage'>%%product_idError%%</span></td>
+					</tr>
+<!if(%%id%% > 0 && ("%%field:tag^custom_package%%"=="P" || "%%field:tag^product_id%%" == FEDEX_RECALC))!>
+					<tr>
+						<th>Fed-Ex Package Type:</th><td>%%fedex_package_type%%</td>
+					</tr>
+<!else!>
+<input type="hidden" name="fedex_package_type" value="0" />
+<!fi!>
+					<tr>
+						<th>Type:</th><td>%%custom_package%% <span class='errorMessage'>%%custom_packageError%%</span></td>
+					</tr>
+					<tr>
+						<th>Ordered:</th><td>%%quantity%% <span class='errorMessage'>%%quantityError%%</span></td>
+					</tr>
+					<tr>
+						<th>Shipped:</th><td>%%shipped%% <span class='errorMessage'>%%shippedError%%</span></td>
+					</tr>
+					<tr>
+						<th>Option:</th><td>%%options_id%% <span class='errorMessage'>%%options_idError%%</span></td>
+					</tr>
+					<tr>
+						<th>Color:</th><td>%%color%% <span class='errorMessage'>%%colorError%%</span></td>
+					</tr>
+					<tr>
+						<th>Size:</th><td>%%size%% <span class='errorMessage'>%%sizeError%%</span></td>
+					</tr>
+<!if((int)$this->getConfigVar('productMultiples','system')>0)!>
+					<tr>
+						<th>Unit Multiplier:</th><td colspan='3'>%%qty_multiplier%% <span class='errorMessage'>%%qty_multiplierError%%</span></td>
+					</tr>
+<!else!>
+%%qty_multiplierHidden%%
+<!fi!>
+					<tr>
+						<th>Inventory:</th><td>%%inventory_id%% <span class='errorMessage'>%%inventory_idError%%</span></td>
+					</tr>
+					<tr>
+						<th>Unit Price:</th><td>%%price%% <span class='errorMessage'>%%priceError%%</span></td>
+					</tr>
+					<tr>
+						<th>S &amp; H:</th><td>%%shipping%% <span class='errorMessage'>%%shippingError%%</span></td>
+					</tr>
+					<tr>
+						<th>Extended Price:</th><td>%%value%% <span class='errorMessage'>%%valueError%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%%</span></td>
+					</tr>
+				</table>
+			</div>
+			<div id="tabs-coupon">
+				<table>
+					<tr>
+						<th colspan='2' scope="col"><h3>Coupon Discounting</h3></th>
+					</tr>
+					<tr>
+						<th>Coupon:</th><td>%%coupon_id%% <span class='errorMessage'>%%coupon_idError%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Type:</th><td>%%discount_type%% <span class='errorMessage'>%%discount_typeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Rate:</th><td>%%discount_rate%% <span class='errorMessage'>%%discount_rateError%%</span></td>
+					</tr>
+					<tr>
+						<th>Amount:</th><td>%%discount_value%% <span class='errorMessage'>%%discount_valueError%%</span></td>
+					</tr>
+				</table>
+			</div>
+<!if((int)$this->getConfigVar('recurringBilling','system')>0)!>
+			<div id="tabs-recurring">
+				<table>
+					<tr>
+						<th colspan='2' scope="col"><h3>Recurring Discounting</h3></th>
+					</tr>
+					<tr>
+						<th>Period:</th><td>%%recurring_period%% <span class='errorMessage'>%%recurring_periodError%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Type:</th><td>%%recurring_discount_type%% <span class='errorMessage'>%%recurring_discount_typeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Rate:</th><td>%%recurring_discount_rate%% <span class='errorMessage'>%%recurring_discount_rateError%%</span></td>
+					</tr>
+					<tr>
+						<th>Amount:</th><td>%%recurring_discount_value%% <span class='errorMessage'>%%recurring_discount_valueError%%</span></td>
+					</tr>
+					<tr>
+						<th>Quantity:</th><td>%%recurring_qty%% <span class='errorMessage'>%%recurring_qtyError%%</span></td>
+					</tr>
+<!else!>
+<div class="hidden">%%recurring_period%%%%recurring_discount_type%%%%recurring_discount_rate%%%%recurring_discount_value%%%%recurring_qty%%</div>
+<!fi!>
+				</table>
+			</div>
+			%%submit%%
+			%%customInfo%%
+			<input type='hidden' name='l_id' value='%%id%%' />
+			%%editLine%%
+			%%tempEdit%%
+			%%shipping_only%%
+			<input type='hidden' name='order_id' value='%%order_id%%' />
+			%%fldName%%
+			%%order_date%%
+		</form>
+<!if(%%id%% > 0 && ("%%field:tag^custom_package%%"=="P" || "%%field:tag^product_id%%" == FEDEX_RECALC))!>
+		<div id="tabs-wt">
+			%%weightDims%%
+		</div>
+<!fi!>
+	</div>
+</div>
+<code>
+	if ($('#lineTabs ul.tabs li').length < 2) {
+		$('#lineTabs ul.tabs').remove();
+	}
+	else $('#lineTabs').tabs();
+	$('#pFormEdit input').change(function() {
+		updateLine(%%id%%,this.name,'%%form:name%%');
+	});
+	$('#pFormEdit select').change(function() {
+		updateLine(%%id%%,this.name,'%%form:name%%');
+	});
+	$("select[name='product_id']").chosen();
+</code>

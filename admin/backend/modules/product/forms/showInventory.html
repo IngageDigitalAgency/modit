@@ -1,0 +1,15 @@
+<div class='title'>Inventory</div>
+<form id='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showInventory/product","tabs-8");return false;' method='%%form:method%%'>
+	<table id='inventoryTable' class='listing'>
+		<tr>
+			<th>Edit</th><th>Option</th><th>Color</th><th>Size</th><th>Quantity</th><th>Start Date</th><th>End Date</th><th>Comments</th><th>Audit</th>
+		</tr>
+		%%inventory%%
+	</table>
+	%%pagination%%
+	%%pagenum%%
+	<input type='hidden' name='i_id' value='%%i_id%%' />
+	<input class='def_field_submit' type='button' value='Add Inventory' onclick='editInventory(0,%%i_id%%);return false;' />
+	<div class='break'></div>
+</form>
+<div id='inventoryAudit' class='listing'></div>

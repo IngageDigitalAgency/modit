@@ -1,0 +1,171 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.productInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.def_field_smalltext {
+	width:75px;
+}
+
+a {
+	text-decoration:none;
+}
+
+#tabs table {
+	width:100%;
+}
+
+#tabs table.content th {
+	width:30%;
+	text-align:right;
+}
+
+.productDragger {
+	display:none;
+}
+
+.productDragger .id {
+	display:none;
+}
+
+#productArticleList th {
+	text-align:center;
+}
+table.info th {
+	text-align:center;
+}
+
+#assemblyTable.listing th {
+	text-align:left;
+}
+
+.def_field_ddl_sml {
+	width:75px;
+}
+.def_field_small {
+	width:75px;
+}
+
+#assemblyTab th.sequence,
+#assemblyTab td.sequence {
+	display:none;
+}
+#assemblyTab th.quantity,
+#assemblyTab td.quantity,
+#assemblyTab th.delete,
+#assemblyTab td.delete {
+	width:20%;
+}
+#assemblyTab th.delete,
+#assemblyTab td.delete {
+	text-align:center;
+}
+#assemblyTab th.code,
+#assemblyTab td.code {
+	width:20%;
+}
+#assemblyTab th.name,
+#assemblyTab td.name {
+	width:40%;
+}
+
+#assemblyTab .dragger {
+	float:left;
+}
+
+#map { width:100%; height:800px; position:relative; clear:both; }
+.listing.x2 tr:nth-child(2n+1) td { background:none repeat scroll 0 0 #ffffff; }
+.listing.x2 tr:nth-child(4n+1) td,
+.listing.x2 tr:nth-child(4n+2) td { background: none repeat scroll 0 0 #edf4f9 !important;}
+
+.calendar .traverseOptions {
+	float:left;
+	text-align:center;
+	width:45%;
+}
+
+.calendar .traverseOptions a {
+	border: 1px solid #E0E0E0;
+	border-radius: 3px 3px 3px 3px;
+	float:left;
+	padding: 3px 7px;
+}
+.calendar .traverseOptions a,
+.calendar .option {
+	background: none repeat scroll 0 0 #F3F3F3;
+	border-color:#CCCCCC #BBBBBB #AAAAAA;
+	border-style: solid;
+	margin-right:3px;
+}
+
+.calendar .startDate {
+    color: #262626;
+    float: left;
+    font-size: 30px;
+    font-weight: normal;
+    line-height: 24px;
+    text-transform: uppercase;
+    width: 23%;
+}
+
+#monthList, #weekList, .weekDay {
+    margin: 20px 0;
+    width: 100%;
+}
+#monthList th {
+    text-align: center;
+    width: 14.28%;
+}
+#monthList td, #monthList th, #weekList td, #weekList th, .weekDay td, .weekDay th {
+    border: 1px solid #e0e0e0;
+    padding: 0;
+}
+#monthList .day {
+    background: none repeat scroll 0 0 #fff;
+    min-height: 78px;
+    padding: 10px;
+    position: relative;
+}
+#monthList .today, #weekList .wrapper .today td {
+    background-color: #edf4f9;
+}
+.listing tr:nth-child(odd) td { background-color:#f1f1f1; }
+.listing tr td.alert,
+.listing tr.alert td { background-color:inherit !important; }
+.listing tr td.alert-warning { background-color:#fcf8e3 !important; }
+.listing tr td.alert-danger { background-color:#f2dede !important; }
+.listing tr td.alert-success { background-color:#dff0d8 !important; }
+.col-form-label { vertical-align:middle; }
+#leftContent > .wrapper { position:fixed; top:120px; }
+#leftContent { position:relative; min-width:20%; }
+#middleContent {min-width:75%;}

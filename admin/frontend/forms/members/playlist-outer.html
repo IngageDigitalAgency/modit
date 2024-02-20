@@ -1,0 +1,26 @@
+<script type='text/javascript' src='/js/jwplayer.js' /></script>
+<div class='mediaPlayer'>
+	<div id='mediaPlayer_%%random%%'>
+	</div>
+	<div class='playerText_%%random%%'></div>
+</div>
+<div class='clearfix'></div>
+<script type='text/javascript'>
+	function mySetTitle_%%random%%(itm) {
+		$('div.playerText_%%random%%')[0].innerHTML = files_%%random%%[itm.index].description;
+	}
+	var files_%%random%% = [%%files%%{}];
+	files_%%random%%.pop();
+	if (files_%%random%%.length > 0) {
+		jwplayer('mediaPlayer_%%random%%').setup({
+			'flashplayer': '/js/player.swf',
+	    'id': 'playerID',
+	    'width': '500',
+	    'height': '24',
+	    'playlist': files_%%random%%,
+	    'controlbar': 'bottom',
+	    'repeat': 'list'
+	  }); 
+	  jwplayer().onPlaylistItem(mySetTitle_%%random%%);
+	}
+</script>

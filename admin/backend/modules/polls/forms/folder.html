@@ -1,0 +1,63 @@
+<div class='title'>Add an Poll/Survey Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("pollForm","/modit/ajax/showPageProperties/polls","popup");return false;' id='pollForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<table class='propertyEditing'>
+				<tr>
+					<td>Folder Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%%  %%tooltip:SecondLine%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+				</tr>
+				<tr>
+					<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+			<table>
+				<tr>
+					<td>Image 1:</td>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="#" onclick="setImage(this);return false;">page image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>Image 2:</td>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="#" onclick="setImage(this);return false;">rollover image</a> | <a href="#" onclick="clearImage(this);return false;">set no rollover</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-3'>
+			<div class='title'>Teaser</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+	<input type='hidden' action='%%form:action%%'>
+	%%submit%%
+	%%showPageProperties%% %%test%% %%id%% %%type%% 
+	<div class='break'></div>
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

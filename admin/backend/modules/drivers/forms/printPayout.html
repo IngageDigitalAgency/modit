@@ -1,0 +1,47 @@
+<table style="margin-bottom:5%;">
+	<tr>
+		<th scope="col" style="width:10%;">Driver:</th><td style="width:30%;" colspan="3">%%firstname%% %%lastname%% - %%company%%</td>
+		<th scope="col" style="width:10%;text-align:right;">Start: </th><td style="width:15%;">%%start_date%%</td>
+		<th scope="col" style="width:10%;text-align:right;">End: </th><td style="width:15%;">%%end_date%%</td>
+	</tr>
+	<tr><td>&nbsp;</td></tr>
+</table>
+<table cellpadding="2" style="width:100%;margin-top:20px;">
+	<thead>
+		<tr>
+			<th scope="col" style="text-align:right;width:8%;border-bottom:1px solid black;">Order #</th>
+			<th scope="col" style="width:19%;border-bottom:1px solid black;">Service</th>
+			<th scope="col" style="width:10%;border-bottom:1px solid black;">Action</th>
+			<th scope="col" style="width:27%;border-bottom:1px solid black;">P/U Address</th>
+			<th scope="col" style="width:27%;border-bottom:1px solid black;">Del Address</th>
+			<th scope="col" style="text-align:right;width:10%;border-bottom:1px solid black;">Paid</th>
+		</tr>
+	</thead>
+	<tbody>
+		%%payments,false%%
+	</tbody>
+	<tfoot>
+		<tr>
+			<th scope="col" colspan="5" style="text-align:right;"><strong>Total Paid:</strong></th>
+			<th scope="col" style="text-align:right;"><strong>%%payment%%</strong></th>
+		</tr>
+<!if("%%deduction_radio%%"!="$0.00")!>
+		<tr>
+			<td colspan="5" style="text-align:right;"><strong>Radio Adjustment:</strong></td>
+			<td style="text-align:right;"><strong>%%deduction_radio%%</strong></td>
+		</tr>
+<!fi!>
+<!if("%%deduction_other%%"!="$0.00")!>
+		<tr>
+			<td colspan="5" style="text-align:right;"><strong>Other Adjustment:</strong></td>
+			<td style="text-align:right;"><strong>%%deduction_other%%</strong></td>
+		</tr>
+<!fi!>
+<!if("%%adjTotal%%"!="%%payment%%")!>
+		<tr>
+			<td colspan="5" style="text-align:right;"><strong>Net:</strong></td>
+			<td style="text-align:right;"><strong>%%adjTotal%%</strong></td>
+		</tr>
+<!fi!>
+	</tfoot>
+</table>

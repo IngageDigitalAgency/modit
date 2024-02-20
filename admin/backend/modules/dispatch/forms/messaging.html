@@ -1,0 +1,67 @@
+%%heading%%
+<div id="variableContent">
+	<div class='sameDays'>
+		<h2>Driver Messaging</h2>
+		<div class='status'>%%statusMessage%%</div>
+		<div id='search-tabs'>
+			<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent");return false;' id='%%form:name%%'>
+				<table class='table'>
+					<tbody>
+						<tr>
+							<td style="vertical-align:middle;">Date:</td>
+							<td style="vertical-align:middle;">
+								<div class="row">
+									<div class="col-xs-8">%%opt_scheduled_date%%</div>
+									<div cass="col-xs-8">%%scheduled_date%%</div>
+								</div>
+							</td>
+							<td style="vertical-align:middle;">Driver:</td><td>%%driver_id%%</td>
+						</tr>
+						<tr>
+							<td style="vertical-align:middle;">Service:</td><td>%%service_type%%</td>
+							<td style="vertical-align:middle;">Delivery Type:</td><td>%%custom:enhancedProductList%%</td>
+						</tr>
+						<tr>
+							<td style="vertical-align:middle;">Order #:</td><td style="vertical-align:middle;">%%order_id%%</td>
+							<td style="vertical-align:middle;"></td><td style="vertical-align:middle;"><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div id='articleList' class="listing">
+					<table>
+						<thead>
+							<tr>
+								<th>Order #</th>
+								<th>Type</th>
+								<th>Created</th>
+								<th>Acknowledged</th>
+								<th>Author</th>
+								<th>Status</th>
+								<th></th>
+							</tr>
+						</thead>
+						%%messages%%
+					</table>
+					<div id='pagination'>
+						<span class="pagination-dropdown pull-right">Deliveries per page : %%pager%%</span>
+						%%pagination%%
+						<div class="break"></div>
+					</div>
+				</div>
+				%%messaging%% 
+				%%pagenum%%
+				%%sortorder%%
+				%%sortby%%
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+sameDayDraggable();
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+initDateFields();
+//]]> 
+</script>
