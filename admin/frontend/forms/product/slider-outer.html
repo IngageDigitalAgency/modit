@@ -1,0 +1,34 @@
+<div class="slider_info" id='Slider'>
+	<ul class='items'>
+		%%products%%
+	</ul>
+	<div class="clearfix"></div>
+</div>
+<script type='text/javascript'>
+if ($("#Slider ul.items li").length == 0) {
+	$("#Slider").css("display","none");
+}
+else {
+	$(document).ready(function() {
+		$('#Slider .items').anythingSlider({
+			buildArrows:false,
+			buildNavigation:false,
+			buildStartStop:false,
+			hashTags:false,
+			autoPlay:true,
+			startPanel:1,
+			delay:5000,
+			mode:"fade",
+			enableNavigation:false,
+			navigationFormatter: function(idx,panel) {
+				return navFormatter(idx,panel);
+			},
+			onSlideComplete: function(slider) {
+			}
+		});
+	});
+	function navFormatter(idx,panel) {
+		return "<div class='nav'></div>"
+	}
+}
+</script>

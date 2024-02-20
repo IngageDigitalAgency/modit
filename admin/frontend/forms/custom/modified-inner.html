@@ -1,0 +1,20 @@
+<tr>
+	<td><a href="/modit/orders/showOrder?o_id=%%id%%" target="editOrder">%%id%%</a></td>
+	<td>%%formattedStatus%%</td>
+	<td>%%customer:company%%</td>
+	<td>
+%%pickup:address:company%%<br/>
+%%pickup:address:line1%%<br/>
+%%pickup:address:city%% %%pickup:address:postalcode%%<br/>
+%%pickup:address:firstname%% %%pickup:address:lastname%% %%pickup:address:phone1%%<br/>
+Driver: %%pickup:lastname%% %%pickup:firstname%%
+</td>
+	<td>
+%%delivery:address:company%%<br/>
+%%delivery:address:line1%%<br/>
+%%delivery:address:city%% %%delivery:address:postalcode%%<br/>
+%%delivery:address:firstname%% %%delivery:address:lastname%% %%delivery:address:phone1%%<br/>
+Driver: %%delivery:lastname%% %%delivery:firstname%%
+</td>
+<td>%%notes_br%%</td>
+</tr>
