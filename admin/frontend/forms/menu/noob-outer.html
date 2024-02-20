@@ -1,0 +1,41 @@
+<div id="home-gallery-background">
+	<div class="mask">
+		<ul id="home-box">
+			%%menu%%
+		</ul>
+		<div class='break'></div>
+	</div>
+</div>
+<script src="/js/jquery.anythingslider.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	Cufon.replace('#home-box h1',{fontFamily: "Glypha LT Std"});
+	Cufon.replace('#home-box p',{fontFamily: "Annabelle JF"});
+	//$('#home-box').css('width',850*$('#home-box').find('div.story').length);
+	$('#home-box').anythingSlider({
+		buildStartStop:false,
+		enableStartStop:true,
+		buildNavigation:false,
+		autoPlay:true,
+		hashTags:false
+	});
+});
+</script>
+<code>
+	<style type='text/css'>
+		.anythingSlider .arrow.back {
+			background-image:url(/images/nav/list_prev_page.png);
+			background-repeat:no-repeat;
+			width:17px;
+			height:45px;
+			top: 125px;
+		}
+		.anythingSlider .arrow.forward {
+			background-image:url(/images/nav/list_next_page.png);
+			background-repeat:no-repeat;
+			width:17px;
+			height:45px;
+			top: 125px;
+		}
+	</style>
+</code>

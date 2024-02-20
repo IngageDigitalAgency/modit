@@ -1,0 +1,37 @@
+<div class = "container-fluid">
+	<div class="row">
+		<div class="col-xs-16 text-center">
+			<h2>Live Driver Queue</h2>
+		</div>
+	</div>
+</div>
+%%idleDrivers%%
+<div class = "container-fluid">
+	<div class="col-xs-16">
+		(SP = Same Day Pickup, SD = Same Day Delivery, OP = Overnight Pickup, OD = Overnight Delivery)
+<table aria-label="" class="table" style="font-size:14px;">
+			<tr>
+				%%drivers%%
+			</tr>
+		</table>
+	</div>
+</div> <!-- end container -->
+<div class="container-fluid  black-bg" id="searchForm">
+	<div class="col-xs-2 p-img-scale-width"><img src="/images/logos/kjv-courier.jpg" /></div>
+	<div class="col-xs-14">
+		<div class="row">
+			<div class="col-xs-16"><h2>Display Filter</h2></div>
+		</div>
+		<div class="row">
+			<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+				<div class="col-xs-3"><label>Driver</label>%%driver_id%%</div>
+				<div class="col-xs-3"><label>Service Type</label>%%driverType%%</div>
+				<div class="col-xs-3"><label>Group</label>%%group_id%%</div>
+				<div class="col-xs-3"><label>Address</label>%%address%%</div>
+				<div class="col-xs-2"><label>Refresh</label>%%i_delay%%</div>
+				<div class="col-xs-2"><label> </label>%%query%%</div>
+				%%driverQueue%%
+			</form>
+		</div>
+	</div>
+</div>

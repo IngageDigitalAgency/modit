@@ -1,0 +1,101 @@
+<script type="text/javascript">
+setShippingAddress = function(a_id) {
+	if (a_id == 0) {
+		$.ajax({
+			url: "/ajax/render",
+			data: { t_id:57 },
+			context: { el: this },
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$(this.el).closest(".row").parent().find(".editForm").html(obj.html);
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else
+		editShipping(a_id);
+}
+function editShipping(address_id) {
+	if (address_id == -1) {
+		address_id = $("#shippingAddress").val();
+	}
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:7,a_id:address_id,customShipping:1},
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#shippingAddresses .editForm").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+				step2Check();
+			} catch (err) {
+			}
+		}
+	});
+}
+</script>
+<div id="shippingAddresses">
+	<div class="row">
+		<div class="col-xs-16">
+			<h4>Delivery Address</h2>
+		</div>
+	</div>
+	<div class="row form-group">
+		<div class="col-xs-10">
+			<select id="shippingAddress" class="form-control">
+				<option value="">-</option>
+				%%addresses%%
+			</select>
+		</div>
+		<div class="col-xs-6">
+			<button onclick="document.location='/address-book/0/0'" class="btn btn-default form-control">New Address</button>
+		</div>
+	</div>
+	<div class="editForm">
+<!if("%%hasShipping%%"!="")!>
+<script type="text/javascript">setShippingAddress(%%hasShipping%%);</script>
+<!else!>
+		%%emptyAddress%%
+<!fi!>
+	</div>
+</div>
+<script type="text/javascript">
+$("#shippingAddress").change(function() {
+	setShippingAddress($(this).val());
+	$("#get-quote").html("");
+});
+function editMe(fld) {
+	var f = $(fld).closest("form");
+	$(f).ajaxSubmit({
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#shippingAddresses .editForm").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+function shippingHere(a_id) {
+	$.ajax({
+		url: "/ajax/render",
+		data: { t_id:8, a_id:a_id, a_type: "shipping" },
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+if ($("#shippingAddress").val() > 0) {
+editShipping($("#shippingAddress").val());
+}
+</script>

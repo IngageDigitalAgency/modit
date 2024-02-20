@@ -1,0 +1,11 @@
+<div class="title">Add FSA to a Zone</div>
+%%errorMessage%%
+<form method="post" onsubmit='formCheck_add("fsaAdd","/modit/ajax/addFSA/zones",$("#altPopup"));return false;' id="fsaAdd">
+<table aria-label="Add FSA to a Zone">
+		<tr><th>FSA:</th><td>%%fsa_id%%</td></tr>
+		<tr><th>Enabled:</th><td>%%enabled%%</td></tr>
+	</table>
+	<div class="form-actions">
+		%%submit%% %%addFSA%%%%zone_id%%%%id%%%%j_id%%
+	</div>
+</form>

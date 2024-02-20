@@ -1,0 +1,168 @@
+<style>
+div.moduleWrapper {
+	position:relative;
+	min-height:15px;
+}
+
+div.moduleChanger {
+	position:absolute;
+	z-index:100;
+}
+
+div.moduleChanger .innerWrapper {
+	display:none;
+	background-color:lightBlue;
+	padding:10px;
+}
+
+div.moduleChanger .closer {
+	position:relative;
+	right:0px;
+}
+
+#moduleEditingPopupOverlay.wrapper {
+    position: absolute;
+    z-index: 101;
+    display:none;
+    margin:0;
+    min-height:auto;
+}
+
+#moduleEditingPopupOverlay {
+	 border-radius: 6px 6px 6px 6px;
+	 background-color: white;
+	 color: black;
+	 height: auto;
+	 padding: 20px 15px;
+	 width: auto;
+	 z-index: 10;
+}
+
+#moduleEditingOverlay {
+	  background: url("/admin/images/ui-bg_diagonals-thick_20_666666_40x40.png") repeat scroll 50% 50% #666666;
+    color: lightgray;
+    display: block;
+    height: 300%;
+    left: 0;
+    opacity: 0.5;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+#moduleEditingPopupOverlay .icon-remove {
+    background-image: url("/admin/images/glyphicons-halflings.png");
+    background-position: -312px 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    vertical-align: text-top;
+    width: 14px;
+}
+.closer {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+#moduleEditingPopupMessages {
+	display:none;
+}
+#moduleEditingPopupOverlay .editTabs {
+	background: none repeat scroll 0 0 #F6F6F6;
+	border-radius: 0 0 4px 4px;
+	padding: 10px;
+	position: relative;
+	border: 1px solid #DDDDDD;
+}
+
+.moduleHighlight {
+    border: 1px dashed red;
+    left: 0;
+    position: absolute;
+    top: 0;
+    display:none;
+}
+.droppable .moduleHighlight {
+    border: 1px solid #008800;
+}
+.btn-primary, .def_field_submit {
+    background-color: #0F3B74;
+    background-image: -moz-linear-gradient(center top , #11407D, #0C2D58);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+    color:white;
+}
+
+.btn-group .btn {
+    border-radius: 0 0 0 0;
+    float: left;
+    margin-left: -1px;
+    position: relative;
+}
+
+.btn, .def_field_submit {
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #F5F5F5;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+    background-repeat: repeat-x;
+    border-color: #CCCCCC #CCCCCC #B3B3B3;
+    border-radius: 4px 4px 4px 4px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    line-height: 18px;
+    margin-bottom: 0;
+    padding: 4px 10px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+    vertical-align: middle;
+}
+
+.btn-primary, .def_field_submit {
+    background-color: #0F3B74;
+    background-image: -moz-linear-gradient(center top , #11407D, #0C2D58);
+    background-repeat: repeat-x;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+
+#moduleEditingPopup {
+	color: #898989;
+	font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+}
+#moduleEditingPopup th {
+	text-align:right;
+}
+#moduleEditingPopup td {
+	padding:5px;
+}
+.mceToolbar td {
+	padding:0px !important;
+}
+#moduleEditingPopup .def_field_ddl {
+	width:200px;
+}
+#moduleEditingPopup select {
+	padding:5px;
+}
+.moduleWrapper .moduleWrapper.tinymce {
+	z-index:99;
+}
+.moduleWrapper .moduleWrapper.tinymce .closer {
+	left:20px;
+}
+#moduleEditingPopup textarea {
+	display:none;
+}
+table.mceLayout td {
+	padding:0px !important;
+}
+
+</style>

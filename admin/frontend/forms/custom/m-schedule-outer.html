@@ -1,0 +1,73 @@
+<script type="text/javascript">
+m_d = Array();
+</script>
+<div class="container bottom40xx" id="m-schedule">
+	<div class="row">
+		<div class="col-xs-16 text-center" id="currLoc"></div>
+	</div>
+	%%deliveries%%
+	<div class="row bottom10">
+		<form method="post" action="/ajax/render" onsubmit="return false;">
+			<div class="col-xs-12 left15">%%pagination%%%%t_id%%%%pagenum%%%%driverSchedule%%</div>
+			<div class="col-xs-4 right15 pagination">%%pager%%</div>
+			%%lat%%%%long%%
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+pagination = function( pg, el ) {
+	f = $(el).closest("form");
+	$(f).find("input[name='pagenum']").val(pg);
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				if (m_timer) clearInterval(m_timer);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+				$("#m-schedule").replaceWith(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+repage = function(el) {
+	f = $(el).closest("form");
+	pg = $(f).find("input[name='pagenum']").val();
+	pagination(pg,el);
+}
+lat = 0;
+lng = 0;
+<!if("0"=="1")!>
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function errLog(data) {
+	$("#currLoc").html(data);
+}
+getPos = function( position ) {
+	lat = position.coords.latitude;
+	lng = position.coords.longitude;
+}
+
+navigator.geolocation.getCurrentPosition( getPos, errLog, options );
+navigator.geolocation.watchPosition( getPos, errLog, options );
+<!fi!>
+refreshSchedule = function() {
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:%%module:fetemplate_id%%,rt:m_d.join(), lat:lat, lng: lng},
+		success: function( obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				if (obj.html != "false") $("#m-schedule").replaceWith(obj.html);
+			}
+			catch (err) {
+			}
+		}
+	});
+}
+m_timer = setInterval( refreshSchedule, 1*60*1000);
+</script>
