@@ -1,0 +1,14 @@
+<form method='post'>
+	<textarea id='tinymcePageContent' class='mceAdvanced' name='content'>%%content%%</textarea>
+	<input type='button' value='Save Content' onclick='saveEditor(this,"%%module_name%%");return false;' />
+	<input type='hidden' value='%%id%%' name='id' />
+	<input type='hidden' value='%%module_name%%' name='module_name' />
+	<input type='hidden' value='%%page_id%%' name='page_id' />
+	<input type='hidden' value='%%pageContent%%' name='pageContent' />	
+	<input type='hidden' value='%%page_type%%' name='page_type' />	
+	%%saveContent%%
+	<div class='clearfix'></div>
+</form>
+<code>
+initTinyMCE('tinymcePageContent');
+</code>

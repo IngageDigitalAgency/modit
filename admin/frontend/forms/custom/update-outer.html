@@ -1,0 +1,8 @@
+<h2>Add or Edit Address</h2>
+%%errorMessage%%
+%%form%%
+<script type="text/javascript">
+$("#country_id").change(function() {
+	$("#provinceWrapper").html(loadProvinces(this.value,{"class":"form-control"}));
+});
+</script>

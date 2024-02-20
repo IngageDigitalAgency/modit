@@ -1,0 +1,66 @@
+<script type="text/javascript" src="https://www.google.com/recaptcha/api.js" async="" defer=""></script>
+<script>
+       function onSubmit(token) {
+         document.getElementById("%%form:name%%").submit();
+       }
+</script>
+<div id="create-account">
+	<div class="container bottom20">
+		<div class="row">
+			<div class="col-xs-6"><h2>Your Company Information</div>
+			<div class="col-xs-10"><hr/></div>
+		</div>
+		<div class="row"><div class="col-xs-12 col-xs-offset-2 text-center">%%errorMessage%%</div></div>
+		<form id="%%form:name%%" name="%%form:name%%" method="%%form:method%%" action="?" >
+			<div class="row">
+				<div class="col-md-8">
+					<div class="col-xs-16 ul form-group">Your Contact Information</div>
+					<div class="col-xs-16 form-group">%%company%%</div>
+					<div class="col-sm-8 form-group">%%firstname%%</div>
+					<div class="col-sm-8 form-group">%%lastname%%</div>
+					<div class="col-sm-8 form-group">%%line1%%</div>
+					<div class="col-sm-8 form-group">%%line2%%</div>
+					<div class="col-sm-8 form-group">%%phone1%%</div>
+					<div class="col-sm-8 form-group">%%fax%%</div>
+					<div class="col-sm-8 form-group">%%city%%</div>
+					<div class="col-sm-8 form-group">%%postalcode%%</div>
+					<div class="col-sm-8 form-group"><div id="provinceWrapper">%%province_id%%</div></div>
+					<div class="col-sm-8 form-group">%%country_id%%</div>
+<div class="col-xs-16 col-sm-8  form-group"><label>Notify on placing an Order</label>%%custom_order_notification%%</div>
+<div class="col-xs-16 col-sm-8 form-group"><label>Notify on Delivery</label>%%custom_delivery_notification%%</div>
+				</div>
+				<div class="col-md-8">
+					<div class="col-xs-16 ul form-group">Login Information</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%email%%</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%email_confirm%%</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%username%%</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%username_confirm%%</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%password%%</div>
+					<div class="col-xs-16 col-sm-8 col-md-16 form-group">%%password_confirm%%</div>
+					<div class="col-xs-16 form-group">By registering your details you agree to our terms and conditions, privacy policy and cookie policy.</div>
+					<div class="col-xs-16 text-right form-group"><button class="g-recaptcha btn btn-primary" data-sitekey="%%config:captcha:payload:public%%" data-callback='onSubmit'>Register Now</button></div>
+				</div>
+				%%signupForm%%%%t_id%%%%m_id%%%%a_id%%%%folder_id%%
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$('#country_id').change(function() {
+	$('#provinceWrapper').html(loadProvinces(this.value,{'name':'address[province_id]'}));
+	$("select[name='address[province_id]']").addClass("form-control");
+});
+signMeUp = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#create-account").replaceWith(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

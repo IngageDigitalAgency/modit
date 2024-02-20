@@ -1,0 +1,101 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://fedex.com/ws/rate/v14">
+   <SOAP-ENV:Body>
+      <RateRequest>
+         <WebAuthenticationDetail>
+            <CspCredential>
+               <Key>"Input Your Information" </Key>
+               <Password>"Input Your Information" </Password>
+            </CspCredential>
+            <UserCredential>
+               <Key>"Input Your Information" </Key>
+               <Password>"Input Your Information" </Password>
+            </UserCredential>
+         </WebAuthenticationDetail>
+         <ClientDetail>
+            <AccountNumber>"Input Your Information" </AccountNumber>
+            <MeterNumber>"Input Your Information" </MeterNumber>
+         </ClientDetail>
+         <TransactionDetail>
+            <CustomerTransactionId>Rate  Intra EMEA</CustomerTransactionId>
+         </TransactionDetail>
+         <Version>
+            <ServiceId>crs</ServiceId>
+            <Major>14</Major>
+            <Intermediate>0</Intermediate>
+            <Minor>0</Minor>
+         </Version>
+         <RequestedShipment>
+            <ShipTimestamp>2013-07-09T12:34:56-06:00</ShipTimestamp>
+            <DropoffType>REGULAR_PICKUP</DropoffType>
+            <ServiceType>PRIORITY_OVERNIGHT</ServiceType>
+            <PackagingType>YOUR_PACKAGING</PackagingType>
+            <PreferredCurrency>USD</PreferredCurrency>
+            <Shipper>
+               <Contact>
+                  <PersonName>Sender_Name</PersonName>
+                  <CompanyName>WAPISENDER-WBUS1100</CompanyName>
+                  <PhoneNumber>9012704839</PhoneNumber>
+                  <EMailAddress>sender@yahoo.com</EMailAddress>
+               </Contact>
+               <Address>
+                              <StreetLines>ShipperAddressLine9</StreetLines>
+                  <StreetLines>ShipperAddressLine9</StreetLines>
+                  <City>Agen</City>
+                  <StateOrProvinceCode>FR</StateOrProvinceCode>
+                  <PostalCode>47000</PostalCode>
+                  <CountryCode>FR</CountryCode>
+               </Address>
+            </Shipper>
+            <Recipient>
+               <Contact>
+                  <PersonName>Recipient_Name</PersonName>
+                  <CompanyName>CSCSWAPI-WBUS1100</CompanyName>
+                  <PhoneNumber>9018549236</PhoneNumber>
+                  <EMailAddress>recipient@yahoo.com</EMailAddress>
+               </Contact>
+               <Address>
+                     <StreetLines>TC084 JAN13 New GDE3 STD</StreetLines>
+                  <StreetLines>ExpSaver  - Box - Intra FR - IDG / HAL - Bill 3rd</StreetLines>
+                  <City>Bruges</City>
+                  <StateOrProvinceCode>FR</StateOrProvinceCode>
+                  <PostalCode>33520</PostalCode>
+                  <CountryCode>FR</CountryCode>
+               </Address>
+            </Recipient>
+            <ShippingChargesPayment>
+               <PaymentType>SENDER</PaymentType>
+               <Payor>
+                  <ResponsibleParty>
+                     <AccountNumber>"Input Your Information" </AccountNumber>
+                     <Tins>
+                        <TinType>BUSINESS_STATE</TinType>
+                        <Number>123456</Number>
+                     </Tins>
+                  </ResponsibleParty>
+               </Payor>
+            </ShippingChargesPayment>
+                       <RateRequestTypes>ACCOUNT</RateRequestTypes>
+            <PackageCount>1</PackageCount>
+            <RequestedPackageLineItems>
+               <SequenceNumber>1</SequenceNumber>
+               <GroupNumber>1</GroupNumber>
+               <GroupPackageCount>1</GroupPackageCount>
+               <Weight>
+                  <Units>LB</Units>
+                  <Value>20.0</Value>
+               </Weight>
+               <Dimensions>
+                  <Length>12</Length>
+                  <Width>12</Width>
+                  <Height>12</Height>
+                  <Units>IN</Units>
+               </Dimensions>
+               <CustomerReferences>
+                  <CustomerReferenceType>CUSTOMER_REFERENCE</CustomerReferenceType>
+                  <Value>TC001_01_PT1_ST01_PK01_SNDUS_RCPCA_POS</Value>
+               </CustomerReferences>
+            </RequestedPackageLineItems>
+         </RequestedShipment>
+      </RateRequest>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

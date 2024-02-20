@@ -1,0 +1,58 @@
+<div>
+	<table aria-label='Delivery'>
+		<tr>
+			<th class="a-left" scope="col">Driver:</th><td>%%driver_id%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Vehicle Type:</th><td>%%vehicle_id%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Scheduled Time:</th><td>%%scheduled_date%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Actual Time:</th><td>%%actual_date%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Instructions:</th><td>%%instructions%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Comments:</th><td>%%comments%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Completed:</th><td>%%completed%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">% of Delivery:</th><td>%%percent_of_delivery%%</td>
+		</tr>
+		<tr>
+			<th class="a-left" scope="col">Driver:</th><td>%%payment%%</td>
+		</tr>
+<!if(strlen("%%signature_encoded%%")>0)!>
+		<tr>
+			<th>Signature:</th><td><img style="width:400px;" src="data:image/png;base64,%%signature_encoded,false%%" alt="Signature Image" /></td>
+		</tr>
+<!fi!>
+		<tr>
+			<th>Signature Required:</th><td>%%order:custom_signature_required%%</td>
+		</tr>
+		<tr>
+			<th>Delivery Name:</th><td>%%delivery_name%%</td>
+		</tr>
+	</table>
+<table class="table table-striped table-bordered" aria-label='Delivery Commission'>
+	<thead>
+		<tr>
+			<th>Product/Service</th>
+			<th>Value</th>
+			<th>Calculated</th>
+			<th>Overridden</th>
+			<th>Override Amount</th>
+			<th>Comment</th>
+		</tr>
+	</thead>
+	<tbody>
+		%%del_commissions%%
+	</tbody>
+</table>
+	%%d_id%%
+</div>

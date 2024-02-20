@@ -1,0 +1,125 @@
+<div id="mobile-pickup" class="bottom60xx">
+	<div id="mobile-header" class="bottom20">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2"><a href="/routes"><em class="fa fa-chevron-left"></em></a></div>
+				<div class="col-xs-12">ORDER: %%order_id%%</div>
+				<div class="col-xs-2"><em class="fa fa-search"></em></div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="packages">
+			<div class="row ul bottom10">
+				<div class="col-xs-16 bold bottom10">Packages</div>
+			</div>
+			%%packages%%
+			<div class="row hidden">
+				<div class="col-xs-12 col-xs-offset-2">
+					<a href="/mobile-product?o_id=%%order_id%%&c_id=%%id%%&l_id=0" class="btn form-control alert-info">ADD A PACKAGE</a>
+				</div>
+			</div>
+		</div>
+		<div class="services">
+			<div class="row ul bottom10">
+				<div class="col-xs-16 bold bottom10">Services</div>
+			</div>
+			%%services%%
+			<div class="row bottom20">
+				<div class="col-xs-12 col-xs-offset-2">
+					<a href="/mobile-service?l_id=0&o_id=%%order_id%%&c_id=%%id%%" class="btn form-control alert-info">ADD A SERVICE</a>
+				</div>
+			</div>
+		</div>
+		<div class="instructions">
+			<div class="row">
+				<div class="col-xs-16 ul bottom10">
+					<label>Instructions</label>
+				</div>
+			</div>
+			<div class="row bottom20">
+				<div class="col-xs-16">%%instructions%%</div>
+			</div>
+		</div>
+		<div class="instructions">
+			<div class="row">
+				<div class="col-xs-16 ul bottom10">
+					<label>Comments</label>
+				</div>
+			</div>
+			<form method="post" id="puForm">
+%%lat%%%%long%%
+				<div class="row bottom10">
+					<div class="col-xs-16 text-center">%%errorMessage%%</div>
+				</div>
+				<div class="row bottom10">
+					<div class="col-xs-16">%%comments%%</div>
+				</div>
+				<div class="row bottom10">
+					<div class="col-xs-16">
+						<label>Authorized By</label>%%delivery_name%%
+					</div>
+				</div>
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+%%actual_date%%
+<!fi!>
+				<div class="row bottom10">
+					<div class="col-xs-10 col-xs-offset-3">%%btn%%%%pickupInfo%%%%d_id%%</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+removeLine = function(l_id, o_id, c_id) {
+	if (!confirm("Delete this line?")) return false;
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:51, o_id:o_id, c_id:c_id, l_id:l_id, editPackageLine:1,delete:1},
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				window.location.reload();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+
+removeService = function(l_id, o_id, c_id) {
+	if (!confirm("Delete this service?")) return false;
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:52, o_id:o_id, c_id:c_id, l_id:l_id, editServiceLine:1,delete:1},
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				window.location.reload();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+lat = 0;
+lng = 0;
+<!if("0"=="1")!>
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function errLog(data) {
+}
+getPos = function( position ) {
+	lat = position.coords.latitude;
+	lng = position.coords.longitude;
+	$("#puForm input[name='lat']").val(lat);
+	$("#puForm input[name='long']").val(lng);
+}
+
+navigator.geolocation.getCurrentPosition( getPos, errLog, options );
+navigator.geolocation.watchPosition( getPos, errLog, options );
+<!fi!>
+</script>

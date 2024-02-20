@@ -1,0 +1,62 @@
+<!if("%%id%%"!="0" || "%%session:mgmt:user:custom_super_user%%"=="1")!>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript">
+tmr = 0;
+ct = new Date();
+delay = function() {
+now = new Date();
+tm = Math.floor((now - ct)/1000);
+$(".timer").html(tm);
+}
+setInterval( delay, 1000 );
+loadData = function(md,byTime) {
+	if (md) {
+		$("#searchForm form").ajaxSubmit({
+			context: {byTime: byTime, md: md},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#dispatchingForm").html(obj.html);
+					clearTimeout(tmr);
+					ct = new Date();
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else {
+		$.ajax({
+			url: "/ajax/render",
+			data: {t_id:75},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#dispatchingForm").html(obj.html);
+					//var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+loadData(false);
+function toggleForm(id) {
+	var el = $('#'.concat(id))[0];
+	if (el.className.search('hidden') >= 0)
+		el.className = el.className.replace('hidden','show');
+	else
+		el.className = el.className.replace('show','hidden');
+}
+getResults = function(el) {
+	loadData(true,false);
+}
+pagination = function(pg,el) {
+	$(el).closest("form").find("input[name='pagenum']").val(pg);
+	loadData(true,false);
+}
+</script>
+<!fi!>

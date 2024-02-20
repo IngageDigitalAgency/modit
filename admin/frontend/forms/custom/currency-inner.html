@@ -1,0 +1,19 @@
+<form method='post' action='/ajax/render'>
+	%%currency_id%%
+	%%updateCurrency%% <input type='hidden' name='t_id' value='27' />
+</form>
+<script type='text/javascript'>
+$('#currencyForm select').change(function() {
+	// submit the currency change, then reload the page to reflect it
+	$(this).closest('form').ajaxSubmit({
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				document.location = document.location.href.replace(document.location.hash,"");
+			}
+			catch(err) {
+			}
+		}
+	});
+});
+</script>

@@ -1,0 +1,11 @@
+<tr>
+	<td>%%name%%</td>
+	<td class="text-right">%%quantity%%</td>
+<!if("%%custom_package%%"=="P")!>
+	<td class="text-right">&nbsp;</td>
+	<td class="text-right">&nbsp;</td>
+<!else!>
+	<td class="text-right">%%formattedPrice%%</td>
+	<td class="text-right">%%formattedValue%%</td>
+<!fi!>
+</tr>
