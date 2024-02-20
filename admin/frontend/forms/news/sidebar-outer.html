@@ -1,0 +1,28 @@
+<div id="sidebar-news">
+	<div class='title'>%%title%%</div>
+	<div class='articles'>
+		%%articles%%
+		<div class="clearfix"></div>
+	</div>
+</div>
+<script type='text/javascript'>
+$('#sidebar-news .teaser').hide();
+function showMe(obj) {
+	var el = $(obj).closest('.article').find('.teaser');
+	$(el).animate({height:'toggle'});
+	$(obj).find('i').removeClass('icon-plus').addClass('icon-minus');
+	$('#sidebar-news .teaser').each(function(idx,subel) {
+		if (subel != el[0]) {
+			if ($(subel).css('display') != 'none') {
+				$(subel).hide(250);
+				$(obj).find('i').removeClass('icon-minus').addClass('icon-plus');
+			}
+		}
+	});
+}
+$('#sidebar-news .article').mouseenter(function() {
+	$(this).addClass('ro');
+}).mouseleave(function() {
+$(this).removeClass('ro');
+});
+</script>

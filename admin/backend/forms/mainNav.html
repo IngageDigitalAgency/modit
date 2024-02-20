@@ -1,0 +1,11 @@
+<div class='wrapper'>
+	<div class='content'>
+		%%menu%%
+		<div class="break"></div>
+	</div>
+</div>
+<code>
+$('#mainNav .inner').mouseleave( function () {
+	toggleNav($(this).siblings('.closer').find('a'));
+});
+</code>

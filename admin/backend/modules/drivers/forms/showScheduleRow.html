@@ -1,0 +1,18 @@
+<tr>
+<!if("%%completed%%"=="1")!>
+	<td class="a-right alert alert-success"><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="_blank">%%order_id%%</a></td>
+<!else!>
+	<td class="a-right"><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="_blank">%%order_id%%</a></td>
+<!fi!>
+	<td>%%scheduled_date%%</td>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%deliveryType%%</td>
+	<td class="a-right">%%weight%%</td>
+	<td>%%address:line1%%</td>
+	<td>%%address:city%%</td>
+	<td>%%address:postalcode%%</td>
+	<td>%%instructions%%</td>
+	<td>
+		<a href="#" onclick='editPkg(%%id%%);return false;'><em class='icon-edit'></em></a>
+	</td>
+</tr>

@@ -1,0 +1,9 @@
+<div class='title'>Delete a Code</div>
+<form method='%%form:method%%' action='%%form:action%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/deleteArticle/lookups","popup");return false;' id='%%form:name%%'>
+	<div class='del-opt'>%%cancel%% Oops, Cancel delete</div>
+	<div class='del-opt'>%%all%% Delete this code, it's not used any more</div>
+	<input type='hidden' name='a_id' value='%%a_id%%' />
+	<input type='submit' value='Submit' class='btn btn-primary' />
+	%%deleteItem%%
+	<div class='break'></div>
+</form>

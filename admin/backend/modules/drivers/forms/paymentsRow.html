@@ -1,0 +1,12 @@
+<tr>
+<td>%%company%% - %%lastname%%, %%firstname%%</td>
+<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+<td>%%actual_date%%</td>
+<td class="centered">%%paid%%</td>
+<td>%%paid_timestamp%%</td>
+<td class="a-right"><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%%</a></td>
+<td class="a-right">%%value%%</td>
+<td class="a-right">%%percent_of_delivery%%</td>
+<td class="a-right">%%payment%%</td>
+<td class="centered"><a href="#" onclick="editPayment(%%id%%);return false;"><em class="icon-edit"></em></a></td>
+</tr>

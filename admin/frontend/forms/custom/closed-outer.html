@@ -1,0 +1,23 @@
+<!if("%%custom_msg%%" != "")!>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-4 text-center top20">
+			<div class="alert alert-<!if("%%active%%"=="1")!>danger<!else!>info<!fi!>">%%custom_msg%%</div>
+		</div>
+	</div>
+<!else!>
+	<!if("%%msg%%"!="")!>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-4 text-center top20">
+				<div class="alert alert-<!if("%%active%%"=="1")!>danger<!else!>info<!fi!>"><!if("%%pending%%"=="1")!>At %%formattedTime%%:<br/><!fi!>%%msg%%</div>
+			</div>
+		</div>
+	<!else!>
+		<!if("%%weekend%%"=="1")!>
+			<div class="row">
+				<div class="col-md-8 col-md-offset-4 text-center top20">
+					<div class="alert alert-<!if("%%active%%"=="1")!>danger<!else!>info<!fi!>">The office is closed<br/>To schedule a pickup for today please call the office</div>
+				</div>
+			</div>
+		<!fi!>
+	<!fi!>
+<!fi!>
