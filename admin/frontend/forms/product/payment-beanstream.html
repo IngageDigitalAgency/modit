@@ -1,0 +1,36 @@
+<div class='errmsg'>%%errorMessage%%</div>
+<form action='%%global:beanstream:url%%' method='post' style='display:none'>
+	<input type='hidden' name='merchant_id' value='%%global:beanstream:merchant_id%%' />
+	<input type='hidden' name='trnOrderNumber' value='%%header:order_id%%' />
+	<input type='hidden' name='trnAmount' value='%%header:total%%' />
+	<input type='hidden' name='trnCardOwner' value='%%addresses:billing:firstname||addresses:shipping:firstname%% %%addresses:billing:lastname||addresses:shipping:lastname%%' />
+	<input type='hidden' name='ordName' value='%%addresses:billing:firstname||addresses:shipping:firstname%% %%addresses:billing:lastname||addresses:shipping:lastname%%' />
+	<input type='hidden' name='ordPhoneNumber' value='%%addresses:billing:phone1||addresses:shipping:phone1%%' />
+	<input type='hidden' name='ordAddress1' value='%%addresses:billing:line1||addresses:shipping:line1%%' />
+	<input type='hidden' name='ordAddress2' value='%%addresses:billing:line2||addresses:shipping:line2%%' />
+	<input type='hidden' name='ordCity' value='%%addresses:billing:city||addresses:shipping:city%%' />
+	<input type='hidden' name='ordProvince' value='%%addresses:billing:provinceCode||addresses:shipping:provinceCode%%' />
+	<input type='hidden' name='ordPostalCode' value='%%addresses:billing:postalcode||addresses:shipping:postalcode%%' />
+	<input type='hidden' name='ordCountry' value='%%addresses:billing:countryCode||addresses:shipping:countryCode%%' />
+	<input type='hidden' name='ordEmailAddress' value='%%addresses:billing:email||addresses:shipping:email%%' />
+	<input type='hidden' name='approvedPage' value='http://%%FULLDOMAIN%%/sale-completed/' />
+	<input type='hidden' name='declinedPage' value='http://%%FULLDOMAIN%%/sale-completed/' />
+	<input type='hidden' name='vbvEnabled' value='1'>
+	<input type='hidden' name='cavEnabled' value='1'>
+	<input type='hidden' name='scEnabled' value='1'>
+	<input type='hidden' name='ref1' value='isBeanstream'>
+	<input name='submitBtn' type='submit' value='Complete The Sale' />
+</form>
+<div class='clearfix'></div>
+%%beanstream_error%%
+<script type="text/javascript">
+$(document).ready(function() {
+	var t = "%%header:order_id%%";
+	if (t.length == 0 && document.location.pathname.indexOf('render') == -1) {
+		parent.document.location = '/';
+	}
+	if (document.location.pathname.indexOf('render') == -1) {
+		$('.pmtOptions form').submit();
+	}
+});
+</script>

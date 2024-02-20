@@ -1,0 +1,245 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit an Advertisement</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-4">External Multimedia</a></li>
+			%%customTab%%
+<!if(array_key_exists('advert:coupons',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-8">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('advert:calendar',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-5">Events</a></li>
+<!fi!>
+<!if(array_key_exists('advert:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-6">Stores</a></li>
+<!fi!>
+<!if(array_key_exists('advert:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-7">Products</a></li>
+<!fi!>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table style='width:100%'>
+					<tr>
+						<th>Title:</th><td>%%title%% <span class='errorMessage'>%%titleError%% %%tooltip:Title%%</span></td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Views:</th><td>%%views%% <span class='errorMessage'>%%viewsError%% %%tooltip:AdvertViews%%</span></td>
+					</tr>
+					<tr>
+						<th>Clicks:</th><td>%%clicks%% <span class='errorMessage'>%%clicksError%% %%tooltip:AdvertClicks%%</span></td>
+					</tr>
+					<tr>
+						<th>Starts:</th><td>%%start_date%% <span class='errorMessage'>%%start_dateError%% %%tooltip:StartDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%end_date%% <span class='errorMessage'>%%end_dateError%% %%tooltip:EndDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% <span class='errorMessage'>%%featuredError%% %%tooltip:Featured%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured Begin:</th><td>%%featured_start_date%% <span class='errorMessage'>%%featured_start_dateError%% %%tooltip:StartDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured End:</th><td>%%featured_end_date%% <span class='errorMessage'>%%featured_end_dateError%% %%tooltip:EndDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+					<tr>
+						<th>New Window:</th><td>%%new_window%% <span class='errorMessage'>%%new_windowError%% %%tooltip:NewWindow%%</span></td>
+					</tr>
+					<tr>
+						<th>Link to URL:</th><td>%%url%% <span class='errorMessage'>%%urlError%% %%tooltip:URLLink%%</span></td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Member of Groups:</th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+<!if(array_key_exists('twitter',$GLOBALS))!>
+				<div id='twitter'>%%twitterPublish%% Publish to Twitter</div>
+<!fi!>
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			</div>
+			%%customInfo%%
+<!if(array_key_exists('advert:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-8'>
+				<div class='title'>Deal or Offer Categories Assigned to this Advertisement</div>
+				%%destCouponFolders%% <span class='errorMessage'>%%destCouponFoldersError%% %%tooltip:DealCatRel%%</span>
+				<div class='title'>Individual Deals or Offers Assigned to this Advertisement</div>
+				<table>
+					<tr>
+						<th>
+							<div>Select a Category</div>
+							%%couponFolders%%
+						</th>
+						<th>
+							<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+							<div id='offerCatSelection'>
+								%%destCoupons%%
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('advert:calendar',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-5'>
+				<div class='title'>Calendars Assigned to this Advertisement</div>
+				%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%% %%tooltip:AdCatRel%%</span>
+				<div class='title'>Individual Events Assigned to this Advertisement</div>
+				<table>
+					<tr>
+						<th>
+							<div>Select a Category</div>
+							%%eventFolders%%
+						</th>
+						<th>
+							<div>Select the Events(s) <span class='errorMessage'>%%destEventsError%% %%tooltip:EventRel%%</span></div>
+							<div id='eventCatSelection'>
+								%%destEvents%%
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('advert:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-6'>
+				<div class='title'>Store or Location Categories Assigned to this Advertisement</div>
+				%%destStoreFolders%% <span class='errorMessage'>%%destStoreFoldersError%% %%tooltip:LocationCatRel%%</span>
+				<div class='title'>Individual Stores or Locations Assigned to this Advertisement</div>
+				<table>
+					<tr>
+						<th>
+							<div>Select a Category</div>
+							%%storeFolders%%
+						</th>
+						<th>
+							<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+							<div id='storeCatSelection'>
+								%%destStores%%
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('advert:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div class='title'>Product Categories Assigned to this Advertisement</div>
+				%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Products Assigned to this Advertisement</div>
+				<table>
+					<tr>
+						<th>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</th>
+						<th>
+							<div>Select the Product(s) <span class='errorMessage'>%%destProductsError%% %%tooltip:ProductRel%%</span></div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%%
+							</div>
+						</th>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			<div id='tabs-4'>
+				%%video%%
+			</div>
+			<div class="form-actions">
+				%%submit%%
+			</div>
+			<input type='hidden' name='a_id' value='%%id%%'/> 
+			%%addContent%%
+			%%destFoldersSelect%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("select[multiple]").chosen();
+$( "ol.draggable > li" ).draggable({
+	helper: folderCopyHelper
+});
+$( "ol.draggable" ).droppable({
+	drop: function( event, ui ) {
+		folderDrop(this,event,ui);
+	}
+});
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'advert');
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true,'advert');
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true,'advert');
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'advert');
+});
+$('.popovers').popover();
+$( "#content-tabs" ).tabs();
+</code>

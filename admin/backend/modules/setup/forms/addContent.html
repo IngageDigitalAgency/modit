@@ -1,0 +1,67 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Module</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Relationships</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table style='width:100%'>
+					<tr>
+						<th>Name:</th><td>%%title%% <span class='errorMessage'>%%titleError%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Admin Only:</th><td>%%admin%%</td>
+					</tr>
+					<tr>
+						<th>Front End:</th><td>%%frontend%%</td>
+					</tr>
+					<tr>
+						<th>Back End:</th><td>%%backend%%</td>
+					</tr>
+					<tr>
+						<th>Hidden:</th><td>%%hidden%%</td>
+					</tr>
+					<tr>
+						<th>Sort Order:</th><td>%%sort%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2' class='relationships'>
+				<table>
+					<thead>
+						<tr>
+							<th class='centered'>&nbsp;</th>
+							<th class='a-left'>Related From</th>
+							<th class='a-left'>Related To</th>
+							<th class='centered'>Enabled</th>
+						</tr>
+					</thead>
+					<tbody>
+						%%relations%%
+					</tbody>
+				</table>
+			</div>
+			%%submit%% 
+			<input type='hidden' name='m_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+closePopup = function() {
+	clearPopupErrors();
+	$('#popupMessages > div.errors')[0].innerHTML = '';
+	$("#overlay").css("display","");
+	$("#popupOverlay").css("display",""); 	
+	formCheck("showSearchForm","/modit/ajax/showSearchForm/setup","middleContent");
+}
+</code>

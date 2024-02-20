@@ -1,0 +1,17 @@
+<tr>
+	<td valign="top" align="center" style="padding-top: 10px;width:5%;">
+		<a onclick="return i_remove(%%id%%,'store',this);return false;" alt="Remove this item" title="Remove this item" href="#" class="i_remove"><img src="/images/nav/btnDelete.png"></a>
+	</td>
+	<td width="40%" valign="top">
+		<p>
+			<strong>%%name%%</strong>
+		</p>
+		<p>%%address%%</p>
+		<p>%%websiteLink%%</p>
+		<p>Location: %%storeGPS%%</p>
+		<script type='text/javascript'>
+			stores.push({id:%%id%%,address:"%%mapAddress%%",description:"<div class='map-bg'>%%name%%%%escapedDescription%%%%formattedAddress%%<br/>%%storeGPS%%<div style='clear:both'></div></div>",
+				marker:"%%mapmarker%%",longitude:%%longitude%%,latitude:%%latitude%%});
+		</script>
+	</td>
+</tr>

@@ -1,0 +1,15 @@
+<li>
+	<table>
+		<tr id="subproduct_%%subproduct_id%%">
+			<td class='delete'><input type='checkbox' name='subproduct[delete][]' value='%%id%%' /></td>
+			<td class='quantity'>%%quantity%%</td>
+			<td class='sequence'>%%sequence%%</td>
+			<td class='code'>
+				<input type='hidden' name="subproduct[id][]" value="%%id%%" />
+				<input type='hidden' name="subproduct[subproduct_id][]" value="%%subproduct_id%%" />
+				<a href='/modit/product/edit?e_id=%%edit_id%%' target='_blank'>%%code%%</a>
+			</td>
+			<td class='name'>%%name%%</td>
+		</tr>
+	</table>
+</li>

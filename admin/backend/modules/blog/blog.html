@@ -1,0 +1,50 @@
+<code>
+<link media="screen" type="text/css" rel="stylesheet" href="%%global:modules%%/blog/blog.css" />
+<script type="text/javascript" src="%%global:modules%%/blog/blog.js"></script>
+<!if(array_key_exists('facebook',$GLOBALS))!>
+<script>
+fb_status = "unknown";
+window.fbAsyncInit = function() {
+	FB.init({
+		appId: '%%global:facebook:appId%%',
+		xfbml: true,
+		version: 'v2.4',
+		cookie: true
+	});
+};
+(function(d, s, id){
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+<!fi!>
+</code>
+<div id='page'>
+	<div id='mainContent'>
+		<div id='mainNav'>
+			<div class='closer'><a href='#' onclick='toggleNav(this);return false;'><img src='/admin/images/right-arrow.png' alt='open menu' /></a></div>
+			<div class='inner'></div>
+			<div class='break'></div>	
+		</div>
+		<div id='leftContent'>
+			<div id='contentTree'></div>
+			<div id='pageInfo'></div>
+			<div id='status'></div>
+			<div class='break'></div>
+		</div>
+		<div id='middleContent'>
+			%%injector%%
+			<div class='break'></div>
+		</div>
+	</div>
+	<div id='rightContent'>
+			
+	</div>
+	<div class='break'></div>
+</div>
+<div id="dialog-confirm" title="Copy or Move the Article?" style='display:none'>
+</div>
+<script type='text/javascript' src='%%global:modules%%/blog/finalize.js'></script>

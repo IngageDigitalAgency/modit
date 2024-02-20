@@ -1,0 +1,27 @@
+<div id="collapsible-event-list">
+	<div class="title">Events by Year</div>
+	%%listing%%
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#collapsible-event-list .zippy').click(function() {
+		zippyToggle(this);
+	});
+	$('#collapsible-event-list span.year').click(function() {
+		document.location = '/event-calendar?year='.concat($(this).parent().children(".value")[0].innerHTML);
+	});
+	$('#collapsible-event-list span.month').click(function() {
+		document.location = '/event-calendar?month='.concat($(this).parent().children(".value")[0].innerHTML,'&year=',$(this).closest("ul").parent().children('.value')[0].innerHTML);
+	});
+});
+function zippyToggle(obj) {
+	p = $(obj).closest("li")[0];
+	if (p.className.indexOf("expanded") >= 0) {
+		p.className = p.className.replace("expanded","collapsed");
+		obj.innerHTML = '&#9658;&#160;';
+	}else {
+		p.className = p.className.replace("collapsed","expanded");
+		obj.innerHTML = '&#9660;&#160;';
+	}
+}
+</script>

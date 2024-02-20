@@ -1,0 +1,195 @@
+<div id="selectService">
+	<form method="post" action="/ajax/render">
+		<div class="row form-group">
+			<div class="col-xs-5"><h2>What Are You Shipping?</h2></div>
+			<div class="col-xs-11"><hr/></div>
+		</div>
+		<div class="row form-group">
+			<div class="col-xs-3 col-sm-3 col-md-2"><label>Weight:</label></div>
+			<div class="col-xs-4 col-sm-5 col-md-4 col-lg-3">%%custom_weight_code%%</div>
+			<div class="col-xs-3 col-sm-3 col-md-2"><label>Dimensions:</label></div>
+			<div class="col-xs-4 col-sm-5 col-md-4 col-lg-3">%%custom_dimension_code%%</div>
+		</div>
+		<div class="packages">
+			<div class="row form-group form-control header">
+				<div class="col-xs-2 col-sm-1 text-right">SEQ</div>
+				<div class="col-xs-4 sm-center">TYPE</div>
+				<div class="col-xs-10 col-sm-11 text-center">QTY/DIM <span style="color:#ee3823;font-weight:bold;font-style:italic">(PER PACKAGE)</span></div>
+			</div>
+			%%products%%
+		</div>
+		<input class="btn btn-black" type="button" value="Add Another Package" onclick="addPackage(true);return 0;" />
+		<div id="extras" class="bottom20">
+			<div class="row">
+				<div class="col-sm-16 col-md-8 form-group">
+					<h3>Additional Services</h3>
+					%%extras%%
+					<div class="hasDryIce">
+						<h3>Dry Ice Weight</h3>
+						%%dry_ice_weight%%
+					</div>
+					<h3>Placed By</h3>
+					%%custom_placed_by%%
+					<h3>Email Pickup Confirmation To</h3>
+					%%custom_pickup_email%%
+					<h3>Email Delivery Confirmation To</h3>
+					%%custom_email_confirmation%%
+				</div>
+				<div class="col-sm-16 col-md-8 form-group">
+					<h3>Pickup Instructions</h3>
+					%%pickupInstructions%%
+					<h3>Delivery Instructions</h3>
+					%%deliveryInstructions%%
+<!if((<!@@((int)("%%session:cart:addresses:shipping:country_id%%"))@@!>) > 1 || (<!@@((int)("%%session:cart:addresses:pickup:country_id%%"))@@!>) > 1)!>
+					<h3>Declaration of Contents (for Customs)</h3>
+					%%customs_declaration%%
+<!else!>
+<div class="hidden">%%customs_declaration%%</div>
+<!fi!>
+				</div>
+			</div>
+		</div>
+		<div id="instructions">
+			<div class="row top40">
+				<div class="col-xs-16 col-sm-8 col-sm-offset-4 col-md-10 col-md-offset-3">
+					<div class="alert alert-info text-center">Liability is limited to $50.00 unless you opt for both a Declared Value and Insurance</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<h3>Declared Value</h3>
+					%%custom_declared_value%%
+				</div>
+				<div class="col-sm-8">
+					<h3>Insured</h3>
+					%%custom_insurance%%
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<h3>Reference Number</h3>
+					%%custom_reference_number%%
+				</div>
+				<div class="col-sm-8">
+					<h3>Signature Required</h3>
+					%%custom_signature_required%%
+				</div>
+			</div>
+		</div>
+		<div id="pickup-info">
+			<div class="row">
+				<div class="col-xs-16 col-sm-8">
+					<div class="row no-gutters">
+						<div class="col-xs-16">
+							<h4>Pickup/Delivery Time</h4>
+							<div class="form-group">
+								<label for="">Date:</label>
+								<div class="row">
+									<div class="xs-margin col-xs-7 col-sm-5 datepicker p-form-control">
+									</div>
+									<div class="xs-margin col-xs-3 col-sm-3 hourpicker p-form-control">
+									</div>
+									<div class="xs-margin col-xs-3 col-sm-3 minutepicker p-form-control">
+									</div>
+									<div class="xs-margin col-xs-3 col-sm-4 ampmpicker p-form-control">
+									</div>
+								</div>
+								<div class="hidden">%%pickup_datetime%%</div>
+							</div>
+						</div>
+						<div class="col-xs-16" id="delivery-options">
+<!if("%%session:cart:header:inzone%%"=="0")!>
+<div class="row"><div class="col-xs-16 text-center"><div class="alert alert-info">Envelope deliveries are limited to 1Lb TOTAL</div></div></div>
+							<div class="row no-gutters">
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label>Same Day:</label>%%optSameDay%%
+									</div>
+								</div>
+								<div class="col-sm-8">
+									<div class="form-group">
+										<label>Overnight:</label>%%optOvernight%%
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-16" id="zoneOptions">
+									%%fedex%%
+								</div>
+							</div>
+<!else!>
+							<div class="form-group">
+								<label for="">Delivery Service:</label>
+								%%serviceType%%
+							</div>
+<!fi!>
+						</div>
+						<input class="btn btn-black top20" type="button" value="Get a Rate" onclick="getRate(this);return false;" />
+					</div>
+				</div>
+				<div class="col-xs-16 col-sm-8">
+					<div id="get-quote"></div>
+					%%selectService%%%%quote%%
+				</div>
+			</div>
+		</div>
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+		<div id="recurring">
+			<h3>Recurring Order Information</h3>
+			<div class="row">
+				<div class="col-xs-4">
+					<div class="form-group">
+						<label>Repeat this order?</label>%%custom_recurring%%
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<div class="form-group">
+						<label>Override Pricing?</label>%%custom_override_price%%
+					</div>
+				</div>
+				<div class="col-xs-8">
+					<div class="form-group">
+						<label>How Often?</label>%%custom_recurring_type%%
+					</div>
+				</div>
+			</div>
+			<div id="recurringDetails">%%recurringForm%%</div>
+			<div class="row">
+				<div class="col-xs-8 form-group">
+					<label>Pickup Driver</label>%%custom_recurring_pu_driver%%
+				</div>
+				<div class="col-xs-8 form-group">
+					<label>Delivery Driver</label>%%custom_recurring_del_driver%%
+				</div>
+			</div>
+		</div>
+<!fi!>
+		<div class="row">
+			<div class="col-sm-8 text-center">%%errorMessage%%</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-8">
+				%%selectService%%
+				<input type="hidden" name="t_id" value="11" />
+			</div>
+		</div>
+	</form>
+	<form method="post" action="/ajax/render" id="get-a-rate">
+		<input type="hidden" value="" name="t_id" />
+		<input type="hidden" name="KJVService" value="1" />
+		<input type="hidden" name="custom_weight_code" value="%%session:quote:custom_weight_code%%" />
+		<input type="hidden" name="custom_dimension_code" value="%%session:quote:custom_dimension_code%%" />
+		<input type="hidden" name="serviceType" value="%%session:quote:serviceType%%" />
+	</form>
+</div>
+<script type="text/javascript">
+setDatePicker();
+z_t_id = "%%session:cart:header:inzone||1%%";
+initDateFields();
+$("#selectService select.product").change( function() { getDim(this) });
+$("input[name='optType']").change(function () {
+	getOutOfZone(this,this.value);
+});
+$("select[multiple]").chosen();
+setExtraOptions($("select[name='extras[]']")[0]);
+</script>

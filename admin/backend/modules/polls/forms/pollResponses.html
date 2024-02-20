@@ -1,0 +1,18 @@
+<table class='listing' id='pollResponses'>
+	<thead>
+		<tr>
+			<th>Question</th>
+			<th>Response</th>
+			<th>Count</th>
+			<th>%-age</th>
+		</tr>
+	</thead>
+	<tbody>
+		%%rows%%
+	</tbody>
+</table>
+<code>
+	$('#pollResponses tr.detail').addClass('hidden');
+	$('#pollResponses tr.detail a.hdr').remove();
+	$('#pollResponses tr.total a.hdr').remove();
+</code>

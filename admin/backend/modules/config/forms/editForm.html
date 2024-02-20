@@ -1,0 +1,18 @@
+<div class='title'>Add/Edit Html Forms</div>
+<div class='errorMessage'>%%errorMessage%%</div>
+<form id='%%form:name%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/config",$("#popup"));return false;' method='%%form:method%%'>
+	<table>
+		<tr>
+			<td>Module</td><td>%%class%% <span class='errorMessage'>%%classError%%</span></td>
+		</tr>
+		<tr>
+			<td>Name</td><td>%%type%%</div> <span class='errorMessage'>%%typeError%%</span></td>
+		</tr>
+		<tr>
+			<td>HTML</td><td>%%html%%  <span class='errorMessage'>%%htmlError%%</span></td>
+		</tr>
+	</table>
+	%%submit%% %%formEditor%%
+	<input type='hidden' value='%%id%%' name='f_id' />
+	<div class='break'></div>
+</form>

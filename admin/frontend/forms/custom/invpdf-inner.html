@@ -1,0 +1,51 @@
+<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:12%;"><b>Order:</b></td>
+		<td style="width:20%;">%%order_id%%</td>
+		<td style="width:12%;">Placed By:</td>
+		<td style="width:20%;">%%order:custom_placed_by%%</td>
+		<td style="width:12%;">Ref #:</td>
+		<td style="width:20%;">%%order:custom_reference_number%%</td>
+	</tr>
+</table>
+<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:12%;">Scheduled:</td>
+		<td style="width:20%;">%%pu:scheduled_date%%</td>
+		<td style="width:12%;">Pickup:</td>
+		<td style="width:20%;">%%pu:actual_date%%</td>
+		<td style="width:12%;">Delivery:</td>
+		<td style="width:20%;">%%del:actual_date%%</td>
+	</tr>
+</table>
+<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:28%;">
+			<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+				<tr><td><b>FROM:</b></td></tr>
+				<tr><td><b>%%pickup:company%%</b></td></tr>
+				<tr><td>%%pickup:line1%%<br/><!if(strlen("%%pickup:line2%%")>0)!>%%pickup:line2%%<br/><!fi!>%%pickup:city%%, %%pickup:provinceCode%% %%pickup:postalcode%%</td></tr>
+			</table>
+		</td>
+		<td style="width:28%;">
+			<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+				<tr><td><b>TO:</b></td></tr>
+				<tr><td><b>%%delivery:company%%</b></td></tr>
+				<tr><td>%%delivery:line1%%<br/><!if(strlen("%%delivery:line2%%")>0)!>%%delivery:line2%%<br/><!fi!>%%delivery:city%%, %%delivery:provinceCode%% %%delivery:postalcode%%</td></tr>
+			</table>
+		</td>
+		<td style="width:44%;">
+			<table style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+				%%lines%%
+				<tr><td>Subtotal:</td><td></td><td style="text-align:right;">%%order:value%%</td></tr>
+				<tr><td>Taxes:</td><td></td><td style="text-align:right;">%%order:taxes%%</td></tr>
+				<tr><td><b>Total:</b></td><td></td><td style="text-align:right;"><b>%%order:total%%</b></td></tr>
+<!if("%%order:paid_amount%%"!="$0.00")!>
+				<tr><td><b>Paid:</b></td><td></td><td style="text-align:right;"><b>%%order:authorization_amount%%</b></td></tr>
+				<tr><td><b>Balance:</b></td><td></td><td style="text-align:right;"><b>%%order:balance%%</b></td></tr>
+<!fi!>
+			</table>
+		</td>
+	</tr>
+</table>
+<hr/>

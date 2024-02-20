@@ -1,0 +1,151 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit an Image</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+<!if(array_key_exists('news:gallery',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-4">Articles</a></li>
+<!fi!>
+<!if((int)$this->getConfigVar('layersliderAnimation','system')>0)!>
+			<li><a href="#tabs-5">Animation</a></li>
+<!fi!>
+			<li><a href="#tabs-7">External Multimedia</a></li>
+			%%customTab%%
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Title:</th><td>%%title%% <span class='errorMessage'>%%titleError%% %%tooltip:Title%%</span></td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%expires%% <span class='errorMessage'>%%expiresError%% %%tooltip:Expires%%</span></td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% <span class='errorMessage'>%%featuredError%% %%tooltip:Featured%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured Start Date:</th><td>%%featured_start_date%% <span class='errorMessage'>%%featured_start_dateError%% %%tooltip:StartDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured End Date:</th><td>%%featured_end_date%% <span class='errorMessage'>%%featured_end_dateError%% %%tooltip:EndDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Member of: </th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'gallery/originals');return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image" value="%%image%%" />
+							<a href="#" onclick="setImage(this,'gallery/originals');return false;">select image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Thumbnail:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%thumbnailError%%</span><br/>
+							<input id="image_b" type="hidden" name="thumbnail" value="%%thumbnail%%" />
+							<a href="#" onclick="setImage(this);return false;">select thumbnail</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			</div>
+<!if(array_key_exists('news:gallery',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-4'>
+				<div class='title'>News Categories Assigned to this Image</div>
+				%%destNewsFolders%% <span class='errorMessage'>%%destNewsFoldersError%% %%tooltip:NewsCatRel%%</span>
+				<div class='title'>Individual Articles Assigned to this Image</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%newsFolders%%
+						</td>
+						<td>
+							<div>Select the Article(s) <span class='errorMessage'>%%destNewsError%% %%tooltip:NewsRel%%</span></div>
+							<div id='newsCatSelection'>
+								%%destNews%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if((int)$this->getConfigVar('layersliderAnimation','system')>0)!>
+			<div id='tabs-5'>
+<!else!>
+			<div id='tabs-5' class='hidden'>
+<!fi!>
+				<table>
+					<tr>
+						<th>Animation Timing:</th><td>%%slider_animation%% <span class='errorMessage'>%%slider_animationError%%</span></td>
+					</tr>
+					<tr>
+						<th>Animation Class:</th><td>%%slider_class%% <span class='errorMessage'>%%slider_classError%%</span></td>
+					</tr>
+					<tr>
+						<th>Animation Style:</th><td>%%slider_style%% <span class='errorMessage'>%%slider_styleError%%</span></td>
+					</tr>
+					<tr>
+						<th>Animation Text:</th><td>%%slider_text%% <span class='errorMessage'>%%slider_textError%%</span></td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-7'>
+				%%video%%
+			</div>
+			%%customInfo%%
+			%%submit%% <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+			<select name='destFolders' id='galleryDestFolders' multiple='multiple' style='display:none'></select>
+		</form>
+	<div>
+	<div class="break"></div>
+</div>
+<code>
+$("select[multiple]").chosen();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.popovers').popover();
+$('#tabs').tabs();
+</code>

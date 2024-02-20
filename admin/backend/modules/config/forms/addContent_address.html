@@ -1,0 +1,66 @@
+<div class='propertyEditing'>
+	<div class='title'>Editing %%pretty_name%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<table>
+				<tr>
+					<th>Description:</th><td>%%description%%</td>
+				</tr>
+				<tr>
+					<th>Name:</th><td>%%addressname%%</td>
+				</tr>
+				<tr>
+					<th>Address 1:</th><td>%%line1%%</td>
+				</tr>
+				<tr>
+					<th>Address 2:</th><td>%%line2%%</td>
+				</tr>
+				<tr>
+					<th>City:</th><td>%%city%%</td>
+				</tr>
+				<tr>
+					<th>Province:</th><td><div id='provinceWrapper'>%%province_id%%</div></td>
+				</tr>
+				<tr>
+					<th>Country:</th><td>%%country_id%%</td>
+				</tr>
+				<tr>
+					<th>Postal/Zip:</th><td>%%postalcode%%</td>
+				</tr>
+				<tr>
+					<th>Location:</th><td>(%%latitude%% %%longitude%%) Geocode: %%geocode%% %%latitudeError%% %%longitudeError%%</td>
+				</tr>
+				<tr>
+					<th>Phone 1:</th><td>%%phone1%%</td>
+				</tr>
+				<tr>
+					<th>Phone 2:</th><td>%%phone2%%</td>
+				</tr>
+				<tr>
+					<th>Fax:</th><td>%%fax%%</td>
+				</tr>
+				<tr>
+					<th>Email:</th><td>%%email%%</td>
+				</tr>
+				<tr>
+					<th>First Name:</th><td>%%firstname%%</td>
+				</tr>
+				<tr>
+					<th>Last Name:</th><td>%%lastname%%</td>
+				</tr>
+			</table>
+			<table id='tempStorage' style='display:none'>
+				<tbody></tbody>
+			</table>
+			%%submit%% <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+			%%value%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+	$('#country_id').change(function() {
+	loadProvinces(this,$('#provinceWrapper')[0],{"name":"address[province_id]"});
+});
+</code>

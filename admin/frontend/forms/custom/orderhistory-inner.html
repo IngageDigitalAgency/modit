@@ -1,0 +1,25 @@
+<tr>
+	<td class="text-center">%%id%%</td>
+	<td class="text-center"><!@@(date("d-M-y h:i a",strtotime("%%order_date%%")))@@!></td>
+	<td>%%formattedStatus%%</td>
+<!if("%%delivery:id%%" != "")!>
+	<!if("%%delivery:actual_date%%"=="0000-00-00 00:00:00")!>
+	<td class="text-left"><!@@(date("d-M-y h:i a",strtotime("%%delivery:scheduled_date%%")))@@!></td>
+	<!else!>
+<!if("%%early%%"=="1")!>
+	<td class="text-left alert-success"><!@@(date("d-M-y h:i a",strtotime("%%delivery:actual_date%%")))@@!></td>
+<!else!>
+	<td class="text-left alert-danger"><!@@(date("d-M-y h:i a",strtotime("%%delivery:actual_date%%")))@@!></td>
+<!fi!>
+	<!fi!>
+<!else!>
+	<td></td>
+<!fi!>
+	<td class="text-left">%%serviceType%%</td>
+	<td class="text-center">%%itemCount%%</td>
+	<td class="text-right">%%formattedTotal%%</td>
+	<td class="text-center">
+		<a title="View" href="#" onclick='viewOrder(%%id%%);return false;'><i class='fa fa-eye'></i></a>
+		<a title="PDF" href="/waybill-test?o_id=%%id%%" target="_blank"><i class='fa fa-file-pdf-o'></i></a>
+	</td>
+</tr>

@@ -1,0 +1,54 @@
+<div class='propertyEditing'>
+	<div class='title'>Member Login</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-2">Profile</a></li>
+			%%customTab%%
+			<li><a href="#tabs-3">Addresses</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>First Name:</th><td>%%firstname%% <span class='errorMessage'>%%firstnameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Last Name:</th><td>%%lastname%% <span class='errorMessage'>%%lastnameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Email:</th><td>%%email%% <span class='errorMessage'>%%emailError%%</span></td>
+					</tr>
+					<tr>
+						<th>Password:</th><td>%%password%% <span class='errorMessage'>%%passwordError%%</span></td>
+					</tr>
+					<tr>
+						<th>Expiry:</th><td>%%expires%% <span class='errorMessage'>%%expiresError%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+				</table>
+				<input type='hidden' name='m_id' id='m_id' value='%%id%%'/> 
+				%%addContent%%
+				%%submit%% 
+			</div>
+			%%customInfo%%
+		</form>
+		<div id='tabs-3'>
+			<div id='addressTab'>
+				%%addressForm%%
+			</div>
+		</div>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
