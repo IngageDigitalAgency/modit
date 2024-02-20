@@ -1,0 +1,54 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/menu","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Title:</th><td>%%opt_title%% %%title%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='articleList'>
+				<table class='listing'>
+					<tr>
+						<th>Title</th>
+						<th>Content Type</th>
+						<th>Versions</th>
+						<th>Published</th>
+						<th>Enabled</th>
+						<th colspan='3'></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Ads per page : %%pager%%</span> 
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/menu';
+initSearch();
+//]]> 
+</script> 
+</code>

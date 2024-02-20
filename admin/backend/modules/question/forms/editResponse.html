@@ -1,0 +1,42 @@
+<div id='lineEditing'>
+	<div class='title'>Add/Edit a Response</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form name='%%form:name%%' action='' method='post' onsubmit="fnSaveResponse('%%form:name%%');return false;" id='%%form:name%%'>
+		<div id='lineTabs'>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Text:</th>
+						<td>%%text%% <span class='errorMessage'>%%textError%%</span></td>
+					</tr>
+					<tr>
+						<td>Image 1:</td>
+						<td>
+							<a href="javascript:mcImageManager.open('editorform','image_c','','updateimage_c');">%%imagesel_c%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_c" type="hidden" name="image1" value="%%image1%%" />
+							<a href="javascript:mcImageManager.open('editorform','image_c','','updateimage_c');">page image</a> | <a href="javascript:imagesetnone_c('image_c');">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<td>Image 2:</td>
+						<td>
+							<a href="javascript:mcImageManager.open('editorform','image_d','','updateimage_d');">%%imagesel_d%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+							<input id="image_d" type="hidden" name="image2" value="%%image2%%" />
+							<a href="javascript:mcImageManager.open('editorform','image_d','','updateimage_d');">rollover image</a> | <a href="javascript:imagesetnone_d('image_d');">set no rollover</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th>
+						<td>%%deleted%% <span class='errorMessage'>%%deletedError%%</span>
+					</tr>
+				</table>
+			</div>
+		</div>
+		%%submit%%
+		<input type='hidden' name='r_id' value='%%id%%' />
+		%%editResponse%%
+		<input type='hidden' name='q_id' value='%%question_id%%' />
+		<input type='hidden' name='question_id' value='%%question_id%%' />
+		<div class='clearfix'></div>
+	</form>
+</div>

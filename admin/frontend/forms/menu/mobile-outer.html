@@ -1,0 +1,34 @@
+<div id="primary-nav-mobile">
+	<a class="btn btn-default nav-toggler" id="nav-open-btn">
+		<span class="icon-group">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</span>
+	</a>
+	<div class="menu">%%menu%%</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	getCount(47,1);
+	getCount(48,2);
+	getCount(49,3);
+});
+
+getCount = function(t_id,seq) {
+	$.ajax({
+		async:true,
+		url: "/ajax/render",
+		data: {t_id:t_id},
+		context: { seq: seq },
+		success: function( obj, status, xhr ) {
+			try {
+				obj = eval("("+obj+")");
+				$($("#primary-nav-mobile .menu .count")[this.seq-1]).html(obj.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

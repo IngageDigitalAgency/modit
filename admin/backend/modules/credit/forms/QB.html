@@ -1,0 +1,188 @@
+<div class="title">QuickBooks</div>
+%%connect%%
+<div class="row top20">
+	<div class="col-xs-16 col-sm-8 col-sm-offset-4 col-md-6 col-md-offset-5 centered text-center">
+		<div class="form-group">%%errorMessage%%</div>
+	</div>
+</div>
+<div id="qb-search" class="top20">
+	<form method="post" action="/modit/credit/qb" onsubmit="formCheck('searchForm','/modit/ajax/qb/credit','middleContent');return false;" id="searchForm">
+		<div class="row">
+			<div class="col-xs-8 col-sm-4 form-group">
+				<label>Customer:</label>
+				%%member_id%%
+				<label>&nbsp;</label>
+				%%search%%
+			</div>
+			<div class="col-xs-8 col-sm-12">
+				<div class="row">
+					<div class="col-sm-4">
+<!if("%%session:administrator:qb:accessToken%%"!="")!>
+						<label>Export Start Date/Search Date:</label>
+<!else!>
+						<label>Invoice Date:</label>
+<!fi!>
+						%%invoice_date%%
+					</div>
+					<div class="col-sm-4">
+						<label>Next Invoice #:</label>
+						%%qb_invoice_id%%
+					</div>
+					<div class="col-sm-4">
+						<label>Order Id:</label>
+						%%order_id%%
+					</div>
+				</div>
+<!if("%%session:administrator:qb:accessToken%%"!="")!>
+				<div class="row">
+					<div class="col-sm-4">
+						<label>Export Cutoff Date/Invoice Date:</label>%%cutoff_date%%
+					</div>
+					<div class="col-sm-4">
+						<label>Billing Type:</label>%%billing_type%%
+					</div>
+					<div class="col-sm-2">
+						<label>&nbsp;</label>%%export%% %%qbExportCheck%%
+					</div>
+					<div class="col-sm-2">
+						<label># to Process</label>%%pager%%
+					</div>
+					<div class="col-sm-4">
+						<label>&nbsp;</label>%%consolidated%% %%consolidatedInvoices%%
+					</div>
+				</div>
+<!fi!>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-4"></div>
+		</div>
+		%%QB%%
+	</form>
+</div>
+<div id="export-results"></div>
+<div id="qb-results">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Invoice Date</th>
+				<th>Company</th>
+				<th class="a-right">QB Invoice Id</th>
+				<th class="a-right"># of Orders</th>
+				<th class="a-right">Service Amt</th>
+				<th class="a-right">Tax Amt</th>
+				<th class="a-right">Total</th>
+				<th class="a-right">Paid</th>
+				<th class="a-right">Net</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			%%results%%
+		</tbody>
+	</table>
+	%%pagination%%
+</div>
+<script type="text/javascript">
+initDateFields();
+checkExport = function(el) {
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		url: "/modit/ajax/qbExportCheck/credit",
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				showPopup(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+exportDetails = function(id) {
+	f = $("#qbDetailsForm");
+	$(f).find("input[name='member_id']").val(id);
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				showAltPopup(h.html);
+				eval(h.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+doExport = function(el) {
+	showAltPopup("<div class='title centered'>Processing - Please wait</div><div class='centered top20'><span class='glyphicon glyphicon-repeat fast-right-spinner'></span></div>");
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				closeAltPopup();
+				showPopup(h.html);
+				eval(h.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+qbDetails = function(id) {
+	$.ajax({
+		url: "/modit/ajax/qbInvoiceDetails/credit",
+		data: {i_id:id},
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				showPopup(h.html);
+				eval(h.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+
+$("select[name='member_id[]']").chosen({width:"100%"});
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getNames/orders',
+			data:{'s':request.term,'m':0},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=member_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showError(obj.messages);
+				}
+				catch(err) {
+					showError(err.message);
+				}
+			}
+		});
+	}
+});
+
+doConsolidated = function(el) {
+	var f = $(el).closest("form");
+	showWait();
+	$(f).ajaxSubmit({
+		url: "/modit/ajax/consolidatedInvoices/credit",
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				closeWait();
+				showPopup(h.html);
+			}
+			catch(err) {
+				closeWait();
+				showError(obj);
+			}
+		}
+	});
+}
+</script>

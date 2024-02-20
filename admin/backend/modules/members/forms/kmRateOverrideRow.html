@@ -1,0 +1,10 @@
+<tr>
+    <td class="a-right">%%km_max%%</td>
+    <td class="a-right">%%in_zone_override%%%</td>
+    <td class="a-right">%%price%%</td>
+    <td class="a-right">%%adjusted_price%%</td>
+    <td class="a-right">%%out_of_zone_override%%%</td>
+    <td class="a-right">%%out_of_zone%%</td>
+    <td class="a-right">%%adjusted_out_of_zone%%</td>
+    <td class="centered"><a href="#" onclick="editKMOverride(<!if("%%id%%"=="")!>0<!else!>%%id%%<!fi!>,%%opt_id%%,%%junction_id||request:j_id||request:m%%);return false;"><i class="icon-edit"></i></a> <!if("%%id%%"!="")!><a href="#" onclick="deleteKMOverride(%%id%%);return false;"><i class="icon-trash"></i></a><!fi!></td>
+</tr>

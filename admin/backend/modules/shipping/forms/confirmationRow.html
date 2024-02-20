@@ -1,0 +1,56 @@
+<div class='shipit'>
+	<div class='order_id'>Order Number: %%id%%</div>
+	<table class='o_header'>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Shipping Address</th>
+				<th>Shipping Method</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="name">%%member:lastname%%, %%member:firstname%%</td>
+				<td class="address">
+					%%address:line1%%<br/>
+	<!if(strlen("%%address:line2%%")>0)!>
+					%%address:line2%%<br>
+	<!fi!>
+					%%address:city%%, %%address:provinceCode%% %%address:countryCode%% %%address:postalcode%%
+				</td>
+				<td class="shipVia">%%formattedShipVia%%</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class='o_details'>
+		<thead>
+			<tr>
+				<th>Product Code</th><th>Name</th><th>Ordered</th><th>Already Shipped</th><th>Shipping</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%lines%%
+		</tbody>
+	</table>
+	<table class='o_shipping'>
+		<tbody>
+			<tr>
+				<td class='comments'>%%ship_comments,false%%</td>
+				<td>
+					<table class='o_subship'>
+						<tbody>
+							<tr>
+								<td colspan='2'>Tracking Code<br/>%%ship_tracking_code%%</td>
+								<td>Shipping Date<br/>%%ship_date%%</td>
+							</tr>
+							<tr>
+								<td>%%email%% <span>Send Email Confirmation</span></td>
+								<td>%%shipped%% <span>Mark As Shipped</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

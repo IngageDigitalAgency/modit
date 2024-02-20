@@ -1,0 +1,41 @@
+%%heading%%
+<div id='articleList' class='listing'>
+	<div id='category_heading'>
+		<div class="heading_title">
+			<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='couponFolderId' style='display:none'>%%id%%</div>
+	<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+		%%sortby%%
+		%%sortorder%%
+		%%showFolderContent%%
+		%%pagenum%%
+		<input type='hidden' name='p_id' value='%%id%%' />
+		<span class="pagination-dropdown pull-right">Ads per page : %%pager%%</span>
+		<div class='break'></div>
+		<table>
+			<thead>
+				<tr>
+					<th>Code</th><th>Name</th><th>Enabled</th><th>Featured</th><th>Published</th><th></th><th></th>
+				</tr>
+			</thead>
+			%%coupons%%
+		</table>
+		<div id='pagination'>%%pagination%%</div>
+	</form>
+</div>
+<code>
+pagingUrl = '/modit/ajax/%%form:action%%/coupons';
+addSortableDroppable(false);
+$('#pager').change(function() {
+	formCheck("%%form:name%%","/modit/ajax/%%form:action%%/coupons","middleContent");
+});
+</code>

@@ -1,0 +1,35 @@
+<div class="title">Edit a Payment</div>
+%%errorMessage%%
+<div id='payment-tabs'>
+	<ul>
+		<li><a href="#pmt-1">Main Info</a></li>
+		<li><a href="#pmt-2">Breakdown</a></li>
+	</ul>
+	<div id="pmt-1">
+		<form method="POST" onsubmit='formCheck("paymentForm","/modit/ajax/editPayment/drivers",$("#popup"));return false;' id="paymentForm">
+			<table>
+				<tr><th>Driver:</th><td>%%firstname%% %%lastname%%</td></tr>
+				<tr><th>Order #:</th><td>%%order_id%%</td></tr>
+				<tr><th>Address:</th><td>%%company%% %%line1%% %%city%%</td></tr>
+				<tr><th>Fuel Commissionable Amount:</th><td>%%custom_commissionable_amt%%</td></tr>
+				<tr><th>%-age:</th><td>%%percent_of_delivery%% %%percent_of_deliveryError%%</td></tr>
+				<tr><th>Payment:</th><td class="payment">%%payment%%</td></tr>
+				<tr><th>Paid:</th><td>%%paid%%</td></tr>
+				<tr><th>Paid On:</th><td>%%paid_timestamp%%</td></tr>
+				<tr>
+					<th>Action:</th><td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!>
+				</td>
+				</tr>
+			</table>
+			<div class="form-actions">
+				%%save%% %%editPayment%% %%p_id%%
+			</div>
+		</form>
+	</div>
+	<div id="pmt-2">
+		%%details%%
+	</div>
+</div>
+<script type="text/javascript">
+$( "#payment-tabs" ).tabs();
+</script>

@@ -1,0 +1,52 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v2="http://fedex.com/ws/gsai/v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <v2:SearchLocationsRequest>
+         <v2:WebAuthenticationDetail>
+            <v2:CspCredential>
+               <v2:Key>"Input Your Information" </v2:Key>
+               <v2:Password>"Input Your Information" </v2:Password>
+            </v2:CspCredential>
+            <v2:UserCredential>
+               <v2:Key>"Input Your Information" </v2:Key>
+               <v2:Password>"Input Your Information" </v2:Password>
+            </v2:UserCredential>
+         </v2:WebAuthenticationDetail>
+         <v2:ClientDetail>
+            <v2:AccountNumber>"Input Your Information" </v2:AccountNumber>
+            <v2:MeterNumber>"Input Your Information" </v2:MeterNumber>
+            <v2:Region>US</v2:Region>
+         </v2:ClientDetail>
+         <v2:Version>
+            <v2:ServiceId>gsai</v2:ServiceId>
+            <v2:Major>2</v2:Major>
+            <v2:Intermediate>0</v2:Intermediate>
+            <v2:Minor>0</v2:Minor>
+         </v2:Version>
+         <v2:EffectiveDate>2013-07-09</v2:EffectiveDate>
+         <v2:LocationsSearchCriterion>ADDRESS</v2:LocationsSearchCriterion>
+         <v2:Address>
+            <v2:StreetLines>10 Fedex ParkWay</v2:StreetLines>
+            <v2:City>AUSTIN</v2:City>
+            <v2:StateOrProvinceCode>TX</v2:StateOrProvinceCode>
+            <v2:PostalCode>38017</v2:PostalCode>
+            <v2:CountryCode>US</v2:CountryCode>
+            <v2:Residential>0</v2:Residential>
+         </v2:Address>
+         <v2:PhoneNumber>4169231171</v2:PhoneNumber>
+         <v2:MultipleMatchesAction>RETURN_ALL</v2:MultipleMatchesAction>
+         <v2:SortDetail>
+            <v2:Criterion>DISTANCE</v2:Criterion>
+            <v2:Order>LOWEST_TO_HIGHEST</v2:Order>
+         </v2:SortDetail>
+         <v2:Constraints>
+            <v2:RadiusDistance>
+               <v2:Value>10.0</v2:Value>
+               <v2:Units>MI</v2:Units>
+            </v2:RadiusDistance>
+            <v2:LocationContentOptions>HOLIDAYS</v2:LocationContentOptions>
+            <v2:LocationTypesToInclude>FEDEX_SHIPSITE</v2:LocationTypesToInclude>
+         </v2:Constraints>
+      </v2:SearchLocationsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>

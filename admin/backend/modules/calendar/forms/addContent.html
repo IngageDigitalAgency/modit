@@ -1,0 +1,296 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit an Event</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Descriptions</a></li>
+			<li><a href="#tabs-10">SEO/SEM</a></li>
+			<li><a href="#tabs-8">Recurring Event</a></li>
+			<li><a href="#tabs-3">Images</a></li>
+<!if(array_key_exists('calendar:coupons',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-5">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-6">Products</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-7">Stores</a></li>
+<!fi!>
+<!if(array_key_exists('news:calendar',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-9">Articles</a></li>
+<!fi!>
+			<li><a href="#tabs-4">Address</a></li>
+			%%customTab%%
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table class='content'>
+					<tr>
+						<th>Event Name:</th><td>%%name%% <span class='errorMessage'>%%nameError%% %%tooltip:Title%%</span></td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SubTitle%%</td>
+					</tr>
+					<tr>
+						<th>Event Type:</th><td>%%event_type%% %%event_typeError%% %%tooltip:EventType%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% <span class='errorMessage'>%%featuredError%% %%tooltip:Featured%%</span></td>
+					</tr>
+					<tr>
+						<th>Start Date/Time:</th><td>%%start_date%% <span class='errorMessage'>%%start_dateError%%</span> %%start_time%% %%tooltip:StartDate%%</td>
+					</tr>
+					<tr>
+						<th>End Date:</th><td>%%end_date%% <span class='errorMessage'>%%end_dateError%%</span> %%end_time%% %%tooltip:EndDate%%</td>
+					</tr>
+					<tr>
+						<th>Web Site:</th><td>%%website%% <span class='errorMessage'>%%websiteError%% %%tooltip:WebSite%%</span></td>
+					</tr>
+					<tr>
+						<th>GPS Location:</th><td>(%%latitude%% <span class='errorMessage'>%%latitudeError%%</span> ,%%longitude%% <span class='errorMessage'>%%longitudeError%%</span>) <span class='errorMessage'>%%tooltip:GPSLocation%%</span></td>
+					</tr>
+					<tr>
+						<th>Contact:</th><td>%%contactperson%% <span class='errorMessage'>%%contactpersonError%%</span></td>
+					</tr>
+					<tr>
+						<th>Email:</th><td>%%email%% <span class='errorMessage'>%%emailError%%</span></td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Note:</th><td>If you want to have a Recurring Event the Start and End Date should be the same day,<br>Otherwise the Multiple Days will Reoccur.</br></td>
+					</tr>
+					<tr>
+						<th>Member of:</th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			</div>
+			<div id='tabs-8'>
+				<div class='title'>Recurring Event Information</div>
+				<div id='recurringForm'>
+					%%recurringform%%
+				</div>
+			</div>
+			<div id='tabs-3'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 3:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_c%%</a> <span class='errorMessage'>%%image3Error%%</span><br/>
+							<input id="image_c" type="hidden" name="image3" value="%%image3%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 4:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_d%%</a> <span class='errorMessage'>%%image4Error%%</span><br/>
+							<input id="image_d" type="hidden" name="image4" value="%%image4%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			%%customInfo%%
+<!if(array_key_exists('calendar:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-5'>
+				<div class='title'>Deal or Offer Categories Assigned to this Event</div>
+				%%destCouponFolders%% %%tooltip:DealCatRel%%
+				<div class='title'>Individual Deal or Offer Assigned to this Event</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%couponFolders%%
+						</td>
+						<td>
+							<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+							<div id='offerCatSelection'>
+								%%destCoupons%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('calendar:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-6'>
+				<div class='title'>Product Categories Assigned to this Category</div>
+				%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Products Assigned to this Category</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</td>
+						<td>
+							<div>Select the Product(s) <span class='errorMessage'>%%destProductsError%% %%tooltip:ProductRel%%</span></div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div class='title'>Store or Location Categories Assigned to this Event</div>
+				%%destStoreFolders%% %%tooltip:LocationCatRel%%
+				<div class='title'>Individual Stores or Locations Assigned to this Event</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%storeFolders%%
+						</td>
+						<td>
+							<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+							<div id='storeCatSelection'>
+								%%destStores%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('news:calendar',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-9'>
+				<div class='title'>Article Categories Assigned to this Event</div>
+				%%destNewsFolders%% %%tooltip:NewsCatRel%%
+				<div class='title'>Individual Articles Assigned to this Event</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%newsFolders%%
+						</td>
+						<td>
+							<div>Select the Article(s) %%tooltip:NewsRel%%</div>
+							<div id='newsCatSelection'>
+								%%destNews%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			<input type='hidden' id='p_id' name='p_id' value='%%id%%'/> 
+			%%addContent%%
+			<div>
+				%%destFoldersSelect%%
+			</div>
+			<div id="tabs-10">
+				<div class='title'>SEO Content for Event</div>
+				<div class="alert alert-warning centered">No use of quotes (single or double) and only 1 line is allowed</div>
+				<table>
+					<tbody>
+						<tr><th>Keywords:</th><td>%%meta_keywords%%</td></tr>
+						<tr><th>Social Description:</th><td>%%social_description%%</td></tr>
+						<tr><th>Description:</th><td>%%meta_description%%</td></tr>
+						<tr><th>Title:</th><td>%%browser_title%%</td></tr>
+					</tbody>
+				</table>
+				<div class='title'>SEM Content</div>
+				<table>
+					<tbody>
+						<tr>
+							<th>Adword Conversion:</th><td>%%adword_conversion%% <span class='errorMessage'>%%adword_conversionError%%</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id='tabs-4'>
+				<div id='addressTab'>
+					<div class='list'>
+						<table class='listing' id='addressListing'>
+							<thead>
+								<tr>
+									<th>Type</th><th>Location</th><th>Line 1</th><th>City</th><th colspan='2'></th>
+								</tr>
+							</thead>
+							<tbody>
+								%%addresses%%	
+							</tbody>
+						</table>
+					</div>
+					<div class='link'><button class='def_field_submit' onclick='jsEditAddress(0,%%id%%);return false;'>Add an Address</button></div>
+				</div>
+			</div>
+			%%submit%%
+			<div class='break'></div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("select[multiple]").chosen();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'calendar');
+});
+$('#newsFolderSelector').change(function() {
+	loadNewsList(this,'#newsCatSelection',true,'calendar');
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true,'calendar');
+});
+$('#blogFolderSelector').change(function() {
+	loadBlogList(this,'#blogCatSelection',true,'calendar');
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'calendar');
+});
+$('.popovers').popover();
+$( "#content-tabs" ).tabs();
+</code>

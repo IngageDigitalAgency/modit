@@ -1,0 +1,144 @@
+<h2><a href="https://www.google.com/analytics" title="Google Analytics login">Google Analytics</a> monthly report</h2>
+<form method='post' id='analyticsForm'>
+	<div id='pagination'>
+		<div class='pagination'>
+			<table>
+				<tr>
+					<td>
+						<ul>
+							<li><a href="#" onclick='byMonth(-1);return false;'>&lt;</a></li>
+							<li><a href='#' onclick='byMonth(1);return false;'>&gt;</a></li>
+						</ul>
+						<div class='break'></div>
+					</td>
+					<td style='vertical-align:bottom'>
+						From: %%startdate%%
+					</td>
+					<td style='vertical-align:bottom'>
+						To: %%enddate%%
+					</td>
+					<td style='vertical-align:middle'>
+						%%submit%%
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	%%analyticsform%%
+	%%movetype%%
+	%%movedirection%%
+</form>
+<div id="analytics" class="line" style="padding-bottom: 10px"></div>
+<div class='Zk' id='quickLook'>
+	<div id='stats' class='Pb'>
+		<table class=''>
+			<tr class='yW'>
+				<td>Visits</td>
+				<td>Unique Visitors</td>
+				<td>New Visitors</td>
+				<td>% New Visitors</td>
+				<td>Page Views</td>
+				<td>Pages / Visit</td>
+				<td>Avg. Length</td>
+				<td class='nrb'>Bounce Rate</td>
+			</tr>
+			<tr style='text-align:right'>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%visits%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%unique%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%newvisitors%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%percentnewvisitors%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%pageviews%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%pagespervisit%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%averagelength%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+				<td class='nrb'>
+					<div class="TX">
+						<div class="O1">
+							<p class="y7">
+								<span>%%bouncerate%%</span>
+							</p>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class='stats'>
+	<div id='demographics' class='results left listing'></div>
+</div>
+<div class="break"></div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+var visits = %%analytic_visits%%;
+var views = %%analytic_views%%;
+initContent(visits,views);
+$(document).ready(function() {
+	$('.def_field_datepicker').datepicker({
+		changeMonth: true,
+		changeYear:true
+	});
+	$('.def_field_datetimepicker').datepicker({
+		changeMonth: true,
+		changeYear:true
+	});
+});
+//]]> 
+</script> 
+</code>

@@ -1,0 +1,29 @@
+<div class='title'>Edit Recurring Billing</div>
+%%errorMessage%%
+<form method='post' action='' onsubmit='formCheck("editRecurringForm","/modit/ajax/editRecurring/credit","altPopup");return false;' id='editRecurringForm'>
+	<table>
+		<tr>
+			<th>Period:</th><td>%%period_number%%</td>
+		</tr>
+		<tr>
+		<tr>
+			<th>Billing Date:</th><td>%%billing_date%%</td>
+		</tr>
+		<tr>
+			<th>Adjust Subsequent:</th><td>%%adjustment%%</td>
+		</tr>
+	</table>
+	%%editRecurring%% %%submit%% %%r_id%%
+</form>
+<script type='text/javascript'>
+initDateFields();
+if (typeof(oldCloseAltPopup) != "function") {
+	oldCloseAltPopup = closeAltPopup;
+	closeAltPopup = function() {
+		oldCloseAltPopup();
+		editContent(%%original_id%%);
+		closeAltPopup = oldCloseAltPopup;
+		oldCloseAltPopup = null;
+	}
+}
+</script>

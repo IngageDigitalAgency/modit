@@ -1,0 +1,33 @@
+<div class="header container">
+	<div class="row">
+		<div class='steps step1 col-xs-3 col-md-3 col-md-offset-2'>Review Your Cart</div>
+		<div class='steps step2 col-xs-3 col-md-3'>Billing Information</div>
+		<div class='steps step1 col-xs-3 col-md-3'>Pay For Your Order</div>
+		<div class='steps step1 col-xs-3 col-md-3'>View Your Receipt</div>
+	</div>
+</div>
+<div class='paypal-checkout'>
+	<div class="row">
+		<div class='col-xs-16 text-center'>
+			<script 
+	    data-env="%%env%%" 
+	    data-tax="%%header:taxes%%" 
+	    data-shipping="%%header:shipping%%" 
+	    data-currency="CAD" 
+	    data-amount="%%header:value%%" 
+	    data-callback="http://%%FULLDOMAIN%%/ipn"
+	    data-name="%%SITENAME%% Order #%%header:order_id%%"
+	    data-button="buynow" src="/js/paypal-button-min.js?merchant=%%merchant%%"
+	></script>
+		</div>
+	</div>
+	<div class='text row'>
+		<div class='left col-xs-6 text-right col-xs-offset-1'>
+			Our Processing is handled via PayPal<br/>
+			We do not collect or store any of your credit card information without notification. All payments are processed through PayPal
+		</div>
+		<div class='right col-xs-6 col-xs-offset-2'>
+			<img src='/images/logos/paypal.jpg' alt='PayPal options' />
+		</div>
+	</div>
+</div>

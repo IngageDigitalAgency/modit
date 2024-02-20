@@ -1,0 +1,41 @@
+<div class="row replaceable" id="invoice-details">
+	<div class="col-xs-16">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Order #</th><th>Pickup Date</th><th>Delivery Date</th><th>Service</th><th>Amount</th><th></th><th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%rows%%
+			</tbody>
+		</table>
+		<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+			%%pagenum%%%%invoiceDetails%%%%i_id%%
+			<div class="pagination">%%pagination%%</div>
+		</form>
+	</div>
+</div>
+<div id="order-details"></div>
+<script type="text/javascript">
+getOrder = function(o_id, m_id) {
+	$.ajax({
+		url: '/ajax/render',
+		data: { 't_id':30, 'o_id':o_id, 'm_id':m_id },
+		type: 'POST',
+		success: function(obj,status,xhr) {
+			try {
+				var h = eval('('+obj+')');
+				$('#order-details').html(h.html);
+				eval(h.code);
+				scrollToItem("#order-details");
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+
+getOrderPDF = function(o_id) {
+}
+</script>

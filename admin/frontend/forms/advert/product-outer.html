@@ -1,0 +1,22 @@
+<div id='product-ads' class='categories'>
+	%%ads%%
+	<div class='clearfix'></div>
+</div>
+<script type="text/javascript">
+var loc = document.location.href.split("/");
+var bFound = false;
+if (loc.length > 3 && loc[loc.length-2] == 'category') {
+	var fldr = loc[loc.length-1];
+	$('#product-ads .product-wrapper').each(function(idx,el) {
+		var a = $(el).find("a");
+		if (a.length > 0 && a[0].href.indexOf("category/".concat(fldr)) >= 0) {
+			$(el).remove();
+			bFound = true;
+		}
+	});
+}
+if (!bFound) {
+	var el = Math.floor(Math.random()*$('#product-ads .product-wrapper').length);
+	$($('#product-ads .product-wrapper')[el]).remove();
+}
+</script>

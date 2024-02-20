@@ -1,0 +1,89 @@
+<div id="orderBilling">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-16 text-center"><h1>Billing Report</h1></div>
+		</div>
+<div class="row">
+<div class="col-xs-8 text-center col-xs-offset-4">%%errorMessage%%</div>
+</div>
+		<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%" id="billingForm" onsubmit="getOrders(this);return false;">
+			<div class="row">
+				<div class="col-sm-8 form-group"><label>Customer:</label>%%member_id%%</div>
+				<div class="col-sm-4 form-group"><label>Status:</label>%%order_status%%</div>
+				<div class="col-sm-2 form-group"><label>From:</label>%%from%%</div>
+				<div class="col-sm-2 form-group"><label>To:</label>%%to%%</div>
+				<div class="col-sm-2 form-group"><label>Sort By:</label>%%orderby%%</div>
+				<div class="col-sm-2 form-group"><label>In Quickbooks:</label>%%invoiced%%</div>
+				<div class="col-sm-2 form-group"><label>Bill Type:</label>%%billing_type%%</div>
+				<div class="col-sm-2 form-group"><label>Summary:</label>%%summary%%</div>
+				<div class="col-sm-2 form-group"><label> </label>%%submit%%</div>%%billingReport%%
+			</div>
+			<div class="row">
+				<div class="col-xs-16">
+					<table class="table">
+						<thead>
+	<tr>
+	<th>Order #</th>
+	<th>Company</th>
+	<th>P/U Address</th>
+	<th>Del Address</th>
+	<th>Del Completed</th>
+	<th>Service</th>
+	<th class="text-right">Taxable</th>
+	<th class="text-right">Non-Taxable</th>
+	<th class="text-right">Taxes</th>
+	<th class="text-right">Total</th>
+	<th class="text-right">Paid</th>
+	<th class="text-right">Net</th>
+	<th>Tax Type</th>
+	</tr>
+						</thead>
+						<tbody>
+							%%rows%%
+						</tbody>
+<tfoot>
+<tr>
+<th colspan="6" class="text-right">Grand Totals:</th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:taxable%%))@@!></th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:nontaxable%%))@@!></th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:taxes%%))@@!></th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:total%%))@@!></th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:paid%%))@@!></th>
+<th class="text-right"><!@@($this->my_money_format(%%totals:balance%%))@@!></th>
+<th></th>
+</tr>
+</tfoot>
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 col-xs-offset-1 top20 bottom20">%%pager%%</div>
+				<div class="col-xs-6">%%pagination%%%%pagenum%%</div>
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+getOrders = function(el) {
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				$("#orderBilling").replaceWith(h.html);
+				initDateFields();
+				$("#billingForm select").chosen({"width":"100%"});
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+initDateFields();
+$("#billingForm select").chosen({"width":"100%"});
+pagination = function(pg,el) {
+	var f = $(el).closest("form");
+	$(f).find("input[name='pagenum']").val(pg);
+	getOrders(el);
+}
+</script>

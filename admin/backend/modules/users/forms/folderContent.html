@@ -1,0 +1,131 @@
+<div class='folderContent listing propertyEditing'>
+	<div class='description'>
+		<span>Folder Description:</span>
+		%%description%%
+		<div class="break"></div>
+	</div>
+	<div class='left'>Image: %%image%%</div>
+	<div class='left'>Rollover Image: %%rollover_image%%</div>
+	<div class="break"></div>
+</div>
+<div id='foldertabs' class='ui-tabs'>
+	<ul class='ui-tabs-nav'>
+		<li><a href="#foldertabs-1">Articles</a></li>
+		<li><a href="#foldertabs-2">Relationships</a></li>
+	</ul>
+	<div id='foldertabs-1'>
+		<div id='newsArticleList' class='listing'>
+			<div id='newsFolderId' style='display:none'>%%id%%</div>
+			<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+				%%sortby%%
+				%%sortorder%%
+				%%showFolderContent%%
+				%%pagenum%%
+				<input type='hidden' name='p_id' value='%%id%%' />
+				<table id='articleList'>
+					<tr>
+						<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Title</span></th>
+						<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Created</span></th>
+						<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Expires</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Published</span></th>
+						<th><span onclick='sort("Featured","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Featured</span></th>
+						<th><span onclick='sort("author","%%form:name%%","/modit/ajax/%%form:action%%/news","middleContent")'>Author</span></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				%%articles%%
+				</table>
+				<div id='pagination'>%%pagination%%</div>
+			</form>
+		</div>
+	</div>
+	<div id='foldertabs-2'>
+		<div class='listing collapsible'>
+			<div class='title'>Coupon Folders</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><th></th>
+					</tr>
+					%%couponFolders%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='title'>Coupons for this Folder</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Code</th><th>Name</th><th>Enabled</th><th>Published</th><th>Expires</th><th></th>
+					</tr>
+					%%coupons%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='title'>Event Folders</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><th></th>
+					</tr>
+					%%eventFolders%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='title'>Events for this Folder</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Start/End Date</th><th>Enabled</th><th>Published</th><th></th>
+					</tr>
+					%%events%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='title'>Product Folders</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><th></th>
+					</tr>
+					%%productFolders%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='title'>Products for this Folder</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Code</th><th>Name</th><th>Enabled</th><th>Published</th><th></th>
+					</tr>
+					%%products%%
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<code>
+$( "#showFolderContent div.draggable" ).draggable({
+	helper: 'clone'
+});
+
+$('#contentTree ol.ui-sortable li ').droppable({
+	drop: function( event, ui ) {
+		newsDrop(this,event,ui,'tree');
+	}
+});
+
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/news/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/news';
+hideTables($('#middleContent'));
+$('#foldertabs').tabs();
+</code>

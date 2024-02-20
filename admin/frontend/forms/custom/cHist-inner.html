@@ -1,0 +1,15 @@
+<tr>
+	<td class="text-center">%%id%%</td>
+	<td class="text-left"><!@@(date("d-M h:i a", strtotime("%%scheduled_date%%")))@@!></td>
+	<td class="text-left">%%formattedStatus%%</td>
+	<td class="text-left">%%service:name%%</td>
+	<td class="text-left">%%pu_address:line1%%</td>
+	<td class="text-left">%%del_address:line1%%</td>
+	<td class="text-right">%%formattedTotal%%</td>
+	<td class="text-center"><a title="View" href="#" onclick='viewOrder(%%id%%);return false;'><i class="fa fa-eye"></i></a></td>
+<!if((%%order_status%% & STATUS_RECURRING) == STATUS_RECURRING)!>
+	<td> </td>
+<!else!>
+	<td class="text-center"><a title="View" href="/ajax/render?t_id=69&o_id=%%id%%" target="_blank"'><i class="fa fa-file-pdf-o"></i></a></td>
+<!fi!>
+</tr>

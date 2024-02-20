@@ -1,0 +1,52 @@
+%%heading%%
+<div id='foldertabs'>
+	<div id='category_heading' class='listing'>
+		<div class="heading_title">
+			<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='searchArticleList' class='listing'>
+		<div id='searchFolderId' style='display:none'>%%id%%</div>
+		<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+			%%sortby%%
+			%%sortorder%%
+			%%showFolderContent%%
+			%%pagenum%%
+			
+			<div class="break"></div>
+			<input type='hidden' name='p_id' value='%%id%%' />
+			<table id='articleList'>
+				<thead>
+					<tr>
+						<th><span onclick='sort("keyword","%%form:name%%","/modit/ajax/%%form:action%%/search","middleContent")'>Keyword</span></th>
+						<th><span onclick='sort("weight","%%form:name%%","/modit/ajax/%%form:action%%/search","middleContent")'>Weight</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					%%articles%%
+				</tbody>
+			</table>
+			<div class='status'>%%statusMessage%%</div>
+			<div id='pagination'><span class="pagination-dropdown pull-right">Codes per page : %%pager%%</span> %%pagination%% </div>
+		</form>
+	</div>
+</div>
+<code>
+addSortableDroppable(false);
+$('#pager').change(function() {
+	formCheck("showFolderContent","/modit/ajax/showPageContent/search","middleContent");
+});
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/search/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/search';
+</code>

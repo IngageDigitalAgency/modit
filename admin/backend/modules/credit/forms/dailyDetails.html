@@ -1,0 +1,28 @@
+<div class='title'>Daily Log Information</div>
+<form method='post' action='' id='dailyDetailsForm'>
+	<table class='details'>
+		<thead>
+			<tr>
+				<th>Order #</th><th>Status</th><th>Message</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+	</table>
+	%%pagenum%%
+	<div class='row'>
+		<div class="col-xs-13">%%pagination%%</div>
+		<div class="col-xs-3">
+			<span class="pagination-dropdown pull-right">%%pager%%</span>	
+		</div>
+	</div>
+	%%r_id%%
+</form>
+<script type='text/javascript'>
+altPagination = function(pgNum,obj) {
+	var frm = $(obj).closest('form');
+	$(frm).find('input[name=pagenum]').val(pgNum);
+	formCheck("dailyDetailsForm","/modit/ajax/dailyDetails/credit","popup")
+}
+</script>

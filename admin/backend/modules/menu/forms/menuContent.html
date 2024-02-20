@@ -1,0 +1,24 @@
+%%header%%
+<div class='contentInfo'>
+	<div class="heading_title">
+		<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+	</div>
+	<div class='break'></div>
+	<div class='button'>
+		<a href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+		<a href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+	</div>
+</div>
+<div id='pageContent'>
+	<div class='displayArea'>
+		<table class="menuInfoTable listing">
+			<tr>
+				<th>Title</th><th>Content Type</th><th>Versions</th><th>Image</th><th>Rollover</th><td></td>
+			</tr>
+			%%menu%%
+		</table>
+	</div>
+</div>
+<code>
+setImageViewing();
+</code>

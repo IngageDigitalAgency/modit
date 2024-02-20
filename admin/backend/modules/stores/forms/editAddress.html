@@ -1,0 +1,69 @@
+<div>
+	<div class="title">Add/Edit an Address</div>
+	%%errorMessage%%
+	<form name='%%form:name%%' method='%%form:method%%' onsubmit='saveAddress("%%form:name%%","%%form:action%%"); return false;' id='%%form:name%%'>
+		<table>
+			<tr>
+				<th>Address Type:</th><td>%%addresstype%% <span class='errorMessage'>%%addresstypeError%%</span></td>
+			</tr>
+			<tr>
+				<th>Name:</th><td>%%addressname%% <span class='errorMessage'>%%addressnameError%%</span></td>
+			</tr>
+			<tr>
+				<th>Line 1:</th><td>%%line1%% <span class='errorMessage'>%%line1Error%%</span></td>
+			</tr>
+			<tr>
+				<th>Line 2:</th><td>%%line2%% <span class='errorMessage'>%%line2Error%%</span></td>
+			</tr>
+			<tr>
+				<th>City:</th><td>%%city%% <span class='errorMessage'>%%cityError%%</span></td>
+			</tr>
+			<tr>
+				<th>Postal Code:</th><td>%%postalcode%% <span class='errorMessage'>%%postalcodeError%%</span></td>
+			</tr>
+			<tr>
+				<th>Country:</th><td>%%country_id%% <span class='errorMessage'>%%country_idError%%</span></td>
+			</tr>
+			<tr>
+				<th>Province:</th><td><div id='provinceWrapper'>%%province_id%%</div> <span class='errorMessage'>%%province_idError%%</span></td>
+			</tr>
+			<tr>
+				<th>Geocode Address:</th><td>%%geocode%%</td>
+			</tr>
+			<tr>
+				<th>Phone:</th><td>%%phone1%% <span class='errorMessage'>%%phone1Error%%</span></td>
+			</tr>
+			<tr>
+				<th>Alt Phone:</th><td>%%phone2%% <span class='errorMessage'>%%phone2Error%%</span></td>
+			</tr>
+			<tr>
+				<th>Fax:</th><td>%%fax%% <span class='errorMessage'>%%faxError%%</span></td>
+			</tr>
+			<tr>
+				<th>E-Mail:</th><td>%%email%% <span class='errorMessage'>%%emailError%%</span></td>
+			</tr>
+			<tr>
+				<th>Contact First Name:</th><td>%%firstname%% <span class='errorMessage'>%%firstnameError%%</span></td>
+			</tr>
+			<tr>
+				<th>Last Name:</th><td>%%lastname%% <span class='errorMessage'>%%lastnameError%%</span></td>
+			</tr>
+		</table>
+		<input type='hidden' name='a_id' value='%%id%%' />
+		<input type='hidden' name='o_id' value='' id='o_id' />
+		%%ownertype%%
+		%%ownerid%%
+		%%editAddress%%
+		%%save%% %%delete%%
+		<div class='clearfix'></div>
+	</form>
+	<code>
+	$('#addressSelector').change(function() {
+		loadAddress(this);
+	});
+	$('#country_id').change(function() {
+		loadProvinces(this,$('#provinceWrapper')[0]);
+	});
+	$('#o_id')[0].value = $('#ownerid')[0].value;
+	</code>
+</div>

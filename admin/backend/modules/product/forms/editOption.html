@@ -1,0 +1,57 @@
+<div class='title'>Add/Edit a Product Option</div>
+<span class='errorMessage'>%%errorMessage%%</span>
+<div id='options-tab'>
+	<ul>
+		<li><a href="#tabs-opt1">Options Pricing</a></li>
+		%%customTab%%
+	</ul>
+	<form name='%%form:name%%' method='%%form:method%%' onsubmit='formCheck_add("%%form:name%%","/modit/ajax/%%form:action%%/product",$("#altPopup"));return false;' id='%%form:name%%'>
+		<div id='tabs-opt1'>
+			<table>
+				<tr>
+					<th>Teaser:</th><td colspan='3'>%%teaser%% <span class='errorMessage'>%%teaserError%%</span></td>
+				</tr>
+				<tr>
+					<th>Description:</th><td colspan='3'>%%description%% <span class='errorMessage'>%%descriptionError%%</span></td>
+				</tr>
+				<tr>
+					<th>Colors:</th><td>%%colors%% <span class='errorMessage'>%%colorsError%%</span></td>
+					<th>Sizes:</th><td>%%sizes%% <span class='errorMessage'>%%sizesError%%</span></td>
+				</tr>
+				<tr>
+					<th>Price:</th><td colspan='3'>%%price%% <span class='errorMessage'>%%priceError%%</span>&nbsp;(+/- from base price)</td>
+				</tr>
+				<tr>
+					<th>Sale Price:</th><td colspan='3'>%%sale_price%% <span class='errorMessage'>%%sale_priceError%%</span>&nbsp;(+/- from base price)</td>
+				</tr>
+				<tr>
+					<th>Shipping:</th><td colspan='3'>%%shipping%% <span class='errorMessage'>%%shippingError%%</span>&nbsp;(+/- from base price)</td>
+				</tr>
+<!if((int)$this->getConfigVar('productMultiples','system')>0)!>
+				<tr>
+					<th>Unit Multiplier:</th><td colspan='3'>%%qty_multiplier%% <span class='errorMessage'>%%qty_multiplierError%%</span></td>
+				</tr>
+<!else!>
+%%qty_multiplierHidden%%
+<!fi!>
+			</table>
+		</div>
+		%%customInfo%%
+		<input type='hidden' name='p_id' value='%%p_id%%' />
+		<input type='hidden' name='o_id' value='%%id%%' id='o_id' />
+		<input type='hidden' value='%%ownerid%%' name='ownerid' />
+		%%product_id%%
+		%%editOption%%
+		%%save%% %%delete%%
+		<div class='break'></div>
+	</form>
+</div>
+<script type='text/javascript'>
+var tabs = $('#options-tab li');
+if (tabs.length < 2)
+	$('#options-tab ul').remove();
+else
+	$('#options-tab').tabs();
+$('#editOption select[name="colors[]"]').chosen();
+$('#editOption select[name="sizes[]"]').chosen();
+</script>

@@ -1,0 +1,18 @@
+<div class='propertyEditing'>
+	<div class='title'>Editing %%pretty_name%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<table>
+				<tr>
+					<th>Description:</th><td>%%description%%</td>
+				</tr>
+				<tr>
+					<th>Value:</th><td>%%value%%</td>
+				</tr>
+			</table>
+			%%submit%% <input type='hidden' name='a_id' value='%%id%%'/> %%addContent%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>

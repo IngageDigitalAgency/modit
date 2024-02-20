@@ -1,0 +1,99 @@
+%%editing%%
+<div id='foldertabs' class='ui-tabs'>
+	<ul class='ui-tabs-nav'>
+		<li><a href="#foldertabs-1">Products</a></li>
+		<li><a href="#foldertabs-2">Relationships</a></li>
+	</ul>
+	<div id='foldertabs-1'>
+		<div id='productArticleList' class='listing'>
+			<div id='productFolderId' style='display:none'>%%id%%</div>
+			<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+				%%sortby%%
+				%%sortorder%%
+				%%showFolderContent%%
+				%%pagenum%%
+				<input type='hidden' name='p_id' value='%%id%%' />
+				<table>
+					<tr>
+						<th><span onclick='sort("id","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Order #</span></th>
+						<th><span onclick='sort("code","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Code</span></th>
+						<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Name</span></th>
+						<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Created</span></th>
+						<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Expires</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Published</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("deleted","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Deleted</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+				%%articles%%
+				</table>
+				<div id='pagination'>%%pagination%%</div>
+			</form>
+		</div>
+</div>
+	<div id='foldertabs-2'>
+
+		<div class='listing collapsible'>
+			<div class='title'>Coupon Folders</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><td></td>
+					</tr>
+					%%couponFolders%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='sub-title'>Coupons for this Folder</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Code</th><th>Name</th><th>Enabled</th><th>Published</th><th>Expires</th><td></td>
+					</tr>
+					%%coupons%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='sub-title'>Store Folders</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><td></td>
+					</tr>
+					%%storeFolders%%
+				</table>
+			</div>
+		</div>
+		<div class='listing collapsible'>
+			<div class='sub-title'>Stores for this Folder</div>
+			<div class='wrapper'>
+				<table>
+					<tr>
+						<th></th><th>Name</th><th>Enabled</th><th>Published</th><td></td>
+					</tr>
+					%%stores%%
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+<code>
+$( "#showFolderContent div.draggable" ).draggable({
+	helper: 'clone'
+});
+
+$('#contentTree ol.ui-sortable li ').droppable({
+	drop: function( event, ui ) {
+		productDrop(this,event,ui,'tree');
+	}
+});
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/product/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/product';
+hideTables($('#middleContent'));
+$('#foldertabs').tabs({selected:0});
+</code>

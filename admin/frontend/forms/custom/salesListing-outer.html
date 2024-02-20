@@ -1,0 +1,154 @@
+<script type='text/javascript'>
+var members = Array();
+</script>
+<div id='salesListing'>
+	<form method='post'>
+		<div class='page-top'>
+			<table>
+				<tr>
+					<td class='left'></td>
+					<td class='banner'>Recent Sales</td>
+					<td class='right'></td>
+				</tr>
+			</table>
+		</div>
+		<div class='middle search'>
+			<a href='#'><img src='/images/backgrounds/search-btn.png' alt='Search' onclick='pagination(0,this);' class='submit' /></a>%%searchField%%
+		</div>
+		<div class='results'>
+			%%orders%%
+		</div>
+		<div class='bottom'>
+			<table>
+				<tr>
+					<td class='left'>%%salesFrom%%</td>
+					<td class='middle range'>
+						Show Sales Period<br/>
+						<span class='dateFrom'>%%dateFrom%%</span> to <span class='dateTo'>%%dateTo%%</span>
+					</td>
+					<td class='right'>%%salesTo%%</td>
+				</tr>
+			</table>
+		</div>
+		%%salesListing%%
+		%%pagenum%%
+		<div id='orderDetails'></div>	
+	</form>
+	<form method='post' action='/view-order' id='viewOrder'>
+		<input type='hidden' name='o_id' value='0' />
+		<input type='hidden' name='m_id' value='0' />
+	</form>
+</div>
+<script type='text/javascript'>
+if ('%%dateFrom%%' == '31-Dec-1969') $('span.dateFrom').html('Start');
+if ('%%dateTo%%' == '31-Dec-1969') $('span.dateTo').html('End');
+function getOrders(m_id) {
+	if ($('#salesListing .member_'.concat(m_id,' .order-history .order')).length == 0) {
+		$.ajax({
+			url:'/ajax/render',
+			data:{'t_id':23,'m_id':m_id,'use_passed':1,'d_from':$('#salesFrom')[0].value,'d_to':$('#salesTo')[0].value},
+			context: {id:m_id},
+			success:function(msg,status,xhr) {
+				try {
+					obj = eval('('+msg+')');
+					$('#salesListing .member_'.concat(this.id)).html(obj.html);
+					eval(obj.code);
+					$('#salesListing .member_'.concat(this.id,' .order-history')).show();
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else {
+		$('#salesListing .member_'.concat(m_id,' .order-history')).toggle();
+	}
+	$('#salesListing .orders').each(function(idx,el) {
+		if ($(el)[0].className.indexOf('member_'.concat(m_id)) == -1)
+			if ($(el).css('display') != 'none')
+				$(el).find('.order-history').hide();
+	});
+}
+function pageOrders(m_id,pg) {
+	$.ajax({
+		url:'/ajax/render',
+		data:{'t_id':23,'m_id':m_id,'use_passed':1,'d_from':$('#salesFrom')[0].value,'d_to':$('#salesTo')[0].value,'pagenum':pg},
+		context: {id:m_id},
+		success:function(msg,status,xhr) {
+			try {
+				obj = eval('('+msg+')');
+				$('#salesListing .member_'.concat(this.id)).html(obj.html);
+				eval(obj.code);
+				$('#salesListing .member_'.concat(this.id,' .order-history')).show();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+$(document).ready(function() {
+	for(i = 0; i < members.length; i++) {
+		$('#salesListing .member_'.concat(this.id,' .order-history')).hide();
+		//getOrders(members[i]);
+	}
+});
+var mths = Array('Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec');
+$('#salesFrom').datepicker({
+	showButtonPanel:true,
+	changeMonth: true,
+	changeYear:true,
+	yearRange:'-5:+0',
+	showOn:'button',
+	onSelect: function (dt,obj) {
+		var tmp = dt.split('/');
+		x = tmp[1].concat('-',mths[parseInt(tmp[0])-1],'-',tmp[2]);
+		$('span.dateFrom').html(x);
+	},
+	buttonImage:'/images/backgrounds/date-from.png',
+	buttonImageOnly:true
+});
+$('#salesTo').datepicker({
+	showButtonPanel:true,
+	changeMonth: true,
+	changeYear:true,
+	yearRange:'-5:+0',
+	showOn:'button',
+	onSelect: function (dt,obj) {
+		var tmp = dt.split('/');
+		x = tmp[1].concat('-',mths[parseInt(tmp[0])-1],'-',tmp[2]);
+		$('span.dateTo').html(x);
+	},
+	buttonImage:'/images/backgrounds/date-to.png',
+	buttonImageOnly:true
+});
+var p_prev = '';
+var p_next = '';
+%%pagination%%
+$('#salesListing .page-top td.left').html(p_prev);
+$('#salesListing .page-top td.right').html(p_next);
+function pagination(pNum,obj) {
+	var frm = $(obj).closest('form');
+	$(frm).find('input[name="pagenum"]')[0].value = pNum;
+	formSubmit(obj);
+}
+function viewOrder(o_id,m_id) {
+	var frm = $('#viewOrder');
+	$(frm).find('input[name=o_id]')[0].value = o_id;
+	$(frm).find('input[name=m_id]')[0].value = m_id;
+	$(frm).submit();
+/*
+	var retStatus = $.ajax({
+		url: '/ajax/render',
+		data: {'t_id':24,'o_id':o_id,'m_id':m_id},
+		async: false,
+		type: 'post'
+	});
+	try {
+		var obj = eval('('+retStatus.responseText+')');
+		$('#orderDetails')[0].innerHTML = obj.html;
+	}
+	catch(err) {
+	}
+*/
+}
+</script>

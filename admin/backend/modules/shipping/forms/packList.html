@@ -1,0 +1,26 @@
+<div class='title'>Pack List</div>
+<form method='post' action='' id='packForm'>
+	<span>Start Date:&nbsp;%%start_date%%</span>
+	<span>End Date:&nbsp;%%end_date%%</span>
+	<span>%%submit%%</span> <span>%%export%%</span>
+	%%packList%%
+</form>
+<div class='info'>Records Found: %%count%%</div>
+<table class='listing'>
+	<thead>
+		<tr>
+			<th>Order #</th>
+			<th>Shipping Method</th>
+			<th>Product Code</th>
+			<th>Name</th>
+			<th>Quantity</th>
+		</tr>
+	</thead>
+	<tbody>%%products%%</tbody>
+</table>
+<script type='text/javascript'>
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+</script>

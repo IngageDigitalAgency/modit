@@ -1,0 +1,55 @@
+%%heading%%
+<div id='foldertabs'>
+	<div id='category_heading' class='listing'>
+		<div class="heading_title">
+			<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='lookupsArticleList' class='listing'>
+		<div id='lookupsFolderId' style='display:none'>%%id%%</div>
+		<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+			%%sortby%%
+			%%sortorder%%
+			%%showFolderContent%%
+			%%pagenum%%
+			
+			<div class="break"></div>
+			<input type='hidden' name='p_id' value='%%id%%' />
+			<table id='articleList'>
+				<thead>
+					<tr>
+						<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/lookups","middleContent")'>Table</span></th>
+						<th><span onclick='sort("code","%%form:name%%","/modit/ajax/%%form:action%%/lookups","middleContent")'>Code</span></th>
+						<th><span onclick='sort("value","%%form:name%%","/modit/ajax/%%form:action%%/lookups","middleContent")'>Value</span></th>
+						<th><span onclick='sort("extra","%%form:name%%","/modit/ajax/%%form:action%%/lookups","middleContent")'>Extra</span></th>
+						<th><span onclick='sort("sort","%%form:name%%","/modit/ajax/%%form:action%%/lookups","middleContent")'>Sort</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					%%articles%%
+				</tbody>
+			</table>
+			<div class='status'>%%statusMessage%%</div>
+			<div id='pagination'><span class="pagination-dropdown pull-right">Codes per page : %%pager%%</span> %%pagination%% </div>
+		</form>
+	</div>
+</div>
+<code>
+addSortableDroppable(false);
+$('#pager').change(function() {
+	formCheck("showFolderContent","/modit/ajax/showPageContent/lookups","middleContent");
+});
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/lookups/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/lookups';
+</code>

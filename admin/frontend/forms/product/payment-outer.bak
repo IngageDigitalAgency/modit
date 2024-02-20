@@ -1,0 +1,40 @@
+<div id='payment' class='bottom20'>
+	<h1>SELECT A PAYMENT OPTION</h1>
+	<h2>YOU HAVE AN ACCOUNT WITH US</h2>
+	<div class="row">
+		<div class="col-xs-3 red-text">Select Payment Option</div>
+		<div class="col-xs-13"><hr/></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-16 text-center">
+			<h1>HOW WOULD YOU LIKE TO PAY</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-16">
+			%%ecomErrors,false%%
+			%%errorMessage%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-4 col-sm-10 col-sm-offset-3">
+			<div class="alert alert-warning top20 bottom20 text-center">Complete your order by choosing an option below</div>
+		</div>
+	</div>
+<!if("%%session:user:info:custom_on_account%%"=="1")!>
+	%%other%%
+<!fi!>
+	%%paypal%%
+	%%payflow%%
+	<hr/>
+	<div class="row hidden">
+		<div class="col-xs-16 text-center"><img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png" alt="Credit Card Badges" class='bottom20'></div>
+	</div>
+	<div class="row hidden">
+		<div class="col-xs-16 text-center">
+Our processing is handled via <a href="//paypal.com">PayPal</a><br/>
+We do not collect any of your credit card information without notification.<br/>
+All payments are processed through <a href="//paypal.com">PayPal</a>
+		</div>
+	</div>
+</div>

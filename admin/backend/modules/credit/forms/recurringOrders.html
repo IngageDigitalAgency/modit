@@ -1,0 +1,62 @@
+<div class='title'>Recurring Orders</div>
+%%errorMessage%%
+<form method='post' onsubmit='formCheck("recurringOrdersForm","/modit/ajax/recurringOrders/credit","middleContent");return false;' id='recurringOrdersForm'>
+	%%sortby%% %%sortorder%%
+	<div class="row">
+		<div class="col-xs-3 form-group"><label>Order Status:</label>%%order_status%%</div>
+		<div class="col-xs-3 form-group"><label>Product:</label>%%product_id%%</div>
+		<div class="col-xs-3 form-group"><label>From:</label>%%from%%</div>
+		<div class="col-xs-3 form-group"><label>To:</label>%%to%%</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 form-group">%%submit%%</div>
+		<div class="col-xs-3 form-group"><label>Orders found: %%count%%</label></div>
+	</div>
+	%%recurringOrders%%
+	<div class='clearfix'></div>
+	<table class='listing'>
+		<thead>
+			<tr>
+				<th onclick="sort('o.id','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Original Order #</th>
+				<th onclick="sort('b.order_id','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Billed Order #</th>
+				<th>Purchaser</th>
+				<th onclick="sort('b.billing_date','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Order Date</th>
+				<th class="a-right" onclick="sort('o.value','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Goods</th>
+				<th class="a-right" onclick="sort('o.shipping','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Shipping</th>
+				<th class="a-right" onclick="sort('o.total','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Total</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4">Page Total:</td>
+				<td class="a-right">%%pageGoods%%</td>
+				<td class="a-right">%%pageShipping%%</td>
+				<td class="a-right">%%pageTotal%%</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="4">Grand Total:</td>
+				<td class="a-right">%%totalGoods%%</td>
+				<td class="a-right">%%totalShipping%%</td>
+				<td class="a-right">%%totalTotal%%</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div id="pagination">
+		<span class="pagination-dropdown pull-right">Orders per page : %%pager%% %%pagenum%% %%perpage%%</span>
+		%%pagination%% 
+	</div>
+</form>
+<script type='text/javascript'>
+initDateFields();
+$("select[name='order_status[]']").chosen({width:"100%"});
+pagingUrl = "/modit/ajax/recurringOrders/credit";
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+</script>

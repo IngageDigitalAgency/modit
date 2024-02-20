@@ -1,0 +1,36 @@
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'white'
+ };
+</script>
+
+<form method='post' action='/ajax/render'>
+	<table>
+		<tbody>
+			<tr>
+				<td>%%fromName%% %%fromNameError%%</td><td>%%fromEmail%% %%fromEmailError%%</td>
+			</tr>
+			<tr>
+				<td>%%toName%% %%toNameError%%</td><td>%%toEmail%% %%toEmailError%%</td>
+			</tr>
+			<tr>
+				<td colspan='2'>%%note%%</td>
+			</tr>
+			<tr>
+				<td id='emailCaptcha' colspan='2'>%%captcha%%</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href='#' class='button' onclick='sendEmail(this);return false;'>Submit</a>
+	<input type='hidden' name='t_id' value='23' /> %%emailAFriend%% %%p_id%%
+</form>
+<script type='text/javascript'>
+Recaptcha.create(
+	"%%config:captcha:payload:public%%",
+	"emailCaptcha",
+    {
+      theme: "white",
+      callback: Recaptcha.focus_response_field
+    }
+  );
+</script>

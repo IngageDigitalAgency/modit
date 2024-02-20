@@ -1,0 +1,114 @@
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=%%config:google_maps_key%%&sensor=false"></script>
+<script type='text/javascript'>
+	var stores = Array();
+	var minZ = 9;
+	var maxZ = 13;
+	var map = null;
+	var geocoder = null;
+	function initialize() {
+		var latlng = new google.maps.LatLng(43.15, -79.3);
+		var myOptions = {
+			zoom: minZ,
+			minZoom: minZ,
+			maxZoom: maxZ,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("itinerary-map"), myOptions);
+		geocoder = new google.maps.Geocoder();
+	}
+
+	function showAddress(address, info, image, lng, lat) {
+		info = info.replace("<br/><br/>","<br/>");
+		marker = null;
+		if (geocoder) {
+			if (lat && lng && (lat != 0 && lng != 0)) {
+				var a = "<a class='directions arrow' target='_new' href='http://maps.google.com/maps?f=d&hl=en&ie=UTF8&daddr=".concat(escape("(".concat(lat,",",lng,")"))).concat("'>Directions</a>");
+				info += a;
+				marker = setPt(new google.maps.LatLng(lat,lng), info, image);
+			}
+			else {
+				geocoder.geocode( { 'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						marker = setPt(results[0].geometry.location, info, image);
+					}
+				});
+			}
+		}
+		return marker;
+	}
+
+	function setPt(point, info, image) {
+		if (point) {
+			var marker = new google.maps.Marker({
+				position: point,
+				animation: google.maps.Animation.DROP,
+				map: map,
+				icon: image
+			});
+			google.maps.event.addListener(marker,'click',function (event) {
+				openMarker(this, info, event);
+			});
+			return marker;
+		}
+	}
+
+	function populate() {
+		for(idx = 0; idx < stores.length; idx++) {
+			store = stores[idx];
+			store.maplocn = showAddress(store.address,store.description,store.marker,store.longitude,store.latitude);
+			stores[idx] = store;
+		}
+	}
+
+	function openMarker(marker, info, event) {
+		var w = new google.maps.InfoWindow();
+		w.setContent(info);
+		w.setPosition(event.latLng);
+		w.open(map);
+	}
+
+	$(document).ready(function() {
+		initialize();
+		populate();
+	});
+</script>
+
+<div id="i_listing">
+	<div class='left'>
+		<table>
+			<tbody>
+				%%stores%%
+				%%events%%
+			</tbody>
+		</table>
+	</div>
+	<div class='right' id='itinerary-map'>
+		map goes here
+	</div>
+	<div class='clearfix'></div>
+</div>
+<script type='text/javascript'>
+function i_remove(i_id,i_type,el) {
+	var retStatus = $.ajax({
+		url: '/ajax/deleteItem/itinerary',
+		data: {'deleteItem':1,'i_type':i_type,'i_id':i_id},
+		type: 'post',
+		async: false
+	});
+	try {
+		var obj = eval('('+retStatus.responseText+')');
+		if (obj.status == 'true') {
+			$(el).closest("tr").remove();
+			for(idx = 0; idx < stores.length; idx++) {
+				if (stores[idx].maplocn != null && stores[idx].id == i_id)
+					stores[idx].maplocn.setMap(null);
+			}
+		}
+		else alert('An Error occurred');
+		if (obj.code) eval(obj.code);
+	}
+	catch(err) {
+	}
+}
+</script>

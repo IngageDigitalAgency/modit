@@ -1,0 +1,51 @@
+<div id='productAccordion'>
+	<div class='header'>
+		<div class='title'>View Our Inventory By</div>
+		<div class='subtitle'>Category</div>
+	</div>
+	<div class='listing'>
+		%%listing%%
+	</div>
+</div>
+<script type='text/javascript'>
+$('#productAccordion li.hasSubmenu').each(function(idx,el) {
+	$(el).children('div.collapser').each(function(jdx,c) {
+		$(c).addClass('zippy');
+		$(c)[0].innerHTML = '+';
+	});
+});
+setAccordion($('#productAccordion'),'.zippy');
+function showCat(id) {
+	var retStatus = $.ajax({
+		url: '/ajax/render',
+		data: {'t_id':14,'f_id':id},
+		async:false,
+		type:'post'
+	});
+	try {
+		obj = eval('('+retStatus.responseText+')');
+		$('.left-balance')[0].innerHTML = obj.html;
+		eval(obj.code);
+	}
+	catch(err) {
+	}
+	return false;
+}
+
+function showProduct(id) {
+	var retStatus = $.ajax({
+		url: '/ajax/render',
+		data: {'t_id':13,'prod_id':id},
+		async:false,
+		type:'post'
+	});
+	try {
+		obj = eval('('+retStatus.responseText+')');
+		$('.left-balance')[0].innerHTML = obj.html;
+		eval(obj.code);
+	}
+	catch(err) {
+	}
+	return false;
+}
+</script>
