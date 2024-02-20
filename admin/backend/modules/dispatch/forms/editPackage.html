@@ -1,0 +1,134 @@
+<div class='propertyEditing'>
+	<div class='title'>Edit a Pickup/Delivery</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Address</a></li>
+<!if("%%service_type%%"=="P")!>
+			<li><a href="#tabs-4">Delivery Address</a></li>
+<!fi!>
+			<li><a href="#tabs-3">Ordered By</a></li>
+			<li><a href="#tabs-5">Acknowledgement</a></li>
+			<li><a href="#tabs-msg">Messaging</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+<table aria-label="" class='content'>
+					<tr><th>Service:</th><td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td></tr>
+<!if("%%service_type%%"=="D")!>
+					<tr><th>Signature Required:</th><td>%%custom_signature_required%%</td></tr>
+<!fi!>
+					<tr>
+						<th>Driver:</th><td>%%driver_id%% <span class='errorMessage'>%%driver_idError%%</span></td>
+					</tr>
+					<tr>
+						<th>Scheduled Time:</th><td>%%scheduled_date%% %%scheduled_dateError%%</td>
+					</tr>
+					<tr>
+						<th>Actual Time:</th><td>%%actual_date%% %%actual_dateError%%</td>
+					</tr>
+					<tr>
+						<th>Completed:</th><td>%%completed%% %%completedError%%</td>
+					</tr>
+					<tr>
+						<th>Driver Comments:</th><td>%%comments%%</td>
+					</tr>
+					<tr><th>Instructions:</th><td>%%instructions%%</td></tr>
+				</table>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+			<div id="tabs-5">
+<table aria-label="" class="content">
+					<tbody>
+					<tr>
+						<th>Driver Acknowledgement:</th><td>%%ack_status%%</td>
+					</tr>
+					<tr>
+						<th>Ack Message To Driver:</th><td>%%dispatch_message%%</td>
+					</tr>
+					<tr>
+						<th>Ack Response From Driver:</th><td>%%driver_message%%</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div id='tabs-2'>
+<table aria-label="" class="content">
+					<tbody>
+						<tr><th>Company:</th><td>%%company%% %%companyError%%</td></tr>
+						<tr><th>First Name:</th><td>%%firstname%% %%firstnameError%%</td></tr>
+						<tr><th>Last Name:</th><td>%%lastname%% %%lastnameError%%</td></tr>
+						<tr><th>Phone:</th><td>%%phone1%% %%phoneError%%</td></tr>
+						<tr><th>Fax:</th><td>%%fax%% %%faxError%%</td></tr>
+						<tr><th>Email:</th><td>%%email%% %%emailError%%</td></tr>
+						<tr><th>Address:</th><td>%%line1%% %%line1Error%%</td></tr>
+						<tr><th>Line 2:</th><td>%%line2%% %%line2Error%%</td></tr>
+						<tr><th>City:</th><td>%%city%% %%cityError%%</td></tr>
+						<tr><th>Postal Code:</th><td>%%postalcode%% %%postalcodeError%%</td></tr>
+						<tr><th>Province:</th><td>%%province_id%% %%province_idError%%</td></tr>
+						<tr><th>Country:</th><td>%%country_id%% %%country_idError%%</td></tr>
+						<tr><th>GPS:</th><td>(%%latitude%% %%longitudeError%%,%%longitude%% %%longitudeError%%) </td></tr>
+						<tr><th>Geocode:</th><td>%%geocode%% (calculate GPS co-ordinates)</td></tr>
+					</tbody>
+				</table>
+				%%submit%% %%editPackage%% %%p_id%%
+				<div class='break'></div>
+			</div>
+			<div id='tabs-3'>
+<table aria-label="" class="content">
+					<tbody>
+<!if(%%order:login_id%%!=0)!>
+						<tr><th>Contact Name:</th><td>%%field:tag^mgmt:firstname%% %%field:tag^mgmt:lastname%%</td></tr>
+						<tr><th>Phone:</th><td>%%field:tag^mgmt:phone%%</td></tr>
+						<tr><th>Email:</th><td>%%field:tag^mgmt:email%%</td></tr>
+<!else!>
+						<tr><th>Contact Name:</th><td>%%field:tag^account:firstname%% %%field:tag^account:lastname%%</td></tr>
+						<tr><th>Phone:</th><td>%%field:tag^account:phone%%</td></tr>
+						<tr><th>Email:</th><td>%%field:tag^account:email%%</td></tr>
+<!fi!>
+					</tbody>
+				</table>
+			</div>
+<!if("%%service_type%%"=="P")!>
+			<div id='tabs-4'>
+<table aria-label="" class="content">
+					<tbody>
+						<tr><th>Company:</th><td>%%delivery:d_company%%</td></tr>
+						<tr><th>First Name:</th><td>%%delivery:d_firstname%%</td></tr>
+						<tr><th>Last Name:</th><td>%%delivery:d_lastname%%</td></tr>
+						<tr><th>Phone:</th><td>%%delivery:d_phone1%%</td></tr>
+						<tr><th>Fax:</th><td>%%delivery:d_fax%%</td></tr>
+						<tr><th>Email:</th><td>%%delivery:d_email%%</td></tr>
+						<tr><th>Address:</th><td>%%delivery:d_line1%%</td></tr>
+						<tr><th>Line 2:</th><td>%%delivery:d_line2%%</td></tr>
+						<tr><th>City:</th><td>%%delivery:d_city%%</td></tr>
+						<tr><th>Postal Code:</th><td>%%delivery:d_postalcode%%</td></tr>
+						<tr><th>Province:</th><td>%%delivery:d_province%%</td></tr>
+						<tr><th>Country:</th><td>%%delivery:d_country%%</td></tr>
+						<tr><th>GPS:</th><td>(%%delivery:d_latitude%% ,%%delivery:d_longitude%%) </td></tr>
+					</tbody>
+				</table>
+			</div>
+<!fi!>
+			<div id='tabs-msg'>
+				%%messaging%%
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("#tabs" ).tabs();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.popovers').popover();
+initTinyMCE();
+</code>

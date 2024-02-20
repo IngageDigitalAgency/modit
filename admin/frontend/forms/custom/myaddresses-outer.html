@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="/css/perfectscrollbar.css">
+<script type="text/javascript" src="/js/perfectscrollbar.jquery.js"></script>
+<div id="my-address-list">
+	<div class="wrapper">
+		%%addresses%%
+	</div>
+<form method="post" action="/ajax/render">
+%%myAddresses%%%%a_id%%%%t_id%%%%d_id%%
+</form>
+</div>
+<script type="text/javascript">
+$("#my-address-list .wrapper").perfectScrollbar({suppressScrollX:true, includePadding:true});
+updateAddress = function(id) {
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:27,a_id:id},
+		success: function(obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#address-editing .left").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+
+deleteAddress = function(a_id) {
+	if (confirm("Delete this address?")) {
+		$("#my-address-list input[name='d_id']").val(a_id);
+		$("#my-address-list form").ajaxSubmit({
+			success: function( obj, status, xhr ) {
+				try {
+					h = JSON.parse(obj);
+					$("#my-address-list").replaceWith(h.html);
+					$("#my-address-list .wrapper").perfectScrollbar({suppressScrollX:true, includePadding:true});
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+</script>

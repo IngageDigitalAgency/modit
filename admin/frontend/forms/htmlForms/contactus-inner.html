@@ -1,0 +1,20 @@
+<script type="text/javascript">
+ var RecaptchaOptions = {
+    theme : 'white'
+ };
+</script>
+<form method="post" action="/ajax/render" enctype="multipart/form-data" onsubmit="contactForm(this);return false;">
+	<div class="col-xs-16 text-center">%%errorMessage%%</div>
+	<div class="col-xs-16 col-md-8 form-group">%%name%%</div>
+	<div class="col-xs-16 col-md-8 form-group">%%company%%</div>
+	<div class="col-xs-16 col-md-8 form-group">%%email%%</div>
+	<div class="col-xs-16 col-md-8 form-group">%%phone%%</div>
+	<div class="col-xs-16 form-group">%%subject%%</div>
+	<div class="col-xs-16 form-group">%%message%%</div>
+	<div class="col-md-10 col-xs-8 col-sm-16">
+		<div id="captchadiv">
+			%%captcha%%
+		</div>
+	</div>
+	<div class="col-xs-8 col-md-6 col-sm-8 col-sm-offset-4 col-md-offset-0">%%submit%%%%contactUs%%%%r_id%%%%t_id%%</div>
+</form>

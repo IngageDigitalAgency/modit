@@ -1,0 +1,122 @@
+<div id="itinerary-map">
+	<div class="background"></div>
+	<div id="map-wrapperx">
+		<div id="mapx" style='width:500px;height:600px'></div>
+    <div class="break"></div>
+	</div>
+</div>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=%%config:google_maps_key%%&sensor=false"></script>
+<script type="text/javascript"> 
+//<![CDATA[ 
+	var itineraryStores = Array();
+	%%events%%
+	%%stores%%
+	var minZ = 11;
+	var maxZ = 17;
+	var map = null;
+	var geocoder = null;
+	var polyLine = null;
+	var allowedBounds = Array(3);
+	var directions = null;
+	var google_route = "";
+	var map;
+	function CustomGetTileUrl(a,b) {
+		var z = 17 - b;
+		var f = "/maps/l"+b+"/l"+b+"_"+a.x+"_"+a.y+".png";
+		return f;
+	}
+
+function initializexx() {
+        var myOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("mapx"),
+            myOptions);
+      }
+
+	function initialize() {
+		var latlng = new google.maps.LatLng(43.125, -79.35);
+		var myOptions = {
+			zoom: minZ,
+			center: latlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById("mapx"), myOptions);
+		geocoder = new google.maps.Geocoder();
+	}
+
+	function checkBounds() {
+		// Perform the check and return if OK
+		var z = map.getZoom() - minZ;
+		if (allowedBounds[z].contains(map.getCenter())) {
+			return;
+		}
+		// It`s not OK, so find the nearest allowed point and move there
+		var C = map.getCenter();
+		var X = C.lng();
+		var Y = C.lat();
+
+		var AmaxX = allowedBounds[z].getNorthEast().lng();
+		var AmaxY = allowedBounds[z].getNorthEast().lat();
+		var AminX = allowedBounds[z].getSouthWest().lng();
+		var AminY = allowedBounds[z].getSouthWest().lat();
+
+		if (X < AminX) {X = AminX;}
+		if (X > AmaxX) {X = AmaxX;}
+		if (Y < AminY) {Y = AminY;}
+		if (Y > AmaxY) {Y = AmaxY;}
+		//alert ("Restricting "+Y+" "+X);
+		map.setCenter(new GLatLng(Y,X));
+	}
+	
+	function openMarker(marker, info, event) {
+		var w = new google.maps.InfoWindow();
+		w.setContent(info);
+		w.setPosition(event.latLng);
+		w.open(map);
+	}
+
+	function setPt(point, info, image) {
+		if (point) {
+			var marker = new google.maps.Marker({
+				position: point,
+				animation: google.maps.Animation.DROP,
+				map: map,
+				icon: image
+			});
+			google.maps.event.addListener(marker,'click',function (event) {
+				openMarker(this, info, event);
+			});
+		}
+	}
+
+	function showAddress(address, info, image, lat, lng) {
+		info = info.replace("<br/><br/>","<br/>");
+		if (geocoder) {
+			if (lat && lng && (lat != 0 && lng != 0)) {
+				var a = "<a class='directions arrow' target='_new' href='http://maps.google.com/maps?f=d&hl=en&ie=UTF8&daddr=".concat(escape("(".concat(lat,",",lng,")"))).concat("'>Directions</a>");
+				info += a;
+				setPt(new google.maps.LatLng(lat,lng), info, image);
+			}
+			else {
+				geocoder.geocode( { 'address': address}, function(results, status) {
+					if (status == google.maps.GeocoderStatus.OK) {
+						setPt(results[0].geometry.location, info, image);
+					}
+				});
+			}
+		}
+	}
+	$(document).ready(function() {
+		initialize();
+
+		for(i = 0; i < itineraryStores.length; i++) {
+			var s = itineraryStores[i];
+			showAddress(s.address, s.info, s.marker, s.latitude, s.longitude );
+		}
+
+	});
+//]]>
+</script>
