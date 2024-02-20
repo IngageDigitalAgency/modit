@@ -1,0 +1,56 @@
+<table aria-label="" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:12%;"><img class="def_field_image" src="http://%%FULLDOMAIN%%/images/logos/kjv-courier.jpg" alt="KJV Courier" style="max-width:100px;" /></td>
+		<td style="width:55%;"> </td>
+		<td><strong>1032396 Ontario Ltd<br/>KJV Courier Service</strong><br/>3858 Chesswood Drive<br/>Downsview, ON M3J 2W6<br/>Phone: (416) 398-5155<br/>Fax: (416) 398-7077</td>
+	</tr>
+</table>
+<hr/>
+<table aria-label="" style="width:100%;font-size:12px;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:50%;font-size:14px;">
+			<strong>%%member:company%%</strong><br/>
+			%%address:line1%%<br/>
+<!if(strlen("%%address:line2%%")>0)!>
+			%%address:line2%%<br/>
+<!fi!>
+			%%address:city%%, %%address:provinceCode%% %%address:postalcode%%
+		</td>
+		<td style="width:50%;font-size:14px;text-align:right;">
+			Invoice #: <strong>%%qb_invoice_id%%</strong><br/>
+			Invoice Date: <strong>%%invoice_date%%</strong>
+		</td>
+	</tr>
+</table>
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE SUMMARY</strong></div>
+<table aria-label="" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr><td style="width:25%;">Total Orders:</td><td style="width:15%;text-align:right;">%%count%%</td><td style="width:60%;"></td></tr>
+	<tr><td>Subtotal:</td><td style="text-align:right;">%%subtotal%%</td></tr>
+	<tr><td>Taxes:</td><td style="text-align:right;">%%taxes%%</td><td></td></tr>
+<!if("%%paid_amount%%"!="$0.00")!>
+	<tr><td>Total:</td><td style="text-align:right;"><strong>%%total%%</strong></td><td></td></tr>
+	<tr><td>Paid:</td><td style="text-align:right;"><strong>%%paid_amount%%</strong></td><td></td></tr>
+	<tr style="background-color:darkgray;color:#ffffff;"><td>Balance:</td><td style="text-align:right;"><strong>%%balance%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!else!>
+	<tr style="background-color:darkgray;color:#ffffff;"><td>Total:</td><td style="text-align:right;"><strong>%%total%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!fi!>
+</table>
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE DETAILS:</strong></div>
+%%orders%%
+<hr/>
+<div style="font-size:16px;"><strong>INVOICE SUMMARY</strong></div>
+<table aria-label="" style="width:100%;font-size:14px;" cellpadding="0" cellspacing="0">
+	<tr><td style="width:25%;">Total Orders:</td><td style="width:15%;text-align:right;">%%count%%</td><td style="width:60%;"></td></tr>
+	<tr><td>Subtotal:</td><td style="text-align:right;">%%subtotal%%</td></tr>
+	<tr><td>Taxes:</td><td style="text-align:right;">%%taxes%%</td><td></td></tr>
+<!if("%%paid_amount%%"!="$0.00")!>
+	<tr><td>Total:</td><td style="text-align:right;"><strong>%%total%%</strong></td><td></td></tr>
+	<tr><td>Paid:</td><td style="text-align:right;"><strong>%%paid_amount%%</strong></td><td></td></tr>
+	<tr style="background-color:darkgray;color:#ffffff;"><td>Balance:</td><td style="text-align:right;"><strong>%%balance%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!else!>
+	<tr style="background-color:darkgray;color:#ffffff;"><td>Total:</td><td style="text-align:right;"><strong>%%total%%</strong></td><td style="text-align:right">Payment Due Upon Receipt HST #13558 6618 RT</td></tr>
+<!fi!>
+</table>
+<hr/>

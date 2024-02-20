@@ -1,0 +1,115 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://fedex.com/ws/rate/v8">
+   <SOAP-ENV:Body>
+      <RateRequest>
+         <WebAuthenticationDetail>
+            <UserCredential>
+               <Key>p7sPy4Sctm7XZ8gx</Key>
+               <Password/>
+            </UserCredential>
+         </WebAuthenticationDetail>
+         <ClientDetail>
+            <AccountNumber>"Input Your Information"</AccountNumber>
+            <MeterNumber>"Input Your Information"</MeterNumber>
+            <ClientProductId>WBUS</ClientProductId>
+            <ClientProductVersion>0200</ClientProductVersion>
+         </ClientDetail>
+         <TransactionDetail>
+            <CustomerTransactionId>Rate  DG HAL</CustomerTransactionId>
+         </TransactionDetail>
+         <Version>
+            <ServiceId>crs</ServiceId>
+            <Major>8</Major>
+            <Intermediate>0</Intermediate>
+            <Minor>0</Minor>
+         </Version>
+         <RequestedShipment>
+            <ShipTimestamp>${=  String.format('%tF', new Date() )}T09:30:47-05:00</ShipTimestamp>
+            <DropoffType>REGULAR_PICKUP</DropoffType>
+            <ServiceType>PRIORITY_OVERNIGHT</ServiceType>
+            <PackagingType>YOUR_PACKAGING</PackagingType>
+            <TotalWeight>
+               <Units>LB</Units>
+               <Value>50.0</Value>
+            </TotalWeight>
+            <Shipper>
+               <AccountNumber>"Input Your Information"</AccountNumber>
+               <Contact>
+                  <CompanyName>FedEx-WAPI</CompanyName>
+                  <PhoneNumber>1234567890</PhoneNumber>
+               </Contact>
+               <Address>
+                  <StreetLines>SN2000 Test Meter 8</StreetLines>
+                  <StreetLines>10 Fedex Parkway</StreetLines>
+                  <City>Texas</City>
+                  <StateOrProvinceCode>TX</StateOrProvinceCode>
+                  <PostalCode>73301</PostalCode>
+                  <CountryCode>US</CountryCode>
+               </Address>
+            </Shipper>
+            <Recipient>
+               <AccountNumber>"Input Your Information"</AccountNumber>
+               <Contact>
+                  <PersonName>Recipient Contact</PersonName>
+                  <PhoneNumber>1234567890</PhoneNumber>
+               </Contact>
+               <Address>
+                  <StreetLines>Recipient Address Line 1</StreetLines>
+                  <StreetLines>Recipient Address Line 2</StreetLines>
+                  <City>Collierville</City>
+                  <StateOrProvinceCode>TN</StateOrProvinceCode>
+                  <PostalCode>38017</PostalCode>
+                  <CountryCode>US</CountryCode>
+               </Address>
+            </Recipient>
+            <ShippingChargesPayment>
+               <PaymentType>SENDER</PaymentType>
+               <Payor>
+                  <AccountNumber>"Input Your Information"</AccountNumber>
+                  <CountryCode>USD</CountryCode>
+               </Payor>
+            </ShippingChargesPayment>
+            <SpecialServicesRequested>
+               <SpecialServiceTypes>HOLD_AT_LOCATION</SpecialServiceTypes>
+               <HoldAtLocationDetail>
+                  <PhoneNumber>123456789</PhoneNumber>
+                  <Address>
+                     <StreetLines>HAL Address</StreetLines>
+                     <City>Wall Street</City>
+                     <StateOrProvinceCode>NY</StateOrProvinceCode>
+                     <PostalCode>10041</PostalCode>
+                     <CountryCode>US</CountryCode>
+                  </Address>
+               </HoldAtLocationDetail>
+            </SpecialServicesRequested>
+            <RateRequestTypes>ACCOUNT</RateRequestTypes>
+            <PackageCount>1</PackageCount>
+            <PackageDetail>INDIVIDUAL_PACKAGES</PackageDetail>
+            <RequestedPackageLineItems>
+               <SequenceNumber>1</SequenceNumber>
+               <Weight>
+                  <Units>LB</Units>
+                  <Value>20.0</Value>
+               </Weight>
+               <Dimensions>
+                  <Length>12</Length>
+                  <Width>12</Width>
+                  <Height>12</Height>
+                  <Units>IN</Units>
+               </Dimensions>
+               <SpecialServicesRequested>
+                  <SpecialServiceTypes>DANGEROUS_GOODS</SpecialServiceTypes>
+                  <DangerousGoodsDetail>
+                     <Accessibility>ACCESSIBLE</Accessibility>
+                  </DangerousGoodsDetail>
+               </SpecialServicesRequested>
+               <ContentRecords>
+                  <PartNumber>123445</PartNumber>
+                  <ItemNumber>kjdjalsro1262739827</ItemNumber>
+                  <ReceivedQuantity>12</ReceivedQuantity>
+                  <Description>ContentDescription</Description>
+               </ContentRecords>
+            </RequestedPackageLineItems>
+         </RequestedShipment>
+      </RateRequest>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

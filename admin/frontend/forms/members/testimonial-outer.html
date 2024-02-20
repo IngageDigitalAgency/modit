@@ -1,0 +1,30 @@
+<div class="home-testimonial">
+    <div class='title'>%%title%%</div>
+    <div class="testimonials">
+        <div id="testimonial-slider-1" class="flexslider">
+            <ul class="slides">
+            	%%members%%
+            </ul><!--end:slides-->
+        </div><!--end:flexslider-->
+    </div><!--end:testimonials-->
+</div><!--end:span3-->                    
+<script type='text/javascript'>
+$('#testimonial-slider-1 li').each(function(idx,el) {
+	var t = $(el).find('.hidden p').html();
+	$(el).find('.text').html(t);
+});
+$(window).load(function() {
+	var ht = 0;
+	$('#testimonial-slider-1 li').each(function(idx,el) {
+		if ($(el).height() > ht) ht = $(el).height();
+	});
+	$('#testimonial-slider-1 ul').css('height',ht+'px');
+	$('.home-testimonial .slides').anythingSlider({
+		buildArrows:false,
+		buildNavigation:false,
+		buildStartStop:false,
+		hashTags:false,
+		autoPlay:true
+	});
+});
+</script>

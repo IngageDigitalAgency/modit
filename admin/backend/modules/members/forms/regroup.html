@@ -1,0 +1,42 @@
+<div class="container-fluid">
+    <h3>Move a Company</h3>
+    <div class="row">%%errorMessages%%</div>
+    <form method="post" action="/modit/ajax/regroup/members">
+        <div class="row">
+            <div class="col-xs-16">
+                <label>Company</label>
+                %%m_id%%
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-16">
+                <label>From Group</label>
+                %%from_group%%
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-16">
+                <label>To Group</label>
+                %%to_group%%
+            </div>
+        </div>
+        %%do_it%%%%change%%%%regroup%%
+    </form>
+</div>
+<script type="text/javascript">
+doRegroup = function(el) {
+    var f = $(el).closest("form");
+    $(f).ajaxSubmit({
+        success: function( obj, status, xhr ) {
+            try {
+                h = JSON.parse(obj);
+                showPopup(h.html);
+                var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+            }
+            catch(err) {
+                showPopupError(err.message);
+            }
+        }
+    })
+}
+</script>

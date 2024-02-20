@@ -1,0 +1,39 @@
+<div id="mobile-service">
+	<div id="mobile-header" class="bottom20">
+		<div class="container">
+			<div class="row">
+<!if("%%service_type%%"=="P")!>
+				<div class="col-xs-2"><a href="/mobile-pickup?c_id=%%request:c_id%%"><em class="fa fa-chevron-left"></em></a></div>
+<!else!>
+				<div class="col-xs-2"><a href="/mobile-delivery?c_id=%%request:c_id%%"><em class="fa fa-chevron-left"></em></a></div>
+<!fi!>
+				<div class="col-xs-12">ORDER: %%order_id%%</div>
+				<div class="col-xs-2"><em class="fa fa-search"></em></div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="packages">
+			<div class="row">
+				<div class="col-xs-16 text-center">%%errorMessage%%</div>
+			</div>
+			<form method="post">
+				<div class="row ul bottom10">
+					<div class="col-xs-16"><label>Add/Edit a Service</label></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-16 form-group">%%product_id%%</div>
+				</div>
+				<div class="row ul bottom20">
+					<div class="col-xs-6 form-group">%%quantity%%</div>
+					<div class="col-xs-4 top5">QTY</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-3">
+						<input type="submit" class="btn red-bg form-control" value="SAVE CHANGES" />%%l_id%%%%o_id%%%%editServiceLine%%%%c_id%%
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div id='categoryListing'>
+	<div class='header'>
+		<div class='left'>
+			<h2 class='title'>Search Results</h2>
+		</div>
+		<div class='right'>
+		</div>
+		<div class='clearfix'></div>
+	</div>		
+	<div class='products'>
+		%%products%%
+		<div class='clearfix'></div>
+	</div>
+	<div class='pagination'>
+		<form method='post' action=''>
+			%%pagination%%
+			<input type='hidden' name='productSearchForm' value='1' />
+			%%productSearch%%
+			<input type='hidden' name='pagenum' value='0' />
+		</form>
+	</div>
+</div>
+<script type='text/javascript'>
+function pagination(page,obj) {
+	var frm = $(obj).closest('form');
+	frm.find('input[name="pagenum"]')[0].value = page;
+	frm.submit();
+}
+</script>

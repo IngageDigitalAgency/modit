@@ -1,0 +1,76 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+ol.coupondraggable,
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+#showFolderContent .image {
+	border: 1px solid;
+	padding:5px;
+}
+#showFolderContent img {
+	max-width: 150px;
+	max-height:150px;
+}
+
+.imageDragger {
+	height:20px;
+	width: 100px;
+	border:1px solid
+}
+
+.makeMeDraggable.ui-draggable-dragging {
+	height:20px;
+	width: 100px;
+	font-style:italic;
+}
+
+#contentTree a.active {
+	font-style: italic;
+	font-weight:bold;
+}
+
+.propertyEditing #tabs table {
+	width:100%;
+}
+
+a {
+	text-decoration:none;
+}
+
+.couponDragger {
+		display:none;
+}
+.couponDragger .id {
+	display:none;
+}
