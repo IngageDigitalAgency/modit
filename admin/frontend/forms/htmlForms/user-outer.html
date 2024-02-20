@@ -1,0 +1,21 @@
+<!if(strlen("%%session:user:info:firstname%%")>0)!>
+<div class="row">
+	<div class="icon p-img-scale-height col-xs-3 dropdown">
+		<a href="#" data-toggle="dropdown" class="dropdown-toggle"><img src="/images/icons/user.png" alt="User Logo" /></a>
+		<ul id="user-menu" class="dropdown-menu">
+			<li><a href="/order-history">My Account</a></li>
+			<li><a href="/logout">Logout</a></li>
+		</ul>
+	</div>
+	<div class="name col-xs-13">
+		%%session:user:info:firstname%% %%session:user:info:lastname%%
+	</div>
+</div>
+<!else!>
+<div class="row">
+	<div class="icon p-img-scale-height col-xs-3"><img src="/images/icons/user.png" alt="User Logo" /></div>
+	<div class="name col-xs-13">
+		<a href="/login">Login</a> to continue
+	</div>
+</div>
+<!fi!>

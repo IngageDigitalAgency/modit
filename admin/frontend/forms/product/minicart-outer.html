@@ -1,0 +1,30 @@
+<div id="mini-cart">
+	<div class='header'>
+		%%header%%
+	</div>
+	<div class='products'>
+		<div class='title'>
+			<div class='wrapper'>Latest Products Added</div>
+		</div>
+		<div class='list'>
+			%%products%%
+		</div>
+		<div class='links'>
+			<div class='total'>Total: <span>%%formattedTotal%%</span></div>
+			<a href='/my-cart'>View Cart</a>
+			<a href='/checkout'>Checkout</a>
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+$('#mini-cart .products').hide();
+function cartToggle(el) {
+	var i = $(el).find('i')[0];
+	if (i.className.indexOf('up') < 0)
+		$(i).switchClass('icon-caret-down','icon-caret-up');
+	else
+		$(i).switchClass('icon-caret-down','icon-caret-up');
+	$('#mini-cart .products').animate({height:'toggle',speed:'slow'});
+}
+$('#mini-cart .product:odd').addClass('odd');
+</script>

@@ -1,0 +1,87 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Subscriber</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">History</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+<table aria-label="Main Info" style='width:100%'>
+<tr><th>Company:</th><td>%%company%%</td></tr>
+					<tr>
+						<th>First Name:</th><td>%%firstname%% <span class='errorMessage'>%%firstnameError%% %%tooltip:FirstName%%</span></td>
+					</tr>
+					<tr>
+						<th>Last Name:</th><td>%%lastname%% %%lastnameError%% %%tooltip:LastName%%</td>
+					</tr>
+					<tr>
+						<th>Email:</th><td>%%email%% %%emailError%% %%tooltip:Email%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%% %%created_ip%%</td>
+					</tr>
+					<tr>
+						<th>Unsubscribed:</th><td>%%unsubscribed%% %%unsubscribed_ip%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+					<tr>
+						<th>Testing:</th><td>%%testing%% <span class='errorMessage'>%%testingError%% %%tooltip:Testing%%</span></td>
+					</tr>
+					<tr>
+						<th>Member of Groups:</th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+<table aria-label="History" class='listing'>
+					<thead>
+						<tr>
+							<th>Newsletter</th>
+							<th>Date Sent</th>
+						</tr>
+					</thead>
+					%%history%%
+				</table>
+			</div>
+			<div class="form-actions">
+				%%submit%%
+				<div class='clearfix'></div>
+			</div>
+			<input type='hidden' name='a_id' value='%%id%%'/> 
+			%%addContent%%
+			%%destFoldersSelect%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#content-tabs" ).tabs();
+$('#destFolders').chosen();
+$( "ol.draggable > li" ).draggable({
+	helper: folderCopyHelper
+});
+$( "ol.draggable" ).droppable({
+	drop: function( event, ui ) {
+		folderDrop(this,event,ui);
+	}
+});
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.popovers').popover();
+</code>

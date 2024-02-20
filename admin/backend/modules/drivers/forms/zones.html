@@ -1,0 +1,50 @@
+%%heading%%
+<div class='searchForm' id="variableContent">
+	<div class='status'>%%statusMessage%%</div>
+	<div class='subtitle'>Delivery Zones</div>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/zones/drivers","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				%%opt_quicksearch%% %%quicksearch%% %%vehicle_type%%
+				%%opt_name%% %%name%% %%enabled%% %%deleted%%
+			</div>
+			<div id='articleList'>
+<table aria-label="" class='listing'>
+					<thead>
+						<tr>
+							<th class="a-left"><span onclick="sort(this,'z.name');return false;">Zone Name</span></th>
+							<th class="a-left"><span onclick="sort(this,'dname')">Driver</span></th>
+							<th><span onclick="sort(this,'v.name')">Vehicle Type</span></th>
+							<th>Enabled</th>
+							<th></th>
+						</tr>
+					</thead>
+					%%zones%%
+				</table>
+			</div>
+			<input type="hidden" name="zones" value="1"> %%sort%% %%sortDir%%
+		</form>
+		<a class="btn btn-primary" href="#" onclick="zoneEdit(0);return false;">Add a Delivery Zone</a>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+sort = function(el,fld) {
+	s = $("#%%form:name%%").find("input[name='sort']");
+	d = $("#%%form:name%%").find("input[name='sortDir']");
+	if ($(s).val() == fld) {
+		if ($(d).val() == 'asc')
+			$(d).val('desc');
+		else {
+			$(d).val('asc');
+		}
+	}
+	else {
+		$(s).val(fld);
+		$(d).val('asc');
+	}
+	$("#%%form:name%%").submit();
+}
+initDrivers();
+//]]> 
+</script> 

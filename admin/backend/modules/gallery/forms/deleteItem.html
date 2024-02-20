@@ -1,0 +1,12 @@
+<div class='title'>Delete an Image</div>
+<form method='%%form:method%%' action='%%form:action%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/deleteImage/gallery","popup");return false;' id='%%form:name%%'>
+	<div class='del-opt'>%%cancel%% Oops, Cancel delete</div>
+	<div class='del-opt'>%%one%% Delete from this folder only</div>
+	<div class='del-opt'>%%all%% Delete from all folders</div>
+	<div class='errorMessage'>Note: This does not delete the image from the web site</div>
+	<input type='hidden' name='j_id' value='%%j_id%%' />
+	<input type='hidden' name='i_id' value='%%i_id%%' />
+	<input type='submit' value='Submit' class='btn btn-primary' />
+	%%deleteImage%%
+	<div class='break'></div>
+</form>

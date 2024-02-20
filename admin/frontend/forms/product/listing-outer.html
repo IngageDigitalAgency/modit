@@ -1,0 +1,19 @@
+<div id='products' class='wrapper border1'>
+	%%products%%
+	<div class='clearfix'></div>
+	<form method='post'>
+		%%pagination%%
+		<input type='hidden' value='%%pagenum%%' name='pagenum' />
+	</form>
+</div>
+<script type='text/javascript'>
+	function pagination(pg,obj) {
+		$('input[name=pagenum]').val(pg);
+		formSubmit(obj);
+	}
+	$(document).ready(function() {
+		balanceItems('#products .link1');
+		balanceItems('#products .teaser');
+		balanceItems('#products article');
+	});
+</script>
