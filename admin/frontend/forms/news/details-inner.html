@@ -1,0 +1,9 @@
+<div class='article'>
+	<h2 class='entry-title'>%%title%%</h1>
+	<h3 class='sub-title'>%%subtitle%%</h3>
+	<div class='posted'>Posted on <span>%%formattedCreated%%</span></div>
+<!if(strlen("%%video:video_id%%")>0)!>
+	%%video:embed_code,false%%
+<!fi!>
+	<div class='description tinymce'>%%body%%</div>
+</div>

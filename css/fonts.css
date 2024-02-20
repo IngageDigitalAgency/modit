@@ -1,0 +1,47 @@
+/**********************************************************************************************
+	Website		: VitaTree Nutritionals
+	Author		: Ecko Creative Services
+	URL			: vitatree.com
+	
+	Created		: August, 2014
+	
+	Copyright (c) Ecko Creative Services.
+	
+***********************************************************************************************
+	
+	Fonts
+
+***********************************************************************************************/
+
+@font-face {
+	font-family: 'ProximaNova'; 
+	src:url('/fonts/proximanova-regular-webfont.eot'); 
+	src:url('/fonts/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'), 
+		url('/fonts/proximanova-regular-webfont.svg#Proxima Nova') format('svg'), 
+		url('/fonts/proximanova-regular-webfont.woff') format('woff'), 
+		url('/fonts/proximanova-regular-webfont.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GillSans'; 
+	src:url('/fonts/gillsansstd-webfont.eot'); 
+	src:url('/fonts/gillsansstd-webfont.eot?#iefix') format('embedded-opentype'), 
+		url('/fonts/gillsansstd-webfont.svg#GillSans') format('svg'), 
+		url('/fonts/gillsansstd-webfont.woff') format('woff'), 
+		url('/fonts/gillsansstd-webfont.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'GilLSansBold'; 
+	src:url('/fonts/gillsansstd-boldcondensed-webfont.eot'); 
+	src:url('/fonts/gillsansstd-boldcondensed-webfont.eot?#iefix') format('embedded-opentype'), 
+		url('/fonts/gillsansstd-boldcondensed-webfont.svg#GilLSans Bold') format('svg'), 
+		url('/fonts/gillsansstd-boldcondensed-webfont.woff') format('woff'), 
+		url('/fonts/gillsansstd-boldcondensed-webfont.ttf') format('truetype'); 
+	font-weight: normal; 
+	font-style: normal;
+}

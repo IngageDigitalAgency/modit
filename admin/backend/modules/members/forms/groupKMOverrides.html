@@ -1,0 +1,32 @@
+<div class="title">Group KM Overrides</div>
+<div class="row top20">
+    <div class="col-xs-16">%%opt_id%%</div>
+</div>
+<table aria-label="" class="table">
+    <thead>
+        <tr>
+            <th>Km Max</th><th>In Zone +/-</th><th>Base</th><th>Adjusted</th><th>Out of Zone +-/</th><thBase</th><th>Adjusted</th><th></th>
+        </tr>
+    </thead>
+    <tbody>
+        %%overrides%%
+    </tbody>
+</table>
+<div id="kmOverrides"></div>
+<script type="text/javascript">
+getGroupProdOverride = function(el, j_id) {
+    $.ajax({
+        url: "/modit/ajax/groupKMOverrides/members",
+        data: { j_id: j_id, opt_id : $(el).val(), groupKMOverrides:1 },
+        success: function( obj, status, xhr ) {
+            try {
+                h = JSON.parse(obj);
+                showAltPopup(h.html);
+            }
+            catch(err) {
+                showAltPopupError(err.message);
+            }
+        }
+    })
+}
+</script>
