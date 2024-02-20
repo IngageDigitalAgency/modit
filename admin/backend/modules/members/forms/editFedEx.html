@@ -1,0 +1,20 @@
+%%errorMessage%%
+<div class="title">Add/Edit a Fed-Ex Group Product</div>
+<form id="productsForm" method="POST" onsubmit='formCheck("productsForm","/modit/ajax/editFedEx/members","altPopup");return false;' class='form-inline'>
+<table aria-label="">
+		<tr>
+			<th>Product:</th><td>%%product_id%%%%name%%</td>
+		</tr>
+		<tr>
+			<th>Rate (+/-%):</th><td>%%fedex%% <span>%%fedex_effective%%</span></td>
+		</tr>
+		<tr>
+			<th>Minimum Charge (Service Only, $):</th><td>%%minimum_charge%%</td>
+		</tr>
+		<tr>
+			<th>Pickup Cutoff Time:</th><td>%%cutoff_time%%</td>
+		</tr>
+	</table>
+	%%editProduct%% %%member_id%% %%isgroup%% %%p_id%%
+	<div class="form-actions">%%save%%</div>
+</form>

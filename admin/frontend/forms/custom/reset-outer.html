@@ -1,0 +1,33 @@
+<!if(DEV==true)!>
+<div id="resetDates">
+	<div class="row top40">
+		<div class="col-md-6 col-md-offset-5 text-center">
+			<div class="alert alert-warning">Reset the Pickup/Delivery dates to today</div>
+			%%errorMessage%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-5 text-center">
+			<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+				%%resetBtn%%
+				%%resetDates%%
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+resetAllDates = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#resetDates").replaceWith(obj.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>
+<!fi!>

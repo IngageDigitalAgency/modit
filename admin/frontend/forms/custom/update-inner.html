@@ -1,0 +1,76 @@
+<div class="form">
+	<form method="post" action="">
+		%%errorMessage%%
+		<div class="row form-group">
+			<div class="col-xs-10">
+				%%addressList%%
+			</div>
+			<div class="col-xs-6">
+				<button class="form-control btn btn-black" onclick="addAddress();return false;">New Address</button>
+			</div>
+		</div>
+		<div class="row form-group">
+			<div class="col-xs-16">
+				<div class="field">%%company%%</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8">
+				<div class="form-group">
+					<div class="field">%%firstname%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%lastname%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%email%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%postalcode%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field" id="provinceWrapper">%%province_id%%</div>
+				</div>
+			</div>
+			<div class="col-xs-8">
+				<div class="form-group">
+					<div class="field">%%line1%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%line2%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%city%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%phone1%%</div>
+				</div>
+				<div class="form-group">
+					<div class="field">%%country_id%%</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-5 form-group">
+				<div class="field">%%residential%% <span>RESIDENTIAL</span></div>
+			</div>
+			<div class="col-xs-5 form-group">
+				<div class="field">%%address_book%%<span>SAVE TO BOOK</span></div>
+			</div>
+			<div class="col-xs-6 form-group">
+				<div class="field">%%save%%</div>
+			</div>
+		</div>
+		%%addressEditing%%
+		%%a_id%%
+	</form>
+</div>
+<script type="text/javascript">
+e = {"company":"%%companyError%%","firstname":"%%firstnameError%%","lastname":"%%lastnameError%%","email":"%%emailError%%",
+	"phone1":"%%phone1Error%%","line1":"%%line1Error%%","line2":"%%line2Error%%","city":"%%cityError%%","postalcode":"%%postalcodeError%%",
+	"country_id":"%%country_idError%%","province_id":"%%province_idError%%"};
+for(var v in e) {
+	f = "input[name='".concat(v,"']")
+	if (e[v] != "") $(f).addClass("alert-danger");
+}
+</script>

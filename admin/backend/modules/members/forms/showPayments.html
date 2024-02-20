@@ -1,0 +1,27 @@
+<div>
+	<div class='title'>Payment History</div>
+	<form method="post" onsubmit="formCheck_add('customerPayments','/modit/ajax/showPayments/members',$('#popup'));return false;" id="customerPayments">
+<table aria-label="" class='listing'>
+			<thead>
+				<tr>
+					<th>Cheque #</th>
+					<th>Entered</th>
+					<th>Amount</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%payments%%
+			</tbody>
+		</table>
+		%%pagination%%
+		%%search%%
+		%%m_id%%
+		%%pagenum%%
+		%%showPayments%%
+	</form>
+	<div class='clearfix'></div>
+</div>
+<script type="text/javascript">
+getUrl = function() { return "/modit/ajax/showPayments/members"; }
+</script>

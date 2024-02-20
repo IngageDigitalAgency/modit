@@ -1,0 +1,125 @@
+* {
+	font-family:Arial, sans-serif;
+	font-size:12px;
+	color:white;
+}
+.temp {
+	clear:both;
+}
+
+#wrapper {
+	width:685px;
+	height:340px;
+	background-image:url(/admin/images/login/login-box.png);
+	background-size:cover;
+	background-repeat:no-repeat;
+	padding:25px;
+	-moz-box-shadow: 0 0 30px 5px #999;
+	-webkit-box-shadow: 0 0 30px 5px #999;
+	background-color: #ebebeb;
+	margin:0 auto;
+}
+
+#header {
+	display:none;
+}
+
+#wrapper .def_field_submit {
+	background-image:url(/admin/images/login/button.png);
+	width:100px;
+	height:40px;
+	font-size:16pt;
+	font-weight:normal;
+	float:right;
+}
+
+.title {
+	font-size:40px;
+	font-weight:bold;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #fff;
+	text-shadow: 0px 2px 3px #000;
+	margin-top:10px;
+}
+
+td.left, td.right {
+	width:49%;
+}
+
+table.main {
+	width:100%;
+	height:350px;
+	padding-bottom:5px;
+}
+
+td.left div.left {
+	text-align:center;
+	width:100%;
+	padding:30px;
+}
+div.right {
+	float:right;
+	width:49%;
+}
+div.left {
+	float:left;
+	width:49%;
+}
+div.left {
+	text-align:center;
+}
+
+.def_field_input {
+	width:258px;
+	height:30px;
+	background-color:#114992;
+	color:#ffffff;
+}
+
+.agreement .left {
+	width:60%;
+}
+.agreement .right {
+	width:39%;
+}
+.site-logo {
+	background-color:white;
+	width:100%;
+	height:172px;
+}
+.site-logo img {
+	max-width:312px;
+	max-height:172px;
+}
+
+#page {
+	width:100%;
+	background-color: #ebebeb;
+	margin: 2px auto 0 auto;
+	padding-top:100px;
+}
+
+.text {
+	font-family: GillSans, sans-serif;
+	text-transform:uppercase;
+	font-size-adjust: 0.7;
+}
+.legal {
+	font-family: GillSans, sans-serif;
+	font-size: 12px;
+	line-height: 16px;
+	color: #FFFFFF;
+	text-align: left;
+	padding-top: 20px;
+}
+
+body {
+	background-color: #ebebeb;
+	 margin: 2px auto 0 auto;
+}
+
+th, td {
+	padding: 0;
+}
+
+#wrapper form { margin:0; }

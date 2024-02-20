@@ -1,0 +1,11 @@
+<tr>
+	<td class="text-right">%%qb_invoice_id%%</td>
+	<td class="text-center">%%invoice_date%%</td>
+	<td class="text-right">%%total%%</th>
+	<td class="text-right">%%ct%%</td>
+	<td class="text-center"><a href="#" onclick="getInvoice(%%id%%);return false;"><em class="fa fa-eye"></em></a></td>
+	<td class="text-center"><a href="/invoice-pdf?i_id=%%id%%" target="_blank"><em class="fa fa-file-pdf-o"></em></a></td>
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+	<td class="text-center">%%email%%</td>
+<!fi!>
+</tr>

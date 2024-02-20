@@ -1,0 +1,16 @@
+<tr>
+	<td style="text-align:right;width:8%;">%%order_id%%</td>
+	<td style="width:19%;">%%name%%</td>
+<!if("%%service_type%%"=="P")!>
+	<td style="width:10%;">Pickup</td>
+<!else!>
+	<!if("%%service_type%%"=="D")!>
+	<td style="width:10%;">Delivery</td>
+	<!else!>
+	<td style="width:10%;">Both</td>
+	<!fi!>
+<!fi!>
+	<td style="width:27%;">%%pu_address:line1%% %%pu_address:line2%%</td>
+	<td style="width:27%;">%%del_address:line1%% %%del_address:line2%%</td>
+	<td style="text-align:right;width:10%;">%%paidAmt%%</td>
+</tr>

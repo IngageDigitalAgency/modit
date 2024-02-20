@@ -1,0 +1,15 @@
+<tr>
+	<td>%%bill_date%%</td>
+	<td>%%start_date%%</td>
+	<td>%%end_date%%</td>
+	<td class='a-right'>%%billed%%</td>
+	<td class='a-right'>%%warnings%%</td>
+	<td class='a-right'>%%errors%%</td>
+<!if("%%started%%"=="0000-00-00 00:00:00")!>
+	<td><a href='#' onclick='addSchedule(%%id%%);'><em class='icon-edit'></em></a></td>
+	<td><a href='#' onclick='removeSchedule(%%id%%);'><em class='icon-trash'></em></a></td>
+<!else!>
+	<td></td>
+	<td></td>
+<!fi!>
+</tr>

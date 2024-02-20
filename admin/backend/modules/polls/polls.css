@@ -1,0 +1,123 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.productInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.def_field_smalltext {
+	width:75px;
+}
+
+a {
+	text-decoration:none;
+}
+
+#tabs table {
+	width:100%;
+}
+
+#tabs table.content th {
+	width:30%;
+	text-align:left;
+}
+
+.productDragger {
+	background-image: url("/admin/images/dragger.png");
+	background-color:lightGray;
+	width:14px;
+	height:14px;
+}
+#comparator .id,
+.productDragger .id {
+	display:none;
+}
+
+#productArticleList th {
+	text-align:center;
+}
+table.info th {
+	text-align:center;
+}
+.right {
+	float:left;
+}
+#tabs-4 .picker .left,
+#tabs-4 .picker .right {
+	padding:10px;
+}
+div.ids {
+	display:none;
+}
+#questionChart .def_field_small {
+	width:50px;
+}
+#pollComparison .question td {
+	font-style:italic;
+	font-weight:bold;
+}
+#pollComparison .answer .total,
+#pollComparison .answer .stat {
+	text-align:right;
+}
+#responseForm .heading {
+	width:100%;
+}
+#responseForm .heading_title {
+	float:left;
+}
+#responseForm .btn.dropdown-toggle {
+	padding:8px 12px;
+}
+.dropdown-menu table {
+	margin:10px 20px 0;
+}
+.dropdown-menu .closer {
+	right:0;
+}
+.dropdown-menu {
+	border-radius:4px 0 4px 4px;
+	min-width:300px;
+}
+.dropdown-menu .centered {
+    border-bottom: 1px solid #EEEEEE;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+#responseDetails .heading_options .buttons {
+	float:left;
+	padding-right:10px;
+}
+#responseDetails .heading_options .buttons .btn {
+	padding:8px 12px;
+}
+#responseDetails .heading {
+	padding-bottom:10px;
+}
