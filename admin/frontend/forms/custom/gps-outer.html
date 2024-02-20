@@ -1,0 +1,33 @@
+<!if("0"=="1")!>
+<form method="post" action="/ajax/render" id="locForm">
+%%latitude%%%%longitude%%%%gpsLocation%%%%member_id%%%%delivery_id%%%%t_id%%
+</form>
+<script type="text/javascript">
+lat = 0;
+lng = 0;
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function errLog(data) {
+}
+getPos = function( position ) {
+	lat = position.coords.latitude;
+	lng = position.coords.longitude;
+	$("#locForm input[name='latitude']").val(lat);
+	$("#locForm input[name='longitude']").val(lng);
+}
+
+navigator.geolocation.getCurrentPosition( getPos, errLog, options );
+navigator.geolocation.watchPosition( getPos, errLog, options );
+
+refreshSchedule = function() {
+	$("#locForm").ajaxSubmit({
+		success: function( obj, status, xhr) {
+		}
+	});
+}
+m_timer = setInterval( refreshSchedule, 1*60*1000);
+</script>
+<!fi!>

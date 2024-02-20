@@ -1,0 +1,16 @@
+<div class="row response">
+	<div class="col-xs-4 top10">
+		<div>ORDER</div><div class="bottom20">%%order_id%%</div>
+<!if("%%service_type%%"=="P")!>
+		<img src="/images/icons/PICK%20UP%20%20ICON.png" alt="Pickup" />
+<!else!>
+		<img src="/images/icons/DELIVERY%20ICON.png" alt="Delivery" />
+<!fi!>
+	</div>
+	<div class="col-xs-12 top10">
+		<div>SCHEDULED: %%scheduled_date%%</div>
+		<div class="bottom10">Service: %%name%%</div>
+		<a href="/acknowledge?a_id=%%id%%" class="btn btn-info bottom10">RESPOND</a>
+		<div class="fw bottom10">%%dispatch_message%%</div>
+	</div>
+</div>

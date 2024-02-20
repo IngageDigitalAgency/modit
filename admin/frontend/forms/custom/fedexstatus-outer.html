@@ -1,0 +1,42 @@
+<div id="fedex-status" class="container-fluid bottom20">
+	<div class="row">
+		<div class="col-xs-16 text-center"><h2>Fedex Pickup/Deliveries</h2></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-16">
+<table aria-label="" class="table table-striped">
+<thead>
+<tr><th>Order #</th><th>Service</th><th>Packages</th><th>Pickup Address</th><th>P/U TIme</th><th>Delivery Address</th><th>Notes/Customs</th><th>Del Time</th></tr>
+</thead>
+				<tbody>
+%%rows%%
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<form method="post" action="/ajax/render">
+			<div class="col-xs-14">%%pagination%%%%pagenum%%%%t_id%%</div>
+			<div class="col-xs-2"><button class="btn btn-primary form-control" onclick="getInbound(this);return false;">Reload</button></div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+getInbound = function(el) {
+	$(el).closest("form").ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#fedex-status").replaceWith(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+window.setTimeout(getInbound,60*1*1000);
+fedexPagination = function(pg,el) {
+	$(el).closest("form").find("input[name='pagenum']").val(pg);
+	getInbound(el);
+}
+</script>

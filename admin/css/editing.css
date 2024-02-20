@@ -1,0 +1,19 @@
+footer,
+#content {
+	min-height: 100px;
+}
+.mceToolbar td {
+	padding:0px !important;
+}
+#moduleEditingPopupOverlay.wrapper {
+	background-image:none;
+}
+body .wrapper.main {
+	min-height:400px;
+}
+#moduleEditingPopup {
+	font-size:12px !important;
+}
+#login.loading {
+	top:34px !important;
+}

@@ -1,0 +1,39 @@
+<div class="container red-bg">
+	<div class="row">
+		<div class="col-xs-10 col-xs-offset-3 col-sm-6 col-sm-offset-5 p-img-scale-width"><img src="/images/logos/kjv-courier.jpg" alt="Logo" /></div>
+	</div>
+</div>
+<div class="container black-bg" id="mobile-login">
+	<form method="post" class="text-center">
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-2 col-lg-6 col-lg-offset-5 text-center">%%errorMessage%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-2 col-lg-6 col-lg-offset-5 form-group">%%username%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-2 col-lg-6 col-lg-offset-5 form-group">%%password%%<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-2 col-lg-6 col-lg-offset-5 text-right form-group"><a href="#" class="grey">Forgot Password</a></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-xs-offset-2 col-lg-6 col-lg-offset-5">%%submit%%%%loginForm%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 text-center top10 form-group"><span class="grey">If you don't have account call the office</span></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("body").addClass("black-bg");
+$(".toggle-password").click(function() {
+	$(this).toggleClass("fa-eye fa-eye-slash");
+	var input = $("#mobile-login .toggle");
+	if (input.attr("type") == "password") {
+		input.attr("type", "text");
+	} else {
+		input.attr("type", "password");
+	}
+});
+</script>

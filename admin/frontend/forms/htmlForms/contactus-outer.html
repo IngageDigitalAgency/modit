@@ -1,0 +1,40 @@
+<div id="contactus">
+	<div class="container">
+		%%alert%%
+		<div class="row">
+			<div class="col-xs-16 col-sm-8 form">
+				<h3>LEAVE A MESSAGE</h3>
+				%%form%%
+			</div>
+			<div class="col-xs-16 col-sm-8 info">
+				<h3>HOW TO FIND US</h3>
+				<div class="address">
+					%%config:mailing-address:company%%<br/>
+					%%config:mailing-address:line1%%<br/>
+					%%config:mailing-address:city%%<br/>
+					%%config:mailing-address:provinceCode%% %%config:mailing-address:postalcode%%<br/>
+					%%config:mailing-address:phone1%%
+				</div>
+				%%social%%
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+contactForm = function( el ) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#contactus").replaceWith(h.html);
+				if ($("#captchadiv").length > 0) {
+					grecaptcha.render("recaptcha",{"sitekey":"%%config:captcha:payload:public%%"});
+				}
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

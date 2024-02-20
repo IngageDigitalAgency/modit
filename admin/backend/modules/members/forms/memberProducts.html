@@ -1,0 +1,27 @@
+<table aria-label="">
+	<thead>
+		<tr>
+			<th class="centered">Name</th>
+			<th colspan="2" class="center">1st Zone</th>
+			<th colspan="2" class="center">Extra Zones</th>
+			<th colspan="2" class="center">Downtown Surcharge</th>
+			<th colspan="2" class="center">Km Min Charge</th>
+			<th colspan="2" class="center">Km Max Charge</th>
+			<th colspan="2" class="center">Km Rate</th>
+			<th colspan="2" class="center">Out Of Zone</th>
+			<th>Cutoff</th>
+			<th>Fuel Exempt</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		%%products%%
+	</tbody>
+</table>
+<button class="def_field_submit" onclick="editProduct(0,%%member_id%%,%%isgroup%%); return false;">Add a Group Product</button>
+<!if("%%isgroup%%"=="0")!>
+<button class="def_field_submit" onclick="initKMOverrides(%%member_id%%); return false;">Add Group KM Overrides</button>
+<button class="def_field_submit" onclick="groupKMOverrides(%%member_id%%); return false;">Edit Group KM Overrides</button>
+<button class="def_field_submit" onclick="editMemberOnlyProduct(0,%%member_id%%,0); return false;">Add a Non-Group Product</button>
+<!fi!>
