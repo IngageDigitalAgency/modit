@@ -1,0 +1,9 @@
+<tr>
+	<td style="width:70%;">%%subtitle||name%%</td>
+<!if("%%product_id%%"=="127")!>
+	<td style="width:15%;text-align:right;">%%dims:wt%% %%dims:wt_code%%</td>
+<!else!>
+	<td style="width:15%;text-align:right;"><!if("%%quantity%%"!="1")!>%%quantity%%<!fi!></td>
+<!fi!>
+	<td style="width:15%;text-align:right;">%%value%%</td>
+</tr>

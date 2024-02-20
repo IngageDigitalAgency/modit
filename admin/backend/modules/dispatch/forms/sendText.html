@@ -1,0 +1,12 @@
+Order #: %%order_id%%
+Service: <!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!>
+Time:%%scheduled_date%%
+Address:%%address:line1%%<!if(strlen("%%address:line2%%")>0)!>
+%%address:line2%%<!fi!>
+%%address:city%% %%address:postalcode%%
+GPS:(%%address:latitude%%,%%address:longitude%%)
+Map: http://maps.google.com/maps?q=loc:%%address:latitude%%,%%address:longitude%%
+Contact:%%address:firstname%% %%address:lastname%%
+Company:%%address:company%%
+Instructions:
+%%instructions%%

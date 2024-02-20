@@ -1,0 +1,5 @@
+<!if("%%hasError%%"=="1")!>
+<tr><td>%%company%%</td><td class="a-right">%%qb_invoice_id%%C</td><td><div class="alert-danger">Error</div></tr>
+<!else!>
+<tr><td>%%company%%</td><td class="a-right">%%qb_invoice_id%%C</td><td><a target="new" href="/consolidated-invoice?d_id=%%invoice_date%%&r_id=%%rand_id%%">PDF</a></td></tr>
+<!fi!>

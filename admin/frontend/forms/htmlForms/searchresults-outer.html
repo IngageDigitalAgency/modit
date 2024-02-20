@@ -1,0 +1,16 @@
+<aside class='widget results'>
+	<h2 class='widget-title'>Search Results</h2>
+	<form method='post' class='search-form'>
+		<input type='hidden' value='%%siteSearchText%%' name='siteSearchText' />
+		<input type='hidden' value='1' name='siteSearchForm' />
+		<input type='hidden' name='pagenum' value='0' />
+	</form>
+	%%results%%
+	%%pagination%%
+</aside>
+<script type='text/javascript'>
+function pagination(p_id) {
+	$('form.search-form').find('input[name="pagenum"]')[0].value = p_id;
+	$('form.search-form').submit();
+}
+</script>

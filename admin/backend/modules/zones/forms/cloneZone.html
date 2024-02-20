@@ -1,0 +1,18 @@
+<div class="propertyEditing">
+	<div class="title">Clone an Existing Zone Structure</div>
+	%%errorMessage%%
+	<form id="addCap" method="POST" onsubmit='formCheck("addCap","/modit/ajax/cloneZone/zones",$("#popup"));return false;'>
+<table aria-label="Clone an Existing Zone Structure">
+			<tr>
+				<th>Original Group:</th><td>%%g_id%%</td>
+			</tr>
+			<tr>
+				<th>New Name:</th><td>%%title%% %%titleError%%</td>
+			</tr>
+		</table>
+		<div class="form-actions">
+			%%save%%
+			%%cloneZone%%
+		</div>
+	</form>
+</div>

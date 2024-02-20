@@ -1,0 +1,28 @@
+<div class='title'>Add an Question Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("questionForm","/modit/ajax/showPageProperties/question","popup");return false;' id='questionForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+<table aria-label="Question Category" class='propertyEditing'>
+			<tr>
+				<th class="a-left" scope="col">Folder Name:</th><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+			</tr>
+			<tr>
+				<th class="a-left" scope="col">Parent:</th><td>%%p_id%% %%pidError%%</td>
+			</tr>
+			<tr>
+				<th class="a-left" scope="col">Enabled:</th><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+			</tr>
+			<tr>
+				<th class="a-left" scope="col">Notes:</th><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+			</tr>
+		</table>
+	</div>
+	<input type='hidden' action='%%form:action%%'>
+	%%submit%%
+	%%showPageProperties%% %%test%% %%id%% %%type%% 
+	<div class='break'></div>
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

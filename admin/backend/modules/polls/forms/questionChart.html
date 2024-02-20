@@ -1,0 +1,22 @@
+<form id='questionChart'>
+	<div class='chartType'>
+		<select onchange='fnRenderChart(this,"chartLocation");'>
+			<option value=''>-Select Your Chart Type-</option>
+			<option value='pie'>Pie Chart</option>
+			<option value='hollow'>Hollow Pie Chart</option>
+			<option value='bar'>Bar Chart</option>
+		</select>
+		<span>Height:&nbsp;</span><input type='text' name='height' value='300' class='def_field_small'/>
+		<span>Width:&nbsp;</span><input type='text' name='width' value='500' class='def_field_small'/>
+		<span><a href='#' onclick='fnSaveChart("chartLocation");return false;'>Save Image</a></span>
+	</div>
+</form>
+<div class='title'>%%name%%</div>
+<div id="chartLocation"></div>
+<code>
+chartData = [%%data%%];
+chartSeries = [%%series%%];
+chartLabels = [{label:'%%name%%'}];
+chartTicks = [%%ticks%%];
+chartAxisTicks = [%%yAxis%%];
+</code>
