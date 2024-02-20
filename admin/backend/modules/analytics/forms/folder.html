@@ -1,0 +1,78 @@
+<div class='title'>Add a Advertisement Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("advertForm","/modit/ajax/showPageProperties/advert","popup");return false;' id='advertForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-3">Coupons</a></li>
+			<li><a href="#tabs-4">Events</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<table class='propertyEditing'>
+				<tr>
+					<td>Folder Name:</td><td>%%title%% %%titleError%%</td>
+				</tr>
+				<tr>
+					<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<td>Enabled:</td><td>%%enabled%% %%enabledError%%</td>
+				</tr>
+				<tr>
+					<td>Notes:</td><td>%%notes%% %%notesError%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+			<table>
+				<tr>
+					<td>
+						<img id="imagesel_a" src="%%image%%" style="border: 1px solid #D6D6D6; padding: 3px;" /><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="javascript:mcImageManager.open('editorform','image_a','','updateimage_a');">page image</a> | <a href="javascript:imagesetnone_a('image_a');">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<img id="imagesel_b" src="%%rollover_image%%" style="border: 1px solid #D6D6D6; padding: 3px;" /><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="javascript:mcImageManager.open('editorform','image_b','','updateimage_b');">rollover image</a> | <a href="javascript:imagesetnone_b('image_b');">set no rollover</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-3'>
+			<div id='couponsTab'>
+				<div clas='title'>Coupon Folders Assigned to this Folder</div>
+				%%destCouponFolders%% <span class='errorMessage'>%%destCouponFoldersError%%</span>
+				<div clas='title'>Coupons Assigned to this Folder</div>
+				%%destCoupons%% <span class='errorMessage'>%%destCouponsError%%</span>
+			</div>
+		</div>
+		<div id='tabs-4'>
+			<div clas='title'>Event Folders Assigned to this Folder</div>
+			%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%%</span>
+			<div clas='title'>Events Assigned to this Folder</div>
+			%%destEvents%% <span class='errorMessage'>%%destEventsError%%</span>
+		</div>
+		%%description%%
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showPageProperties%% 
+		%%test%% 
+		%%id%% 
+		%%type%% 
+	</div>
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('#destCoupons').chosen();
+$('#destCouponFolders').chosen();
+$('#destEvents').chosen();
+$('#destEventFolders').chosen();
+
+</code>

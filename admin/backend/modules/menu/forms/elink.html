@@ -1,0 +1,83 @@
+<div class='title'>Add an External Link</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">MainInfo</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("elinkForm","/modit/ajax/showPageProperties/menu",$("#popup"));return false;' id='elinkForm'>
+			<div id='tabs-1'>
+				<table class='propertyEditing'>
+					<tr>
+						<td>Page Name:</td><td>%%title%% %%titleError%%</td>
+					</tr>
+					<tr>
+						<td>Sub-Title:</td><td>%%alternate_title%% %%alternate_titleError%%</td>
+					</tr>
+					<tr>
+						<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+					</tr>
+					<tr>
+						<td>External Link:</td><td>%%external_link%%<br/>(Links with no protocol will be assumed to be internal links)</td>
+					</tr>
+					<tr>
+						<td>Enabled:</td><td>%%enabled%% %%enabledError%%</td>
+					</tr>
+					<tr>
+						<td>Published:</td><td>%%published%% %%publishedError%%</td>
+					</tr>
+					<tr>
+						<td>New Window:</td><td>%%new_window%% %%new_windowError%%</td>
+					</tr>
+					<tr>
+						<td>Secure Link:</td><td>%%secure%% %%secureError%%</td>
+					</tr>
+					<tr>
+						<td>Icon Class:</td><td>%%icon_class%% %%icon_classError%%</td>
+					</tr>
+					<tr>
+						<td>Notes:</td><td>%%notes%% %%notesError%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image" value="%%image%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+							<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser</div>
+				%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+				<div class='title'>Description</div>
+				%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+			</div>
+			<input type='hidden' action='%%form:action%%'>
+			%%showPageProperties%% %%id%% %%type%% %%fromContent%%
+			%%submit%%
+			<div class='break'></div>
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$( "#tabs" ).tabs();
+//]]> 
+</script> 
+</code>

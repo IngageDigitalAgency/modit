@@ -1,0 +1,28 @@
+<div class='title'>Nightly Schedule</div>
+%%errorMessage%%
+<form method='post' id='nightlyProcessingForm' action='' onsubmit='formCheck("nightlyProcessingForm","/modit/ajax/nightlySchedule/credit","middleContent");return false;'>
+	<span>From:&nbsp;%%from%%</span>
+	<span>To:&nbsp;%%to%%</span>
+	<span>%%submit%%</span> <span>%%add%%</span> %%s_id%%
+	%%nightlySchedule%%
+	<table class='listing'>
+		<thead>
+			<tr><th>Scheduled Date</th><th>Start Date</th><th>End Date</th><th class='a-right'>Billed</th><th class='a-right'>Warnings</th><th class='a-right'>Errors</th></th><th></th><th></th></tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+	</table>
+	<div id='pagination'>
+		<div class='pagination'>%%pagination%%</div>
+		<span class='pagination-dropdown pull-right'>%%pager%%</span>		
+		%%pagenum%%
+		<div class='clearfix'></div>
+	</div>	
+</form>
+<script type='text/javascript'>
+initDateFields();
+getUrl = function() {
+	return '/modit/ajax/nightlySchedule/credit';
+}
+</script>

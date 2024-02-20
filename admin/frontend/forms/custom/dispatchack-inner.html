@@ -1,0 +1,24 @@
+<tr>
+	<td>%%order_id%% <a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new"><i class="fa fa-info-circle"></i></a> 
+<!if("%%custom_same_day%%"=="1")!>
+		<a href="/modit/dispatch/sameDays?order_id=%%order_id%%&sameDays=1" target="new"><i class="fa fa-truck"></i></a>
+<!else!>
+		<a href="/modit/dispatch?order_id=%%order_id%%&overnights=1" target="new"><i class="fa fa-truck"></i></a>
+<!fi!>
+	</td>
+	<td>%%name%%</td>
+<!if("%%service_type%%"=="P")!>
+	<td>Pickup</td>
+<!else!>
+	<td>Delivery</td>
+<!fi!>
+	<td>%%scheduled_date%%</td>
+	<td>%%ack_requested%%</td>
+	<td>%%delay%%</td>
+	<td>%%company%% %%lastname%% %%firstname%%</td>
+<!if("%%ack_status%%"=="1")!>
+	<td><div class="alert alert-warning text-center">Waiting</div></td>
+<!else!>
+	<td><div class="alert alert-danger text-center">Rejected</div></td>
+<!fi!>
+</tr>

@@ -1,0 +1,38 @@
+<div class='title'>Add/Edit Media</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/editMedia/members","altPopup");return false;' id='%%form:name%%' enctype="multipart/form-data">
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='alt-tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Description</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<table class='propertyEditing'>
+				<tr>
+					<td>Name:</td><td>%%name%% %%nameError%%</td>
+				</tr>
+				<tr>
+					<td>File:</td><td>%%filename%% %%filenameError%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+			<div class='title'>Teaser</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%editMedia%% 
+		<input type='hidden' name='p_id' value='%%id%%' />
+		<input type='hidden' name='folder_id' value='%%folder_id%%' />
+		<input type='hidden' name='member_id' value='%%member_id%%' />
+		%%editMedia%%
+		<div class='break'></div>
+	</div>
+</form>
+<code>
+	$('#alt-tabs').tabs();
+	initTinyMCE();
+</code>

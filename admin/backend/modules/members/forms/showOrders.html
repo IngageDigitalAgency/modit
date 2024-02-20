@@ -1,0 +1,30 @@
+<div>
+	<div class='title'>Orders for %%firstname%% %%lastname%%</div>
+	<form method="post" onsubmit="formCheck_add('customerOrders','/modit/ajax/showOrders/members',$('#altPopup'));return false;" id="customerOrders">
+		<div class="order_status">Order Status: %%order_status%%</div>
+		<table class='listing'>
+			<thead>
+				<tr>
+					<th>Order #</th>
+					<th>Created</th>
+					<th># of Items</th>
+					<th>Total Value</th>
+					<th>Order Status</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				%%orders%%
+			</tbody>
+		</table>
+		%%pagination%%
+		%%search%%
+		%%o_id%%
+		%%pagenum%%
+		%%showOrders%%
+	</form>
+	<div class='clearfix'></div>
+</div>
+<script type="text/javascript">
+$(".order_status select").chosen();
+</script>

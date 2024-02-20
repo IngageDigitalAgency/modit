@@ -1,0 +1,49 @@
+<div id='lineEditing'>
+	<div class='title'>Add/Edit a Question</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form name='%%form:name%%' action='' method='post' onsubmit="fnSaveQuestion('%%form:name%%');return false;" id='%%form:name%%'>
+		<div id='lineTabs'>
+			<ul class='tabs'>
+				<li><a href="#tabs-1">Main Info</a></li>
+				%%customTab%%
+			</ul>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Question:</th>
+						<td>%%question_id%% <span class='errorMessage'>%%question_idError%%</span>
+					</tr>
+					<tr>
+						<th>Required:</th>
+						<td>%%required%% <span class='errorMessage'>%%requiredError%%</span>
+					</tr>
+					<tr>
+						<th>'Other' Response Allowed:</th>
+						<td>%%other_text%% <span class='errorMessage'>%%other_textError%%</span>
+					</tr>
+					<tr>
+						<th>'Other' Prompt:</th>
+						<td>%%other_text_prompt%% <span class='errorMessage'>%%other_text_promptError%%</span>
+					</tr>
+					<tr>
+						<th>Sequence:</th>
+						<td>%%sequence%% <span class='errorMessage'>%%sequenceError%%</span>
+					</tr>
+				</table>
+			</div>
+			%%customInfo%%
+		</div>
+		%%submit%%
+		<input type='hidden' name='q_id' value='%%id%%' />
+		%%editQuestion%%
+		<input type='hidden' name='p_id' value='%%poll_id%%' />
+		<input type='hidden' name='poll_id' value='%%poll_id%%' />
+		<div class='clearfix'></div>
+	</form>
+</div>
+<code>
+if ($('#lineTabs ul.tabs li').length < 2) {
+	$('#lineTabs ul.tabs').remove();
+}
+else $('#lineTabs').tabs();
+</code>

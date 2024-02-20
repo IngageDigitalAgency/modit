@@ -1,0 +1,133 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Module</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Miscellaneous</a></li>
+			<li><a href="#tabs-3">Sub-Templates</a></li>
+			<li><a href="#tabs-4">Form Placement</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table style='width:100%'>
+					<tr>
+						<th>Name:</th><td>%%module_name%% <span class='errorMessage'>%%module_nameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Class:</th><td>%%module_id%%</td>
+					</tr>
+					<tr>
+						<th>Function:</th><td><div id='function_list'>%%module_function%%</div></td>
+					</tr>
+					<tr>
+						<th>Outer Html:</th><td>%%outer_html%% %%editOuter%%<div id='outer_html_list'></div></td>
+					</tr>
+					<tr>
+						<th>Inner Html:</th><td>%%inner_html%% %%editInner%%<div id='inner_html_list'></div></td>
+					</tr>
+					<tr>
+						<th>Form Configuration:</th><td><div id='m-configuration'>%%configuration%%</div></td>
+					</tr>
+					<tr>
+						<th>Records:</th><td>%%records%% [count or rows,columns]</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%%</td>
+					</tr>
+					<tr>
+						<th>Sort:</th><td>%%sort_by%%</td>
+					</tr>
+					<tr>
+						<th>Where:</th><td>%%where_clause%%</td>
+					</tr>
+					<tr>
+						<th>Allow override:</th><td>%%template_allow_override%% %%tooltip:ModuleOverride%%</td>
+					</tr>
+					<tr>
+						<th>Internal Use:</th><td>%%internal_use%% %%tooltip:ModuleInternalUse%%</td>
+					</tr>
+					<tr>
+						<th>Usage:</th><td>%%usage%% %%tooltip:ModuleUsage%%</td>
+					</tr>
+					<tr>
+						<th>Options:</th>
+						<td>
+							<table class='listing' id='optionsTable'>
+								<thead>
+									<tr>
+										<th>Code</th>
+										<th>Value</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tbody>
+									%%options_list%%
+								</tbody>
+							</table>
+							<input type='button' onclick='getOptionsRow();' value='Add an Option' />
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<div class='title'>Miscellaneous Options</div>
+				<table>
+					<tr>
+						<th>Parm1:</th><td>%%parm1%%</td>
+					</tr>
+					<tr>
+						<th>Parm2:</th><td>%%parm2%%</td>
+					</tr>
+					<tr>
+						<th>Parm3:</th><td>%%parm3%%</td>
+					</tr>
+					<tr>
+						<th>Parm4:</th><td>%%parm4%%</td>
+					</tr>
+					<tr>
+						<th>Parm5:</th><td>%%parm5%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<table class='listing' id='subtemplateListing'>
+					<thead>
+						<tr>
+							<th>Class</th><th>Module</th><th>Variable</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%subtemplates%%
+					</tbody>
+				</table>
+				<input type='button' onclick='addSubtemplate(0,%%id%%);' value='Add Template' />
+			</div>
+			<div id='tabs-4'>
+				<table class='listing' id='formplacementListing'>
+					<thead>
+						<tr>
+							<th>Form Element</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%placements%%
+					</tbody>
+				</table>
+				<input type='button' onclick='addPlacement(0,%%id%%);' value='Add Placement' />
+			</div>
+			%%submit%% 
+			<input type='hidden' name='m_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('#module_id').change(function() {
+	loadModuleInfo(this);
+})
+getConfig('%%configuration%%');
+$('.popovers').popover();
+</code>

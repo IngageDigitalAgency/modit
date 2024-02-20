@@ -1,0 +1,169 @@
+<span class='errmsg'>%%errorMessage%%</span>
+<form action="" method="post" id="event-submission" enctype="multipart/form-data">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<table>
+						<tbody>
+							<tr>
+								<th scope="col">Event Name:</th>
+								<td colspan="3">%%name%%<span class="errmsg">%%nameError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Organization:</th>
+								<td colspan="3">%%organization%% <span class="errmsg">%%organizationError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Start Date:</th>
+								<td>%%start_date%% <span class="errmsg">%%start_dateError%%</span>
+								</td>
+								<th scope="col">End Date:</th>
+								<td>%%end_date%% <span class="errmsg">%%end_dateError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Other Dates(s):</th>
+								<td colspan="3">%%other_dates%% <span class="errmsg">%%other_datesError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Start:</th>
+								<td>%%start_time%% <span class="errmsg">%%start_timeError%%</span></td>
+								<th scope="col">End:</th><td>%%end_time%% <span class="errmsg">%%end_timeError%%</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tbody>
+							<tr>
+								<th scope="col">Location:</th>
+								<td colspan="3">%%addressname%% <span class="errmsg">%%addressnameError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Address 1:</th>
+								<td colspan="3">%%line1%% <span class="errmsg">%%line1Error%%</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="col">Address 2:</th>
+								<td colspan="3">%%line2%% <span class="errmsg">%%line2Error%%</span>
+								</td>
+							</tr>
+							<tr>
+								<th scope="col">City:</th>
+								<td>%%city%% <span class="errmsg">%%cityError%%</span></td>
+								<th scope="col">Zip/Postal:</th>
+								<td>%%postalcode%% <span class="errmsg">%%postalcodeError%%</span></td>
+							</tr>
+							<tr>
+								<th scope="col">Country:</th>
+								<td>%%country_id%%</td>
+								<th scope="col">Prov/State:</th>
+								<td>
+									<div>
+										%%province_id%%
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<table>
+		<tbody>
+			<tr>
+				<th scope="col">Event Image:</th><td colspan='3'>%%image1%%</td>
+			</tr>
+			<tr>
+				<th scope="col">Description:</th>
+				<td colspan="3">
+					%%description%%
+					<span class="errmsg">%%descriptionError%%</span>
+				</td>
+			</tr>
+			<tr>
+				<th scope="col">Cost:</th>
+				<td>%%cost%% <span class="errmsg">%%costError%%</span>
+				</td>
+				<th scope="col">Web Site:</th>
+				<td>%%website%% <span class="errmsg">%%websiteError%%</span></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<h1>Contact Person</h1>
+				</td>
+			</tr>
+			<tr>
+				<th scope="col">Name:</th>
+				<td colspan="3">%%contactperson%% <span class="errmsg">%%contactpersonError%%</span>
+				</td>
+			</tr>
+			<tr>
+				<th scope="col">Phone:</th>
+				<td>%%phone1%% <span class="errmsg">%%phone1Error%%</span></td>
+				<th scope="col">Email:</th>
+				<td>%%email%% <span class="errmsg">%%emailError%%</span></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<h1>Submitted By</h1>
+				</td>
+			</tr>
+			<tr>
+				<th scope="col">Name:</th>
+				<td colspan="3">%%submittedby%% <span class="errmsg">%%submittedbyError%%</span></td>
+			</tr>
+			<tr>
+				<th scope="col">Phone:</th>
+				<td>%%submitterphone%% <span class="errmsg">%%submitterphoneError%%</span></td>
+				<th scope="col">Email:</th>
+				<td>%%submitteremail%% <span class="errmsg">%%submitteremailError%%</span></td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<div class="cart_button">
+						<a class="button red bigrounded" href="#" onclick='formSubmit(this);return false;'>Submit Event
+							<span class="button_arrow">
+								<img src="/images/backgrounds/button_arrow.png">
+							</span>
+						</a>
+					</div>
+					<input type="hidden" value="Submit Request">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	%%createAnEvent%%
+</form>
+
+<script type="text/javascript">
+$('.def_field_datepicker').datepicker({
+	showButtonPanel:true,
+	changeMonth: true,
+	changeYear:true,
+	beforeShow: function() {
+		$('#ui-datepicker-div').maxZIndex(); 
+	}
+});
+$('.def_field_datetimepicker').datepicker({
+	showButtonPanel:true,
+	changeMonth: true,
+	changeYear:true
+});
+$('#country_id').change(function() {
+	var retStatus = $.ajax({
+		url: '/ajax/loadProvinces',
+		data: {'c_id':this.value,'nm':$('#province_id')[0].name},
+		async: false
+	});
+	try {
+		obj = JSON.parse(retStatus.responseText);
+		$('#province_id').parent()[0].innerHTML = obj.html;
+	}
+	catch(err) {
+	}
+});
+</script>

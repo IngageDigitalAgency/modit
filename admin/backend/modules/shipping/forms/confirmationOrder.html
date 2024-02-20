@@ -1,0 +1,76 @@
+<div class='shipit'>
+	<div class='order_id'>Order Number: %%id%%</div>
+<!if(strpos(strtoupper("%%authorization_type%%"),"PAYPAL") !== false && strlen("%%baid%%") == 0 && strlen("%%recurringId%%") != 0)!>
+<div class="alert alert-error">This is a PayPal Recurring Order that has no Billing Agreement <a href="/modit/orders/showOrder?o_id=%%id%%" target="_new">View Order</a></div>
+<!else!>
+	<!if(%%order_status%%==STATUS_SHIPPED)!>
+		<div class="alert alert-error">This Order has already shipped <a href="#" onclick="displayOrder(%%id%%);return false;">Show Order</a></div>
+<div id="order_%%id%%" style="display:none">
+	<!else!>
+<div id="order_%%id%%">
+	<!fi!>
+	<table class='o_header'>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Shipping Address</th>
+				<th>Shipping Method</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="name">
+					%%address:lastname%%, %%address:firstname%%
+<!if(strlen("%%address:phone1%%")>0)!>
+<br/>Phone: %%address:phone1%%
+<!fi!>
+<!if(strlen("%%address:email%%")>0)!>
+<br/>Email: %%address:email%%
+<!fi!>
+				</td>
+				<td class="address">
+					%%address:line1%%<br/>
+	<!if(strlen("%%address:line2%%")>0)!>
+					%%address:line2%%<br>
+	<!fi!>
+					%%address:city%%, %%address:provinceCode%% %%address:countryCode%% %%address:postalcode%%
+				</td>
+				<td class="shipVia">%%formattedShipVia%%</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class='o_details'>
+		<thead>
+			<tr>
+				<th>Product Code</th><th>Name</th><th class='a-right'>Ordered</th><th class='a-right'>Already Shipped</th><th class='a-right'>Shipping</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%lines%%
+		</tbody>
+	</table>
+	<hr/>
+	<table class='o_shipping'>
+		<tbody>
+			<tr>
+				<td class='comments'>%%ship_comments,false%%</td>
+				<td>
+					<table class='o_subship'>
+						<tbody>
+							<tr>
+								<td colspan='2'>Tracking Code<br/>%%ship_tracking_code%%</td>
+								<td>Shipping Date<br/>%%ship_date%%</td>
+							</tr>
+							<tr>
+								<td>%%email%% <span>Send Email Confirmation</span></td>
+								<td>%%shipped%% <span>Mark As Shipped</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!fi!>
+</div>

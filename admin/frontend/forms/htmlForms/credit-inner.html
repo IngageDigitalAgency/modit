@@ -1,0 +1,192 @@
+<form method="POST" action="/ajax/render?t_id=%%module:fetemplate_id%%" class="form-horizontal" onsubmit="applyNow(this);return false;">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-4 text-center col-xs-16 col-sm-12 col-sm-offset-2">%%errorMessage%%</div>
+	</div>
+	<div id="creditTabsContent">
+		<div id="company">
+			<div class="row">
+				<h2 class="text-center">Company Information</h2>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16">%%company%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%line1%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%suite%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%city%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%postalCode%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%province_id%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%country_id%%</div>
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16">%%phone%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%fax%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%email%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-8 top10 text-right"><label>Incorporated:</label></div>
+						<div class="col-xs-8">%%incorporated%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-8 top10 text-right"><label>Partnership:</label></div>
+						<div class="col-xs-8">%%partnership%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-8 top10 text-right"><label>Sole Proprietor:</label></div>
+						<div class="col-xs-8">%%soleProprietor%%</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="contact">
+			<div class="row">
+				<h2 class="text-center">Contact Information</h2>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16">%%contact%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%contactExt%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%apContact%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%apExt%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%businessType%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%heardFrom%%</div>
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16 col-md-10">%%expectedBillings%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16 col-md-10">%%deliveries%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16 col-md-10">%%owner1%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16 col-md-10">%%owner2%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16 col-md-10">%%owner3%%</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="finance">
+			<div class="row">
+				<h2 class="text-center">Financial Information</h2>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16">%%bankName%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%bankAddress%%</div>
+					</div>
+				</div>
+				<div class="col-md-offset-1 col-md-7">
+					<div class="form-group">
+						<div class="col-xs-16">%%bankManager%%</div>
+					</div>
+					<div class="form-group">
+						<div class="col-xs-16">%%bankPhone%%</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="references">
+			<h2 class="text-center">Trade References</h2>
+			<div class="row">
+				<div class="col-xs-4 col-md-1">
+					<div class="form-group">
+						<label class="control-label col-xs-16">#1:</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<div class="form-group">%%trName1%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trAddress1%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trContact1%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trPhone1%%</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 col-md-1">
+					<div class="form-group">
+						<label class="control-label col-xs-16">#2:</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<div class="form-group">%%trName2%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trAddress2%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trContact2%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trPhone2%%</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 col-md-1">
+					<div class="form-group">
+						<label class="control-label col-xs-16">#3:</label>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-3">
+					<div class="form-group">%%trName3%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trAddress3%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trContact3%%</div>
+				</div>
+				<div class="col-xs-12 col-xs-offset-4 col-md-offset-1 col-md-3">
+					<div class="form-group">%%trPhone3%%</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-16 col-md-offset-0 text-center col-xs-12 col-xs-offset-4">
+			%%submitBtn%% %%contactUs%% %%r_id%%
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+$('#creditTabs a').click(function (e) {
+  e.preventDefault();
+  $(this).tab('show');
+})
+</script>
