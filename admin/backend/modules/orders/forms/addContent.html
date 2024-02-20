@@ -1,0 +1,219 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit an Order</div>
+	<div class='errorMessage'>%%errorMessage%%%%ecomErrors%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Products</a></li>
+			<li><a href="#tabs-4">Payment</a></li>
+			<li><a href="#tabs-3">Addresses</a></li>
+			<li><a href="#tabs-7">Pickup</a></li>
+			<li><a href="#tabs-8">Delivery</a></li>
+<!if((int)$this->getConfigVar('recurringBilling','system')>0 && %%hasRecurring%%)!>
+			<li><a href='#tabs-6'>Recurring/On Demand</a></li>
+<!fi!>
+			<li><a href="#tabs-9">Notes</a></li>
+			%%customTab%%
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div class="hidden">%%ship_via%%%%ship_date%%%%ship_tracking_code%%%%ship_comments%%<input type="hidden" name="custom_commissionable_amt" value="%%field:tag^custom_commissionable_amt%%" /></div>
+			<div id='tabs-1'>
+				<table class='content' aria-label='Main Info'>
+					<tr>
+						<th>Order #:</th><td>%%id%%</td>
+					</tr>
+					<tr>
+						<th>Status #:</th><td>%%order_status%%</td>
+					</tr>
+					<tr>
+						<th>Customer:</th><td>%%member_id%% <span class='errorMessage'>%%member_idError%%</span></td>
+					</tr>
+<!if(%%login_id%%!=0)!>
+					<tr>
+						<th>Placed By:</th><td>%%mgmt:firstname%% %%mgmt:lastname%%</td>
+					</tr>
+<!fi!>
+					<tr>
+						<th>Order Date:</th><td>%%order_date%% <span class='errorMessage'>%%order_dateError%%</span></td>
+					</tr>
+					<tr>
+						<th>Goods Amount:</th><td>$%%value%% <span class='errorMessage'>%%valueError%%</span></td>
+					</tr>
+					<tr>
+						<th>Shipping:</th><td>$%%shipping%% <span class='errorMessage'>%%shippingError%%</span></td>
+					</tr>
+					<tr>
+						<th>Line Discounts:</th><td>$%%line_discounts%% <span class='errorMessage'>%%lineDiscountsError%%</span></td>
+					</tr>
+					<tr>
+						<th>Handling Fee:</th><td>$%%handling%% <span class='errorMessage'>%%handlingError%%</span></td>
+					</tr>
+					<tr>
+						<th>Net:</th><td>$%%net%% <span class='errorMessage'>%%netError%%</span></td>
+					</tr>
+					<tr>
+						<th>Coupon:</th><td>%%coupon_id%% <span class='errorMessage'>%%coupon_idError%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Rate:</th><td>%%discount_dollar%%%%discount_rate%%%%discount_percent%% <span class='errorMessage'>%%discount_rateError%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Amount:</th><td>%%discount_value%% <span class='errorMessage'>%%discountAmountError%%</span></td>
+					</tr>
+					<tr>
+						<th>Taxes:</th><td>$%%taxes%% <span class='errorMessage'>%%taxesError%%</span></td>
+					</tr>
+					<tr>
+						<th>Paid:</th><td>$%%authorization_amount_ro%%</td>
+					</tr>
+					<tr>
+						<th>Total Due:</th><td>$%%total%%</td>
+					</tr>
+					<tr>
+						<th>Commissionable Amount:</th><td>%%custom_commissionable_amt%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%%</span></td>
+					</tr>
+				</table>
+				<div class="a-right">
+<!if("%%isFedex%%"=="1")!>
+					<input class='btn' type='button' value='Recalculate Fedex Charges' onclick='recalcFedex(%%id%%);return false;' />
+<!fi!>
+					<input class='btn' type='button' value='Recalculate Fuel Surcharge &amp; Commissions' onclick='recalcFuel(%%id%%);return false;' />
+					%%submit%% 
+					%%fldName%%
+					%%tempEdit%%
+					<input type='hidden' name='discount_type' value='%%discount_type%%' />
+				</div>
+			</div>
+			<input type='hidden' id='o_id' name='o_id' value='%%id%%'/> 
+			%%addContent%%
+			<input type='hidden' name='order_id' value='%%id%%' />
+			<div id='tabs-4'>
+				<div class='title'>Payment Information</div>
+				%%payments%%
+				<table aria-label='Payment'>
+					<tr>
+						<th>Authorization Info:</th><td>%%authorization_info%%</td>
+					</tr>
+					<tr>
+						<th>Authorization Code:</th><td>%%authorization_code%%</td>
+					</tr>
+					<tr>
+						<th>Transaction Code:</th><td>%%authorization_transaction%%</td>
+					</tr>
+					<tr>
+						<th>Authorization Amount:</th><td>%%authorization_amount%% <span class='errorMessage'>%%authorization_amountError%%</span></td>
+					</tr>
+					<tr>
+						<th>Authorization Type:</th><td>%%authorization_type%% <span class='errorMessage'>%%authorization_typeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Currency:</th><td>%%currency_code%%</td>
+					</tr>
+					<tr>
+						<th>Exchange Rate:</th><td>%%exchange_rate%%</td>
+					</tr>
+<!if(strpos(strtoupper("%%authorization_type%%"),"PAYPAL") !== false)!>
+<tr><th>Paypal Billing Agreement:</th><td>%%baid%%</td></tr>
+<tr><th>Billing Agreement Authorization:</th><td>%%ba_authorization_transaction%%</td></tr>
+<!fi!>
+				</table>
+				<div class='title'>Payment Information</div>
+				<table class="listing" aria-label='Cheque Info'>
+					<thead>
+						<tr><th>Cheque #</th><th>Date</th><th>Amount</th></tr>
+					</thead>
+					<tbody>%%allocations%%</tbody>
+				</table>
+			</div>
+			%%customInfo%%
+			<div id="tabs-7">
+				%%pickup%%
+			</div>
+			<div id="tabs-8">
+				%%delivery%%
+			</div>
+			<div id="tabs-9">
+				<div class="title">Internal Notes</div>
+				%%notes%%
+			</div>
+		</form>
+		<div id='tabs-2'>
+			<table class='listing' aria-label='Products'>
+				<tr>
+					<th>Product</th>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Option</th>
+					<th>Ordered</th>
+					<th>Shipped</th>
+					<th>Price</th>
+					<th>Discount</th>
+					<th>Value</th>
+					<th>Shipping</th>
+					<th></th>
+					<th></th>
+				</tr>
+					%%products%%
+			</table>
+			<input type='button' value='Add A Product' onclick='lineEdit(0,%%id%%);return false;' />
+			<input class='btn' type='button' value='Recalculate Fuel Surcharge &amp; Commissions' onclick='recalcFuel(%%id%%);return false;' />
+<!if("%%isFedex%%"=="1")!>
+			<input class='btn' type='button' value='Recalculate Fedex Charges' onclick='recalcFedex(%%id%%);return false;' />
+<!fi!>
+		</div>
+		<div id='tabs-3'>
+			<div id='addressTab'>
+				%%addressForm%%
+			</div>
+		</div>
+<!if((int)$this->getConfigVar('recurringBilling','system')>0 && %%hasRecurring%%)!>
+		<div id='tabs-6'>
+			%%recurringInfo%%
+		</div>
+<!fi!>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("#tabs" ).tabs();
+checkAdd(%%id%%);
+$('#editCouponId').change(function() {
+	updateOrder(%%id%%,this.name,'%%form:name%%');
+});
+closePopup = function() {
+	loadFromEdit();
+}
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.popovers').popover();
+$('#order_status').chosen();
+$("select[name=member_id]").chosen();
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getNames/orders',
+			data:{'s':request.term,'m':$("input[name=o_id]").val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=member_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+</code>

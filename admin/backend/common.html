@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<title>%%title%%</title>
+		<script type="text/javascript">rootpath = "%%rootpath%%";</script>
+		<script type='text/javascript' src='/node_modules/jquery/dist/jquery.min.js'></script>
+		<script type='text/javascript' src='/admin/js/jquery.form.js'></script>
+		<script src="/node_modules/jquery-ui-dist/jquery-ui.min.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="/admin/dist/font-awesome/css/font-awesome.min.css">
+		<link href="%%global:admincss%%/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
+		<script src="%%global:adminjs%%/jquery.touch-punch.js" type="text/javascript"></script>
+		<script type='text/javascript' src='/admin/js/common.js'></script>
+		<script type='text/javascript' src='/admin/js/tooltip.js'></script>
+		<script type='text/javascript' src='/admin/js/popover.js'></script>
+		<script src="%%global:adminjs%%/chosen.jquery.js" type="text/javascript"></script>
+		<link href="%%global:admincss%%/chosen.css" rel="stylesheet" type="text/css" />
+		<script src="%%global:adminjs%%/jquery.ui.nestedSortable.js" type="text/javascript"></script>
+		<script src="/admin/tinymce/tinymce.min.js"  type="text/javascript"></script>
+		<link href="%%global:admincss%%/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="%%global:admincss%%/bootstrap.grid.css" rel="stylesheet" type="text/css" />
+		<link href="%%global:admincss%%/datepick.css" rel="stylesheet" type="text/css" />
+		<script src="%%global:adminjs%%/datepick.js" type="text/javascript"></script>
+		<link media="screen" type="text/css" rel="stylesheet" href="/admin/css/common.css" />
+<script type="text/javascript"> 
+//<![CDATA[ 
+function addFile(obj,el) {
+	moxman.browse({
+		myparms:[obj, el],
+		rootpath:"/%%rootpath%%/files/",
+		document_base_url:rootpath,
+		no_host:true,
+		view:'thumbs',
+		oninsert: function(args) {
+			if (args.files[0].isDirectory) {
+				alert("You must select a file, not a directory");
+			}
+			else {
+				$(this.myparms[0]).closest("form").find("input[name='".concat(this.myparms[1],"']")).val(args.files[0].meta.url);
+			}
+		}
+	})
+}
+
+function setImage(el,root) {
+	if (root == null) {
+		moxman.browse({
+			myparms:[el],
+			rootpath:"/%%rootpath%%/images/",
+			document_base_url:rootpath,
+			no_host:true,
+			view:'thumbs',
+			oninsert: function(args) {
+				if (args.files[0].isDirectory) {
+					alert("You must select a file, not a directory");
+				}
+				else {
+					args.files[0].meta.url = args.files[0].meta.url.replace("//","/");
+					$(this.myparms[0]).parent().find("img")[0].src = args.files[0].meta.url;
+					$(this.myparms[0]).parent().find("input[type=hidden]").val(args.files[0].meta.url);
+				}
+			}
+		})
+	}
+	else {
+		moxman.browse({
+			myparms:[el],
+			rootpath:"/%%rootpath%%/images/".concat(root),
+			document_base_url:rootpath,
+			no_host:true,
+			view:'thumbs',
+			oninsert: function(args) {
+				if (args.files[0].isDirectory) {
+					alert("You must select a file, not a directory");
+				}
+				else {
+					$(this.myparms[0]).parent().find("img")[0].src = args.files[0].meta.url;
+					$(this.myparms[0]).parent().find("input[type=hidden]").val(args.files[0].meta.url);
+				}
+			}
+		})
+	}
+}
+function clearImage(el) {
+	$(el).parent().find("img")[0].src = "/images/unknown.jpg";
+	$(el).parent().find("input[type=hidden]").val("");
+}
+//]]> 
+</script> 
+
+	</head>
+	<body>
+		<div id='messages' style='display:none'>
+			<div class='closer'><a href='#' onclick='closeMessages()'><em class='icon-remove'></em></a></div>
+			<div class='warnings'>%%warnings%%</div>
+			<div class='errors'>%%errors%%</div>
+		</div>
+		<div id='header'>
+			<div class='inner'></div>
+			<div class="break"></div>
+		</div>
+		%%module%%
+		<div id="overlay" style='display:none' class='ui-widget-overlay'></div>
+		<div id='popupOverlay' class='wrapper'>
+			<div class='closer'>
+				<a href='#' onclick='closePopup();return false;'><em class='icon-remove'></em></a>
+			</div>
+			<div id='popupMessages'>
+				<div class='closer'>
+					<a href='#' onclick='clearPopupErrors();return false;'><em class='icon-remove'></em></a>
+				</div>
+				<div class='errors'>%%errors%%</div>
+			</div>
+			<div id='popup' class='propertyEditing'>
+			</div>
+		</div>
+		<div id='altOverlay' class='wrapper'>
+			<div class="closer">
+				<a onclick="closeAltPopup();return false;" href="#"><em class="icon-remove"></em></a>
+			</div>
+			<div id='altPopupMessages'>
+				<div class='closer'>
+					<a href='#' onclick='clearAltPopupErrors();return false;'><em class='icon-remove'></em></a>
+				</div>
+				<div class='errors'>%%errors%%</div>
+			</div>
+			<div id='altPopup' class='.ui-widget-content'></div>
+		</div>
+		<script type='text/javascript' src='/admin/js/finalize.js'></script>
+	</body>
+</html>
+
