@@ -1,0 +1,29 @@
+<div class='propertyEditing'>
+	<div class='title'>Edit an Office Closure</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div class="container-fluid top20">
+				<div class="row">
+					<div class="col-xs-4 form-group"><label>Date</label>%%date%%</div>
+					<div class="col-xs-4 form-group"><label>Closed All Day</label>%%closed%%</div>
+					<div class="col-xs-4 form-group"><label>Closed At</label>%%close_time%%</div>
+					<div class="col-xs-4 form-group"><label>Delete</label>%%delete%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 form-group"><label>Stock Msg</label>%%stock_msg%%</div>
+					<div class="col-xs-12 form-group"><label>Custom Msg</label>%%custom_msg%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-16 form-group"><label>Notes</label>%%notes%%</div>
+				</div>
+			</div>
+			<div class="form-actions">
+			%%submit%% %%editDate%% %%office_date%% %%id%%
+			<div class='break'></div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<script type="text/javascript">initTinyMCE();</script>

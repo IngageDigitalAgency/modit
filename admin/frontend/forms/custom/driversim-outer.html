@@ -1,0 +1,16 @@
+<!if("%%custom_super_user%%"=="1" || "%%session:mgmt:user:custom_super_user%%"=="1")!>
+<div class="row top20">
+	<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center"><h2>Login as a Driver</h2>
+</div>
+<form method="post">
+	<div class="row">
+		<div class="col-xs-8 col-sm-offset-2 form-group"><label>Pick a Driver</label>%%member_id%%</div>
+		<div class="col-xs-4 form-group"><label> </label>%%submit%%</div>
+	</div>
+%%simulateDriver%%
+</form>
+<!else!>
+<div class="row top20 bottom20">
+	<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center alert alert-danger"><h2>Access Denied</h2></div>
+</div>
+<!fi!>

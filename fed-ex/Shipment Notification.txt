@@ -1,0 +1,41 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fedex.com/ws/track/v8">
+<SOAP-ENV:Body>
+<ns1:SendNotificationsRequest>
+<ns1:WebAuthenticationDetail>
+<ns1:UserCredential>
+<ns1:Key>“Input Your Information”</ns1:Key>
+<ns1:Password>“Input Your Information”</ns1:Password>
+</ns1:UserCredential>
+</ns1:WebAuthenticationDetail>
+<ns1:ClientDetail>
+<ns1:AccountNumber>“Input Your Information”</ns1:AccountNumber>
+<ns1:MeterNumber>“Input Your Information”</ns1:MeterNumber>
+</ns1:ClientDetail>
+<ns1:TransactionDetail>
+<ns1:CustomerTransactionId>*** Notification Request v8.***</ns1:CustomerTransactionId>
+</ns1:TransactionDetail>
+<ns1:Version>
+<ns1:ServiceId>trck</ns1:ServiceId>
+<ns1:Major>8</ns1:Major>
+<ns1:Intermediate>0</ns1:Intermediate>
+<ns1:Minor>0</ns1:Minor>
+</ns1:Version>
+<ns1:TrackingNumber>794813378033</ns1:TrackingNumber>
+<ns1:ShipDateRangeBegin>2013-04-22</ns1:ShipDateRangeBegin>
+<ns1:ShipDateRangeEnd>2013-04-25</ns1:ShipDateRangeEnd>
+<ns1:SenderEMailAddress>name@company.com</ns1:SenderEMailAddress>
+<ns1:SenderContactName>Sender Contact Name</ns1:SenderContactName>
+<ns1:NotificationDetail>
+<ns1:PersonalMessage>Personal Message</ns1:PersonalMessage>
+<ns1:Recipients>
+<ns1:EMailNotificationRecipientType>RECIPIENT</ns1:EMailNotificationRecipientType>
+<ns1:EMailAddress>recipient@acme.com</ns1:EMailAddress>
+<ns1:NotificationEventsRequested>ON_DELIVERY</ns1:NotificationEventsRequested>
+<ns1:NotificationEventsRequested>ON_EXCEPTION</ns1:NotificationEventsRequested>
+<ns1:NotificationEventsRequested>ON_SHIPMENT</ns1:NotificationEventsRequested>
+<ns1:Format>HTML</ns1:Format>
+</ns1:Recipients>
+</ns1:NotificationDetail>
+</ns1:SendNotificationsRequest>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

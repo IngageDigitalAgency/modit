@@ -1,0 +1,15 @@
+<tr>
+	<td><a href="/modit/orders/showOrder?o_id=%%id%%" target="_new"><em class='icon-search'></em></a>&nbsp;%%id%%</td>
+<!if("%%order_id%%"=="0")!>
+	<td>&nbsp;</td>
+<!else!>
+	<td><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="_new"><em class='icon-search'></em></a>&nbsp;%%order_id%%</td>
+<!fi!>
+	<td><a href="#" onclick="showMember(%%member_id%%);return false;"><em class='icon-search'></em></a>&nbsp;%%lastname%%, %%firstname%%</td>
+	<td>%%billing_date%%</td>
+	<td class="a-right">%%formattedValue%%</td>
+	<td class="a-right">%%formattedShipping%%</td>
+	<td class="a-right">%%formattedTotal%%</td>
+	<td>%%formattedStatus%%</td>
+</tr>
+

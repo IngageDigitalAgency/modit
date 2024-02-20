@@ -1,0 +1,11 @@
+<div id='reauhorize'>
+	<h2>Reauthorize Your Recurring Order</h2>
+<!if('0%%session:user:info:id%%'=='0')!>
+	<div class='alert alert-warning'>You must login first. Click <a href='/login'>here.</a></div>
+<!else!>
+	<div class='error'>
+		%%errorMessage%%
+	</div>
+<!fi!>
+	%%order%%
+</div>

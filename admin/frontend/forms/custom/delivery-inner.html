@@ -1,0 +1,51 @@
+<tr>
+	<td class="text-right">%%order_id%%<a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new"><em class="fa fa-info-circle"></em></a> <a href="/modit/dispatch?order_id=%%order_id%%&overnights=1" target="new"><em class="fa fa-truck"></em></a></td>
+<!if(strlen("%%custom_color_coding%%")>0)!>
+	<td style="background-color:%%custom_color_coding%%">%%product_name%%</td>
+<!else!>
+	<td>%%product_name%%</td>
+<!fi!>
+	<td>
+		%%delivery:address:company%%
+		<!if(strlen("%%delivery:address:firstname%%")>0)!>
+			<br/>%%delivery:address:firstname%% %%delivery:address:lastname%%
+		<!fi!>
+		<br/>Placed by: %%custom_placed_by%%
+	</td>
+	<td>
+		%%delivery:address:line1%%
+		<!if(strlen("%%delivery:address:line2%%")>0)!>
+			<br/>%%delivery:address:line2%%
+		<!fi!>
+		<br/>%%delivery:address:city%% %%delivery:address:postalcode%%
+<!if(strlen("%%delivery:address:phone1%%")>0)!>
+			<br/>%%delivery:address:phone1%%
+<!fi!>
+	</td>
+<!if(%%delivery:completed%%==1)!>
+		<td class="alert-success">%%delivery:actual_date%%</td>
+<!else!>
+	<!if(%%delivery:et%%<0)!>
+		<td class="alert-danger">%%delivery:scheduled_date%%</td>
+	<!else!>
+		<!if(%%delivery:et%%<=30)!>
+			<td class="alert-warning">%%delivery:scheduled_date%%</td>
+		<!else!>
+			<td>%%delivery:scheduled_date%%</td>
+		<!fi!>
+	<!fi!>
+<!fi!>
+	<td></td>
+	<td>%%delivery:instructions%%
+<!if(strlen("%%services%%") > 0)!>
+		<div class="alert alert-warning"><b>%%services%%</b></div>
+<!fi!>
+	</td>
+	<td>
+		<!if("%%delivery:driver:id%%"=="0")!>
+			<div class="alert-warning">Unassigned</div>
+		<!else!>
+			%%delivery:driver:company%% %%delivery:driver:lastname%% %%delivery:driver:firstname%%
+		<!fi!>
+	</td>
+</tr>

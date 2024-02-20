@@ -1,0 +1,38 @@
+<div class='title'>Add a Search Group</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("searchFolderForm","/modit/ajax/showPageProperties/search","popup");return false;' id='searchFolderForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Folder Information</a></li>
+		</ul>
+		<div id='tabs-1'>
+<table aria-label="Folder Information" class='propertyEditing'>
+				<tr>
+					<th class="a-left" scope="col">Folder Name:</th><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Parent:</th><td>%%p_id%% %%p_idError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Keywords:</th><td>%%keywords%% %%keywordsError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Description:</th><td>%%description%% %%descriptionError%%</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-actions">
+    	%%submit%%
+        <a class="btn" onclick="closePopup();return false;" href="#">Cancel</a>
+    </div>
+	<input type='hidden' action='%%form:action%%'>
+	%%showPageProperties%% %%test%% %%id%% %%type%% %%tablename%%
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

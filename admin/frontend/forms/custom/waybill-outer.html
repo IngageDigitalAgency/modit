@@ -1,0 +1,156 @@
+<style type="text/css">
+.a-right { text-align:right; }
+.centered { text-align:center; }
+td, th { vertical-align: top; padding:5px; }
+hr { padding:0; margin:0; }
+.bt { border-top: 1px solid black;}
+.bl { border-left: 1px solid black;}
+.br { border-right: 1px solid black;}
+.bb { border-bottom: 1px solid black;}
+.sp { height: 10px; font-size:2px; }
+</style>
+<table role="presentation" aria-label="" style="width:100%;font-size:10pt;font-family:Courier, sans-serif;" cellpadding="0" cellspacing="0">
+	<tr>
+		<td style="width:12%;"><img class="def_field_image" src="https://kjvcourier.com/images/logos/kjv-courier.jpg" alt="KJV Courier" style="max-width:100px;" /></td>
+		<td style="width:55%;; padding-left:10%; font-weight:bold;font-size:16pt;">Waybill #%%id%%</td>
+		<td><strong>KJV Courier Service</strong><br/>3858 Chesswood Drive<br/>Downsview, ON M3J 2W6<br/>Phone: (416) 398-5155<br/>Fax: (416) 398-7077</td>
+	</tr>
+</table>
+<hr/>
+<table aria-label="" style="width:100%;font-size:10pt;font-family:Courier, sans-serif;" cellpadding="0" cellspacing="0">
+	<tr>
+		<th colspan="2" style="width:50%; text-align:center; background-color:#808080; color:#ffffff; padding-top:10px;">Pickup Information</th>
+		<th colspan="2" style="width:50%; text-align:center; background-color:#808080; color:#ffffff; padding-top:10px;">Delivery Information</th>
+	</tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb bl br">Created:</td>
+		<td style="width:35%;" class="bt bb br">%%created%%</td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Service:</td>
+		<td style="width:35%;" class="bt bb br"><strong><em>%%service:name%%</em></strong></td>
+	</tr>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb bl br">Picked Up:</td>
+		<td style="width:35%;" class="bt bb br"><!if("%%pickup:completed%%"=="1")!>%%pickup:actual_date%%<!else!>%%pickup:scheduled_date%%<!fi!></td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Scheduled:</td>
+		<td style="width:35%;" class="bt bb br">%%delivery:scheduled_date%%</td>
+	</tr>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bl br">Account #:<br></td>
+		<td style="width:35%;background-color:#e0e0e0;" class="bt br">Reference #:</td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Delivered:</td>
+		<td style="width:35%;" class="bt br bb">%%delivery:actual_date%%</td>
+	</tr>
+	<tr>
+		<td class="br bb bl"><strong>%%member_id%%</strong></td>
+		<td class="br bb"><strong>%%custom_reference_number%%</strong></td>
+	</tr>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bl bb br">Address:</td>
+		<td style="width:35%;" class="bt br bb">
+<!if(strlen("%%pickup:address:company%%")>0)!>
+%%pickup:address:company%%<br/>
+<!fi!>
+%%pickup:address:line1%%<br/>
+<!if(strlen("%%pickup:address:line2%%")>0)!>
+%%pickup:address:line2%%<br/>
+<!fi!>
+%%pickup:address:city%% %%pickup:address:provinceCode%% %%pickup:address:postalcode%%
+		</td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Address:</td>
+		<td style="width:35%;" class="bt br bb">
+<!if(strlen("%%delivery:address:company%%")>0)!>
+%%delivery:address:company%%<br/>
+<!fi!>
+%%delivery:address:line1%%<br/>
+<!if(strlen("%%delivery:address:line2%%")>0)!>
+%%delivery:address:line2%%<br/>
+<!fi!>
+%%delivery:address:city%% %%delivery:address:provinceCode%% %%delivery:address:postalcode%%
+		</td>
+	</tr>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bl bb br">Contact:</td>
+		<td style="width:35%;" class="bt br bb">
+%%pickup:address:firstname%% %%pickup:address:lastname%%<br/>
+%%pickup:address:phone1%%<br/>
+%%pickup:address:email%%
+		</td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Contact:</td>
+		<td style="width:35%;" class="bt br bb">
+%%delivery:address:firstname%% %%delivery:address:lastname%%<br/>
+%%delivery:address:phone1%%<br/>
+%%delivery:address:email%%
+		</td>
+	</tr>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bl bb br">Instructions:</td>
+		<td style="width:35%;" class="bt br bb">%%pickup:instructions%%</td>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bb br">Instructions:</td>
+		<td style="width:35%;" class="bt br bb">%%delivery:instructions%%</td>	
+	</tr>
+<!if("%%custom_3rd_party_waybill%%"!="")!>
+	<tr><td colspan="4" class="sp"> </td></tr>
+	<tr>
+		<td style="width:15%;background-color:#e0e0e0;" class="bt bl bb br">3rd Party Waybill:</td>
+		<td style="width:35%;" class="bt br bb">%%custom_3rd_party_waybill%%</td>
+	</tr>
+<!fi!>
+	<tr>
+		<td colspan="2" style="padding:0;">
+<table aria-label="" style="width:100%;font-size:10pt;font-family:Courier, sans-serif;">
+				<tr>
+					<th class="a-left" colspan="2" style="font-size:8pt;">THE CARRIER SHALL NOT BE LIABLE FOR LOSS OR DAMAGE FOR ANY AMOUNT IN EXCESS OF $50.00 UNLESS DECLARED VALUATION STATES OTHERWISE*</th>
+				</tr>
+				<tr>
+					<th scope="col" class="a-left" colspan="50%;">Declared Value:</th>
+					<td colspan="50%;text-align:right;"><!@@($this->my_money_format(%%custom_declared_value%%))@@!></td>
+				</tr>
+			</table>
+		</td>
+		<td colspan="2" style="padding:0;">
+<table aria-label="" style="width:100%;font-size:8pt;font-family:Courier, sans-serif;">
+				<tr>
+					<th class="a-left" style="width:100%;">
+						RECEIVED THE ABOVE IN GOOD ORDER AND CONDITION<br/>Signature:<br/><div><!if("%%delivery:has_signature%%"=="1")!><img style="max-width:100%;" src="data:image/png;base64,%%delivery:sig_image%%" /><!fi!>%%delivery:delivery_name%%</div>
+					</th>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+
+
+
+
+<div style="height:1px;"> </div>
+<table aria-label="" width="100%;font-size:10.5pt;font-family:'Courier, sans-serif';">
+	<tr style="background-color:#eeeeee;">
+		<th width="22%" class="a-left">Type</th>
+		<th width="12%" class="a-right">Quantity</th>
+		<th width="12%" class="a-right">Height<br/>(%%dimCode%%)</th>
+		<th width="12%" class="a-right">Length<br/>(%%dimCode%%)</th>
+		<th width="12%" class="a-right">Width<br/>(%%dimCode%%)</th>
+		<th width="12%" class="a-right">Weight<br/>(%%wtCode%%)</th>
+		<th width="18%" class="a-right">Total Weight<br/>(%%wtCode%%)</th>
+	</tr>
+%%products%%
+	<tfoot>
+		<tr>
+			<td width="22%" class="a-right">Total:</td>
+			<td width="12%" class="a-right" style="border-top:1px solid #000000;">%%qty%%</td>
+			<td width="12%" class="a-right"> </td>
+			<td width="12%" class="a-right"> </td>
+			<td width="12%" class="a-right"> </td>
+			<td width="12%" class="a-right"> </td>
+			<td width="18%" class="a-right" style="border-top:1px solid #000000;">%%tWeight%%</td>
+		</tr>
+	</tfoot>
+</table>
+<strong><em>** See Web Site</em></strong><br/>
+<!if("%%hasRecalc%%"=="1")!><strong><em>** items were corrected to "Actual Weighted Rate" and not included in the totals</em></strong><br/><!fi!>
+%%random%%

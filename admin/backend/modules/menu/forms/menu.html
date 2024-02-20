@@ -1,0 +1,29 @@
+<code>
+<link media="screen" type="text/css" rel="stylesheet" href="%%global:modules%%/menu/menu.css" />
+<link href="%%global:admincss%%/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="%%global:modules%%/menu/menu.js"></script>
+<link href="%%global:admincss%%/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />
+</code>
+<div id='page'>
+	<div id='mainContent'>
+		<div id='mainNav'>
+			<div class='closer'><a href='#' onclick='toggleNav(this);return false;'><img src='/admin/images/right-arrow.png' alt='open menu' /></a></div>
+			<div class='inner'></div>
+			<div class='break'></div>	
+		</div>
+		<div id='leftContent'>
+			<div id='contentTree'></div>
+			<div id='pageInfo' style='display:none'></div>
+			<div id='status'></div>
+			<div class='break'></div>
+		</div>
+		<div id='middleContent'>
+			%%injector%%
+			<div class='break'></div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='rightContent'>
+	</div>
+	<div class='break'></div>
+</div>
