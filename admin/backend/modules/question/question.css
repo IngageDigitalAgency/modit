@@ -1,0 +1,76 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.productInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.def_field_smalltext {
+	width:75px;
+}
+
+a {
+	text-decoration:none;
+}
+
+#tabs table {
+	width:100%;
+}
+
+#tabs table.content th {
+	width:30%;
+	text-align:left;
+}
+
+.productDragger {
+	background-image: url("/admin/images/dragger.png");
+	background-color:lightGray;
+	width:14px;
+	height:14px;
+}
+
+.productDragger .id {
+	display:none;
+}
+
+#productArticleList th {
+	text-align:center;
+}
+table.info th {
+	text-align:center;
+}
+.ids {
+	display:none;
+}
+.img_tooltip {
+	display:none;
+	padding:8px 0 0 8px;
+	position:absolute;
+}
+.thumbnail-item {
+	position:relative;
+}

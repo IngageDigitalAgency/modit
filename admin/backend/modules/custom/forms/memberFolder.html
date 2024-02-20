@@ -1,0 +1,131 @@
+<div id='tabs-custom'>
+<table aria-label="">
+		<tr>
+			<th>Base Fuel Charge:</th><td>%%custom_fuel%% <span class='errorMessage'>%%custom_fuelError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Base Fuel Override (+/- %):</th><td>%%custom_fuel_override%% <span class='errorMessage'>%%custom_fuel_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Base Weight Rate:</th><td>%%custom_weight%% <span class='errorMessage'>%%custom_weightError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Base Weight Override (+/- %):</th><td>%%custom_weight_override%% <span class='errorMessage'>%%custom_weight_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+<!--
+		<tr>
+			<th>Base KM Rate:</th><td>%%custom_km%% <span class='errorMessage'>%%custom_kmError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Base KM Override (+/- %):</th><td>%%custom_km_override%% <span class='errorMessage'>%%custom_km_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+-->
+		<tr>
+			<th>Free Weight:</th><td>%%custom_free_weight%% <span class='errorMessage'>%%custom_free_weightError%%</span></td>
+		</tr>
+		<tr>
+			<th>Package Type/Rates:</th><td>%%custom_package_types%% <span class='errorMessage'>%%custom_package_typesError%%</span></td>
+		</tr>
+		<tr>
+			<th>Insurance Override (+/- %):</th><td>%%custom_insurance_override%% <span class='errorMessage'>%%custom_insurance_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Additional Services:</th><td>%%custom_additional_services%% <span class='errorMessage'>%%custom_additional_servicesError%%</span> <span class="display_value"></span></td>
+		</tr>
+	</table>
+</div>
+<code>
+getInsurance = function() {
+	$.ajax({
+		url: "/modit/ajax/getInsurance/custom",
+		data: {o:$("#custom_insurance_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+
+getFuel = function() {
+	$.ajax({
+		url: "/modit/ajax/getFuel/custom",
+		data: {f:$("#custom_fuel")[0].value,o:$("#custom_fuel_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getWeight = function() {
+	$.ajax({
+		url: "/modit/ajax/getWeight/custom",
+		data: {f:$("#custom_weight")[0].value,o:$("#custom_weight_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+/*
+getKm = function() {
+	$.ajax({
+		url: "/modit/ajax/getKm/custom",
+		data: {f:$("#custom_km")[0].value,o:$("#custom_km_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getKm();
+*/
+getFuel();
+getWeight();
+getInsurance();
+addProduct = function() {
+	var p = Array();
+	$("input[name='custom_member_product_options[]']").each(function(idx,el) {
+		p.push($(el).val());
+	});
+	$("select[name='custom_member_product_options[]']").each(function(idx,el) {
+		if (el.value != "") p.push(el.value);
+	});
+	$.ajax({
+		url: "/modit/ajax/memberAddProduct/custom",
+		data: {m:$("input[name=id]")[0].value,'p':p,'g':1},
+		success:function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+obj.code+"</script>"; $('body').append(objcode);
+				$("#tabs-custom table.listing tbody").append(obj.html);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+removeOption = function(el) {
+	$(el).closest("tr").remove();
+}
+</code>

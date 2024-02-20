@@ -1,0 +1,20 @@
+<tr>
+	<td class="a-right"><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%% <em class="icon icon-edit"></em></a></td>
+	<td class="centered"><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+	<td>%%created%%</td>
+	<td>%%acknowledged%%</td>
+	<td>%%firstname%% %%lastname%%</td>
+<!if("%%status%%"=="1")!>
+	<td class="centered alert alert-warning">Pending</td>
+<!fi!>
+<!if("%%status%%"=="2")!>
+	<td class="centered alert alert-success">Accepted</td>
+<!fi!>
+<!if("%%status%%"==4)!>
+	<td class="centered alert alert-danger">Refused</td>
+<!fi!>
+	<td class="centered"><a href="#" onclick="editAck(%%id%%);return false;"><em class="icon-edit"></em></a></td>
+</tr>
+<tr>
+	<td colspan="3">%%message%%</td>
+</tr>
