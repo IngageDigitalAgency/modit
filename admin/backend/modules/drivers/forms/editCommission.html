@@ -1,0 +1,19 @@
+<div class="title">Edit a Commission Detail</div>
+%%errorMessage%%
+<form method="POST" onsubmit='formCheck("commissionForm","/modit/ajax/editCommission/drivers",$("#altPopup"));return false;' id="commissionForm" class="form-inline">
+<table role="presentation">
+		<tr><th>Product:</th><td>%%name%%</td></tr>
+		<tr><th>Base Amount:</th><td>%%base_amount%%</td></tr>
+		<tr><th>Rate:</th><td>%%line_commission%%%</td></tr>
+		<tr><th>Calculated:</th><td>%%calculated%%</td></tr>
+		<tr><th>Override:</th><td>%%overridden%%</td></tr>
+		<tr><th>Override Amount:</th><td>%%value%%</td></tr>
+		<tr><th>Comment:</th><td>%%comment%%</td></tr>
+	</table>
+	<div class="form-actions">
+		%%save%% %%editCommission%% %%c_id%%
+	</div>
+</form>
+<script type="text/javascript">
+x=1;
+</script>

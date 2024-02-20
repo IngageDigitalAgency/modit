@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-xs-16 centered">%%errorMessage%%</div>
+</div>
+<div class="row">
+	<div class="col-xs-16">
+		<div class="title">Orders We Found To Process</div>
+		<form method="post" action="/modit/ajax/qbProcess/credit">
+			<div class="hidden">%%order_id%%%%invoice_date%%%%cutoff_date%%%%member_id%%%%bill_me_later%%%%qb_invoice_id%%</div>
+<table role="presentation" class="table table-striped">
+				<thead>
+					<tr>
+						<th class="centered">Company</th><th class="a-right"># of Orders</th><th class="a-right">Billed</th><th class="a-right">Paid</th><th class="a-right">Net</th>
+					</tr>
+				</thead>
+				<tbody>
+					%%rows%%
+				</tbody>
+			</table>
+			<a href="#" onclick="doExport(this);return false;" class="btn btn-primary">Do the Export</a>
+		</form>
+	</div>
+</div>
+<form method="post" action="/modit/ajax/qbDetails/credit" id="qbDetailsForm" class="hidden">
+	%%order_id%%%%invoice_date%%%%cutoff_date%%%%member_id%%%%billing_type%%<input type='hidden' name='qbDetails' value='1' />
+</form>

@@ -1,0 +1,69 @@
+<div class="title">Edit a Driver</div>
+%%errorMessage%%
+<div id='content-tabs'>
+	<ul>
+		<li><a href="#tabs-1">Main Info</a></li>
+	</ul>
+	<div id="tabs-1">
+		<form method="POST" onsubmit='formCheck("driverForm","/modit/ajax/editDriver/drivers",$("#popup"));return false;' id="driverForm">
+<table role="presentation">
+				<tr><th>Name:</th><td>%%member_id%%%%firstname%% %%lastname%%</td></tr>
+				<tr><th>Employee Id:</th><td>%%employee_id%%</td></tr>
+				<tr><th>Enabled:</th><td>%%enabled%% %%enabledError%%</td></tr>
+				<tr><th>Deleted:</th><td>%%deleted%% %%deletedError%%</td></tr>
+				<tr><th>Delivery Group:</th><td>%%group_id%%</td></tr>
+				<tr><th>Vehicle Type:</th><td>%%vehicle_id%% %%vehicle_idError%%</td></tr>
+				<tr><th>Base Commission (%):</th><td>%%commission%% %%commissionError%%</td></tr>
+				<tr><th>OT Commission (%):</th><td>%%after_hours_commission%% %%after_hours_commissionError%%</td></tr>
+				<tr><th>Fuel Surcharge (%):</th><td>%%fuel_surcharge%% %%fuel_surchargeError%%</td></tr>
+				<tr><th>Radio Adjustment:</th><td>%%deduction_radio%% %%deduction_radioError%%</td></tr>
+				<tr><th>Other Adjustment:</th><td>%%deduction_other%% %%deduction_otherError%%</td></tr>
+				<tr><th>3<sup>rd</sup> Party:</th><td>%%third_party%%</td></tr>
+				<tr><th>3<sup>rd</sup> Party Commission:</th><td>%%third_party_commission%%</td></tr>
+			</table>
+			<div class="form-actions">
+				%%save%% %%editDriver%% %%d_id%%
+			</div>
+		</form>
+	</div>
+</div>
+<script type="text/javascript">
+$( "#content-tabs" ).tabs();
+removeFSA = function(id) {
+	if (confirm("Delete this FSA?")) {
+		d_id = $("input[name=d_id]").val();
+		$.ajax({
+			url: "/modit/ajax/removeFSA/drivers",
+			context: {d_id:d_id},
+			data: {f_id:id,d_id:d_id},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					if (obj.status == "true")
+						loadFSA(this.d_id);
+					showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+}
+loadFSA = function(d_id) {
+	$.ajax({
+		url: "/modit/ajax/getFSA/drivers",
+		data: {d_id: d_id},
+		success: function( obj, status, xhr) {
+			try {
+				obj = JSON.parse(obj);
+				$("#tabs-2").html(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+				closeAltPopup();
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

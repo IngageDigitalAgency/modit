@@ -1,0 +1,209 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Member</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2a">Contacts</a></li>
+			%%customTab%%
+			<li><a href="#tabs-4">Images</a></li>
+			<li><a href="#tabs-5">Products</a></li>
+			<li><a href="#tabs-6">Fed-Ex</a></li>
+			<li><a href="#tabs-3">Addresses</a></li>
+			<li><a href="#tabs-7">Per Piece Charges</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+<table role="presentation">
+					<tr>
+						<th>First Name:</th><td>%%firstname%% <span class='errorMessage'>%%firstnameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Last Name:</th><td>%%lastname%% <span class='errorMessage'>%%lastnameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Company:</th><td>%%company%% <span class='errorMessage'>%%companyError%%</span></td>
+					</tr>
+					<tr>
+						<th>User Name:</th><td>%%username%% <span class='errorMessage'>%%usernameError%%</span></td>
+					</tr>
+					<tr>
+						<th>Email:</th><td>%%email%% <span class='errorMessage'>%%emailError%%</span></td>
+					</tr>
+					<tr>
+						<th>Password:</th><td>%%password%% <span class='errorMessage'>%%passwordError%%</span></td>
+					</tr>
+					<tr>
+						<th>Expiry:</th><td>%%expires%% <span class='errorMessage'>%%expiresError%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% <span class='errorMessage'>%%featuredError%% %%tooltip:Featured%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+					<tr>
+						<th class='vertical-center'>Member of: <span class='errorMessage'>%%destFoldersError%%</span></th>
+						<td>%%destFolders%% %%tooltip:Category%%</td>
+					</tr>
+				</table>
+				<input type='hidden' name='m_id' id='m_id' value='%%id%%'/> 
+				%%addContent%%
+				%%submit%% <!if("%%id%%"!="0")!><button class="btn" onclick="regroup(%%id%%);return false;">Move With Pricing to Another Group</button><!fi!>
+			</div>
+			<div id='tabs-2a'>
+				%%contacts%%
+			</div>
+			<div id='tabs-2' class='hidden'>
+				<div class='title'>Profile: <span class='errorMessage'>%%profileError%%</span></div>
+				%%biography%%
+				<br>%%submit%% </br>
+			</div>
+			%%customInfo%%
+			<div id='tabs-4'>
+				<div id='imageTab'>
+<table role="presentation">
+						<tr>
+							<th>Image 1:</th>
+							<td>
+								<a href="#" onclick="setImage(this,'members/%%id%%/');return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+								<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+								<a href="#" onclick="setImage(this,'members/%%id%%/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+							</td>
+						</tr>
+						<tr>
+							<th>Image 2:</th>
+							<td>
+								<a href="#" onclick="setImage(this,'members/%%id%%/');return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+								<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+								<a href="#" onclick="setImage(this,'members/%%id%%/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+			</div>
+			<div id='tabs-5'>
+<!if("%%request:j_id%%"!="")!>
+				<span class='errorMessage'>You must select a category first.</span>
+<!else!>
+				<span class='errorMessage'>The Member must be saved first</span>
+<!fi!>
+			</div>
+			<div id='tabs-6'>
+<!if("%%request:j_id%%"!="")!>
+				<span class='errorMessage'>You must select a category first.</span>
+<!else!>
+				<span class='errorMessage'>The Member must be saved first</span>
+<!fi!>
+			</div>
+			<div id="tabs-7">
+				<div class="title">Per Piece Additional Charges</div>
+<!if(%%id%%<=0)!>
+				<span class='errorMessage'>The Member must be saved first</span>
+<!else!>
+<table role="presentation" class="table table-striped">
+					<thead>
+						<tr><th>Product</th><th>Free Quantity</th><th>Additional Charge</th><th colspan="2"></th></tr>
+					</thead>
+					<tbody>%%packageCharges%%</tbody>
+				</table>
+				<a class="btn a-right" href="#" onclick="editCharges(0,%%id%%);return false;">Add a Charge</a>
+<!fi!>
+			</div>
+		</form>
+		<div id='tabs-3'>
+			<div id='addressTab'>
+				%%addressForm%%
+			</div>
+		</div>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$("#destFolders").chosen();
+$( "ul.draggable > li" ).draggable({
+	helper: "clone"
+});
+$( "ul.draggable" ).droppable({
+	drop: function( event, ui ) {
+		myDrop(this,event,ui);
+	}
+});
+checkAddMember(%%id%%);
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+<!if("%%request:j_id%%"!="")!>
+loadGroupProducts(%%request:j_id%%,0);
+loadFedexProducts(%%request:j_id%%,0);
+<!fi!>
+editCharges = function(id,member) {
+	$.ajax({
+		url: "/modit/ajax/editPerPiece/members",
+		data: { p_id: id, m_id:member },
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				showAltPopup(h.html);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+			}
+			catch(err) {
+				showPopupError(err.message);
+			}
+		}
+	});
+}
+deleteCharge = function(id,member) {
+	$.ajax({
+		url: "/modit/ajax/deletePerPiece/members",
+		data: { p_id: id, m_id:member },
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+			}
+			catch(err) {
+				showPopupError(err.message);
+			}
+		}
+	});
+}
+reloadPerCharge = function(m_id) {
+	$.ajax({
+		url: "/modit/ajax/listPerPiece/members",
+		data: { m_id: m_id },
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#tabs-7 tbody").html(h.html);
+			}
+			catch(err) {
+				showPopupError(err.message);
+			}
+		}
+	});
+}
+
+regroup = function(id) {
+	$.ajax({
+		url: "/modit/ajax/regroup/members",
+		data: {m_id:id},
+		success: function( obj, xhr, status ) {
+			try {
+				h = JSON.parse(obj);
+				showPopup(h.html);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+			}
+			catch(err) {
+				showPopupError(err.message);
+			}
+		}
+	})
+}
+</code>

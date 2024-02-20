@@ -1,0 +1,26 @@
+<table role="presentation" class="listing">
+	<tbody>
+		%%fsa,false%%
+	</tbody>
+</table>
+<div class="form-actions">
+	<a href="#" onclick="addDriverFSA(%%id%%);return false;"><i class="icon-plus"></i>Add</a>
+</div>
+<script type="text/javascript">
+addDriverFSA = function(d_id) {
+	$.ajax({
+		url: "/modit/ajax/addFSA/drivers",
+		data: {d_id: d_id},
+		success: function(obj,status,xhr) {
+			try {
+				obj = JSON.parse(obj);
+				showAltPopup(obj.html);
+				var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+			}
+			catch(err) {
+				showPopupError(err.message);
+			}
+		}
+	});
+}
+</script>

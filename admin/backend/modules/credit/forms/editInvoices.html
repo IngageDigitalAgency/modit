@@ -1,0 +1,156 @@
+<div class='title'>Edit Invoices</div>
+%%errorMessage%%
+<form method='post' onsubmit='formCheck("editInvoicesForm","/modit/ajax/editInvoices/credit","middleContent");return false;' id='editInvoicesForm' class="top20">
+%%sortby%% %%sortorder%%
+	<div class="row">
+		<div class="col-xs-3 form-group"><label>Quickbooks Id:</label>%%qb_invoice_id%%</div>
+		<div class="col-xs-3 form-group"><label>Customer:</label>%%member_id%%</div>
+		<div class="col-xs-3 form-group"><label>From:</label>%%start_date%%</div>
+		<div class="col-xs-3 form-group"><label>To:</label>%%end_date%%</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3 form-group"><label>Order Id:</label>%%order_id%%</div>
+		<div class="col-xs-3 form-group"><label>&nbsp;</label>%%submit%%</div>
+		<div class="col-xs-3 form-group"><label>Invoices found: %%count%%</label></div>
+	</div>
+	%%editInvoices%%
+	<div class='clearfix'></div>
+<table role="presentation" class='listing'>
+		<thead>
+			<tr>
+				<th onclick="sort('qb_invoice_id','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Invoice #</th>
+				<th onclick="sort('invoice_date','recurringOrdersForm','/modit/ajax/recurringOrders/credit','middleContent');return false;">Date</th>
+				<th>Company</th>
+				<th># of Orders</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Page Total:</td>
+				<td class="a-right">%%pageCount%%</td>
+				<td class="a-right">%%pageTotal%%</td>
+			</tr>
+			<tr>
+				<td colspan="3">Grand Total:</td>
+				<td class="a-right">%%totalCount%%</td>
+				<td class="a-right">%%totalTotal%%</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div id="pagination">
+		<span class="pagination-dropdown pull-right">Invoices per page : %%pager%% %%pagenum%% %%perpage%%</span>
+		%%pagination%% 
+	</div>
+</form>
+<div id="invoiceDetails"></div>
+<script type='text/javascript'>
+initDateFields();
+$("select").chosen({width:"100%"});
+pagingUrl = "/modit/ajax/editInvoices/credit";
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getNames/orders',
+			data:{'s':request.term,'m':$('select[name="member_id"]').val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=member_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+
+pagination = function(pg,el) {
+	f = $(el).closest("form");
+	$(f).find("input[name=pagenum]").val(pg);
+	$(f).submit();
+}
+
+showInvoice = function(id) {
+	$.ajax({
+		url: "/modit/ajax/getInvoice/credit",
+		data: {i_id:id},
+		success: function( obj, xhr, status ) {
+			try {
+				h = JSON.parse(obj);
+				$("#invoiceDetails").html(h.html);
+				var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+			}
+			catch(err) {
+<!if(defined("DEV"))!>
+				showError(obj);
+<!else!>
+				showError(err.message);
+<!fi!>
+			}
+		}
+	})
+}
+
+resetMember = function() {
+	$('#invoiceDetails .order .chosen-search input').autocomplete({
+		source:function(request,response) {
+			$.ajax({
+				url:'/modit/ajax/getNames/orders',
+				data:{'s':request.term,'m':$('select[name="member_id"]').val()},
+				context: {el:this},
+				success:function(list,status,xhr) {
+					try {
+						obj = eval("("+list+")");
+						s = $(this.el.bindings[0]).closest(".chosen-container")[0].id.replace("_chosen","");
+						$("#".concat(s)).html(obj.html).trigger("chosen:updated");
+						if (obj.messages.length > 0) showError(obj.messages);
+					}
+					catch(err) {
+	<!if(defined("DEV"))!>
+						showError(obj);
+	<!else!>
+						showError(err.message);
+	<!fi!>
+					}
+				}
+			});
+		}
+	});
+
+	$('#invoiceDetails .invoice .chosen-search input').autocomplete({
+		source:function(request,response) {
+			$.ajax({
+				url:'/modit/ajax/getNames/orders',
+				data:{'s':request.term,'m':$('select[name="member_id"]').val()},
+				context: {el:this},
+				success:function(list,status,xhr) {
+					try {
+						obj = eval("("+list+")");
+						$("select[name='parent_id']").html(obj.html).trigger("chosen:updated");
+						if (obj.messages.length > 0) showError(obj.messages);
+					}
+					catch(err) {
+	<!if(defined("DEV"))!>
+						showError(obj);
+	<!else!>
+						showError(err.message);
+	<!fi!>
+					}
+				}
+			});
+		}
+	});
+
+}
+</script>

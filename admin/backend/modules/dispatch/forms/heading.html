@@ -1,0 +1,69 @@
+<div id='middleHeading' style="display:none;">
+	<div class="heading_title"><a href='#' onclick="getContent('moduleStatus','dispatch','#middleContent');return false;">Pickup & Deliveries</a></div>
+	<div class="heading_options">
+		<div class="buttons">
+		</div>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:id%%","/modit/ajax/showSearchForm/dispatch","middleContent");return false;' id='%%form:id%%'>
+			%%opt_quicksearch%%
+			%%showSearchForm%%
+			<input type="text" class="search_input" name="quicksearch" placeholder="Enter your search here..." />
+			<div class="btn-group pull-right">
+				<button type="submit" class="search_button btn"><em class='icon-search'></em></button>
+				<a class="btn dropdown-toggle" href="#" data-toggle="dropdown" onclick='toggleForm("advancedSearch");return false;'><span class="caret"></span></a>
+				<div class="dropdown-menu hidden" id="advancedSearch">
+					<div class='closer'><a href='#' onclick='toggleForm("advancedSearch");return false;'>x</a></div>
+<table role="presentation">
+						<tr>
+							<th scope="col"></th><td><button onclick='resetSearchForm(this);return false;'>Reset Search Parameters</button></td>
+						</tr>
+						<tr>
+							<th colspan='2' scope="col"><div class='centered'>Start Date</div></th>
+						</tr>
+						<tr>
+							<th scope="col">Criteria:</th><td>%%opt_from%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%from%%</td>
+						</tr>
+
+						<tr>
+							<th colspan='2' scope="col"><div class='centered'>End Date</div></th>
+						</tr>
+						<tr>
+							<th scope="col">Criteria:</th><td>%%opt_to%%</td>
+						</tr>
+						<tr>
+							<th scope="col">Value:</th><td>%%to%%</td>
+						</tr>
+
+						<tr>
+							<th scope="col">Delivery Type:</th><td>%%delivery_type%%</td>
+						</tr>
+
+						<tr>
+							<th scope="col">Driver:</th><td>%%driver_id%%</td>
+						</tr>
+
+						<tr>
+							<th scope="col">Service:</th><td>%%service_type%%</td>
+						</tr>
+
+						<tr>
+							<th scope="col">Overnight:</th><td>%%custom_same_day%%</td>
+						</tr>
+
+						<tr>
+							<th scope="col">Completed:</th><td>%%opt_delivered%%</td>
+						</tr>
+
+						<tr>
+							<td colspan='2'>%%submit%%</td>
+						</tr>
+					</table>
+					<input type='hidden' name='pager' value='%%session:formData:dispatchSearchForm:pager%%' />
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>

@@ -1,0 +1,19 @@
+%%header%%
+%%infoform%%
+<div id='editorContent'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form method='post' name='editorForm' action='/render' id='editorForm'>
+		%%saveButton%%
+		%%delete%%
+		%%editButton%%
+		%%revertButton%%
+		%%previewButton%%
+		%%templateButton%%
+		<input type='hidden' name='p_id' value='%%id%%' />
+		<input type='hidden' name='c_id' value='%%c_id%%' />
+		<input type='hidden' name='edit' value='%%edit_mode%%' />
+	</form>
+</div>
+<div id='pageContent'>
+	<iframe src='/render?p_id=%%id%%' scrolling='auto' frameborder='no' id='editoriFrame' style='min-width:1024px;min-height:500px;'></iframe>
+</div>

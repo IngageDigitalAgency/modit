@@ -1,0 +1,84 @@
+<div id="middleHeading" style="">
+	<div class="heading_title"><a href="#" onclick="getContent('moduleStatus','dispatch','#middleContent');return false;">Overnight Deliveries</a></div>
+	<div class="break"></div>
+</div>
+<div id="variableContent">
+	<div class='searchForm'>
+		<div class='status'>%%statusMessage%%</div>
+		<div id='search-tabs'>
+			<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/dispatch","middleContent");return false;' id='%%form:name%%'>
+					%%xxopt_from%% %%xxfrom%% %%xxopt_to%% %%xxto%% %%xxdelivery_type%% %%xxdriver_id%% %%xxcustom_same_day%% %%xxopt_delivered%% %%xxservice_type%%
+				<div class="form-group row">
+					<label class="col-sm-2 control-label a-right">Start Date:</label>
+					<div class="col-sm-3">%%opt_from%%</div>
+					<div class="col-sm-3">%%from%%</div>
+					<label class="col-sm-2 control-label a-right">End Date:</label>
+					<div class="col-sm-3">%%opt_to%%</div>
+					<div class="col-sm-3">%%to%%</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 control-label a-right">Delivery Type:</label>
+					<div class="col-sm-6">%%delivery_type%%</div>
+					<label class="col-sm-2 control-label a-right">Driver:</label>
+					<div class="col-sm-6">%%driver_id%%</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 control-label a-right">Service:</label>
+					<div class="col-sm-6">%%service_type%%</div>
+					<label class="col-sm-2 control-label a-right">Completed:</label>
+					<div class="col-sm-2">%%opt_delivered%%</div>
+					<label class="col-sm-2 control-label a-right">3<sup>rd</sup> Party:</label>
+					<div class="col-sm-2">%%third_party%%</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 control-label a-right">Order #:</label>
+					<div class="col-sm-6">%%order_id%%</div>
+					<label class="col-sm-2 control-label a-right">Partial Address:</label>
+					<div class="col-sm-6">%%address%%</div>
+				</div>
+				<div>
+					<label class="col-sm-2 control-label">&nbsp;</label>
+					<div class="col-sm-6"><input class="def_field_submit" type="submit" value="Search" name="submit"></div>
+				</div>
+				<div id='articleList' class='listing'>
+					<div id='productFolderId' style='display:none'>%%id%%</div>
+					<div class="break"></div>
+<table role="presentation">
+						<thead>
+							<tr>
+								<th class="a-right"><span onclick='sort("order_id","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Order #</span></th>
+								<th class="a-left"><span onclick='sort("scheduled_date","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Time</span></th>
+								<th class="a-left"><span onclick='sort("service_type","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Type</span></th>
+								<th class="a-left"><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Service</span></th>
+								<th class="a-left">Address</th>
+								<th class="a-left">Instructions</th>
+								<th class="a-left">Special Needs</th>
+								<th class="a-left"><span onclick='sort("drivername","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Driver</span></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						%%articles%%
+					</table>
+					<div id='pagination'>
+						<span class="pagination-dropdown pull-right">Deliveries per page : %%pager%%</span>
+						%%pagination%%
+						<div class="break"></div>
+					</div>
+				</div>
+				%%showSearchForm%% 
+				%%pagenum%%
+				%%sortorder%%
+				%%sortby%%
+			</form>
+		</div>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+//]]> 
+</script> 
+</code>

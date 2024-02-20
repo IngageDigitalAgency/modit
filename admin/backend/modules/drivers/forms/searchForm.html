@@ -1,0 +1,41 @@
+%%heading%%
+<div class='searchForm' id="variableContent">
+	<div class='status'>%%statusMessage%%</div>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/drivers","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				%%opt_quicksearch%% %%quicksearch%% %%vehicle_id%% %%group_id%%
+				%%opt_name%% %%name%% %%enabled%% %%deleted%%
+			</div>
+			<div id='articleList'>
+<table role="presentation" class='listing'>
+					<thead>
+						<tr>
+							<th><a href="#" onclick="sortby('company',this);return false;">Name</a></th>
+							<th><a href="#" onclick="sortby('group_name',this);return false;">Group</a></th>
+							<th>Phone</th>
+							<th><a href="#" onclick="sortby('email',this);return false;">Email</a></th>
+							<th><a href="#" onclick="sortby('vehicle_id',this);return false;">Vehicle</a></th>
+							<th><a href="#" onclick="sortby('enabled',this);return false;">Enabled</a></th>
+							<th><a href="#" onclick="sortby('deleted',this);return false;">Deleted</a></th>
+							<th colspan='2' scope="col"></th>
+						</tr>
+					</thead>
+					%%articles%%
+				</table>
+				<div id='pagination'><span class="pagination-dropdown pull-right">Drivers per page : %%pager%%</span> %%pagination%%</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initDrivers();
+initSearch();
+pagingUrl = "/modit/ajax/showSearchForm/drivers";
+//]]> 
+</script> 

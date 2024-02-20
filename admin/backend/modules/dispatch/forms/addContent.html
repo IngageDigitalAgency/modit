@@ -1,0 +1,574 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Product</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-2">Descriptions</a></li>
+			<li><a href="#tabs-17">SEO</a></li>
+			%%customTab%%
+			<li><a href="#tabs-9">Pricing</a></li>
+			<li><a href="#tabs-14">Weight &amp; Dimensions</a></li>
+			<li><a href="#tabs-15">Video</a></li>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-16">Blogs</a></li>
+<!fi!>
+<!if((int)$this->getConfigVar('productRecurring','system')>0)!>
+			<li><a href="#tabs-13">Recurring</a></li>
+<!fi!>
+			<li><a href="#tabs-3">Images</a></li>
+<!if((int)$this->getConfigVar('productDigital','system')>0)!>
+			<li><a href="#tabs-11">Digital Content</a></li>
+<!fi!>
+<!if((int)$this->getConfigVar('productRelations','system')>0)!>
+			<li><a href="#tabs-10">Related Products</a></li>
+<!fi!>
+<!if((int)$this->getConfigVar('productAssemblies','system')>0)!>
+			<li><a href="#tabs-4">Assemblies</a></li>
+<!fi!>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-5">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('product:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-6">Stores</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-7">Events</a></li>
+<!fi!>
+<!if(array_key_exists('news:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-12">Articles</a></li>
+<!fi!>
+<!if((int)$this->getConfigVar('productInventory','system')>0)!>
+			<li><a href="#tabs-8">Inventory</a></li>
+<!fi!>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+<table role="presentation" class='content'>
+					<tr>
+						<th>Product Name:</th><td>%%name%% <span class='errorMessage'>%%nameError%% %%tooltip:Title%%</span></td>
+					</tr>
+					<tr>
+						<th>Product Sub-Name:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Product Code:</th><td>%%code%% <span class='errorMessage'>%%codeError%%</span></td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%expires%% <span class='errorMessage'>%%expiresError%%</span></td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>Inventory Status:</th><td>%%status%% <span class='errorMessage'>%%statusError%% %%tooltip:ProductStatus%%</span></td>
+					</tr>
+					<tr>
+						<th>Physical Product:</th><td>%%physical_product%% <span class='errorMessage'>%%physical_productError%% %%tooltip:PhysicalProduct%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% <span class='errorMessage'>%%featuredError%% %%tooltip:Featured%%</span></td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Member of:</th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+				</table>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+			<div id='tabs-2'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+<!if(array_key_exists('twitter',$GLOBALS))!>
+				<div id='twitter'>%%twitterPublish%% Publish to Twitter</div>
+<!fi!>
+<!if(array_key_exists('facebook',$GLOBALS))!>
+				<div id='facebook'>%%facebookPublish%% Publish to Facebook</div>
+<!fi!>
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+				%%submit%%
+				<div class='break'></div>
+			</div>
+			%%customInfo%%
+			<div id='tabs-9'>
+<table role="presentation">
+					<tr>
+						<th>Sale Start:</th><td>%%sale_startdate%% <span class='errorMessage'>%%sale_startdateError%% %%tooltip:StartDate%%</span></td>
+					</tr>
+					<tr>
+						<th>Sale End:</th><td>%%sale_enddate%% <span class='errorMessage'>%%sale_enddateError%% %%tooltip:EndDate%%</span></td>
+					</tr>
+					<tr>
+						<th>On Sale Message:</th><td>%%on_sale_message%% <span class='errorMessage'>%%on_sale_messageError%%</span></td>
+					</tr>
+					<tr>
+						<th>Tax Exemptions:</th><td>%%exemptions%%</td>
+					</tr>
+					<tr>
+				</table>
+				<div class='title'>Pricing</div>
+<table role="presentation" class='listing' id='pricingTable'>
+					<thead>
+						<tr>
+							<th>Teaser</th>
+							<th class='centered'>From Qty</th>
+							<th class='centered'>To Qty</th>
+							<th class='centered'>Price</th>
+							<th class='centered'>Sale Price</th>
+							<th colspan='2' class='centered'>Shipping Price Per/Total</th>
+							<th class='centered'>Edit</th>
+							<th class='entered'>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						%%pricing%%
+					</tbody>
+				</table>
+				<button class='def_field_submit' onclick='editPricingRow(0,%%id%%);return false;'>Add another price range</button>
+				<div class='break'></div>
+				<div class='title'>Options</div>
+<table role="presentation" class='listing' id='optionsTable'>
+					<thead>
+						<tr>
+							<th class='a-left'>Description</th>
+<!if((int)$this->getConfigVar('productMultiples','system')>0)!>
+							<th class='a-right'>Unit Multipler</th>
+<!fi!>
+							<th class='a-right'>Price (+/-)</th>
+							<th class='a-right'>Sale Price (+/-)</th>
+							<th class='a-right'>Shipping (+/-)</th>
+							<th colspan='2' scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%options%%
+					</tbody>
+				</table>
+				<button class='def_field_submit' onclick='editOptionRow(0,%%id%%);return false;'>Add a pricing option</button>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+			<div id='tabs-3'>
+<table role="presentation">
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 3:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">%%imagesel_c%%</a> <span class='errorMessage'>%%image3Error%%</span><br/>
+							<input id="image_c" type="hidden" name="image3" value="%%image3%%" />
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 4:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">%%imagesel_d%%</a> <span class='errorMessage'>%%image4Error%%</span><br/>
+							<input id="image_d" type="hidden" name="image4" value="%%image4%%" />
+							<a href="#" onclick="setImage(this,'products/originals/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!if((int)$this->getConfigVar('productAssemblies','system')>0)!>
+			<div id='tabs-4'>
+				<div class='title'>Assembly Information</div>
+				<div id='assemblyTab' class='listing'>
+					<div class='folders'>
+<table role="presentation">
+							<tr>
+								<td>
+									%%productFolders%%
+								</td>
+								<td style='width:40%'>
+									<div class='dragger'>%%productList%%</div>
+									<input type='button' value='Add To Kit' onclick='newAssemblyDrop("byProductSource")' class='def_field_submit' />
+									<div class='break'></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+<table role="presentation" >
+						<tbody>
+							<tr>
+								<th class='delete'>Delete</th>
+								<th class='quantity'>Quantity</th>
+								<th class='sequence'>Sort Order</th>
+								<th class='code' style='text-align:center'>Code</th>
+								<th class='name' style='text-align:center'>Name</th>
+							</tr>
+						</tbody>
+					</table>
+					<ul class='listing' id='assemblyTable'>
+							%%destProducts%%
+					</ul>
+					<div class='title'>This is a component piece of:</div>
+<table role="presentation">
+						<tbody>
+							<tr>
+								<th>Delete</th>
+								<th>Code</th>
+								<th>Name</th>
+								<th>Quantity</th>
+							</tr>
+							%%assembledInto%%
+						</tbody>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-5'>
+				<div id='couponsTab'>
+					<div class='title'>Deals or Offer Categories Assigned to this Product</div>
+					%%destCouponFolders%% <span class='errorMessage'>%%destCouponFoldersError%% %%tooltip:DealCatRel%%</span>
+					<div class='title'>Individual Deals or Offers Assigned to this Product</div>
+<table role="presentation">
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%couponFolders%%
+							</td>
+							<td>
+								<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+								<div id='offerCatSelection'>
+									%%destCoupons%%
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if(array_key_exists('product:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-6'>
+				<div id='storeTab'>
+					<div class='title'>Store or Location Categories Assigned to this Product</div>
+					%%destStoreFolders%% <span class='errorMessage'>%%destStoreFoldersError%% %%tooltip:LocationCatRel%%</span>
+					<div class='title'>Individual Stores or Locations Assigned to this Product</div>
+<table role="presentation">
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%storeFolders%%
+							</td>
+							<td>
+								<div>Select the Store(s) %%tooltip:DealRel%%</div>
+								<div id='storeCatSelection'>
+									%%destStores%%
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if(array_key_exists('calendar:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div id='eventsTab'>
+					<div class='title'>Calendars Assigned to this Product</div>
+					%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%% %%tooltip:CalendarRel%%</span>
+					<div class='title'>Events Assigned to this Product</div>
+<table role="presentation">
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%eventFolders%%
+							</td>
+							<td>
+								<div>Select the Event(s) %%tooltip:DealRel%%</div>
+								<div id='eventCatSelection'>
+									%%destEvents%% <span class='errorMessage'>%%destEventsError%%</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if((int)$this->getConfigVar('productRelations','system')>0)!>
+			<div id='tabs-10'>
+				<div id='relatedProductsTab'>
+					<div class='title'>Related Product Categories Assigned to this Product</div>
+					%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+					<div class='title'>Related Products Assigned to this Product</div>
+<table role="presentation">
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%relatedProductFolders%%
+							</td>
+							<td>
+								<div>Select the Product(s) %%tooltip:DealRel%%</div>
+								<div id='relatedProductCatSelection'>
+									%%relatedDestProducts%% <span class='errorMessage'>%%relatedDestProductsError%%</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if((int)$this->getConfigVar('productDigital','system')>0)!>
+			<div id='tabs-11'>
+<table role="presentation" class='content'>
+					<tr>
+						<th>Attachment:</th><td>%%attachment_name%%</td>
+					</tr>
+					<tr>
+						<th>Title:</th><td>%%attachment_title%%</td>
+					</tr>
+					<tr>
+						<th>Protected Content:</th><td>%%attachment_protected%%</td>
+					</tr>
+					<tr>
+						<th>Remove Protected Content:</th><td>%%attachment_remove%%</td>
+					</tr>
+					<tr>
+						<th>Protected Upload:</th><td>%%attachment_upload%%</td>
+					</tr>
+					<tr>
+						<th>Non-Protected Content:</th><td>%%attachment_local%% <a id="attachment_selector" href="javascript:mcFileManager.open('addContent','attachment_local','','');">Browse</a></td>
+					</tr>
+				</table>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if(array_key_exists('news:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-12'>
+				<div id='articleTab'>
+					<div class='title'>Article Categories Assigned to this Product</div>
+					%%destNewsFolders%% <span class='errorMessage'>%%destNewsFoldersError%% %%tooltip:NewsRel%%</span>
+					<div class='title'>Articles Assigned to this Product</div>
+<table role="presentation">
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%newsFolders%%
+							</td>
+							<td>
+								<div>Select the Article(s) %%tooltip:DealRel%%</div>
+								<div id='newsCatSelection'>
+									%%destNews%% <span class='errorMessage'>%%destNewsError%%</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				%%submit%%
+				<div class='break'></div>
+			</div>
+<!fi!>
+<!if((int)$this->getConfigVar('productRecurring','system')>0)!>
+			<div id='tabs-13'>
+				<div id='recurringTab'>
+					<div class='title'>Recurring Billing Options</div>
+<table role="presentation" class='listing'>
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Description</th>
+								<th>Discount</th>
+								<th>Type</th>
+								<th>Shipping Only</th>
+								<th>Min Amount</th>
+								<th>Enabled</th>
+								<th>Published</th>
+								<th>Deleted</th>
+								<th>Edit</th>
+							</tr>
+						</thead>
+						<tbody>%%recurring%%</tbody>
+					</table>
+					<button onclick="editRecurringRow(0,%%id%%);return false;" class="def_field_submit">Add an option</button>
+				</div>
+			</div>
+<!fi!>
+			<div id='tabs-14'>
+				<div class='title'>Weights &amp; Dimensions</div>
+<table role="presentation">
+					<tr>
+						<th>Weight:</th><td>%%weight%% %%weight_units%%</td>
+					</tr>
+					<tr>
+						<th>Height:</th><td>%%height%%</td>
+					</tr>
+					<tr>
+						<th>Width:</th><td>%%width%%</td>
+					</tr>
+					<tr>
+						<th>Depth:</th><td>%%depth%%</td>
+					</tr>
+					<tr>
+						<th>Units:</th><td>%%measurement_units%%</td>
+					</tr>
+					<tr>
+						<th>Box Size:</th><td>%%box_size%%</td>
+					</tr>
+					<tr>
+						<th>Qty / Box:</th><td>%%max_per_box%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-15'>
+				%%video%%
+			</div>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-16'>
+				<div class='title'>Blog Categories Assigned to this Product</div>
+				%%destBlogFolders%% <span class='errorMessage'>%%destBlogFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Blogs Assigned to this Product</div>
+<table role="presentation">
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%blogFolders%%
+						</td>
+						<td>
+							<div>Select the Blog(s) <span class='errorMessage'>%%destBlogsError%% %%tooltip:CatToProd%%</span></div>
+							<div id='blogCatSelection'>
+								%%destBlogs%% %%tooltip:ProductRel%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			<div id="tabs-17">
+				<div class='title'>SEO Content for Product Details</div>
+<table role="presentation">
+					<tbody>
+						<tr><th>Keywords:</th><td>%%meta_description%%</td></tr>
+						<tr><th>Description:</th><td>%%meta_keywords%%</td></tr>
+						<tr><th>Title:</th><td>%%browser_title%%</td></tr>
+					</tbody>
+				</table>
+			</div>
+			<input type='hidden' id='p_id' name='p_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+<!if((int)$this->getConfigVar('productInventory','system')>0)!>
+		<div id='tabs-8'>
+			<div class='errorMessage'>The Product must be saved first</div>
+		</div>
+<!fi!>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$('#destFolders').chosen();
+$('#destCoupons').chosen();
+$('#destCouponFolders').chosen();
+$('#destEvents').chosen();
+$('#destEventFolders').chosen();
+$('#destNews').chosen();
+$('#destNewsFolders').chosen();
+$('#destStores').chosen();
+$('#destStoreFolders').chosen();
+$('#destBlogs').chosen();
+$('#destBlogFolders').chosen();
+$('#relatedProductFolders').chosen();
+$('#relatedDestProducts').chosen();
+$('#destSearch').chosen();
+$("#tabs" ).tabs();
+if ($('#tabs-8').length > 0)
+	loadInventory(%%id%%,'#tabs-8');
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#assemblyTab div.dragger',false);
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true);
+});
+$('#blogFolderSelector').change(function() {
+	loadBlogList(this,'#blogCatSelection',true);
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true);
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true);
+});
+$('#newsFolderSelector').change(function() {
+	loadNewsList(this,'#newsCatSelection',true);
+});
+$('#relatedProductFolderSelector').change(function() {
+	loadProductList(this,'#relatedProductCatSelection',true,true);
+});
+$('.popovers').popover();
+$('#assemblyTable').sortable();
+sortableOptions();
+<!if((int)$this->getConfigVar('productDigital','system')> 0)!>
+var p = $('input[name=attachment_protected]')[0];
+$(p).change(function() {
+	fnSetProtected(this.checked);
+});
+var fnSetProtected = function(state) {
+	if (state) {
+		$('input[name=attachment_local]').enable(false);
+		$('#attachment_selector').enable(false);
+		$('input[name=attachment_upload]').enable(true);
+	}
+	else {
+		$('input[name=attachment_local]').enable(true);
+		$('#attachment_selector').enable(true);
+		$('input[name=attachment_upload]').enable(false);
+	}
+}
+fnSetProtected(p.checked);
+<!fi!>
+recurringSortableDroppable();
+</code>

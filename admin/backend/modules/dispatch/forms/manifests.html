@@ -1,0 +1,60 @@
+<div id="middleHeading" style="">
+	<div class="heading_title"><a href="#" onclick="getContent('moduleStatus','dispatch','#middleContent');return false;">Daily Manifests</a></div>
+	<div class="break"></div>
+</div>
+<div id="variableContent">
+	<div class='sameDays %%x2%%'>
+		<div class='status'>%%statusMessage%%</div>
+		<div id='search-tabs'>
+			<form method='%%form:method%%' action='/modit/ajax/%%form:action%%/dispatch' name='%%form:name%%' id='%%form:name%%' target='_new'>
+<table role="presentation">
+					<tbody>
+						<tr>
+							<th class="a-left" scope="col">Date:</th><td>%%opt_scheduled_date%% %%scheduled_date%%</td>
+							<th class="a-left" scope="col">Driver:</th><td>%%driver_id%%</td>
+						</tr>
+						<tr>
+							<th class="a-left" scope="col">Type:</th><td>%%service_type%%</td>
+							<th class="a-left" scope="col">Service:</th><td>%%delivery_type%%</td>
+						</tr>
+						<tr>
+							<th class="a-left" scope="col">Show Completed:</th><td>%%opt_delivered%%</td>
+							<td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+						</tr>
+					</tbody>
+				</table>
+				<div id='articleList' class="listing">
+<table role="presentation">
+						<thead>
+							<tr>
+								<th><span onclick='sort("order_id","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Order #</span></th>
+								<th>Type</th>
+								<th>Company</th>
+								<th>Address</th>
+								<th>City</th>
+								<th>Postal</th>
+								<th><span onclick='sort("scheduled_date","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Time</span></th>
+								<th>Service</th>
+								<th><span onclick='sort("drivername","%%form:name%%","/modit/ajax/%%form:action%%/dispatch","middleContent")'>Driver</span></th>
+								<th></th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						%%deliveries%%
+					</table>
+				</div>
+				%%manifests%% 
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+sameDayDraggable();
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+initDateFields();
+//]]> 
+</script>

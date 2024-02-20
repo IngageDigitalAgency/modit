@@ -1,0 +1,57 @@
+<div class='propertyEditing'>
+	<div class='title'>Driver Confirmation</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='messageTabs'>
+		<ul>
+			<li><a href="#tabs-1">Messaging</a></li>
+			<li><a href="#tabs-2">Pickup</a></li>
+			<li><a href="#tabs-3">Delivery</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id="tabs-1">
+<table role="presentation" class='content'>
+					<tr><th>Currently Assigned to:</th><td>%%driver:company%% %%driver:firstname%% %%driver:lastname%%</td></tr>
+					<tr><th>Created:</th><td>%%created%%</td></tr>
+					<tr><th>Acknowleged:</th><td>%%acknowledged%%</td></tr>
+					<tr><th>Your Message:</th><td>%%dispatch_message%%</td></tr>
+					<tr><th>Driver's Response:</th><td>%%driver_message,false%%</td></tr>
+					<tr><th>Current Status:</th><td>%%status%%</td></tr>
+				</table>
+			</div>
+			<div id="tabs-2">
+<table role="presentation" class="content">
+					<tr><th>Company:</th><td>%%pickup:company%%</td></tr>
+					<tr><th>Address:</th><td>%%pickup:line1%%</td></tr>
+					<tr><th>&nbsp;</th><td>%%pickup:line2%%</td></tr>
+					<tr><th>City:</th><td>%%pickup:city%%</td></tr>
+					<tr><th>Postal Code:</th><td>%%pickup:postalcode%%</td></tr>
+					<tr><th>Phone:</th><td>%%pickup:phone1%%</td></tr>
+					<tr><th>Email:</th><td>%%pickup:email%%</td></tr>
+					<tr><th>Contact:</th><td>%%pickup:firstname%% %%pickup:lastname%%</td></tr>
+					<tr><th>GPS:</th><td>(%%pickup:latitude%%,%%pickup:longitude%%)</td></tr>
+				</table>
+			</div>
+			<div id="tabs-3">
+<table role="presentation" class="content">
+					<tr><th>Company:</th><td>%%delivery:company%%</td></tr>
+					<tr><th>Address:</th><td>%%delivery:line1%%</td></tr>
+					<tr><th>&nbsp;</th><td>%%delivery:line2%%</td></tr>
+					<tr><th>City:</th><td>%%delivery:city%%</td></tr>
+					<tr><th>Postal Code:</th><td>%%delivery:postalcode%%</td></tr>
+					<tr><th>Phone:</th><td>%%delivery:phone1%%</td></tr>
+					<tr><th>Email:</th><td>%%delivery:email%%</td></tr>
+					<tr><th>Contact:</th><td>%%delivery:firstname%% %%delivery:lastname%%</td></tr>
+					<tr><th>GPS:</th><td>(%%delivery:latitude%%,%%delivery:longitude%%)</td></tr>
+				</table>
+			</div>
+			<div class="form-actions">
+			%%submit%% %%editAck%% %%a_id%%
+			<div class='break'></div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("#messageTabs").tabs();
+initTinyMCE();
+</code>

@@ -1,0 +1,70 @@
+<div id="driverSchedule">
+	<div id="driverInfo">
+		<div class='subtitle'>Driver Details <a href="#" onclick="editDriver(%%id%%);return false;"><em class="icon-edit"></em></a></div>
+<table role="presentation">
+			<tbody>
+				<tr>
+					<th class="a-left" scope="col">Name:</th><td>%%firstname%% %%lastname%% <a href="/modit/members/editMember?m_id=%%member_id%%" target="_new"><em class="icon-edit"></em></a></td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Phone 1:</th><td>%%phone1%%</td>
+				</tr>
+<!if(strlen("%%phone2%%")>0)!>
+				<tr>
+					<th class="a-left" scope="col">Phone 2:</th><td>%%phone2%%</td>
+				</tr>
+<!fi!>
+				<tr>
+					<th class="a-left" scope="col">Email:</th><td>%%email%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Zone(s):</th><td>%%zones%%</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="listing">
+		<h3>Current Schedule</h3>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/drivers","variableContent");return false;' id='%%form:name%%'>
+<table role="presentation">
+				<tbody>
+					<tr>
+						<th class="a-left" scope="col">Date:</th><td>%%opt_scheduled_date%%</td><td>%%scheduled_date%%</td>
+						<th class="a-left" scope="col">Service:</th><td>%%service_type%%</td>
+						<th class="a-left" scope="col">Completed:</th><td>%%status%%</td>
+						<th class="a-left" scope="col">Delivery Type:</th><td>%%delivery_type%%</td>
+						<td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+					</tr>
+				</tbody>
+			</table>
+			%%getDriver%% %%sortby%% %%sortorder%% %%d_id%% %%showSchedule%%
+		</form>
+		<div id="schedule">
+<table role="presentation">
+					<thead>
+						<tr>
+							<th class="a-right">Order #</th>
+							<th class="a-left">Scheduled Time</th>
+							<th class="a-left" colspan="2">Service</th>
+							<th class="a-right">Weight</th>
+							<th class="a-left">Address</th>
+							<th class="a-left">City</th>
+							<th class="a-left">Postal Code</th>
+							<th class="a-left">Instructions</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%schedule%%
+					</tbody>
+				</table>
+				<input type="hidden" name="d_id" value="%%request:d_id%%" />
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div id="mapWrapper"></div>
+	<div class="clearfix"></div>
+</div>
+<script type="text/javascript">
+initDateFields();
+</script>

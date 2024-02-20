@@ -1,0 +1,59 @@
+<div id="dispatch-ack-status">
+	<form method="post" action="/ajax/render">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-16 text-center"><h1>Dispatch Waiting Status</h1></div>
+			</div>
+			<div class="row">
+				<div class="col-xs-16">
+<table role="presentation" class="table table-striped v-middle">
+						<thead>
+							<tr class="black-bg">
+								<th>Order #</th>
+								<th>Service</th>
+								<th>Action</th>
+								<th>Scheduled</th>
+								<th>Requested</th>
+								<th>Elapsed</th>
+								<th>Driver</th>
+								<th class="text-center">Status</th>
+							</tr>
+						</thead>
+						%%services%%
+					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center">
+					<div class="col-xs-14">%%pagination%%</div>
+					<div class="col-xs-2 pagination">%%pager%%</div>
+				</div>
+			</div>
+		</div>
+		%%pagenum%%%%t_id%%%%dispatchAcks%%
+	</form>
+</div>
+<script type="text/javascript">
+pagination = function(pg, el) {
+	window.clearTimeout(t_id);
+	f = $(el).closest("form");
+	$(f).find("input[name='pagenum']").val(pg);
+	$(f).ajaxSubmit({
+		success: function( obj, xhr, status ) {
+			try {
+				h = JSON.parse(obj);
+				$("#dispatch-ack-status").replaceWith(h.html);
+				t_id = window.setTimeout(reload,20000);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+reload = function() {
+	f = $("#dispatch-ack-status form");
+	pg = $(f).find("input[name='pagenum']");
+	pagination(pg[0].value,pg);
+}
+t_id = window.setTimeout(reload,20000);
+</script>

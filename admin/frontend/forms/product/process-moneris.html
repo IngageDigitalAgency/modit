@@ -1,0 +1,48 @@
+<div class='errmsg'>%%errorMessage%%</div>
+<div id='checkout-moneris'>
+	<form method="POST" action="%%global:moneris:moneris_url%%" name="moneris">
+		<input type="hidden" name="ps_store_id" value="%%global:moneris:store_id%%" />
+		<input type="hidden" value="%%global:moneris:store_key%%" name="hpp_key" />
+		<input type="hidden" name="charge_total" value="%%formattedTotal%%" />
+		<input type="hidden" name="order_id" value="%%order_id%%" />
+		<input type="hidden" name="cust_id" value="%%id%%" />
+		<input type="hidden" name="email" value="%%email%%" />
+		<input type="hidden" name="bill_first_name" value="%%bill_firstname%%" />
+		<input type="hidden" name="bill_last_name" value="%%bill_lastname%%" />
+		<input type="hidden" name="bill_address_one" value="%%bill_line1%%" />
+		<input type="hidden" name="bill_address_two" value="%%bill_line2%%" />
+		<input type="hidden" name="bill_city" value="%%bill_city%%" />
+		<input type="hidden" name="bill_state_or_province" value="%%bill_province%%" />
+		<input type="hidden" name="bill_postal_code" value="%%bill_postalcode%%" />
+		<input type="hidden" name="bill_phone" value="%%bill_phone1%%" />
+		<input type="hidden" name="ship_first_name" value="%%firstname%%" />
+		<input type="hidden" name="ship_last_name" value="%%lastname%%" />
+		<input type="hidden" name="ship_address_one" value="%%line1%%" />
+		<input type="hidden" name="ship_city" value="%%city%%" />
+		<input type="hidden" name="ship_state_or_province" value="%%province%%" />
+		<input type="hidden" name="ship_postal_code" value="%%postalcode%%" />
+		<input type="hidden" name="ship_phone" value="%%phone1%%" />
+		<input type="submit" value=" Pay by Credit Card" id="credit" title="Pay Online Now with Credit Card" class='hidden' />
+		<span class='save'>
+			<a class="button red bigrounded" href="#" onclick='formSubmit(this)'>Confirm Secure Payment
+				<span class="button_arrow">
+					<img src="/images/backgrounds/button_arrow.png">
+				</span>
+			</a>
+		</span>
+	</form>
+	%%moneris_error%%
+	%%errmsg%%
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	var t = "%%order_id%%";
+	if (t.length == 0) {
+		parent.location = '/shop-1812';
+	}
+	document.forms["moneris"]["order_id"].value = document.forms["moneris"]["order_id"].value.concat("-").concat(Math.floor(Math.random()*100));
+	if (document.location.host.indexOf("modit") >= 0)
+		document.forms["moneris"]["charge_total"].value = "1.00";
+});
+</script>
+	

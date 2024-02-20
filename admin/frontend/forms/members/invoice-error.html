@@ -1,0 +1,32 @@
+<!if((int)"%%session:mgmt:user:id%%">0)!>
+
+<script type="text/javascript" src="/js/chosen.jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.js"></script>
+<link rel="stylesheet" href="/css/jquery-ui.css" />
+
+<div id="invoicing"></div>
+<script type="text/javascript">
+$.ajax({
+	url: "/ajax/render",
+	data: {t_id:124},
+	success: function( obj, status, xhr ) {
+		try {
+			h = JSON.parse(obj);
+			$("#invoicing").replaceWith(h.html);
+			var objcode = "<script type='text/javascript'>"+h.code+"<\/script>"; $('body').append(objcode); $('body').append(objcode);
+		}
+		catch(err) {
+		}
+	}
+});
+</script>
+
+<!else!>
+<div class="container">
+	<div class="row top20 bottom20">
+		<div class="col-sm-8 col-sm-offset-4">
+			<div class="alert alert-danger text-center">You do not have access to this page</div>
+		</div>
+	</div>
+</div>
+<!fi!>

@@ -1,0 +1,70 @@
+<div class="container top20" id="driver-ack">
+	<form method="post">
+		<div class="row">
+			<div class="col-xs-offset-6 col-xs-10 text-center">%%errorMessage%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Message From Office:</div>
+			<div class="col-xs-10 form-group">%%dispatch_message%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Your Response To Office:</div>
+			<div class="col-xs-10 form-group">%%ack_status%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Message to Office:</div>
+			<div class="col-xs-10 form-group">%%driver_message%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right"> </div>
+			<div class="col-xs-10 form-group">%%submit%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Action:</div>
+			<div class="col-xs-10 form-group">
+<!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Service:</div>
+			<div class="col-xs-10 form-group">%%name%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Request Created:</div>
+			<div class="col-xs-10 form-group">%%ack_requested%% (%%created_delay%%)</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Action Time:</div>
+			<div class="col-xs-10 form-group">%%scheduled_date%% (%%scheduled_delay%%)</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Company:</div>
+			<div class="col-xs-10 form-group">%%address:company%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Address:</div>
+			<div class="col-xs-10 form-group">%%address:line1%%
+<!if(strlen("%%address:line2%%")>0)!><br/>%%address:line2%%<!fi!>
+<br/>%%address:city%% %%address:postalcode%%</div>
+		</div>
+<!if("%%address:latidude%%"!="0.0000")!>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">GPS:</div>
+			<div class="col-xs-10 form-group"><a target="_new" href="http://maps.google.com/maps?daddr=%%address:latitude%%,%%address:longitude%%">(%%address:latitude%% , %%address:longitude%%)</a></div>
+		</div>
+<!fi!>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Contact:</div>
+			<div class="col-xs-10 form-group">%%address:firstname%% %%address:lastname%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Phone:</div>
+			<div class="col-xs-10 form-group"><a href="tel:%%address:phone1%%">%%address:phone1%%</a></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6 form-group text-right">Email:</div>
+			<div class="col-xs-10 form-group"><a href="mailto:%%address:email%%">%%address:email%%</a></div>
+		</div>
+%%acknowledgement%%%%t_id%%%%a_id%%
+	</form>
+</div>

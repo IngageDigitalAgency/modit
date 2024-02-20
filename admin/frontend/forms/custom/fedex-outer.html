@@ -1,0 +1,29 @@
+<div id="selectService">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-16">
+				%%errorMessage%%
+				<form method="post">
+					<div class="row">
+						<div class="col-sm-12 text-center col-sm-offset-3">
+							%%errorMessage%%
+						</div>
+					</div>
+<table role="presentation" class="table table-striped table-bordered">
+						<thead>
+							<tr><th>Seq.</th><th>Type</th><th>Quantity</th><th>Weight (%%wt:value%%)</th></tr>
+						</thead>
+						<tbody>
+							%%products%%
+						</tbody>
+					</table>
+					<input class="btn" type="submit" value="Get A Quote" />
+					%%FedExService%%
+					%%weight_code%%
+					%%dimension_code%%
+				</form>
+				<a href="/logout">Logout</a> | <a href="/pickup-address">Next Test</a>
+			</div>
+		</div>
+	</div>
+</div>

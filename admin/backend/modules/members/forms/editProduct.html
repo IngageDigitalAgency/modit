@@ -1,0 +1,99 @@
+%%errorMessage%%
+<div class="title">Add/Edit a Group Product</div>
+<div id='prodTabs'>
+	<ul>
+		<li><a href="#prodTabs-1">Main Pricing</a></li>
+<!if("%%field:tag^p_id%%"!="0")!>
+<!if("%%request:g%%"=="0")!>
+		<li><a href="#prodTabs-4">KM Range Group Overrides</a></li>
+<!fi!>
+		<li><a href="#prodTabs-2">KM Ranges</a></li>
+		<li><a href="#prodTabs-3">Postal Code Specific</a></li>
+<!fi!>
+	</ul>
+	<div id="prodTabs-1">
+		<form id="productsForm" method="POST" onsubmit='formCheck("productsForm","/modit/ajax/editProduct/members","altPopup");return false;' class='form-inline'>
+<table role="presentation">
+				<tr>
+					<th>Product:</th><td>%%product_id%%%%name%%</td>
+				</tr>
+<tr <!if("%%field:tag^isgroup%%"=="1")!>class="hidden"<!fi!>><th>Unavailable:</th><td>%%unavailable%%</td></tr>
+				<tr class="toggle">
+					<th>1st Zone/Minimum Rate (+/-%):</th><td>%%minimum_charge%% <span>%%minimum_charge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Inter Downtown Rate (+/-%):</th><td>%%inter_downtown%% <span>%%inter_downtown_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Extra Zones (+/-%):</th><td>%%zone_surcharge%% <span>%%zone_surcharge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Downtown Surcharge (+/-%):</th><td>%%downtown_surcharge%% <span>%%downtown_surcharge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Km Minimum Charge (+/-%):</th><td>%%km_mincharge%% <span>%%km_mincharge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Km Maximum Charge (+/-%):</th><td>%%km_maxcharge%% <span>%%km_maxcharge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Toggle By KM/Zone:</th><td>%%toggle_km_zone%%</td>
+				</tr>
+				<tr class="toggle">
+					<th>Km Rate (+/-%):</th><td>%%km_charge%% <span>%%km_charge_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Out Of Zone Rate (+/-%):</th><td>%%out_of_zone_rate%% <span>%%out_of_zone_rate_display%%</span></td>
+				</tr>
+				<tr class="toggle">
+					<th>Fuel Exempt:</th><td>%%fuel_exempt%%</td>
+				</tr>
+				<tr class="toggle">
+					<th>Cutoff Time:</th><td>%%cutoff_time%%</td>
+				</tr>
+				<tr class="toggle">
+					<th>Visible to Admin Only:</th><td>%%admin_only%%</td>
+				</tr>
+				<tr class="toggle">
+					<th>Out of Zone Alternate Product:</th><td>%%out_of_zone_alternate%%</td>
+				</tr>
+			</table>
+			%%editProduct%% %%member_id%% %%isgroup%% %%p_id%%
+			<div class="form-actions">%%save%%</div>
+		</form>
+	</div>
+<!if("%%field:tag^p_id%%"!="0")!>
+	<div id="prodTabs-2">
+		%%kmRates,false%%
+	</div>
+	<div id="prodTabs-3">
+		%%byPC,false%%
+	</div>
+<!if("%%request:g%%"=="0")!>
+	<div id="prodTabs-4">
+		%%kmOverrides,false%%
+	</div>
+<!fi!>
+<!fi!>
+</div>
+<script type="text/javascript">
+if ($("input[name='product_id']").length > 0) getAllOverrides($("input[name='product_id']")[0]);
+if ($("select[name='product_id']").length > 0) getAllOverrides($("select[name='product_id']")[0]);
+$("#prodTabs").tabs();
+<!if("%%field:tag^isgroup%%"=="0")!>
+toggler = function(cb) {
+	md = cb.checked;
+	$("#productsForm .toggle").each(function(idx,el) {
+		if (md) {
+			$(el).removeClass("visible");
+			$(el).addClass("hidden");
+		}
+		else {
+			$(el).removeClass("hidden");
+			$(el).addClass("visible");
+		}
+	});
+}
+toggler($("input[name='unavailable']")[0]);
+<!fi!>
+</script>

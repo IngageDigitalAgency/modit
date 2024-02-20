@@ -1,0 +1,100 @@
+<div id="consolidated-account">
+	<div class="row">
+		<div class="col-xs-16 text-center"><h2>Consolidated Invoices</h2></div>
+	</div>
+	<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%" id="consolidated">
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+		<div class="row">
+			<div class="col-xs-8 col-sm-4 col-sm-offset-2 form-group"><label>Invoice Date</label>%%invoice_date%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 col-sm-14 col-sm-offset-1 col-md-12 col-md-offset-2">
+<table role="presentation" class="table table-striped">
+					<thead>
+						<tr>
+							<th class="text-left">Organization</th><th class="text-right">Inv #</th><th class="text-right">Amount</th><th class="text-right"># of Orders</th><th></th><th></th><th class="text-center">E-mail</th>
+						</tr>
+					</thead>
+<!else!>
+		<div class="row">
+			<div class="col-xs-16 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group"><label>Invoice Date</label>%%invoice_date%%</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 col-sm-12 col-sm-offset-2 col-md-10 col-md-offset-3">
+<table role="presentation" class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col" class="text-left">Organization</th><th scope="col" class="text-right">Inv #</th><th scope="col" class="text-right">Amount</th><th scope="col" class="text-right"># of Orders</th><th scope="col"></th><th scope="col"></th>
+						</tr>
+						</tr>
+					</thead>
+<!fi!>
+					<tbody>
+						%%invoices%%
+					</tbody>
+					<tfoot>
+						<tr>
+							<th scope="col"></th>
+							<th scope="col" class="text-right">%%invoice_count%%</th>
+							<th scope="col" class="text-right">%%invoice_total%%</th>
+							<th scope="col" class="text-right">%%order_count%%</th>
+							<th scope="col"></th>
+<!if(strlen("%%request:invoice_date%%") > 0)!>
+							<th class="text-center"><a target="blank" href="/consolidated-invoice?d_id=%%request:invoice_date%%"><em class="fa fa-file-pdf-o"></em></a></th>
+							<th class="text-center">%%send_consolidated%%</th>
+<!fi!>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 col-sm-12 col-sm-offset-2 col-md-10 col-md-offset-3 text-center alert alert-error">%%errorMessage%%</div>
+		</div>
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-1 col-md-offset-2 form-group"><label>Email To:</label>%%email_to%%<br/><label>CC To:</label>%%cc_to%%</div>
+			<div class="col-sm-6 form-group"><label>Comments:</label>%%comment%%</div>
+			<div class="col-sm-2 form-group"><label> </label>%%submitBtn%%</div>
+		</div>
+<!fi!>
+		<div class="paging">
+			<div class="row">
+				%%pagenum%%
+				<div class="col-xs-16 col-sm-14 col-sm-offset-1 col-md-12 col-md-offset-2">%%pagination%%</div>
+			</div>
+			<div id="consolidated-details">
+				<div class="replaceable"></div>
+			</div>
+		</div>
+%%t_id%%%%subsidiaryInvoices%%%%pager%%
+	</form>
+</div>
+<script type="text/javascript">
+if ($("select[name='invoice_date']")[0].length < 2) $("#consolidated-account").hide();
+getConsolidated = function(el) {
+	if (el.selectedIndex == 0) return;
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#consolidated-account").replaceWith(h.html);
+			}
+			catch(err) {}
+		}
+	});
+}
+sendConsolidated = function(el) {
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#consolidated-account").replaceWith(h.html);
+			}
+			catch(err) {}
+		}
+	});
+}
+</script>
