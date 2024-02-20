@@ -1,0 +1,20 @@
+{
+  "name": "kjv",
+  "version": "1.0.0",
+  "description": "KJV-JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cp -r node_modules/bootstrap/dist/js/ bootstrap/ && cp node_modules/jquery-ui-dist/jquery-ui.js js/jquery-ui.js"
+  },
+  "repository": "",
+  "author": "KJV",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^1.12.4",
+    "jquery-ui-dist": "^1.13.1",
+    "bootstrap": "3.3.7",
+    "jquery-contextmenu": "^2.9.2",
+    "flot": "^4.2.2"
+  }
+}

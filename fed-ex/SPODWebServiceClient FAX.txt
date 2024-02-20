@@ -1,0 +1,64 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fedex.com/ws/track/v8">
+<SOAP-ENV:Body>
+<ns1:SignatureProofOfDeliveryFaxRequest>
+<ns1:WebAuthenticationDetail>
+<ns1:UserCredential>
+<ns1:Key>"Input Your Information"</ns1:Key>
+<ns1:Password>"Input Your Information"</ns1:Password>
+</ns1:UserCredential>
+</ns1:WebAuthenticationDetail>
+<ns1:ClientDetail>
+<ns1:AccountNumber>"Input Your Information"</ns1:AccountNumber>
+<ns1:MeterNumber>"Input Your Information"</ns1:MeterNumber>
+</ns1:ClientDetail>
+<ns1:TransactionDetail>
+<ns1:CustomerTransactionId>*** SPOD Request v8 ***</ns1:CustomerTransactionId>
+<ns1:Localization>
+<ns1:LanguageCode>EN</ns1:LanguageCode>
+</ns1:Localization>
+</ns1:TransactionDetail>
+<ns1:Version>
+<ns1:ServiceId>trck</ns1:ServiceId>
+<ns1:Major>8</ns1:Major>
+<ns1:Intermediate>0</ns1:Intermediate>
+<ns1:Minor>0</ns1:Minor>
+</ns1:Version>
+<ns1:QualifiedTrackingNumber>
+<ns1:TrackingNumber>022030223960593</ns1:TrackingNumber>
+<ns1:ShipDate>2012-05-15</ns1:ShipDate>
+<ns1:AccountNumber>"Input Your Information"</ns1:AccountNumber>
+<ns1:Carrier>FDXE</ns1:Carrier>
+</ns1:QualifiedTrackingNumber>
+<ns1:FaxSender>
+<ns1:Contact>
+<ns1:PersonName>Ralph Johnson</ns1:PersonName>
+<ns1:CompanyName>Farmers Supply</ns1:CompanyName>
+<ns1:PhoneNumber>9015550001</ns1:PhoneNumber>
+<ns1:FaxNumber>9015550001</ns1:FaxNumber>
+</ns1:Contact>
+<ns1:Address>
+<ns1:StreetLines>1950 South Beach</ns1:StreetLines>
+<ns1:City>Texas</ns1:City>
+<ns1:StateOrProvinceCode>TX</ns1:StateOrProvinceCode>
+<ns1:PostalCode>73301</ns1:PostalCode>
+<ns1:CountryCode>US</ns1:CountryCode>
+</ns1:Address>
+</ns1:FaxSender>
+<ns1:FaxRecipient>
+<ns1:Contact>
+<ns1:PersonName>Ralph Johnson</ns1:PersonName>
+<ns1:CompanyName>Farmers Supply</ns1:CompanyName>
+<ns1:PhoneNumber>9015550001</ns1:PhoneNumber>
+<ns1:FaxNumber>9015550001</ns1:FaxNumber>
+</ns1:Contact>
+<ns1:Address>
+<ns1:StreetLines>1950 South Beach</ns1:StreetLines>
+<ns1:City>Memphis</ns1:City>
+<ns1:StateOrProvinceCode>TN</ns1:StateOrProvinceCode>
+<ns1:PostalCode>38017</ns1:PostalCode>
+<ns1:CountryCode>US</ns1:CountryCode>
+</ns1:Address>
+</ns1:FaxRecipient>
+</ns1:SignatureProofOfDeliveryFaxRequest>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

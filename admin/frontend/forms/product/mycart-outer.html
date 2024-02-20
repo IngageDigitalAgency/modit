@@ -1,0 +1,21 @@
+<div id="my-cart">
+	%%header%%
+<!if(%%session:cart:header:total%% <= 0)!>
+	<div class='products'>
+		<h3>Your Cart is empty</h3>
+	</div>
+<!else!>
+<table aria-label="" class="table">
+		<tr><th class="text-right bn" scope="col"><a href="#" onclick="togglePackages(this);return false;"><span class="fa-stack fa-spin-hover"><i class="fa fa-circle-thin fa-stack-2x"></i><i class="fa fa-plus fa-stack-1x"></i></span></a> TRANSPORTATION CHARGE:</th><td class="text-right bn">%%formattedValue%%</td></tr>
+		<tr><th class="text-right bn" scope="col">TAXES:</th><td class="text-right bn">%%formattedTaxes%%</td></tr>
+		<tr><th class="text-right bt" scope="col">TOTAL:</th><td class="text-right bt">%%formattedTotal%%</td></tr>
+	</table>
+<table aria-label="" class="table table-striped table-bordered toggle hidden bottom20">
+		<thead>
+			<tr><th class="col-xs-8">Name</th><th class="col-xs-2 text-right">Quantity</th><th class="col-xs-3 text-right">Price</th><th class="col-xs-3 text-right">Extended</th></tr>
+		</thead>
+		%%products%%
+		%%totals%%
+	</table>
+<!fi!>
+</div>

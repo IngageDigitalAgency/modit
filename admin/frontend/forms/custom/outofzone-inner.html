@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-xs-16">
+<!if("%%request:optType%%"=="S")!>
+		<div>%%name%% (From: %%total%%)</div>
+<!else!>
+		<div>%%name%%</div>
+		<div>(From: %%rate%% <em style="background-color:#d9edf7">ETD: %%expectedDelivery%%</em>)</div>
+<!fi!>
+		<input name="serviceType" type="radio" value="%%serviceType%%" class="form-control" <!if("%%request:serviceType%%"=="%%serviceType%%")!>checked<!fi!> />
+	</div>
+</div>

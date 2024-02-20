@@ -1,0 +1,72 @@
+<!if(%%session:cart:header:member_id%%==0&&%%FRONTEND%%==1)!>
+<script type='text/javascript'>
+	document.location='/login';
+</script>
+<!fi!>
+<div class='wrapper'>
+	<div id="shipping-address" class='address'>
+		<form action="" method="post">
+			<h2>Shipping Address</h2>
+			<div class='errmsg'>%%errorMessage%%</div>
+			<div class='prompt'>Company</div>
+			<div class='field'>%%company%%</div>
+			<div class='prompt'>First Name</div>
+			<div class='field'>%%firstname%%</div>
+			<div class='prompt'>Last Name</div>
+			<div class='field'>%%lastname%%</div>
+			<div class='prompt'>Email</div>
+			<div class='field'>%%email%%</div>
+			<div class='prompt'>Phone Number</div>
+			<div class='field'>%%phone1%%</div>
+			<div class='prompt'>Address</div>
+			<div class='field'>%%line1%%</div>
+			<div class='prompt'>City</div>
+			<div class='field'>%%city%%</div>
+			<div class='prompt'>Postal Code/Zip Code</div>
+			<div class='field'>%%postalcode%%</div>
+			<div class='prompt'>Country</div>
+			<div class='field'>%%country%%%%country_id%%</div>
+			<div class='prompt'>Province/State</div>
+			<div class='field' id='shipping-provinceWrapper'>%%province%%%%province_id%%</div>
+	<!if('%%id%%'=='0')!>
+			<div class='alert alert-warning'>
+				<a href='/my-account'>You must add a default shipping address to proceed</a>
+			</div>
+	<!fi!>
+	<!if('%%id%%'!='0' && %%session:cart:header:total%% > 0)!>
+			<div class='buttons'>
+				%%edit%% %%saveAddress%% %%addressId%% %%addresstype%% %%tax_address%%
+				%%editButton%% %%saveButton%% %%shippingAddressForm%%
+				<a class="checkout" href="http://%%FULLDOMAIN%%/secure-checkout">Continue to STAGE 3</a>
+			</div>
+	<!fi!>
+	<!if('%%id%%'!='0' && %%session:cart:header:total%% < 0.01)!>
+			<div class='buttons'>
+				<div class='alert alert-warning'>Your cart is empty</div>
+				<a class="checkout" href="/">Continue Shopping</a>
+			</div>
+	<!fi!>
+			<div class='clearfix'></div>
+		</form>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<script type='text/javascript'>
+$('#country_id').change(function() {
+	$('#shipping-provinceWrapper')[0].innerHTML = loadProvinces(this.value);
+});
+function setErrStatus(fld,state) {
+	if (state == '') return;
+	$('input[name="'.concat(fld,'"]')).addClass('alert-error').parent().addClass('alert-error');
+}
+setErrStatus('firstname','%%firstnameError%%');
+setErrStatus('lastname','%%lastnameError%%');
+setErrStatus('city','%%cityError%%');
+setErrStatus('line1','%%line1Error%%');
+setErrStatus('phone1','%%phone1Error%%');
+setErrStatus('postalcode','%%postalcodeError%%');
+if ($('#shipping-address .errmsg').children().length != 0) {
+	$('#shipping-address .status .left').html('Please check the error field(s), and try again');
+}
+</script>
+<!fi!>
