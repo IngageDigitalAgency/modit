@@ -1,0 +1,23 @@
+<table>
+	<tr>
+		<th>A Recurring event:</th><td>%%recurring_event%%</td>
+	</tr>
+	<tr>
+		<th>Recurring:</th><td>%%recurring_type%%</td>
+	</tr>
+	%%recurrenceSubForm%%
+	<tr>
+		<th>End Date:</th><td>%%recurring_end_date%%</td>
+	</tr>
+	<tr>
+		<th>Separate Events:</th><td>%%separate_events%%</td>
+	</tr>
+</table>
+<code>
+initDateFields();
+checkRecurrence();
+setByPosition();
+$('#recurringType').change(function() {
+	loadRecurrence();
+});
+</code>

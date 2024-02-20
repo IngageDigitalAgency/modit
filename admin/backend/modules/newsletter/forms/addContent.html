@@ -1,0 +1,131 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Newsletter</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-4">Send Newsletter</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table style='width:100%'>
+					<tr>
+						<th>Title:</th><td>%%title%% <span class='errorMessage'>%%titleError%% %%tooltip:Title%%</span></td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% <span class='errorMessage'>%%publishedError%% %%tooltip:Published%%</span></td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% <span class='errorMessage'>%%enabledError%% %%tooltip:Enabled%%</span></td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% <span class='errorMessage'>%%deletedError%% %%tooltip:Deleted%%</span></td>
+					</tr>
+					<tr>
+						<th>Customized:</th><td>%%customized%% <span class='errorMessage'>%%customizedError%% %%tooltip:customizedNewsletter%%</span></td>
+					</tr>
+					<tr>
+						<th>Member of Groups:</th>
+						<td>
+							%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Page to Send:</th>
+						<td>
+							%%page_id%% <span class='errorMessage'>%%page_idError%% %%tooltip:PageToSend%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Unsubscribe Page:</th><td>%%unsubscribe%% <span class='errorMessage'>%%unsubscribeError%% %%tooltip:customizedNewsletter%%</span></td>
+					</tr>
+					<tr>
+						<th>Send To:</th>
+						<td>
+							%%destSubscribers%% <span class='errorMessage'>%%destSubscibersError%% %%tooltip:SendToSubscribers%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>From:</th>
+						<td>
+							%%from_name%% <span class='errorMessage'>%%from_nameError%% %%tooltip:NewsletterFrom%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>From Email:</th>
+						<td>
+							%%from_email%% <span class='errorMessage'>%%from_emailError%% %%tooltip:NewsletterFromEmail%%</span>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-3'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			</div>
+			<div id='tabs-4'>
+				%%transmissions%%
+			</div>
+			<div class="form-actions">
+				%%submit%%
+				<div class='clearfix'></div>
+			</div>
+			<input type='hidden' name='a_id' value='%%id%%'/> 
+			%%addContent%%
+			%%destFoldersSelect%%
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$( "#content-tabs" ).tabs();
+$('#destFolders').chosen();
+$('#destSubscribers').chosen();
+$( "ol.draggable > li" ).draggable({
+	helper: folderCopyHelper
+});
+$( "ol.draggable" ).droppable({
+	drop: function( event, ui ) {
+		folderDrop(this,event,ui);
+	}
+});
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.popovers').popover();
+</code>

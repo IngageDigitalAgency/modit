@@ -1,0 +1,36 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Template</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<table>
+				<tr>
+					<th>Name:</th><td>%%title%% %%titleError%%</td>
+				</tr>
+				<tr>
+					<th>Special Type:</th><td>%%special_processing%% %%special_processingError%%</td>
+				</tr>
+				<tr>
+					<th>Notes:</th><td>%%notes%% %%notesError%%</td>
+				</tr>
+				<tr>
+					<th>Html:</th><td>%%html%% %%htmlError%%</td>
+				</tr>
+				<tr>
+					<th>Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+				</tr>
+				<tr>
+					<th>Folder:</th><td>%%destFolders%% %%destFoldersError%%</td>
+				</tr>
+				<tr>
+					<th>Version:</th><td>%%version%% %%versionError%%</td>
+				</tr>
+			</table>
+			%%submit%% 
+			<input type='hidden' name='t_id' id='t_id' value='%%id%%'/> 
+			%%addContent%%
+			<div class="break"></div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>

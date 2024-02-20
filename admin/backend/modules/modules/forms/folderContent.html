@@ -1,0 +1,50 @@
+<div class='folderContent'>
+	<div class='description'>
+		<span>Folder Description:</span>
+		%%description%%
+		<div class="break"></div>
+	</div>
+	<div class='left'>Image: %%image%%</div>
+	<div class='left'>Rollover Image: %%rollover_image%%</div>
+	<div class="break"></div>
+</div>
+<div id='advertArticleList'>
+	<div id='advertFolderId' style='display:none'>%%id%%</div>
+	<form name='%%form:name%%' action='' onsubmit='alert("test %%form:action%%");return false' method='%%form:method%%' id='%%form:name%%'>
+		%%sortby%%
+		%%sortorder%%
+		%%showFolderContent%%
+		%%pagenum%%
+		<input type='hidden' name='p_id' value='%%id%%' />
+		<table>
+			<tr>
+				<th>Edit</th>
+				<th>Delete</th>
+				<th><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Title</span></th>
+				<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Created</span></th>
+				<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Expires</span></th>
+				<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Published</span></th>
+				<th><span onclick='sort("author","%%form:name%%","/modit/ajax/%%form:action%%/advert","middleContent")'>Author</span></th>
+				<th></th>
+			</tr>
+		%%articles%%
+		</table>
+		<div id='pagination'>%%pagination%%</div>
+	</form>
+</div>
+<code>
+$( "#showFolderContent div.draggable" ).draggable({
+	helper: 'clone'
+});
+
+$('#contentTree ol.ui-sortable li ').droppable({
+	drop: function( event, ui ) {
+		advertDrop(this,event,ui,'tree');
+	}
+});
+
+function mySort(fld) {
+	sort(fld,"%%form:name%%","/modit/ajax/%%form:action%%/advert/","middleContent");
+}
+pagingUrl = '/modit/ajax/%%form:action%%/advert';
+</code>

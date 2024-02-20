@@ -1,0 +1,14 @@
+<tr>
+	<td>%%order_id%%</td>
+	<td>%%name%%</td>
+<!if("%%service_type%%"=="P")!>
+	<td>Pickup</td>
+<!else!>
+	<td>Delivery</td>
+<!fi!>
+	<td>%%address:company%%</td>
+	<td>%%address:line1%%<br/>%%address:city%% %%address:postalcode%%</td>
+	<td>%%scheduled_date%%</td>
+	<td>%%driver:firstname%% %%driver:lastname%%</td>
+	<td>%%services%%</td>
+</tr>

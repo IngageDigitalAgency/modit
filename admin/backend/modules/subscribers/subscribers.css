@@ -1,0 +1,65 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	background-image: url("/admin/images/cut.png");
+	
+}
+
+#contentTree a.icon_folder {
+	background-image: url("/admin/images/icons/folder.png");
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.subscriberInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.subscriberDragger {
+		display:none;
+}
+.subscriberDragger .id {
+	display:none;
+}
+
+.def_field_input_sml {
+	width:75px;
+}
+
+#tabs-4 th {
+	text-align:center;
+}
+#tabs-4 tr.running td {
+	background:none repeat scroll 0 0 #DFF0D8;
+}
+#tabs-4 tr.completed td {
+	color:#0088cc;
+}
+#tabs-4 tr.aborted td {
+	color:red;
+}

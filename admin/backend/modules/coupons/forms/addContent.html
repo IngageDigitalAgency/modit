@@ -1,0 +1,283 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Coupon</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+		<div id='tabs'>
+			<ul>
+				<li><a href="#tabs-1">MainInfo</a></li>
+				<li><a href="#tabs-5">Details</a></li>
+				<li><a href="#tabs-2">Images</a></li>
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-3">By Store</a></li>
+<!fi!>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-4">By Product</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-6">By Events</a></li>
+<!fi!>
+<!if(array_key_exists('news:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-7">By Articles</a></li>
+<!fi!>
+<!if(array_key_exists('blog:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-8">By Blog</a></li>
+<!fi!>
+<!if(array_key_exists('advert:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-9">By Ads</a></li>
+<!fi!>
+			</ul>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Coupon Code:</th><td>%%code%% %%codeError%% %%tooltip:CouponCode%%</td>
+					</tr>
+					<tr>
+						<th>Deal or Offer Name:</th><td>%%name%% %%nameError%% %%tooltip:Title%%</td>
+					</tr>
+					<tr>
+						<th>Deal or Offer Sub-Name:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% %%featuredError%% %%tooltip:Featured%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% %%publishedError%% %%tooltip:Published%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% %%deletedError%% %%tooltip:Deleted%%</td>
+					</tr>
+					<tr>
+						<th>Start Date:</th><td>%%start_date%% %%start_dateError%% %%tooltip:StartDate%%</td>
+					</tr>
+					<tr>
+						<th>End Date:</th><td>%%end_date%% %%end_dateError%% %%tooltip:EndDate%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>Member of:</th>
+						<td>%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Type:</th><td>%%percent_or_dollar%% <span class='errorMessage'>%%percent_or_dollarError%%</span></td>
+					</tr>
+					<tr>
+						<th>Discount Amount:</th><td>%%amount%% <span class='errorMessage'>%%amountError%%</span></td>
+					</tr>
+					<tr>
+						<th>Shipping &amp; Handling Only:</th><td>%%shipping_only%% <span class='errorMessage'>%%shipping_onlyError%%</span></td>
+					</tr>
+					<tr>
+						<th>Min. Amount:</th><td>%%min_amount%% <span class='errorMessage'>%%min_amountError%%</span></td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-5'>
+				<div class='title'>Teaser: %%tooltip:Description%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%%
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-3'>
+				<div class='title'>Coupons Assigned to Store Categories</div>
+				%%destStoreFolders%% %%tooltip:LocationCatRel%%
+				<div class='title'>Coupons Assigned to Individual Stores %%tooltip:LocationRel%%</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%storeFolders%%
+						</td>
+						<td>
+							<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+							<div id='storeCatSelection'>
+								%%destStores%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-4'>
+				<div class='title'>Deal or Offer Assigned to Product Categories</div>
+				%%destProductFolders%% %%tooltip:ProductCatRel%%
+				<div class='title'>Deal or Offer Assigned to Individual Products</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</td>
+						<td>
+							<div>Select the Product(s) %%tooltip:ProductRel%%</div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('calendar:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-6'>
+				<div class='title'>Deal or Offer Assigned to Calendar</div>
+				%%destEventFolders%% %%tooltip:CalendarRel%%
+				<div class='title'>Deal or Offer Assigned to Individual Events</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%eventFolders%%
+						</td>
+						<td>
+							<div>Select the Event(s) %%tooltip:EventRel%%</div>
+							<div id='eventCatSelection'>
+								%%destEvents%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('news:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div class='title'>Deal or Offer Assigned to Article Categories</div>
+				%%destNewsFolders%% %%tooltip:ArticleCatRel%%
+				<div class='title'>Deal or Offer Assigned to Individual Article</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%newsFolders%%
+						</td>
+						<td>
+							<div>Select the Article(s) %%tooltip:ArticleRel%%</div>
+							<div id='newsCatSelection'>
+								%%destNews%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('blog:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-8'>
+				<div class='title'>Deal or Offer Assigned to Blog Categories</div>
+				%%destBlogFolders%% %%tooltip:BlogCatRel%%
+				<div class='title'>Deal or Offer Assigned to Individual Blog</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%blogFolders%%
+						</td>
+						<td>
+							<div>Select the Blog(s) %%tooltip:BlogRel%%</div>
+							<div id='blogCatSelection'>
+								%%destBlogs%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('advert:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-9'>
+				<div class='title'>Deal or Offer Assigned to Advertisement Categories</div>
+				%%destAdFolders%% %%tooltip:AdCatRel%%
+				<div class='title'>Deal or Offer Assigned to Individual Advertisement</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%advertFolders%%
+						</td>
+						<td>
+							<div>Select the Ad(s) %%tooltip:AdRel%%</div>
+							<div id='advertCatSelection'>
+								%%destAds%%
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			%%submit%% 
+			<input type='hidden' name='a_id' value='%%id%%'/> 
+			%%addContent%%
+		</div>
+	</form>
+	<div class="break"></div>
+</div>
+<code>
+$('#destStoreFolders').chosen();
+$('#destStores').chosen();
+$('#destProductFolders').chosen();
+$('#relatedDestProducts').chosen();
+$('#destNewsFolders').chosen();
+$('#destNews').chosen();
+$('#destEventFolders').chosen();
+$('#destEvents').chosen();
+$('#destBlogFolders').chosen();
+$('#destBlogs').chosen();
+$('#destAdFolders').chosen();
+$('#destAds').chosen();
+$('#destFolders').chosen();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'coupons');
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'coupons');
+});
+$('#blogFolderSelector').change(function() {
+	loadBlogList(this,'#blogCatSelection',true,'coupons');
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true,'coupons');
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true,'coupons');
+});
+$('#newsFolderSelector').change(function() {
+	loadNewsList(this,'#newsCatSelection',true,'coupons');
+});
+$('#advertFolderSelector').change(function() {
+	loadAdvertList(this,'#advertCatSelection',true,'coupons');
+});
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+</code>

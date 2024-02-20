@@ -1,0 +1,74 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/subscribers","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Name:</th><td>%%opt_name%% %%name%%</td>
+					</tr>
+					<tr>
+						<th>Email:</th><td>%%opt_email%% %%email%%</td>
+					</tr>
+					<tr>
+						<th>Folder:</th><td>%%folder%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<th>Testing:</th><td>%%testing%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='articleList'>
+				<div id='subscribersFolderId' style='display:none'>%%id%%</div>
+				<table class='listing'>
+					<thead>
+						<tr>
+							<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/subscribers","middleContent")'>Name</span></th>
+							<th><span onclick='sort("email","%%form:name%%","/modit/ajax/%%form:action%%/subscribers","middleContent")'>Email</pan></th>
+							<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/subscribers","middleContent")'>Enabled</span></th>
+							<th><span onclick='sort("deleted","%%form:name%%","/modit/ajax/%%form:action%%/subscribers","middleContent")'>Deleted</span></th>
+							<th><span onclick='sort("testing","%%form:name%%","/modit/ajax/%%form:action%%/subscribers","middleContent")'>Testing</span></th>
+							<th colspan='2'></th>
+						</tr>
+					</thead>
+					%%articles%%
+				</table>
+				<div id='pagination'><span class="pagination-dropdown pull-right">Subscribers per page : %%pager%%</span> %%pagination%%</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/subscribers';
+initSearch();
+//]]> 
+</script> 
+</code>

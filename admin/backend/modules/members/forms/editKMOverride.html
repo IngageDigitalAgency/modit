@@ -1,0 +1,47 @@
+<form id="frmKMEdit" method="post" action="/modit/ajax/editKMOverride/members" onsubmit="formCheck('frmKMEdit','/modit/ajax/editKMOverride/members',$('#kmOverrides'));return false;">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="form-group a-right">
+                <label>In Zone:</label>
+            </div>
+        </div>
+        <div class="col-xs-5">
+            <div class="form-group">
+                %%in_zone_override%%
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <div class="form-group">%</div>
+        </div>
+        <div class="col-xs-2 a-right">
+            <div class="form-group">%%in_zone_value%%</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="form-group a-right">
+                <label>Out Of Zone:</label>
+            </div>
+        </div>
+         <div class="col-xs-5">
+            <div class="form-group">
+                %%out_of_zone_override%%
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <div class="form-group">%</div>
+        </div>
+        <div class="col-xs-2 a-right">
+            <div class="form-group">
+                %%out_of_zone_value%%
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4 a-right">
+            <div class="form-group">
+                %%submit%%%%editKMOverride%%%%id%%%%km_opt_id%%%%junction_id%%
+            </div>
+        </div>
+    </div>
+</form>

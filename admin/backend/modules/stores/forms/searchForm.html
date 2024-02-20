@@ -1,0 +1,91 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/stores","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					<tr>
+						<td><a href='#' onclick='editStore(0);return false'>Add a Store</a></td>
+					</tr>
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Name:</th><td>%%opt_name%% %%name%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%opt_created%% %%created%%</td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%opt_expires%% %%expires%%</td>
+					</tr>
+					<tr>
+						<th>Folder:</th><td>%%folder%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='articleList' class='listing'>
+				<div id='storeFolderId' style='display:none'>%%id%%</div>
+				<div class="break"></div>
+				<table>
+					<thead>
+						<tr>
+							<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/stores","middleContent")'>Title</span></th>
+							<th>Short Description</th>
+							<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/stores","middleContent")'>Enabled</span></th>
+							<th><span onclick='sort("featured","%%form:name%%","/modit/ajax/%%form:action%%/stores","middleContent")'>Featured</span></th>
+							<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/stores","middleContent")'>Published</span></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Stores per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/stores';
+var getUrl = function () {
+	return pagingUrl;
+}
+initSearch();
+//]]> 
+</script> 
+</code>

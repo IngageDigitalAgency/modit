@@ -1,0 +1,90 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<ul style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/orders","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					<tr>
+						<td><a href='#' onclick='editArticle(0);return false'>Add an Order</a></td>
+					</tr>
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Name:</th><td>%%opt_name%% %%name%% [First or Last]</td>
+					</tr>
+					<tr>
+						<th>Order #:</th><td>%%opt_order_id%% %%order_id%%</td>
+					</tr>
+					<tr>
+						<th>Status:</th><td>%%order_status%%</td>
+					</tr>
+					<tr>
+						<th>Product:</th><td>%%product%%</td>
+					</tr>
+					<tr>
+						<th>Coupon:</th><td>%%coupon%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%opt_created%% %%created%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<th>Total Value:</th><td>%%opt_total%% %%total%%</td>
+					</tr>
+					<tr>
+						<th>Amount Owing:</th><td>%%opt_owing%% %%owing%%%%pu_driver%%%%del_driver%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='orderArticleList'>
+				<div class="break"></div>
+				<table class='listing'>
+					<tr>
+						<th class='a-right'><span onclick='sort("id","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Order #</span></th>
+						<th class='a-left'><span onclick='sort("company","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Company</span></th>
+						<th class='a-left'>P/U Address</th>
+						<th class='a-left'><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Created</span></th>
+						<th class='a-left'><span onclick='sort("order_status","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Status</span></th>
+						<th class='a-right'><span onclick='sort("amount","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Amount</span></th>
+						<th class='a-right'><span onclick='sort("owing","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Owing</span></th>
+						<th class='centered'><span onclick='sort("deleted","%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent")'>Deleted</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Orders per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+initSearch();
+//]]> 
+</script> 
+</code>

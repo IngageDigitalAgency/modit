@@ -1,0 +1,19 @@
+<div id='checkout-payflow'>
+	<div class="row">
+		<div class='col-xs-16 text-center'>
+			%%ecomErrors%%
+			%%errorMessage%%
+<!if("0%%session:user:info:id%%" == "0")!>
+			<div class='alert alert-error'>You are not logged in</div>
+<!fi!>
+<!if("0%%session:user:info:id%%" != "0" && "0%%session:cart:header:total" == "0")!>
+			<div class='alert alert-error'>Your cart is empty</div>
+<!else!>
+			<form method='post'>
+				<input type='hidden' name='isPayflow' value='1' />
+				<img onclick='formSubmit(this);' src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" align="left" style="margin-right:7px;" />
+			</form>
+		</div>
+	</div>
+<!fi!>
+</div>

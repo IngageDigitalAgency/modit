@@ -1,0 +1,267 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Location</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">MainInfo</a></li>
+			<li><a href="#tabs-6">Description</a></li>
+			<li><a href="#tabs-9">SEO/SEM</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			%%customTab%%
+<!if(array_key_exists('stores:gallery',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-8">Gallery</a></li>
+<!fi!>
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-3">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('stores:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-4">Products</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-7">Events</a></li>
+<!fi!>
+			<li><a href="#tabs-5">Addresses</a></li>
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck_add("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table>
+					<tr>
+						<th>Name:</th><td>%%name%% %%nameError%% %%tooltip:Title%%</td>
+					</tr>
+					<tr>
+						<th>Sub-Title:</th><td>%%subtitle%% %%subtitleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+					</tr>
+					<tr>
+						<th>Featured:</th><td>%%featured%% %%featuredError%% %%tooltip:Featured%%</td>
+					</tr>
+					<tr>
+						<th>Published:</th><td>%%published%% %%publishedError%% %%tooltip:Published%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%% %%deletedError%% %%tooltip:Deleted%%</td>
+					</tr>
+					<tr>
+						<th>Latitude:</th><td>%%latitude%% %%latitudeError%% %%tooltip:Latitude%%</td>
+					</tr>
+					<tr>
+						<th>Longitude:</th><td>%%longitude%% %%longitudeError%% %%tooltip:Longitude%% <a href="#" onclick="mapIt(); return false;" class='def_field_submit'>Map It</a></td>
+					</tr>
+					<tr>
+						<th>Web Site:</th><td>%%website%% %%websiteError%% %%tooltip:Website%% <br/><span><b>Sites without http:// prefix will be treated as internal</b></span></td>
+					</tr>
+					<tr>
+						<th>Expires:</th><td>%%expires%% %%expiresError%%</td>
+					</tr>
+					<tr>
+						<th>Options:</th><td>%%amenities%% %%amenitiesError%%</td>
+					</tr>
+					<tr>
+						<th>Search Related:</th>
+						<td> 
+							%%destSearch%% <span class='errorMessage'>%%destSearchError%% %%tooltip:SearchRelated%%</span>
+						</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%created%%</td>
+					</tr>
+					<tr>
+						<th>A Member of:</th><td>%%destFolders%% <span class='errorMessage'>%%destFoldersError%% %%tooltip:Category%%</span></td>
+					</tr>
+				</table>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_a" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_b" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 3:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_c%%</a> <span class='errorMessage'>%%image3Error%%</span><br/>
+							<input id="image_c" type="hidden" name="image3" value="%%image3%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 4:</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_d%%</a> <span class='errorMessage'>%%image4Error%%</span><br/>
+							<input id="image_d" type="hidden" name="image4" value="%%image4%%" />
+							<a href="#" onclick="setImage(this);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+					<th>Map Marker: %%tooltip:MapMarker%%</th>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_e%%</a> <span class='errorMessage'>%%mapmarkerError%%</span><br/>
+							<input id="image_e" type="hidden" name="mapmarker" value="%%mapmarker%%" />
+							<a href="#" onclick="setImage(this);return false;">Set Marker</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+			%%customInfo%%
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-3'>
+				<div id='couponsTab'>
+					<div class='title'>Deal or Offer Categories Assigned to this Store</div>
+					%%destCouponFolders%% <span class='errorMessage'>%%destCouponFoldersError%% %%tooltip:DealCatRel%%</span>
+					<div class='title'>Individual Deal or Offer Assigned to this Store</div>
+					<table>
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%couponFolders%%
+							</td>
+							<td>
+								<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+								<div id='offerCatSelection'>
+									%%destCoupons%%
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+<!fi!>
+<!if(array_key_exists('stores:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-4'>
+				<div class='title'>Product Categories Assigned to this Store</div>
+				%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Products Assigned to this Store</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</td>
+						<td>
+							<div>Select the Product(s)</div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%% %%tooltip:ProductRel%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+<!fi!>
+			<div id='tabs-6'>
+				<div class='title'>Teaser: %%tooltip:Teaser%%<span class='errorMessage'>%%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Description: %%tooltip:Description%%<span class='errorMessage'>%%descriptionError%%</span></div>
+				%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+				<div class='title'>Hours: %%tooltip:StoreHours%%<span class='errorMessage'>%%hoursError%%</span></div>
+				%%hours%% <span class='errorMessage'>%%hoursError%%</span>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-7'>
+				<div class='title'>Calendars Assigned to this Store</div>
+				%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%% %%tooltip:CalendarRel%%</span>
+				<div class='title'>Events Assigned to this Store</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%eventFolders%%
+						</td>
+						<td>
+							<div>Select the Events(s) <span class='errorMessage'>%%destEventsError%% %%tooltip:EventRel%%</span></div>
+							<div id='eventCatSelection'>
+								%%destEvents%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+<!fi!>
+<!if(array_key_exists('stores:gallery',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-8'>
+				<div class='title'>Galleries Assigned to this Store</div>
+				%%destGalleryFolders%% <span class='errorMessage'>%%destGalleryFoldersError%% %%tooltip:GalleryRel%%</span>
+				<div class='buttons'>%%submit%%</div>
+			</div>
+<!fi!>
+			<div id="tabs-9">
+				<div class='title'>SEO Content for Product Details</div>
+				<div class="alert alert-warning centered">No use of quotes (single or double) and only 1 line is allowed</div>
+				<table>
+					<tbody>
+						<tr><th>Keywords:</th><td>%%meta_keywords%%</td></tr>
+						<tr><th>Social Description:</th><td>%%social_description%%</td></tr>
+						<tr><th>Description:</th><td>%%meta_description%%</td></tr>
+						<tr><th>Title:</th><td>%%browser_title%%</td></tr>
+					</tbody>
+				</table>
+				<div class='title'>SEM Content</div>
+				<table>
+					<tbody>
+						<tr>
+							<th>Adword Conversion:</th><td>%%adword_conversion%% <span class='errorMessage'>%%adword_conversionError%%</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<input type='hidden' name='s_id' id='s_id' value='%%id%%'/> 
+			%%addContent%%
+		</form>
+		<div id='tabs-5'>
+			<div id='addressTab'>
+				%%addressForm%%
+			</div>
+		</div>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$("select[multiple]").chosen();
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true
+});
+checkAddStore(%%id%%);
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'stores');
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'stores');
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true,'stores');
+});
+$('.popovers').popover();
+mapIt = function() {
+	var lat = $("input[name=latitude]").val();
+	var lng = $("input[name=longitude]").val();
+	if (lat != 0 && lng != 0) {
+		window.open("https://www.google.ca/maps/preview?f=q&q=%28".concat(lat,",",lng,"%29"));
+	}
+	else alert("Invalid Latitude and/or Longitude");
+}
+$("#tabs").tabs();
+</code>

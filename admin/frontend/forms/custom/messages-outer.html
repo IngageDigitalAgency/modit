@@ -1,0 +1,57 @@
+<div id="messaging-summary" class="bottom20">
+	<div class="yellow">
+		<div class="container">
+			%%messages%%
+		</div>
+	</div>
+	<div class="white">
+		<div id="accept-all" class="bottom20">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-3">
+						<a href="#" onclick="acceptAll(%%session:user:info:id%%);return false;" class="btn btn-default red-bg form-control">Accept All</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+m_msgs = "%%ids%%";
+m_status = %%status%%;
+getMsgs = function() {
+	$.ajax({
+		url: "/ajax/render",
+		data: {t_id:%%module:fetemplate_id%%, ids: m_msgs },
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				if (h.status=="true") {
+					eval(h.code);
+					if (m_status) $("#messaging-summary").replaceWith(h.html);
+					if ($("#messaging-summary .response").length == 0)
+						$("#messaging-summary").addClass("hidden");
+					else
+						$("#messaging-summary").removeClass("hidden");
+				}
+				//window.setTimeout(getMsgs,1000*60*1);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+acceptAll = function(id) {
+	$.ajax({
+		url: "/ajax/render",
+		data: { messageing:1, d_id:id, accept_all:1, t_id:%%module:fetemplate_id%% },
+		success: function( obj, status, xhr ) {
+			getMsgs();
+			refreshSchedule();
+		}
+	});
+}
+if ($("#messaging-summary .response").length == 0) $("#messaging-summary").addClass("hidden");
+window.setTimeout(getMsgs,1000*60*1);
+</script>

@@ -1,0 +1,68 @@
+<div class='title'>Sales Report</div>
+%%errorMessage%%
+<form method='post' onsubmit='formCheck("salesReportsForm","/modit/ajax/salesReports/credit","middleContent");return false;' id='salesReportsForm'>
+	%%sortby%% %%sortorder%%
+	<div class='fields'>
+		<span>%%order_statusError%% Order Status: %%order_status%%</span>
+		<span>%%product_idError%% Product: %%product_id%%</span>
+		<span>%%fromError%% From: %%from%%</span>
+		<span>%%toError%% To: %%to%%</span>
+		%%submit%% %%clicked%%
+		<!if("0%%count%%"!="0")!>
+			&nbsp;<input class="def_field_submit" value="Export Orders" type="submit" name="exportOrders" onclick="setClicked(this);" />
+			&nbsp;<input class="def_field_submit" value="Export Details" type="submit" name="exportDetails" onclick="setClicked(this);" />
+		<!fi!>
+	</div>
+	<div class='results'>Orders found: %%count%%</div>
+	 %%salesReports%%
+	<div class='clearfix'></div>
+	<table class='listing'>
+		<thead>
+			<tr><th onclick="sort('o.id','salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;">Order #</th><th>Purchaser</th><th onclick="sort('o.order_date','salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;">Order Date</th><th class="a-right" onclick="sort('o.value','salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;">Goods</th><th class="a-right" onclick="sort('o.shipping','salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;">Shipping</th><th class="a-right" onclick="sort('o.total','salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;">Total</th><th>Status</th></tr>
+		</thead>
+		<tbody>
+			%%rows%%
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3">Page Total:</td>
+				<td class="a-right">%%pageGoods%%</td>
+				<td class="a-right">%%pageShipping%%</td>
+				<td class="a-right">%%pageTotal%%</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="3">Grand Total:</td>
+				<td class="a-right">%%totalGoods%%</td>
+				<td class="a-right">%%totalShipping%%</td>
+				<td class="a-right">%%totalTotal%%</td>
+				<td>&nbsp;</td>
+			</tr>
+		</tfoot>
+	</table>
+	<div id="pagination">
+		<span class="pagination-dropdown pull-right">Orders per page : %%pager%% %%pagenum%% %%perpage%%</span>
+		%%pagination%% 
+	</div>
+</form>
+<script type='text/javascript'>
+initDateFields();
+$("select[name='order_status[]']").chosen();
+$("select[name='product_id[]']").chosen();
+pagingUrl = "/modit/ajax/salesReports/credit";
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+function setClicked(el) {
+	var f = $(el).closest("form");
+	f.find("input[name='clicked']").val(el.value);
+	if (el.value == "Export") {
+		f[0].onsubmit = "";
+		f[0].action = "/modit/ajax/salesReports/credit";
+	}
+	else {
+		f[0].onsubmit = "formCheck('salesReportsForm','/modit/ajax/salesReports/credit','middleContent');return false;";
+		f[0].action = "";
+	}
+}
+</script>

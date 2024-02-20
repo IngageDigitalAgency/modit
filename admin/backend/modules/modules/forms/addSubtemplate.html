@@ -1,0 +1,17 @@
+<div class='title'>Add/Edit a Sub-Template</div>
+<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/addSubtemplate/modules",$("#altPopup"));return false;' name='%%form:name%%' id='%%form:name%%'>
+	<table>
+		<tr>
+			<th>Template:</th><td>%%submodule_id%%</td>
+		</tr>
+		<tr>
+			<th>Form Variable:</th><td>%%variable%%</td>
+		</tr>
+		<tr>
+			<th>Location:</th><td>%%location%%</td>
+		</tr>
+	</table>
+	%%save%% %%addSubtemplateForm%%%%fetemplate_id%%
+	<input type='hidden' name='s_id' value='%%id%%' />
+	<div class='break'></div>
+</form>

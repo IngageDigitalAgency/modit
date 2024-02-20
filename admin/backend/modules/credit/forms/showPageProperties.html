@@ -1,0 +1,46 @@
+<div class='propertyEditing'>
+	<div class='title'>Order #%%id%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Order Info</a></li>
+			<li><a href="#tabs-2">Recurring Billed</a></li>
+			<li><a href="#tabs-3">To Be Billed</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<form method='post'>
+				<table class='billingInfo'>
+					<tr><th>Order Date:</th><td>%%order_date%%</td></tr>
+					<tr><th>Status:</th><td>%%order_status%%</td></tr>
+					<tr><td colspan='2' class='subheading'>Authorization Information</td></tr>
+					<tr><th>Code:</th><td>%%authorization_code%%</td></tr>
+					<tr><th>Type:</th><td>%%authorization_type%%</td></tr>
+					<tr><th>Transaction:</th><td>%%authorization_transaction%%</td></tr>
+					<tr><th>Billed:</th><td><span class='amt'>%%authorization_amount%%</span></td></tr>
+					<tr><td colspan='2' class='subheading'>Order Information</td></tr>
+					<tr><th>Product:</th><td><span class='amt'>%%value%%</span></td></tr>
+					<tr><th>Order Discount:</th><td><span class='amt'>%%discount_value%%</span></td></tr>
+					<tr><th>Line Discount:</th><td><span class='amt'>%%line_discount%%</span></td></tr>
+					<tr><th>Shipping:</th><td><span class='amt'>%%shipping%%</span></td></tr>
+					<tr><th>Taxes:</th><td><span class='amt'>%%taxes%%</span></td></tr>
+					<tr><th>Total Billed:</th><td><span class='amt'>%%total%%</span></td></tr>
+					<tr><td colspan='2' class='subheading'>Shipping Information</td></tr>
+					<tr><th>Tracking Code:</th><td>%%ship_tracking_code%%</td></tr>
+					<tr><th>Shipped Via:</th><td>%%ship_via%%</td></tr>
+					<tr><th>Shipped On:</th><td>%%ship_date%%</td></tr>
+					<tr><th>Comments:</th><td>%%ship_comments%%</td></tr>
+				</table>
+			</form>
+		</div>
+		<div id='tabs-2'>
+			%%billed%%
+		</div>
+		<div id='tabs-3'>
+			%%toBeBilled%%
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+$('#content-tabs').tabs();
+$('#order_status').chosen();
+</script>

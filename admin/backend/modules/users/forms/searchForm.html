@@ -1,0 +1,84 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+<div class='searchForm propertyEditing'>
+	<div id='search-tabs'>
+		<ul class='nav-tabs' style='display:none'>
+			<li><a href="#tabs-s1">Quick Search</a></li>
+			<li><a href="#tabs-s2">Search</a></li>
+		</ul>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/users","middleContent");return false;' id='%%form:name%%'>
+			<div id='tabs-s1' style='display:none'>
+				<table>
+					<tr>
+						<td><a href='#' onclick='editArticle(0);return false'>Add an Article</a></td>
+					</tr>
+					<tr>
+						<td>%%opt_quicksearch%% %%quicksearch%% %%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-s2' style='display:none'>
+				<table>
+					<tr>
+						<th>Email:</th><td>%%opt_email%% %%email%%</td>
+					</tr>
+					<tr>
+						<th>Created:</th><td>%%opt_created%% %%created%%</td>
+					</tr>
+					<tr>
+						<th>Enabled:</th><td>%%enabled%%</td>
+					</tr>
+					<tr>
+						<th>Deleted:</th><td>%%deleted%%</td>
+					</tr>
+					<tr>
+						<th>Module:</th><td>%%moduleType%%</td>
+					</tr>
+					<tr>
+						<th>Roll:</th><td>%%role%%</td>
+					</tr>
+					<tr>
+						<td colspan='2'>%%submit%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='userArticleList'>
+				<div id='userFolderId' style='display:none'>%%id%%</div>
+				<table class='articleList listing'>
+					<tr>
+						<th><span onclick='sort("fname","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>First Name</span></th>
+						<th><span onclick='sort("lname","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>Last Name</span></th>
+						<th><span onclick='sort("email","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>Email</span></th>
+						<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>Created</span></th>
+						<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>Expires</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/users","middleContent")'>Enabled</span></th>
+						<th></th>
+						<th></th>
+					</tr>
+					%%articles%%
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Administrators per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%showSearchForm%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/users';
+
+var getUrl = function () {
+	return pagingUrl;
+}
+initSearch();
+//]]> 
+</script> 
+</code>

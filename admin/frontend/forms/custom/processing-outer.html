@@ -1,0 +1,99 @@
+<div id='orderProcessing'>
+	<div class='page-top'>
+		<div class='banner'>Add A Sale</div>
+	</div>			
+	<form method='post'>
+		<table id='main'>
+			<tr class='memberId'>
+				<td class='member'>
+					<table class='inner'>
+						<tr class='top'>
+							<td>%%member_id%%</td>
+						</tr>
+						<tr>
+							<td>
+								<button onclick='editAddress("shipping");return false;'>Ship To</button>
+								<button onclick='editAddress("billing");return false;'>Bill To</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td class='po_number'>
+					<div class='po_number'>%%custom_po_number%%</div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan='2'>
+					<div class='products'>%%listing%%</div>
+					%%orderProcessing%%
+				</td>
+			</tr>
+		</table>
+	</form>
+	<div class='cart'>%%cart%%</div>
+</div>
+<script type='text/javascript'>
+function editAddress(a_type) {
+	var m_id = $("select[name=member_id]")[0].value;
+	if (m_id == 0) {
+		alert('Select a customer first');
+		return;
+	}
+	document.location = '/edit-'.concat(a_type,'-address');
+}
+$('select[name="member_id"]').chosen({default_text_default:'Type to select a customer'}).change(function(eObject) {
+	formSubmit(this);
+	//$($('#orderProcessing form')[0]).submit();
+});
+$('.chzn-search input').autocomplete({
+	source:function(request,response) {
+		if (request.term.length < 3) return;
+		$.ajax({
+			url:'/ajax/render',
+			type:'POST',
+			data:{'t_id':19,'search':request.term,'memberSearch':1},
+			context:this,
+			success:function(list,status,xhr) {
+				if (status == 'success')
+					updateMembers(list,status,xhr);
+			}
+		});
+	}
+});
+function updateMembers(list,status,xhr) {
+	try {
+		var obj = eval('('+list+')');
+		$('select[name="member_id"]').html(obj.html).trigger("liszt:updated");
+		eval(obj.code);
+	}
+	catch(err) {
+		alert(err);
+	}
+}
+
+function getCart() {
+	$.ajax({
+		url:'/ajax/render',
+		type:'POST',
+		data:{'t_id':11},
+		context:this,
+		success:function(list,status,xhr) {
+			try {
+				var obj = eval('('+list+')');
+				if (obj.status == 'true') {
+					$('#orderProcessing .cart').html(obj.html);
+					eval(obj.code);
+				}
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+getCart();
+function removeProduct(key) {
+	var p = 'removeProduct['.concat(key,']');
+	$('form[name=updateCart] input[name="'.concat(p,'"]'))[0].value = 1;
+	$('form[name="updateCart"]').submit();
+}
+</script>

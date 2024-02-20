@@ -1,0 +1,45 @@
+<div class='post-details'>
+	<h2>%%title%%</h2>
+	%%errorMessage%%
+	<div class='content'>
+<!if(strlen("%%image2%%")>0)!>
+		%%img_image2%%
+<!else!>
+		%%img_image1%%
+<!fi!>
+<!if(strlen("%%video:title%%")>0)!>
+<h3>%%video:title%%</h3>
+<div id='videoElement'>%%video:embed_code,false%%</div>
+<!fi!>
+	</div>
+	<div class='comment-block'>
+		%%comments%%
+	</div>
+</div>
+<script type='text/javascript'>
+function pagination(pg,el) {
+	$.ajax({
+		url: '/ajax/render',
+		data: {t_id:19,'pagenum':pg,'blog_id':%%id%%},
+		success: function( obj, status, xhr) {
+			try {
+				obj = eval('('+obj+')');
+				$('.post-details .comment-block').html(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+<!if(strlen("%%video:url,false%%")>0)!>
+var url = "%%video:url,false%%";
+if (url.length > 0) {
+	jwplayer("videoElement").setup({
+		file: url,
+		width: %%video:width%%,
+		height: %%video:height%%
+  });
+}
+<!fi!>
+</script>

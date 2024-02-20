@@ -1,0 +1,28 @@
+<div>
+	<div class="title">Payments for %%driver:firstname%% %%driver:lastname%%</div>
+	<table class="listing">
+		<thead>
+			<tr>
+				<th>Type</th>
+				<th>Date</th>
+				<th>Invoice</th>
+				<th>Commissionable Amt</th>
+				<th></th>
+				<th>%-age</th>
+				<th>Calculated</th>
+				<th>Override</th>
+			</tr>
+		</thead>
+		<tbody>%%xpayments,false%%</tbody>
+		<tfoot>
+			<tr>
+				<th colspan='2'></th>
+				<th class="a-right">%%xxct%%</th>
+				<th class="a-right">%%xxbase%%</th>
+				<th colspan='2' class='a-right'>Total:</th>
+				<th class="a-right">%%commission%%</th>
+				<th class="a-right">%%override%%</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

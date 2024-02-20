@@ -1,0 +1,46 @@
+<div class='propertyEditing'>
+	<div class='title'>Edit a Pickup/Delivery</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+			<div id='tabs-1'>
+				<table class='content'>
+					<tr><th>Service:</th><td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td></tr>
+					<tr><th>Address:</th><td>%%address:line1%%<br/>%%address:city%%<br/>%%address:postalcode%%</td></tr>
+					<tr>
+						<th>Scheduled Time:</th><td>%%scheduled_date%% %%scheduled_dateError%%</td>
+					</tr>
+					<tr>
+						<th>Actual Time:</th><td>%%actual_date%% %%actual_dateError%%</td>
+					</tr>
+					<tr>
+						<th>Completed:</th><td>%%completed%%</td>
+					</tr>
+					<tr>
+						<th>Delivery Name:</th><td>%%delivery_name%%</td>
+					</tr>
+					<tr>
+						<th>Driver Comments:</th><td>%%comments%%</td>
+					</tr>
+					<tr><th>Instructions:</th><td>%%instructions%%</td></tr>
+				</table>
+				%%submit%%%%p_id%%%%editPackage%%
+				<div class='break'></div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>
+<code>
+$('.def_field_datepicker').datepicker({
+	changeMonth: true,
+	changeYear:true,
+	showButtonPanel:true
+});
+$('.def_field_datetimepicker').datepicker({
+	changeMonth: true,
+	changeYear:true,
+	showButtonPanel:true
+});
+$('.popovers').popover();
+</code>

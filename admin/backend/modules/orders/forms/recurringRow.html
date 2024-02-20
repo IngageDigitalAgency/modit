@@ -1,0 +1,13 @@
+<tr>
+	<td class='centered'>%%billing_date%%</td>
+	<td class='a-right'><a href='/modit/orders/showOrder?o_id=%%order_id%%' target='_new'>%%order_id%%</a></td>
+	<td class='centered'>%%billed%%</td>
+	<td>%%billed_on%%</td>
+	<td>%%authorization_message%%</td>
+	<td class='a-right'>%%attempts%%</td>
+<!if(%%order_id%%==0)!>
+	<td></td>
+<!else!>
+	<td><a href='#' onclick='recurringResult(%%id%%);return false;'><i class='icon-edit'></i></a></td>
+<!fi!>
+</tr>

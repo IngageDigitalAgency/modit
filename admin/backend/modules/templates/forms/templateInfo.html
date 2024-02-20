@@ -1,0 +1,28 @@
+<div class='contentInfo'>
+	<table>
+		<tr>
+			<th>Name:</td><td>%%title%%</td>
+		</tr>
+		<tr>
+			<th>Versions:</th><td>%%versions%%</td>
+		<tr>
+			<th>Notes:</th><td>%%notes%%</td>
+		</tr>
+	</table>
+	<a href='#' onclick='editItem(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+	<a href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+	<a href='#' onclick='copyItem(%%id%%);return false;'><i class='icon-plus'></i>Copy</a>
+	<a href='#' onclick='editItem(0);return false;'><i class='icon-plus'></i>Add</a>
+	<div class='pageList'>
+		<div class='title'>The following pages use this template</div>
+		<div class='pages'>
+			%%pages%%
+		</div>
+	</div>
+</div>
+<code>
+$('#templateVersions').change(function() {
+	loadVersion(this);
+});
+$('#middleContent iframe')[0].src = '/render?t_id='.concat(%%currentId%%);
+</code>

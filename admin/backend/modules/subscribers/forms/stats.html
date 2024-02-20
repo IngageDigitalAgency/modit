@@ -1,0 +1,42 @@
+<table class='listing'>
+	<thead>
+		<tr>
+			<th>Started</th>
+			<th>Completed</th>
+			<th>Aborted</th>
+			<th>Test Mode</th>
+			<th>Subscribers</th>
+			<th>Remaining</th>
+			<th>Start</th>
+			<th>Stop</th>
+		</tr>
+	</thead>
+	%%rows%%
+</table>
+<div class='button'>
+	<input class='def_field_submit' type='button' onclick='fnAction(%%id%%,"submit");' value='Create a new job' />
+	<input class='def_field_submit' type='button' onclick='fnAction(%%id%%,"testing");' value='Test Newsletter' />
+	<input class='def_field_submit' type='button' onclick='getStats(%%id%%);' value='Refresh' />
+</div>
+<div class='clearfix'></div>
+<script type="text/javascript">
+$('#tabs-4 div.testing_1').each(function(idx,el) {
+	el.innerHTML = "<i class='icon-check'></i>";
+});
+$('#tabs-4 div.testing_0').each(function(idx,el) {
+	el.innerHTML = "<i class='icon-remove'></i>";
+});
+if ($('#tabs-4 tr.running').length > 0) {
+	currentId = %%id%%;
+	clearInterval(currentInterval);
+	currentInterval = setInterval(fnReloadStats,15000);
+}
+else {
+	clearInterval(currentInterval);
+	currentInterval = 0;
+}
+$('#tabs-4 tr.running i.icon-play').remove();
+$('#tabs-4 tr.completed i.icon-play').remove();
+$('#tabs-4 tr.completed i.icon-stop').remove();
+$('#tabs-4 tr.aborted i.icon-stop').remove();
+</script>

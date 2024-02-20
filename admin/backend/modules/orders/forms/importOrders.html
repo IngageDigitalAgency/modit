@@ -1,0 +1,98 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+%%errorMessage%%
+<h1>Imported Orders</h1>
+<div class='searchForm'>
+	<div id='search-tabs'>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent");return false;' id='%%form:name%%'>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-16 col-md-6">
+						<div class="form-group">
+							<label>Company/Parent Organization</label>
+							%%member_id%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-3">
+						<div class="form-group">
+							<label>Created</label>
+							%%opt_created%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-6">
+						<div class="form-group">
+							<label>&nbsp;</label>
+							%%created%%
+						</div>
+					</div>
+				</div>
+				<div class='row'>
+					<div class="col-sm-8 col-md-3">
+						<div class="form-group">
+							<label>Processed</label>
+							%%processed%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-3">
+						<div class="form-group">
+							<label>Validate Only</label>
+							%%validate_only%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-3">
+						<div class="form-group">
+							<label>&nbsp;</label>
+							%%submit%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-3">
+						<div class="form-group">
+							<label>&nbsp;</label>
+							%%add%%
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id='orderArticleList'>
+				<div class="break"></div>
+				<table class='listing' id="onDemand">
+					<thead>
+						<tr>
+							<th class='a-left'>Company</th>
+							<th class='a-left'>Created</th>
+							<th class='centered'>Processed</th>
+							<th class='a-right'>Orders</th>
+							<th class='a-right'>Errors</th>
+							<th class='a-left'>File</th>
+							<th class="centered">Validate Only</th>
+							<th>Handling Fee</th>
+							<th class='centered'></th>
+						</tr>
+					<thead>
+					<tbody>
+						%%rows%%
+					</tbody>
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Orders per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%importOrders%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$(document).ready(function () {
+	initDateFields();
+	$("select").chosen({"width":"100%"});
+});
+//]]> 
+</script> 
+</code>

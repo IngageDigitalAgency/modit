@@ -1,0 +1,17 @@
+<div></div>
+<code>
+	closeAltPopup();
+	$.ajax({
+		url: '/modit/ajax/myLoadRelations/setup',
+		data: {r_id:%%p_id%%},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval('('+obj+')');
+				$('#tabs-2 tbody').html(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+</code>

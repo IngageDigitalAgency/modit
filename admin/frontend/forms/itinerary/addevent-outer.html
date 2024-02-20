@@ -1,0 +1,62 @@
+<div id="itinerary">
+	<div class="wrapper">
+	    <div class="divider"></div>
+<!-- AddThis Button BEGIN -->
+			<div id='share-tl' class="addthis_toolbox addthis_default_style ">
+				<a href="http://www.addthis.com/bookmark.php?v=250&amp;pubid=ra-4e2708a27d550ff8" class="addthis_button_compact">Share</a>
+			</div>
+<script type="text/javascript">
+	var addthis_config = {
+		"data_track_clickback":true,
+		ui_click:true
+};
+</script>
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e2708a27d550ff8"></script>
+<!-- AddThis Button END -->
+	    <div class="divider"></div>
+		<div class="add">
+			<a href="#" onclick="add_it()">Add to Itinerary</a>
+		</div>
+		<div class="result"></div>
+		<div class="view"><a href="/view_itinerary">View Itinerary</a></div>
+        <div class="break"></div>
+        <div class="divider"></div>
+	</div>
+	<div class="break"></div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+var retStatus = $.ajax({
+	url: '/ajax/render',
+	type:'POST',
+	data: {'t_id':41}
+	async:false
+});
+try {
+	obj = eval('('+retStatus.responseText+')');
+	$('#itinerary').find('.result').append(obj.html);
+	if (obj.code) eval(obj.code);
+}
+catch(err) {
+}
+function add_it() {
+	var url = document.URL.split("?");
+	if (url.length <= 1 && document.URL.contains("/events/")) {
+		url = document.URL.split("/");
+		url[1] = "eid=".concat(url[4]);
+	}
+	if (url[1].contains("eid=")) {
+		eid = url[1].split("=")[1];
+		var msg = $("itinerary").getElement("div.result");
+		if ($chk(msg)) {
+			msg.getChildren().each(function(el,idx) {
+				el.destroy();
+			});
+			var result = new Element("div",{"id":"i_status_".concat(eid)});
+			result.inject(msg);
+		}
+		i_add(eid,"event");
+	}
+}
+//]]> 
+</script> 

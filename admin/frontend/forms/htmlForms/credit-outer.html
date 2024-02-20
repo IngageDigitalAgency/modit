@@ -1,0 +1,32 @@
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<div id="credit-application" class="bottom20">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-16 text-center">
+				<h3>Credit Application</h3>
+			</div>
+		</div>
+		<div class='row'>
+			%%form%%
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$("select[name='country_id']").change(function() {
+	p = loadProvinces(this.value,{"class":"form-control"});
+	$("select[name='province_id']").replaceWith(p);
+});
+applyNow = function(frm) {
+	$(frm).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = eval("("+obj+")");
+				$("#credit-application").replaceWith(obj.html);
+				eval(obj.code);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

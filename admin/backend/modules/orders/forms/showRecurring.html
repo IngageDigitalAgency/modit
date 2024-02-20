@@ -1,0 +1,30 @@
+<div class='title'>Recurring Payment</div>
+<table>
+	<tr>
+		<th>Billing Date:</th><td>%%billing_date%%
+	</tr>
+	<tr>
+		<th>Billed On:</th><td>%%billed_on%%
+	</tr>
+	<tr>
+		<th>Message:</th><td>%%authorization_message%%
+	</tr>
+<!if(%%billed%%==1)!>
+	<tr>
+		<th>Code:</th><td>%%authorization_code%%
+	</tr>
+	<tr>
+		<th>Transaction:</th><td>%%authorization_transaction%%
+	</tr>
+	<tr>
+		<th>Amount:</th><td>%%authorization_amount%%
+	</tr>
+<!else!>
+	<tr>
+		<th>Attempts:</th><td>%%attempts%%
+	</tr>
+<!fi!>
+	<tr>
+		<th>Info:</th><td>%%authorization_info%%
+	</tr>
+</table>

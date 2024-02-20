@@ -1,0 +1,5 @@
+<!if("%%custom_qb_id%%"=="0")!>
+<tr><td class="alert alert-error">%%company%%</td><td class="a-right">%%ct%%<td class="a-right">%%total%%</td><td></td></tr>
+<!else!>
+<tr><td><a href="#" onclick="exportDetails(%%id%%);return false;">%%company%%</a></td><td class="a-right">%%ct%%<td class="a-right">%%total%%</td><td class="a-right">%%paid%%</td><td class="a-right">%%net%%</td><td><input type="checkbox" value="%%id%%" name="process[]" checked="checked" value="1" /></td></tr>
+<!fi!>

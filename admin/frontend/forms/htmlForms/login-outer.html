@@ -1,0 +1,34 @@
+<div id="home-login" class="container alternate">
+	<div class="row wrapper">
+		<div class="col-sm-12 col-sm-offset-2 inner">
+			%%alert%%
+			<h4 class="text-center top20">SIGN IN</h4>
+			<form method="post" action="">
+				<div class="row"><div class="col-xs-16 col-sm-8 col-sm-offset-4 form-group text-center">%%errorMessage%%</div></div>
+				<div class="row">
+					<div class="col-sm-6 col-sm-offset-1 form-group">%%username%%</div>
+					<div class="col-sm-6 form-group">%%password%%</div>
+					<div class="col-sm-2 form-group"><input type='submit' class='form-control btn btn-primary' value='Login'/></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-16 text-center signup">Don't have an account? <a href="/signup">Sign up</a></div>%%t_id%%%%loginForm%%
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+logMeIn = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				$("#home-login").replaceWith(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

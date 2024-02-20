@@ -1,0 +1,70 @@
+<div id="driverSchedule">
+	<div id="driverInfo">
+		<div class='subtitle'>Driver Details <a href="#" onclick="editDriver(%%id%%);return false;"><i class="icon-edit"></i></a></div>
+		<table>
+			<tbody>
+				<tr>
+					<td>Name:</td><td>%%firstname%% %%lastname%% <a href="/modit/members/editMember?m_id=%%member_id%%" target="_new"><i class="icon-edit"></i></a></td>
+				</tr>
+				<tr>
+					<td>Phone 1:</td><td>%%phone1%%</td>
+				</tr>
+<!if(strlen("%%phone2%%")>0)!>
+				<tr>
+					<td>Phone 2:</td><td>%%phone2%%</td>
+				</tr>
+<!fi!>
+				<tr>
+					<td>Email:</td><td>%%email%%</td>
+				</tr>
+				<tr>
+					<td>Zone(s):</td><td>%%zones%%</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="listing">
+		<h3>Current Schedule</h3>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/drivers","variableContent");return false;' id='%%form:name%%'>
+			<table>
+				<tbody>
+					<tr>
+						<td>Date:</td><td>%%opt_scheduled_date%%</td><td>%%scheduled_date%%</td>
+						<td>Service:</td><td>%%service_type%%</td>
+						<td>Completed:</td><td>%%status%%</td>
+						<td>Delivery Type:</td><td>%%delivery_type%%</td>
+						<td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+					</tr>
+				</tbody>
+			</table>
+			%%getDriver%% %%sortby%% %%sortorder%% %%d_id%% %%showSchedule%%
+		</form>
+		<div id="schedule">
+				<table>
+					<thead>
+						<tr>
+							<th class="a-right">Order #</th>
+							<th class="a-left">Scheduled Time</th>
+							<th class="a-left" colspan="2">Service</th>
+							<th class="a-right">Weight</th>
+							<th class="a-left">Address</th>
+							<th class="a-left">City</th>
+							<th class="a-left">Postal Code</th>
+							<th class="a-left">Instructions</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%schedule%%
+					</tbody>
+				</table>
+				<input type="hidden" name="d_id" value="%%request:d_id%%" />
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<div id="mapWrapper"></div>
+	<div class="clearfix"></div>
+</div>
+<script type="text/javascript">
+initDateFields();
+</script>

@@ -1,0 +1,54 @@
+%%heading%%
+<div id='foldertabs'>
+	<div id='category_heading'>
+		<div class="heading_title">
+			<h2>%%title%% %%connector%% %%alternate_title%%</h2>
+		</div>
+		<div class="heading_options">
+			<div class="buttons">
+				<a class="btn" href='#' onclick='editContent(%%id%%);return false;'><i class='icon-edit'></i>Edit</a>
+				<a class="btn" href='#' onclick='deleteContent(%%id%%);return false;'><i class='icon-trash'></i>Delete</a>
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+	<div id='articleList' class='listing'>
+		<div id='productFolderId' style='display:none'>%%id%%</div>
+		<form name='%%form:name%%' action='' onsubmit='return false' method='%%form:method%%' id='%%form:name%%'>
+			%%sortby%%
+			%%sortorder%%
+			%%showFolderContent%%
+			%%pagenum%%
+			<input type='hidden' name='p_id' value='%%id%%' />
+			<div class="break"></div>
+			<table>
+				<thead>
+					<tr>
+						<th><span onclick='sort("code","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Code</span></th>
+						<th><span onclick='sort("name","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Name</span></th>
+						<th><span onclick='sort("created","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Created</span></th>
+						<th><span onclick='sort("expires","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Expires</span></th>
+						<th><span onclick='sort("published","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Published</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent")'>Enabled</span></th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+			%%articles%%
+			</table>
+			<div id='pagination'>
+				<span class="pagination-dropdown pull-right">Products per page : %%pager%%</span>
+				%%pagination%%
+				<div class="break"></div>
+			</div>
+		</form>
+	</div>
+</div>
+<code>
+addSortableDroppable(false);
+pagingUrl = '/modit/ajax/%%form:action%%/product';
+$('#pager').change(function() {
+	formCheck("%%form:name%%","/modit/ajax/%%form:action%%/product","middleContent");
+});
+</code>

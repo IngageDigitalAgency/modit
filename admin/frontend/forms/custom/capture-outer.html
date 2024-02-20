@@ -1,0 +1,223 @@
+<script type="text/javascript" src="/common/ss.js"></script>
+<script language="javascript" type="text/javascript">
+//
+//
+//	Do **NOT** edit from within the editor
+//
+//
+
+var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+function encode64(input) {
+	input = escape(input);
+	var output = "";
+	var chr1, chr2, chr3 = "";
+	var enc1, enc2, enc3, enc4 = "";
+	var i = 0;
+	do {
+		chr1 = input.charCodeAt(i++);
+		chr2 = input.charCodeAt(i++);
+		chr3 = input.charCodeAt(i++);
+		enc1 = chr1 >> 2;
+		enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);
+		enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);
+		enc4 = chr3 & 63;
+		if (isNaN(chr2)) {
+			enc3 = enc4 = 64;
+		} else if (isNaN(chr3)) {
+			enc4 = 64;
+		}
+		output = output + keyStr.charAt(enc1) + keyStr.charAt(enc2) + keyStr.charAt(enc3) + keyStr.charAt(enc4);
+		chr1 = chr2 = chr3 = "";
+		enc1 = enc2 = enc3 = enc4 = "";
+	} while (i < input.length);
+	return output;
+}
+
+function decode64(input) {
+	var output = "";
+	var chr1, chr2, chr3 = "";
+	var enc1, enc2, enc3, enc4 = "";
+	var i = 0;
+	// remove all characters that are not A-Z, a-z, 0-9, +, /, or =
+	var base64test = /[^A-Za-z0-9\+\/\=]/g;
+	if (base64test.exec(input)) {
+		alert("There were invalid base64 characters in the input text.\n" +
+		"Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+		"Expect errors in decoding.");
+	}
+	input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+	do {
+		enc1 = keyStr.indexOf(input.charAt(i++));
+		enc2 = keyStr.indexOf(input.charAt(i++));
+		enc3 = keyStr.indexOf(input.charAt(i++));
+		enc4 = keyStr.indexOf(input.charAt(i++));
+		chr1 = (enc1 << 2) | (enc2 >> 4);
+		chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+		chr3 = ((enc3 & 3) << 6) | enc4;
+		output = output + String.fromCharCode(chr1);
+		if (enc3 != 64) {
+			output = output + String.fromCharCode(chr2);
+		}
+		if (enc4 != 64) {
+			output = output + String.fromCharCode(chr3);
+		}
+		chr1 = chr2 = chr3 = "";
+		enc1 = enc2 = enc3 = enc4 = "";
+	} while (i < input.length);
+	return unescape(output);
+}
+
+initSS = function() {
+	var ieVer = getInternetExplorerVersion();
+	if (isIE && ieVer >= 9.0) isIE = false;
+	if (isIE) 
+		return "<div ID='ctlSignature' style='width:50px;height:50px;'></div>";
+	else
+		return "<canvas ID='ctlSignature' width='50' height='50'></canvas>";
+}
+lat = 0;
+lng = 0;
+<!if("0"=="1")!>
+var options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+function errLog(data) {
+}
+getPos = function( position ) {
+	lat = position.coords.latitude;
+	lng = position.coords.longitude;
+	$("#delForm input[name='lat']").val(lat);
+	$("#delForm input[name='long']").val(lng);
+}
+navigator.geolocation.getCurrentPosition( getPos, errLog, options );
+navigator.geolocation.watchPosition( getPos, errLog, options );
+<!fi!>
+</script>
+
+<div id="mobile-pickup" class="bottom60">
+	<div id="mobile-header" class="bottom20">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-2"><a href="/routes"><i class="fa fa-chevron-left"></i></a></div>
+				<div class="col-xs-12">ORDER: %%order_id%%</div>
+				<div class="col-xs-2"><i class="fa fa-search"></i></div>
+			</div>
+		</div>
+	</div>
+	<div class="container" id="getSignature">
+		<div class="row ul bottom10">
+			<div class="col-xs-16"><label>Signature Capture</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16 text-center">%%errorMessage%%</div>
+		</div>
+		<form method="post" action="/ajax/render" id="delForm">
+%%lat%%%%long%%
+			<div class="row">
+				<div class="col-xs-16 grid">
+					<div id='ctlSignature_Container' style='width:100%;height:50px'>
+<script type="text/javascript">
+document.write(initSS());
+</script>
+					</div>
+				</div>
+			</div>
+			<div class="row bottom10">
+				<div class="col-xs-16">
+					<div class="form-group top20">
+						%%delivery_name%%
+					</div>
+				</div>
+			</div>
+			<div class="row bottom10">
+				<div class="col-xs-10 col-xs-offset-3">
+					<input type="button" onclick="getSignature(this);return false;" value="Complete the Delivery" class="btn red-bg form-control" />
+				</div>
+			</div>
+			<div class="row bottom10">
+				<div class="col-xs-10 col-xs-offset-3">
+<!if("%%custom_signature_required%%"=="1")!>
+<div class="alert alert-warning text-center">Signature Required</div>
+<!else!>
+<div class="alert alert-info text-center">Signature Not Required</div>
+<!fi!>					
+				</div>
+			</div>
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+			<div class="row">
+				<div class="col-xs-6">
+					<label>Scheduled</label>
+					<div class="row">%%scheduled_date%%</div>
+				</div>
+				<div class="col-xs-6">
+					<label>Actual</label>
+					<div class="row">%%actual_date%%</div>
+				</div>
+				<div class="col-xs-4"><label>Do Not Bill</label>%%do_not_bill%%</div>
+			</div>
+<!fi!>
+			<input type="hidden" name="t_id" value="%%module:fetemplate_id%%" />
+			<input type="hidden" name="captureSignature" value="1" />
+			<input type="hidden" name="c_id" value="%%id%%" />
+		</form>
+		<div class="row">
+			<div class="col-xs-16 image"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+var signObjects = new Array('ctlSignature');
+var objctlSignature = new SuperSignature({
+		SignObject:"ctlSignature",
+		SignWidth: "50",
+		TransparentSign:"false",
+		SignHeight: "50",
+		IeModalFix: false,
+		PenColor: "#0000FF",
+		BorderStyle: "Dashed",
+		BorderWidth: "2px", 
+		BorderColor: "#DDDDDD",
+		RequiredPoints: "15",
+		ClearImage:"/common/refresh.png", 
+		PenCursor:"/common/pen.cur", 
+		SuccessMessage: "Accepted", 
+		Visible: "true"});	
+function Resize() {
+	var s = $("#ctlSignature_data").val();
+	var g = $("#ctlSignature").closest(".grid");
+	ResizeSignature("ctlSignature", $(g).width(), 200);
+	if (s != "") {
+		s = decode64(s);
+		s = s.replace("undefined","#ffffff");
+		s = s.replace("undefined",$(g).width());
+		s = s.replace("undefined",$(g).height());
+		s = s.replace("undefined","true");
+		LoadSignature("ctlSignature",s);
+	}
+}
+$(document).ready(function() {
+	objctlSignature.Init();
+	window.addEventListener("resize", function () {
+		Resize();
+	}, false);
+	$("ctlSignature_Container").css('margin', '0px');
+});
+$(window).load(function () { Resize();});
+getSignature = function(el) {
+	var f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		context: {el:el},
+		success: function( obj, status, xhr ) {
+			try {
+				obj = eval("("+obj+")");
+				$("#getSignature .image").html(obj.html);
+				eval(obj.code);
+			} catch(err) {
+			}
+		}
+	});
+}
+</script>

@@ -1,0 +1,119 @@
+<div id="payNom">
+	<div class="title">Pay Now Customer Billing</div>
+	%%connect%%
+	<div id="payNow-search" class="top20">
+		<form method="post" action="/modit/credit/unpaidBillNow" onsubmit="formCheck('searchForm','/modit/ajax/unpaidBillNow/credit','middleContent');return false;" id="searchForm">
+			<div class="row">
+				<div class="col-xs-8 col-sm-4 form-group">
+					<label>Customer:</label>
+					%%member_id%%
+				</div>
+				<div class="col-xs-8 col-sm-2 form-group">
+					<label>Billed:</label>
+					%%completed%%
+				</div>
+				<div class="col-xs-8 col-sm-2 form-group">
+					<label>Delivery Date:</label>
+					%%opt_actual_date%%
+				</div>
+				<div class="col-xs-8 col-sm-2 form-group">
+					<label>&nbsp;</label>
+					%%actual_date%%
+				</div>
+				<div class="col-xs-8 col-sm-4 form-group">
+					<label>Order Id:</label>
+					%%order_id%%
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">%%search%%</div>
+			</div>
+			%%unpaidBillNow%%
+		</form>
+	</div>
+	<form method="post" action="/modit/ajax/processNow/credit">
+		<div class="row">
+			<div class="col-xs-16">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Company</th>
+							<th>Completed</th>
+							<th class="a-right">Order #</th>
+							<th class="centered">Status</th>
+							<th class="a-right">Total</th>
+							<th class="a-right">Owing</th>
+							<th class="a-right">Authorized</th>
+							<th class="a-right">Paid</th>
+							<th class="centered">Process</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						%%orders%%
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 form-group">%%pagination%%</div>
+			<div class="col-xs-4 form-group">%%billing%%</div>
+		</div>
+	</form>
+	<div id="authHistory"></div>
+	<div id="billing-results"></div>
+	<div class="bg hidden"><div class="glyphicon glyphicon-repeat fast-right-spinner" style="margin-top:50vh;margin-left:50vw;"></div></div>
+</div>
+<script type="text/javascript">
+initDateFields();
+$("select[name=member_id]").chosen({"width":"100%"});
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getNames/orders',
+			data:{'s':request.term,'m':0},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=member_id]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showError(obj.messages);
+				}
+				catch(err) {
+					showError(err.message);
+				}
+			}
+		});
+	}
+});
+authView = function( id ) {
+	$.ajax({
+		url: "/modit/ajax/authHistory/credit",
+		data: { o_id: id },
+		success: function( obj, status, xhr ) {
+			try {
+				h = eval("("+obj+")");
+				$("#authHistory").html(h.html);
+			}
+			catch(err) {
+				showError(err.message);
+			}
+		}
+	});
+}
+billNow = function(el) {
+	$(".bg").toggleClass("hidden");
+	$(el).closest("form").ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				$(".bg").toggleClass("hidden");
+				h = eval("("+obj+")");
+				$("#billing-results").html(h.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

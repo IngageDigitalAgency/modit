@@ -1,0 +1,40 @@
+<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/showSearchForm/setup","middleContent");return false;' id='%%form:name%%'>
+	<div class='searchForm'>
+		<div id='search-tabs'>
+			<div id='setupArticleList'>
+				<div id='setupFolderId' style='display:none'>%%id%%</div>
+				<table>
+					<tr>
+						<th colspan='7'></th>
+						<th colspan='2' class='centered'>Relationships</th>
+					</tr>
+					<tr>
+						<th></th>
+						<th class='left'><span onclick='sort("title","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Name</span></th>
+						<th><span onclick='sort("enabled","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Enabled</span></th>
+						<th><span onclick='sort("admin","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Admin Only</span></th>
+						<th><span onclick='sort("frontend","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Front End</span></th>
+						<th><span onclick='sort("backend","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Back End</span></th>
+						<th><span onclick='sort("hidden","%%form:name%%","/modit/ajax/%%form:action%%/setup","middleContent")'>Hidden</span></th>
+						<th>Enabled</th>
+						<th>Disabled</th>
+					</tr>
+					%%articles%%
+				</table>
+			</div>
+		</div>
+	</div>
+	<div id='pagination'><span class="pagination-dropdown pull-right">Modules per page : %%pager%%</span> %%pagination%%</div>
+	%%showSearchForm%% 
+	%%pagenum%%
+	%%sortorder%%
+	%%sortby%%
+</form>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+pagingUrl = '/modit/ajax/%%form:action%%/setup';
+initSearch();
+//]]> 
+</script> 
+</code>

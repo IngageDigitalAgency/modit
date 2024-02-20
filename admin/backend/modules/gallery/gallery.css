@@ -1,0 +1,149 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_page {
+	
+}
+
+#contentTree a.icon_folder {
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.newsInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+#galleryArticleList .title,
+#showFolderContent .title {
+	font-size:10pt;
+	font-family:arial;
+	background: none;
+	color: #999;
+	padding: 10px 0;
+}
+
+#galleryArticleList .image,
+#showFolderContent .image {
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+    margin-right: 20px;
+    width: 172px;
+}
+
+#galleryArticleList .image .body,
+#showFolderContent .image .body {
+	border: 1px solid #e0e0e0;
+	border-radius: 0 0 4px 4px;
+	width: 150px;
+	padding:10px;
+	background: #f1f1f1;
+}
+
+#galleryArticleList img,
+#showFolderContent img {
+	width: 150px;
+	height:125px;
+}
+
+.imageDragger {
+	display:none;
+}
+
+.imageDragger .id {
+	display:none;
+}
+
+.makeMeDraggable.ui-draggable-dragging {
+	height:20px;
+	width: 100px;
+	font-style:italic;
+}
+
+
+#addContent table {
+	width:100%;
+}
+#addContent #table th,
+#addContent table td {
+	vertical-align:top;
+	text-align:left;
+}
+
+#galleryArticleList .ui-sortable-placeholder {
+	background: #EDF4F9;
+	xxborder: 2px dashed #ffffff;
+	visibility: visible !important;	
+}
+
+#galleryArticleList .header,
+#showFolderContent .header {
+	border-radius: 6px 6px 0 0;
+	background-color: #143f72;
+	height:18px;
+	font-size: 12px;
+	font-weight:bold;
+	font-family: Helvetica;
+	color:#5e6366;
+	padding: 2px 8px;
+}
+
+#galleryArticleList .header:hover,
+#showFolderContent .header:hover {
+	cursor: move;
+}
+
+
+#galleryArticleList li {
+	width:175px;
+	float:left;
+	margin:5px;
+}
+#galleryArticleList li img {
+	width:150px;
+	height:125px;
+}
+
+#sortableImages .image {
+	width:172px;
+	display:inline-block;
+	margin-right:10px;
+	margin-bottom:10px;
+	height:225px;
+	overflow:hidden;
+}
+
+#sortableImages .image .title {
+	width:140px;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+#sortableImages li {
+	display:inline-block;
+}

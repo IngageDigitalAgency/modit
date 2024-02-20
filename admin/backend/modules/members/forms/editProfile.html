@@ -1,0 +1,51 @@
+<div class='listing'>
+	<div id='altTabs'>
+		%%errorMessage%%
+		<ul>
+			<li><a href="#tabs-p1">Profile</a></li>
+			<li><a href="#tabs-p2">Images</a></li>
+			<li><a href="#tabs-p3">Media</a></li>
+			%%customTab%%
+		</ul>
+		<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","%%form:action%%","altPopup");return false;' id='%%form:name%%' action=''>
+			<div id='tabs-p1'>
+				<div class='title'>Teaser<span class='errorMessage'> %%teaserError%%</span></div>
+				%%teaser%%
+				<div class='title'>Group Specific Profile<span class='errorMessage'> %%profileError%%</span></div>
+				%%profile%%
+				%%submit%%
+			</div>
+			<div id='tabs-p2'>
+				<table>
+					<tr>
+						<th>Image 1:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'members/%%member_id%%/%%folder_id%%/');return false;">%%imagesel_c%%</a> <span class='errorMessage'>%%image1Error%%</span><br/>
+							<input id="image_c" type="hidden" name="image1" value="%%image1%%" />
+							<a href="#" onclick="setImage(this,'members/%%member_id%%/%%folder_id%%/');return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Image 2:</th>
+						<td>
+							<a href="#" onclick="setImage(this,'members/%%member_id%%/%%folder_id%%/');return false;">%%imagesel_d%%</a> <span class='errorMessage'>%%image2Error%%</span><br/>
+							<input id="image_d" type="hidden" name="image2" value="%%image2%%" />
+							<a href="#" onclick="setImage(this,'members/%%member_id%%/%%folder_id%%/);return false;">select image</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+				%%submit%%
+				<input type='hidden' name='p_id' value='%%id%%' />
+				%%editProfile%%
+			</div>
+			<div id='tabs-p3'>
+				<span class='errorMessage'>The profile must be saved first</span>
+			</div>
+			%%customInfo%%
+		</form>
+	</div>
+</div>
+<code>
+	$('#altTabs').tabs();
+	checkAddProfile(%%member_id%%,%%folder_id%%);
+</code>

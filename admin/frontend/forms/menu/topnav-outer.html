@@ -1,0 +1,16 @@
+%%user%%
+%%menu%%
+<script type="text/javascript">
+$.ajax({
+	url: "/ajax/render",
+	data: { t_id: 116 },
+	success: function( obj, status, xhr ) {
+		try {
+			h = eval("("+obj+")");
+			$(h.html).insertBefore($($("#navbar-collapse ul.nav li")[0]));
+		}
+		catch(err) {
+		}
+	}
+});
+</script>

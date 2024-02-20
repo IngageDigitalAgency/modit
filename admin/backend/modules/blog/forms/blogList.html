@@ -1,0 +1,17 @@
+<tr>
+	<td>%%title%%</td>
+	<td>%%created%%</td>
+	<td>%%expires%%</td>
+	<td><div class='centered'>%%published%%</div></td>
+	<td><div class='centered'>%%enabled%%</div></td>
+	<td><div class='centered'>%%accepted%%/%%unaccepted%%&nbsp;&nbsp;<a href='#' onclick='loadComments(%%id%%);return false;'><i class='icon-edit'></i></a></div></td>
+	<td class='centered edit'>
+		<a href="#" onclick='editArticle(%%id%%);return false;'><i class='icon-edit'></i></a>
+		<div id='blogdrag_%%id%%'>
+			<div class="blogDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+	<td class='centered delete'><a href="#" onclick='deleteArticle(%%id%%,%%j_id%%);return false;'><i class='icon-trash'></i></a></td>
+</tr>

@@ -1,0 +1,62 @@
+<!if("%%session:mgmt:user:custom_super_user%%"=="1")!>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript">
+tmr = 0;
+loadData = function(md,byTime) {
+	if (md) {
+		$("#searchForm form").ajaxSubmit({
+			context: {byTime: byTime, md: md},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = eval("("+obj+")");
+					$("#dispatchingForm").html(obj.html);
+					clearTimeout(tmr);
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else {
+		$.ajax({
+			url: "/ajax/render",
+			data: {t_id:75},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = eval("("+obj+")");
+					$("#dispatchingForm").html(obj.html);
+					//eval(obj.code);
+					tmr = setTimeout(function() {loadData(true,true);}, $("select[name='i_delay']").val());
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+loadData(false);
+function toggleForm(id) {
+	var el = $('#'.concat(id))[0];
+	if (el.className.search('hidden') >= 0)
+		el.className = el.className.replace('hidden','show');
+	else
+		el.className = el.className.replace('show','hidden');
+}
+getResults = function(el) {
+	loadData(true,false);
+}
+pagination = function(pg,el) {
+	$(el).closest("form").find("input[name='pagenum']").val(pg);
+	loadData(true,false);
+}
+</script>
+<!else!>
+<div class="container">
+	<div class="row top20 bottom20">
+		<div class="col-sm-8 col-sm-offset-4">
+			<div class="alert alert-danger text-center">You do not have access to this page</div>
+		</div>
+	</div>
+</div>
+<!fi!>

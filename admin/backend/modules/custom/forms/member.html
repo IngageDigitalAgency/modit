@@ -1,0 +1,199 @@
+<div id='tabs-custom'>
+	<table  class='form-inline'>
+		<tr>
+			<th>Parent Company:</th><td>%%custom_parent_org%%</td>
+		</tr>
+		<tr>
+			<th>Pickup Notification:</th><td>%%custom_pickup_notification%%</td>
+		</tr>
+		<tr>
+			<th>Delivery Notification:</th><td>%%custom_delivery_notification%%</td>
+		</tr>
+		<tr>
+			<th>Subsidiaries:</th><td>%%subsidiary_orgs%%</td>
+		</tr>
+		<tr>
+			<th>Consolidate Invoices:</th><td>%%custom_consolidate_invoices%%</td>
+		</tr>
+		<tr>
+			<th>Zone Structure:</th><td>%%custom_zones%%</td>
+		</tr>
+		<tr>
+			<th>Base Weight Override (+/- %):</th><td>%%custom_weight_override%% <span class='errorMessage'>%%custom_weight_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Free Weight:</th><td>%%custom_free_weight%% <span class='errorMessage'>%%custom_free_weightError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Fuel Exempt :</th><td>%%custom_fuel_exempt%% <span class='errorMessage'>%%custom_fuel_exemptError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Fuel Surcharge (+/- %):</th><td>%%custom_fuel_override%% <span class='errorMessage'>%%custom_fuel_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Insurance Override (+/- %):</th><td>%%custom_insurance_override%% <span class='errorMessage'>%%custom_insurance_overrideError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>By Km (no zone charges):</th><td>%%custom_by_km%% <span class='errorMessage'>%%custom_by_kmError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Downtown Surcharge (Car usage):</th><td>%%custom_downtown_surcharge%% <span class='errorMessage'>%%custom_downtown_surchargeError%%</span></td>
+		</tr>
+		<tr>
+			<th>KJV Admin (can place all orders):</th><td>%%custom_super_user%% <span class='errorMessage'>%%custom_super_userError%%</span></td>
+		</tr>
+		<tr>
+			<th>On Account (Bill me later):</th><td>%%custom_on_account%% <span class='errorMessage'>%%custom_on_accountError%%</span></td>
+		</tr>
+		<tr>
+			<th>Additional Services:</th><td>%%custom_additional_services%% <span class='errorMessage'>%%custom_additional_servicesError%%</span> <span class="display_value"></span></td>
+		</tr>
+		<tr>
+			<th>Quickbooks Id:</th><td>%%custom_qb_id%% <span class='errorMessage'>%%custom_qb_idError%%</span></td>
+		</tr>
+		<tr>
+			<th>Credit Surcharge:</th><td>%%custom_cc_charge%% <span class='errorMessage'>%%custom_cc_chargeError%%</span></td>
+		</tr>
+		<tr>
+			<th>Invoicing Email (separate multiple with ;) :</th><td>%%custom_invoice_email%% <span class='errorMessage'>%%custom_invoice_emailError%%</span></td>
+		</tr>
+		<tr>
+			<th>Pickup Confirmation Email (separate multiple with ;) :</th><td>%%custom_pickup_emails%% <span class='errorMessage'>%%custom_pickup_emailsError%%</span></td>
+		</tr>
+		<tr>
+			<th>Delivery Confirmation Email (separate multiple with ;) :</th><td>%%custom_delivery_emails%% <span class='errorMessage'>%%custom_delivery_emailsError%%</span></td>
+		</tr>
+		<tr>
+			<th>Reference/PO #:</th><td>%%custom_reference_number%%</td>
+		</tr>
+		<tr>
+			<th>Global Free Item Count :</th><td>%%custom_free_item_count%%</td>
+		</tr>
+		<tr>
+			<th>Global Free Item Charge :</th><td>%%custom_free_item_charge%%</td>
+		</tr>
+		<tr><th>Optional Required Fields :</th><td>%%optional_required_fields%%</td></tr>
+	</table>
+	%%addOption%%
+	%%submit%%
+</div>
+<code>
+getInsurance = function() {
+	$.ajax({
+		url: "/modit/ajax/getMemberInsurance/custom",
+		data: {m:$("#m_id")[0].value,o:$("#custom_insurance_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval("("+obj+")");
+				eval(obj.code);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getFuel = function() {
+	$.ajax({
+		url: "/modit/ajax/getMemberFuel/custom",
+		data: {m:$("#m_id")[0].value,o:$("#custom_fuel_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval("("+obj+")");
+				eval(obj.code);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getWeight = function() {
+	$.ajax({
+		url: "/modit/ajax/getMemberWeight/custom",
+		data: {m:$("#m_id")[0].value,o:$("#custom_weight_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval("("+obj+")");
+				eval(obj.code);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getKm = function() {
+	$.ajax({
+		url: "/modit/ajax/getMemberKm/custom",
+		data: {m:$("#m_id")[0].value,o:$("#custom_km_override")[0].value},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval("("+obj+")");
+				eval(obj.code);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+getWeight();
+/*getKm();*/
+getFuel();
+getInsurance();
+addProduct = function() {
+	var p = Array();
+	$("input[name='custom_member_product_options[]']").each(function(idx,el) {
+		p.push($(el).val());
+	});
+	$("select[name='custom_member_product_options[]']").each(function(idx,el) {
+		if (el.value != "") p.push(el.value);
+	});
+	$.ajax({
+		url: "/modit/ajax/memberAddProduct/custom",
+		data: {m:$("#m_id")[0].value,'p':p},
+		success:function(obj,status,xhr) {
+			try {
+				obj = eval("("+obj+")");
+				eval(obj.code);
+				$("#tabs-custom table.listing tbody").append(obj.html);
+			}
+			catch(err) {
+				alert(err);
+			}
+		}
+	});
+}
+removeOption = function(el) {
+	$(el).closest("tr").remove();
+}
+var s = $('select[name="subsidiary_orgs[]"]')[0];
+for (x=1; x < s.length; x++) {
+	s.options[x].selected = true;
+}
+$('select').chosen({"width":"100%"});
+/*
+$('select[name="subsidiary_orgs[]"]').chosen();
+$("select[name=custom_parent_org]").chosen();
+*/
+$('.chosen-search input').autocomplete({
+	source:function(request,response) {
+		$.ajax({
+			url:'/modit/ajax/getMemberNames/custom',
+			data:{'s':request.term,'m':$("input[name=m_id]").val()},
+			context:this,
+			success:function(list,status,xhr) {
+				try {
+					obj = eval("("+list+")");
+					$("select[name=custom_parent_org]").html(obj.html).trigger("chosen:updated");
+					if (obj.messages.length > 0) showPopupError(obj.messages);
+				}
+				catch(err) {
+					showPopupError(err.message);
+				}
+			}
+		});
+	}
+});
+</code>

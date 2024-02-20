@@ -1,0 +1,170 @@
+<div class='propertyEditing'>
+	<div class='title'>Add a Store Category</div>
+	<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck_fldr("%%form:name%%","/modit/ajax/showPageProperties/stores","popup");return false;' id='%%form:name%%'>
+		<div class='errorMessage'>%%errorMessage%%</div>
+		<div id='tabs'>
+			<ul>
+				<li><a href="#tabs-1">Main Info</a></li>
+				<li><a href="#tabs-6">Description</a></li>
+				<li><a href="#tabs-7">SEO</a></li>
+				<li><a href="#tabs-2">Images</a></li>
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-3">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('stores:product',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-4">Products</a></li>
+<!fi!>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+				<li><a href="#tabs-5">Events</a></li>
+<!fi!>
+			</ul>
+			<div id='tabs-1'>
+				<table class='propertyEditing'>
+					<tr>
+						<td>Category Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+					</tr>
+					<tr>
+						<td>Category Sub-Name:</td><td>%%alternate_title%% %%alternate_titleError%% %%tooltip:SecondLine%%</td>
+					</tr>
+					<tr>
+						<td>Add to Category:</td><td>%%p_id%% %%pidError%% %%tooltip:Parent%%</td>
+					</tr>
+					<tr>
+						<td>Template Folder:</td><td>%%template_id%% %%templateError%% %%tooltip:TemplateFolder%%</td>
+					</tr>
+					<tr>
+						<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+					</tr>
+					<tr>
+						<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+					</tr>
+				</table>
+			</div>
+			<div id='tabs-2'>
+				<table>
+					<tr>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+							<input id="image_a" type="hidden" name="image" value="%%image%%" />
+							<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+							<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+							<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('stores:coupons',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-3'>
+				<div id='couponsTab'>
+					<div class='title'>Deal or Offer Categories Assigned to this Category</div>
+					%%destCouponFolders%% <span class='errorMessage'>%%destCouponFoldersError%% %%tooltip:DealCatRel%%</span>
+					<div class='title'>Individual Deals or Offers Assigned to this Category</div>
+					<table>
+						<tr>
+							<td>
+								<div>Select a Category</div>
+								%%couponFolders%%
+							</td>
+							<td>
+								<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+								<div id='offerCatSelection'>
+									%%destCoupons%%
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+<!fi!>
+<!if(array_key_exists('stores:product',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-4'>
+				<div class='title'>Product Categories Assigned to this Category</div>
+				%%destProductFolders%% <span class='errorMessage'>%%destProductFoldersError%% %%tooltip:ProductCatRel%%</span>
+				<div class='title'>Individual Products Assigned to this Category</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%productFolders%%
+						</td>
+						<td>
+							<div>Select the Product(s)</div>
+							<div id='productCatSelection'>
+								%%relatedDestProducts%% %%tooltip:ProductRel%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+<!if(array_key_exists('calendar:stores',$GLOBALS['globals']->getRelations()))!>
+			<div id='tabs-5'>
+				<div class='title'>Calendars Assigned to this Category</div>
+				%%destEventFolders%% <span class='errorMessage'>%%destEventFoldersError%% %%tooltip:CalendarRel%%</span>
+				<div class='title'>Individual Events Assigned to this Category</div>
+				<table>
+					<tr>
+						<td>
+							<div>Select a Category</div>
+							%%eventFolders%%
+						</td>
+						<td>
+							<div>Select the Events(s) <span class='errorMessage'>%%destEventsError%% %%tooltip:EventRel%%</span></div>
+							<div id='eventCatSelection'>
+								%%destEvents%%
+							</div> 
+						</td>
+					</tr>
+				</table>
+			</div>
+<!fi!>
+			<div id='tabs-6'>
+				<div class='title'>Teaser %%tooltip:Teaser%%</div>
+				%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+				<div class='title'>Description %%tooltip:Description%%</div>
+				%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+			</div>
+			<div id="tabs-7">
+				<div class='title'>SEO Content</div>
+				<div class="alert alert-warning centered">No use of quotes (single or double) and only 1 line is allowed</div>
+				<table>
+					<tbody>
+						<tr><th>Keywords:</th><td>%%meta_keywords%%</td></tr>
+						<tr><th>Social Description:</th><td>%%social_description%%</td></tr>
+						<tr><th>Description:</th><td>%%meta_description%%</td></tr>
+						<tr><th>Title:</th><td>%%browser_title%%</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showPageProperties%% %%test%% %%id%% %%type%% 
+		<div class='break'></div>
+	</form>
+</div>
+<code>
+$( "#tabs" ).tabs();
+$('#destCoupons').chosen();
+$('#destCouponFolderSelector').chosen();
+$('#relatedDestProducts').chosen();
+$('#destProductFolders').chosen();
+$('#destEvents').chosen();
+$('#destEventFolders').chosen();
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true,'stores');
+});
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#productCatSelection',true,'stores');
+});
+$('#eventFolderSelector').change(function() {
+	loadEventList(this,'#eventCatSelection',true,'stores');
+});
+$('.popovers').popover();
+</code>

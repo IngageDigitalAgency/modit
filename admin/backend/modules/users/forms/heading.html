@@ -1,0 +1,45 @@
+<div id='middleHeading'>
+	<div class="heading_title"><a href='#' onclick="getContent('moduleStatus','users','#middleContent');return false;">Site Administrators</a></div>
+	<div class="heading_options">
+		<div class="buttons">
+			<a class="btn btn-primary" href='#' onclick='editArticle(0);return false'>Add an Administrator</a>
+		</div>
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:id%%","/modit/ajax/showSearchForm/users","middleContent");return false;' id='%%form:id%%'>
+			%%opt_quicksearch%%
+			%%showSearchForm%%
+			<input type="text" class="search_input" name="quicksearch" placeholder="Enter your search here..." />
+			<div class="btn-group pull-right">
+				<button type="submit" class="search_button btn"><i class="icon-search"></i></button>
+				<a class="btn dropdown-toggle" href="#" data-toggle="dropdown" onclick='toggleForm("advancedSearch");return false;'><span class="caret"></span></a>
+				<div class="dropdown-menu hidden" id="advancedSearch">
+					<div class='closer'><a href='#' onclick='toggleForm("advancedSearch");return false;'>x</a></div>
+					<table>
+						<tr>
+							<th>Email:</th><td>%%opt_email%% %%email%%</td>
+						</tr>
+						<tr>
+							<th>Created:</th><td>%%opt_created%% %%created%%</td>
+						</tr>
+						<tr>
+							<th>Enabled:</th><td>%%enabled%%</td>
+						</tr>
+						<tr>
+							<th>Deleted:</th><td>%%deleted%%</td>
+						</tr>
+						<tr>
+							<th>Module:</th><td>%%moduleType%%</td>
+						</tr>
+						<tr>
+							<th>Roll:</th><td>%%role%%</td>
+						</tr>
+						<tr>
+							<td colspan='2'>%%submit%%</td>
+						</tr>
+					</table>
+					<input type='hidden' name='pager' value='5' />
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="break"></div>
+</div>

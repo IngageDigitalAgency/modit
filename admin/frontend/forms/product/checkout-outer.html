@@ -1,0 +1,33 @@
+%%header%%
+<div id="my-cart" class='checkout'>
+	<div class="order">
+		%%products%%
+		<div class="clearfix"></div>
+	</div>
+	<div class="totals">
+		<table>
+			<tbody>
+				%%totals%%
+			</tbody>
+		</table>
+<!if(%%freeShipping%%>0.00)!>
+		<div class='savings'>Free Shipping of %%formattedFreeShipping%%</div>
+<!fi!>
+		<div class='savings'>You saved %%formattedTotalSavings%%</div>
+		<div class="clearfix"></div>
+<!if("session:cart:header:ship_via"=="")!>
+	<div class='alert alert-error'>You have not selected a shipping method yet.</div>
+	<button onclick='document.location="/my-cart";return false;'>Change the Order</button>
+<!else!>
+		<form>
+			<button onclick='document.location="/my-cart";return false;'>Change the Order</button>
+			<button onclick='document.location="/secure-checkout";return false;'>Complete the order</button>
+			<div class="clearfix"></div>
+		</form>
+<!fi!>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<script type='text/javascript'>
+	$('.order_top tr:odd').addClass('odd');
+</script>

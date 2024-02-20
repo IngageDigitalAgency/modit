@@ -1,0 +1,17 @@
+<tr class="article_row">
+<td>%%company%%</td>
+	<td>%%firstname%% %%lastname%%</td>
+	<td>%%email%%</td>
+	<td class='centered'>%%enabled%%</td>
+	<td class='centered'>%%deleted%%</td>
+	<td class='centered'>%%testing%%</td>
+	<td class="centered edit">
+		<a href="#" onclick='editArticle(%%id%%);return false;'><i class='icon-edit'></i></a>
+		<div id='subscriberdrag_%%id%%'>
+			<div class="subscriberDragger draggable">
+				<div class='id'>%%id%%/%%j_id%%</div>
+			</div>
+		</div>
+	</td>
+	<td class="centered edit"><a href="#" onclick='deleteArticle(%%id%%,%%j_id%%);return false;'><i class='icon-trash'></i></a></td>
+</tr>

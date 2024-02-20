@@ -1,0 +1,27 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Template</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form method='%%form:method%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/copyTemplate/templates",$("#popup"));return false;' name='%%form:name%%' id='%%form:name%%'>
+		<table>
+			<tr>
+				<th>Copying Template:</th><td>%%old_name%%</td>
+			</tr>
+			<tr>
+				<th>New Name:</th><td>%%title%% <span class='errorMessage'>%%titleError%%</span></td>
+			</tr>
+			<tr>
+				<th>Special Type:</th><td>%%special_processing%% %%special_processingError%%</td>
+			</tr>
+			<tr>
+				<th>Folder:</th><td>%%destFolders%% %%destFoldersError%%</td>
+			</tr>
+			<tr>
+				<th>Notes:</th><td>%%notes%% <span class='errorMessage'>%%notesError%%</span></td>
+			</tr>
+		</table>
+		%%t_id%%
+		%%submit%%
+		%%copyTemplate%%
+		<div class='clearfix'></div>
+	</form>
+</div>
