@@ -1,0 +1,53 @@
+<div id="driverSearch">
+	<div class="container">
+		<div class="row top20">
+			<form method="post" action="/ajax/render?t_id=%%module:fetemplate_id%%">
+				<div class="form-group">
+					%%order_id%%
+				</div>
+				<div class="form-group">
+					%%driver_id%%
+				</div>
+				<div class="form-group">
+					%%address%%
+				</div>
+				<div class="form-group text-center">
+					%%submitButton%%
+				</div>
+				%%driverSearch%%
+			</form>
+		</div>
+		<div class="results top20">
+			%%results%%
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+dSearch = function(el) {
+	f = $(el).closest("form");
+	$(f).ajaxSubmit({
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#driverSearch").replaceWith(obj.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+divert = function( c_id, o_id ) {
+	$.ajax({
+		url: "/ajax/render",
+		data: { c_id: c_id, o_id: o_id, t_id: %%module:fetemplate_id%%,driverSearch:1},
+		success: function( obj, status, xhr ) {
+			try {
+				obj = JSON.parse(obj);
+				$("#driverSearch").replaceWith(obj.html);
+			}
+			catch(err) {
+			}
+		}
+	});
+}
+</script>

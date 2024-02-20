@@ -1,0 +1,69 @@
+<div id="driverPayments">
+	<div class="listingxx">
+		<h3>Driver Routing - %%company%% %%lastname%% %%firstname%%</h3>
+		%%errorMessage%%
+		<form method='%%form:method%%' action='' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/dispatch","variableContent");return false;' id='%%form:name%%'>
+<table aria-label="">
+				<tbody>
+					<tr>
+						<th class="a-left" scope="col">Date:</th><td>%%opt_scheduled_date%% %%scheduled_date%%</td>
+						<th class="a-left" scope="col">Service:</th><td>%%service_type%%</td>
+					</tr>
+					<tr>
+						<th class="a-left" scope="col">Delivery Type:</th><td>%%delivery_type%%</td>
+						<th class="a-left" scope="col">Completed:</th><td>%%completed%%</td>
+					</tr>
+					<tr>
+						<td><button class="def_field_submit" onclick="$('#%%form:name%%').submit();return false;">Search</button></td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="driver_id" value="%%driver_id%%" />
+			%%getDriver%%%%sortby%%%%sortorder%%%%resort%%%%resortId%%%%resortTo%%
+		</form>
+		<div id="schedule" class="listing">
+<table aria-label="">
+				<thead>
+					<tr>
+						<th>Order #</th>
+						<th>Scheduled Time</th>
+						<th colspan="2">Service</th>
+						<th class="a-left">Address</th>
+						<th class="a-left">City</th>
+						<th class="a-left">Postal Code</th>
+						<th class="a-left">Package</th>
+						<th class="a-right">Weight</th>
+						<th>Instructions</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					%%packages%%
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+	<form id="optimizeForm" action="/modit/ajax/optimize/dispatch" method="POST">
+		<div class="hidden">
+			<input type="hidden" name="driver_id" value="%%driver_id%%" />
+			%%scheduled_date%%
+			%%completed%%
+		</div>
+		<button class="def_field_submit" onclick="optimizeRoute(%%driver_id%%);return false;">Optimize Route</button>
+		<button class="def_field_submit" onclick="planRoute(%%driver_id%%);return false;">Calculate Route [no optimization]</button>
+		<button class="def_field_submit" onclick="mapIt(%%driver_id%%);return false;">Map Route</button>
+		<input name="optimize" value="1" type="hidden" />
+	</form>
+	<div id="map-wrapper"></div>
+</div>
+<script type="text/javascript"> 
+//<![CDATA[ 
+sortablePackages();
+makeDroppable();
+$("#pager").change(function() {
+	$(this).closest("form").submit();
+});
+initDateFields();
+//]]> 
+</script>

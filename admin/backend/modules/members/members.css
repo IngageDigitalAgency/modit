@@ -1,0 +1,44 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.membersInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+#membersArticleList th {
+	text-align:center;
+}
+
+.membersDragger {
+	display:none;
+}
+.m-0 { margin:0 !important; }
+td .contentInfo { padding:0; margin:0; }

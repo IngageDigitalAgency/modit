@@ -1,0 +1,157 @@
+%%heading%%
+<div class='status'>%%statusMessage%%</div>
+%%errorMessage%%
+<h1>On Demand Orders</h1>
+<div class='searchForm'>
+	<div id='onDemands'>
+		<form method='%%form:method%%' action='' onsubmit='formCheck("%%form:name%%","/modit/ajax/%%form:action%%/orders","middleContent");return false;' id='%%form:name%%'>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-16 col-md-4">
+						<div class="form-group">
+							<label>Order Type</label>
+							%%order_status%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-4 holiday <!if('%%field:tag^order_status%%'=='8192')!>hidden<!fi!>">
+						<div class="form-group">
+							<label>Day of Week</label>
+							%%dow%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-4">
+						<div class="form-group">
+							<label>Company/Parent Organization</label>
+							%%member_id%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-4">
+						<div class="form-group">
+							<label>Route</label>
+							%%route_id%%
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-16 col-md-4">
+						<div class="form-group">
+							<label>Sort By</label>
+							%%sort_by%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>P/U Driver</label>
+							%%pu_driver%%
+						</div>
+					</div>
+					<div class="col-sm-16 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>Del Driver</label>
+							%%del_driver%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>Process</label>
+							<div class="centered">%%do_it%%</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-8 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>Use Scheduled Pickup Time</label>
+							<div class="centered">%%use_scheduled_time%%</div>
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>Pickup Time</label>
+							%%pickup_time%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-4 %%hidden%%">
+						<div class="form-group">
+							<label>Pickup Date</label>
+							%%pickup_date%%
+						</div>
+					</div>
+					<div class="col-sm-8 col-md-4">
+						<div class="form-group">
+							<label>&nbsp;</label>
+							%%submit%%
+						</div>
+					</div>
+				</div>
+			</div>
+			%%onDemand%%
+			<div id='orderArticleList'>
+				<div class="break"></div>
+				<table class='listing' id="onDemand" aria-label='Order Article List'>
+					<thead>
+						<tr>
+							<th class='a-left'>Company</th>
+							<th class='a-right'>Order #</th>
+							<th class='a-left'>Service</th>
+							<th class='a-left'>P/U Time</th>
+							<th class='a-left'>Pickup</th>
+							<th class='a-left'>Delivery</th>
+							<th>Sequences</th>
+							<th class='centered'><a href="#" onclick="checkAll(this);return false;"><em class="fa fa-check-circle"></em></a></th>
+						</tr>
+					<thead>
+					<tbody>
+						%%rows%%
+					</tbody>
+				</table>
+				<div id='pagination'>
+					<span class="pagination-dropdown pull-right">Orders per page : %%pager%%</span>
+					%%pagination%%
+					<div class="break"></div>
+				</div>
+			</div>
+			%%oneTime%% 
+			%%pagenum%%
+			%%sortorder%%
+			%%sortby%%
+		</form>
+	</div>
+</div>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$(document).ready(function() {
+	$("#pager").change(function() {
+		$(this).closest("form").submit();
+	});
+});
+checkAll = function(el) {
+	$("table#onDemand input[type='checkbox']").each( function( idx, el ) {
+			$(el).prop("checked","true");
+		}
+	);
+}
+
+setHoliday = function(el) {
+	$.ajax({
+		url:"/modit/ajax/onDemandCompany/orders",
+		data: { order_status: el.value },
+		success: function( obj, status, xhr ) {
+			try {
+				h = JSON.parse(obj);
+				$("#onDemands").find("select[name='member_id']").replaceWith(h.html);
+				if (el.value == 16384) {
+					$(".holiday").removeClass("hidden");
+				}
+				else $(".holiday").addClass("hidden");
+			}
+			catch(err) {
+				showErrorMessage(err.message);
+			}
+		}
+	})
+}
+//]]> 
+</script> 
+</code>

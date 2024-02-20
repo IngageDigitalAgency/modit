@@ -1,0 +1,36 @@
+<div id='payment'>
+	<div class="row">
+		<div class="col-xs-16">
+			<h1>YOUR RECEIPT</h1>
+			<h2>THANK YOU</h2>
+		</div>
+	</div>
+	<div id="order-history-details">
+	</div>
+	<div class="row">
+		<div class="col-xs-3 text-red">Book Another Shipment</div>
+		<div class="col-xs-13"><h3/></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-10 text-right">
+			<h1>READY TO BOOK ANOTHER?</h2>
+			<h2>WHAT WOULD YOU LIKE TO SHIP</h2>
+		</div>
+		<div class="col-xs-6 top20">
+			<a href="/place-an-order" class="btn btn-red">BOOK ANOTHER</a>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$.ajax({
+	url: '/ajax/render',
+	data: {t_id:72},
+	success: function(obj,status,xhr) {
+		try {
+			obj = JSON.parse(obj);
+			$("#order-history-details").replaceWith(obj.html);
+		} catch(err) {
+		}
+	}
+});
+</script>

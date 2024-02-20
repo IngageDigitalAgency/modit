@@ -1,0 +1,55 @@
+<!if("%%id%%"!="0")!>
+<script type="text/javascript" src="/js/jquery.form.js"></script>
+<script type="text/javascript">
+i_delay = 30000;
+loadData = function(md,byTime) {
+	if (md) {
+		$("#searchForm form").ajaxSubmit({
+			context: {byTime: byTime, md: md},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#dispatchingForm").html(obj.html);
+					var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+					if (this.byTime)
+						setTimeout(function() {loadData(true,true);}, i_delay);
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+	else {
+		$.ajax({
+			url: "/ajax/render",
+			data: {t_id:76},
+			success: function( obj, status, xhr ) {
+				try {
+					obj = JSON.parse(obj);
+					$("#dispatchingForm").html(obj.html);
+					var objcode = "<script type='text/javascript'>"+obj.code+"<\/script>"; $('body').append(objcode);
+				}
+				catch(err) {
+				}
+			}
+		});
+	}
+}
+loadData(false);
+setTimeout(function() {loadData(true,true);}, i_delay);
+function toggleForm(id) {
+	var el = $('#'.concat(id))[0];
+	if (el.className.search('hidden') >= 0)
+		el.className = el.className.replace('hidden','show');
+	else
+		el.className = el.className.replace('show','hidden');
+}
+getResults = function(el) {
+	loadData(true,false);
+}
+pagination = function(pg,el) {
+	$(el).closest("form").find("input[name='pagenum']").val(pg);
+	loadData(true,false);
+}
+</script>
+<!fi!>

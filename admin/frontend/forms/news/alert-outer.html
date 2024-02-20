@@ -1,0 +1,37 @@
+<!if("%%articleCount%%"!="0")!>
+<div id="alerts">
+	<div class="row">
+		<div class="col-xs-16 col-sm-14 col-sm-offset-1 col-md-offset-2 col-md-12 red">
+			<div class="row">
+				<div class="col-xs-1 text-center top10 p-img-scale-width">%%img_image%%</div>
+				<div class="col-xs-15">
+					%%articles%%
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/js/jquery.cookie.js"></script>
+<script type="text/javascript">
+var s = $.cookie("cc");
+if (typeof($.cookie("cc")) == "undefined") {
+	showOpt(true);
+}
+else {
+	showOpt($.cookie("cc")==0);
+}
+function hideCC(obj) {
+	showOpt(false);
+}
+function optOut() {
+	$.cookie('cc','1',{expires:1});
+	showOpt(false);
+}
+function showOpt(m) {
+	if (!m) {
+		$("#alerts").remove("");
+	}
+}
+$('#alerts .str_wrap').liMarquee();
+</script>
+<!fi!>

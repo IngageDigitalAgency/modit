@@ -1,0 +1,30 @@
+<script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+new TWTR.Widget({
+  version: 2,
+  type: 'list',
+  rpp: 10,
+  interval: 30000,
+  title: 'FOLLOW US',
+  subject: 'ON TWITTER',
+  width: 250,
+  height: 300,
+  theme: {
+    shell: {
+      background: '#ff96e7',
+      color: '#ffffff'
+    },
+    tweets: {
+      background: '#ffffff',
+      color: '#444444',
+      links: '#b740c2'
+    }
+  },
+  features: {
+    scrollbar: true,
+    loop: true,
+    live: true,
+    behavior: 'default'
+  }
+}).render().setList('twitter', 'd9').start();
+</script>
