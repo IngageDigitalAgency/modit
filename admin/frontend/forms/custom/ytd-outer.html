@@ -1,0 +1,40 @@
+<div id="ytd-summary" class="top20">
+	<div class="row">
+		<div class="col-xs-3 col-xs-offset-2 fourth text-center">
+			<div class="box"></div>
+			<div class="text">%%count%%</div>
+			<h3>ORDERS PLACED</h3>
+			<h4>Year So Far</h4>
+		</div>
+		<div class="col-xs-3 fourth text-center">
+			<div class="box"></div>
+			<div class="text">%%percent%%%</div>
+			<h3>ON TIME</h3>
+			<h4>Year So Far</h4>
+		</div>
+		<div class="col-xs-3 fourth text-center small">
+			<div class="box"></div>
+			<div class="text cost">%%cost%%</div>
+			<h3>AMOUNT SPENT</h3>
+			<h4>Year So Far</h4>
+		</div>
+		<div class="col-xs-3 fourth text-center small">
+			<div class="box"></div>
+			<div class="text">%%most_used%%</div>
+			<h3>SERVICE</h3>
+			<h4>Most Used</h4>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	setBox();
+});
+setBox = function() {
+	$("#ytd-summary .fourth").each(function(idx,el) {
+		$(el).height($(el).width());
+		$(el).find(".box").height($(el).width());
+		$(el).find(".box").width($(el).width());
+	});
+}
+</script>

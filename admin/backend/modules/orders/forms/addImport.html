@@ -1,0 +1,179 @@
+<h3 class="title">Add/Edit an Import File</h3>
+%%errorMessage%%
+<form enctype="multipart/form-data" method="post" id="addImportForm" name="addImportForm" onsubmit="formCheck('addImportForm','/modit/ajax/addImport/orders',$('#popup'));return false;" action="" class="top20">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group a-right">
+                    <label>Customer:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%member_id%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 a-right">
+                <div class="form-group">
+                    <label>Created:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%created%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 a-right">
+                <div class="form-group">
+                    <label>Processed:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%processed%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 a-right">
+                <div class="form-group">
+                    <label>Validate Only:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%validate_only%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 a-right">
+                <div class="form-group">
+                    <label>Handling Fee:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%handling_fee%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group">
+                    <div class="input-group">
+                        <label>
+                            <span class="btn btn-primary">
+                                Browse… <input class="def_field_fileupload" type="file" style="display:none" name="filename">
+                            </span>
+                        </label>  
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    <input type="text" class="form-control" readonly="" value="">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group a-right">
+                    <label>Orders:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%order_count%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group a-right">
+                    <label>Errors:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%error_count%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group a-right">
+                    <label>Abort Processing:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%abort%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 a-right">
+                <div class="form-group">
+                    %%submit%%%%addImport%%%%i_id%%
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="form-group a-right">
+                    <label>Messages:</label>
+                </div>
+            </div>
+            <div class="col-xs-10">
+                <div class="form-group">
+                    %%error_messages%%
+                    %%warning_messages%%
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!if("%%field:tag^i_id%%" != "0")!>
+<table class="table" aria-label="Import File">
+    <thead>
+        <tr>
+            <th>Row</th>
+            <th class="a-left">Order #</th>
+			<th class="a-right">Value</th>
+			<th class="a-left">Service</th>
+			<th class="a-left">Scheduled Delivery</th>
+			<th class="a-left">Pickup</th>
+			<th class="a-left">Delivery</th>
+            <th class="centered"></th>
+        </tr>
+    </thead>
+    <tbody>%%orders%%</tbody>
+</table>
+<!fi!>
+<script type="text/javascript">
+$("#popup select").chosen({"width":"100%"});
+    // We can attach the `fileselect` event to all file inputs on the page
+$(document).on('change', ':file', function() {
+    var input = $(this),
+    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+    input.trigger('fileselect', [numFiles, label]);
+});
+// We can watch for our custom `fileselect` event like this
+$(document).ready( function() {
+    $(':file').on('fileselect', function(event, numFiles, label) {
+        var input = $(this).parents('.row').find(':text'),
+        log = numFiles > 1 ? numFiles + ' files selected' : label;
+        if( input.length ) {
+            input.val(log);
+        } else {
+            if( log ) alert(log);
+        }
+    });
+});
+</script>

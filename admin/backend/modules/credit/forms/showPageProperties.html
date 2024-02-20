@@ -1,0 +1,46 @@
+<div class='propertyEditing'>
+	<div class='title'>Order #%%id%%</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='content-tabs'>
+		<ul>
+			<li><a href="#tabs-1">Order Info</a></li>
+			<li><a href="#tabs-2">Recurring Billed</a></li>
+			<li><a href="#tabs-3">To Be Billed</a></li>
+		</ul>
+		<div id='tabs-1'>
+			<form method='post'>
+<table aria-label="" class='billingInfo'>
+					<tr><th scope="col">Order Date:</th><td>%%order_date%%</td></tr>
+					<tr><th scope="col">Status:</th><td>%%order_status%%</td></tr>
+					<tr><td colspan='2' class='subheading'>Authorization Information</td></tr>
+					<tr><th scope="col">Code:</th><td>%%authorization_code%%</td></tr>
+					<tr><th scope="col">Type:</th><td>%%authorization_type%%</td></tr>
+					<tr><th scope="col">Transaction:</th><td>%%authorization_transaction%%</td></tr>
+					<tr><th scope="col">Billed:</th><td><span class='amt'>%%authorization_amount%%</span></td></tr>
+					<tr><td colspan='2' class='subheading'>Order Information</td></tr>
+					<tr><th scope="col">Product:</th><td><span class='amt'>%%value%%</span></td></tr>
+					<tr><th scope="col">Order Discount:</th><td><span class='amt'>%%discount_value%%</span></td></tr>
+					<tr><th scope="col">Line Discount:</th><td><span class='amt'>%%line_discount%%</span></td></tr>
+					<tr><th scope="col">Shipping:</th><td><span class='amt'>%%shipping%%</span></td></tr>
+					<tr><th scope="col">Taxes:</th><td><span class='amt'>%%taxes%%</span></td></tr>
+					<tr><th scope="col">Total Billed:</th><td><span class='amt'>%%total%%</span></td></tr>
+					<tr><td colspan='2' class='subheading'>Shipping Information</td></tr>
+					<tr><th scope="col">Tracking Code:</th><td>%%ship_tracking_code%%</td></tr>
+					<tr><th scope="col">Shipped Via:</th><td>%%ship_via%%</td></tr>
+					<tr><th scope="col">Shipped On:</th><td>%%ship_date%%</td></tr>
+					<tr><th scope="col">Comments:</th><td>%%ship_comments%%</td></tr>
+				</table>
+			</form>
+		</div>
+		<div id='tabs-2'>
+			%%billed%%
+		</div>
+		<div id='tabs-3'>
+			%%toBeBilled%%
+		</div>
+	</div>
+</div>
+<script type='text/javascript'>
+$('#content-tabs').tabs();
+$('#order_status').chosen();
+</script>

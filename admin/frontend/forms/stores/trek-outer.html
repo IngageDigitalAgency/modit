@@ -1,0 +1,65 @@
+<div id="trek">
+	<div class='title' style='background-image:url(%%image1%%);'>%%title%%</div>
+	<div class='content'>
+	%%description%%
+	</div>
+	<div class='break'></div>
+</div>
+<div id="legend">
+	<div class='title'>Legend</div>
+	<div id="poi">
+		<div class="sub-legend">
+			<div class='sub-title'>Canadian Points of Interest</div>
+			<ul>
+				<li style='background-image:url(/images/markers/1.png);background-repeat:no-repeat'>Historic Plaque or Marker</li>
+				<li style='background-image:url(/images/markers/2.png);background-repeat:no-repeat'>Historic Site Opened &amp; Staffed Year Round</li>
+				<li style='background-image:url(/images/markers/3.png);background-repeat:no-repeat'>Historic Site Opened &amp; Staffed Seasonall</li>
+				<li style='background-image:url(/images/markers/4.png);background-repeat:no-repeat'>Point on Private Property, Inaccessible or Unmarked (location may be approximate)</li>
+			</ul>
+		</div>
+		<div class="sub-legend">
+			<div class='sub-title'>American Points of Interest</div>
+			<ul>
+				<li style='background-image:url(/images/markers/5.png);background-repeat:no-repeat'>Historic Plaque or Marker</li>
+				<li style='background-image:url(/images/markers/6.png);background-repeat:no-repeat'>Historic Site Opened &amp; Staffed Year Round</li>
+				<li style='background-image:url(/images/markers/7.png);background-repeat:no-repeat'>Historic Site Opened &amp; Staffed Seasonall</li>
+				<li style='background-image:url(/images/markers/8.png);background-repeat:no-repeat'>Point on Private Property, Inaccessible or Unmarked (location may be approximate)</li>
+			</ul>
+		</div>
+		<div class="sub-legend">
+			<div class='sub-title'>Aboriginal Points of Interest</div>
+			<ul>
+				<li style='background-image:url(/images/markers/9.png);background-repeat:no-repeat'>Six Nations/Native American</li>
+			</ul>
+		</div>
+	</div>	
+	<div class="add-to-itinerary">
+		<a href="javascript:void(0)" onclick="add_route()">Add to Itinerary</a>
+		<div class='arrow'></div>
+		<div class='clearfix'></div>
+	</div>
+	<div class="add-to-itinerary">
+		<a href="/view-itinerary">View Itinerary</a>
+		<div class='arrow'></div>
+		<div class='clearfix'></div>
+	</div>
+</div>
+<div class='break'></div>
+<script type="text/javascript">
+function add_route() {
+	var stores = Array(%%stores%%0);
+	ct = 0;
+	for(i = 0; i < stores.length; i++) {
+		if (stores[i] != 0) {
+			var retStatus = $.ajax({
+				url: '/ajax/render',
+				data: {'addItem':1,'i_id':stores[i],'i_type':'store','t_id':48},
+				async:false,
+				type:'POST'
+			}); 
+			ct += 1;
+		}
+	}
+	if (ct > 0) alert(ct.toString().concat(" locations added to your itinerary"));
+}
+</script>

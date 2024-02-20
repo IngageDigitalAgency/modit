@@ -1,0 +1,58 @@
+<div class="sliderline_top"></div>
+<div class="stages_top_wrapper">
+	<div class="stage_wrapper">
+		<div class="stage_text_wrapper">
+			<div class="stage_name">Step 1</div>
+			<div class="stage_second_line">review order</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="stage_wrapper">
+		<div class="stage_text_wrapper">
+			<div class="stage_name">Step 2</div>
+			<div class="stage_second_line">shipping address</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="stage_wrapper">
+		<div class="stage_text_wrapper">
+			<div class="stage_name">Step 3</div>
+			<div class="stage_second_line">payment method</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="stage_wrapper active">
+		<div class="stage_text_wrapper">
+			<div class="stage_name">Step 4</div>
+			<div class="stage_second_line">pay for order</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="stage_wrapper">
+		<div class="stage_text_wrapper">
+			<div class="stage_name">Step 5</div>
+			<div class="stage_second_line">view reciept</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+<div class="sliderline_bottom"></div>
+<div class='pmtOptions'>
+	<iframe src='https://%%FULLDOMAIN%%/moneris-checkout' frameborder='0' scrolling='no'></iframe>
+	<div style='clear:both'></div>
+</div>
+<script type='text/javascript'>
+iResize = function() {
+	var f = $('.pmtOptions iframe');
+	try {
+		var o = $('.pmtOptions iframe')[0].contentWindow.document.body;
+		f.css('height',o.offsetHeight+'px');
+		f.css('width',o.offsetWidth+'px');
+	}catch (err) {
+		f.css('height','1100px');
+		f.css('width','100%');
+	}
+}
+window.setInterval(iResize,5000);
+</script>

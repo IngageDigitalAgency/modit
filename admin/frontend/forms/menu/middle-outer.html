@@ -1,0 +1,10 @@
+<div class="menu">
+	%%menu%%
+</div>
+<script type="text/javascript">
+<!if("0%%session:user:info:id%%"!="0")!>
+	$(".subnav ul.level_0").append("<li><span class='delim'>|</span><a href='/logout'>Logout</a></li>");
+<!else!>
+	$(".subnav ul.level_0").append("<li><span class='delim'>|</span><a href='/login'>Login</a></li>");
+<!fi!>
+</script>

@@ -1,0 +1,27 @@
+<div class="row"><div class="col-xs-16 text-center">%%errorMessage%%</div></div>
+<div class="row"><div class="col-xs-16 form-group">%%company%%</div></div>
+<div class="row"><div class="col-sm-8 form-group">%%firstname%%</div><div class="col-sm-8 form-group">%%lastname%%</div></div>
+<div class="row"><div class="col-sm-8 form-group">%%email%%</div><div class="col-sm-8 form-group">%%phone1%%</div></div>
+<div class="row"><div class="col-sm-8 form-group">%%line1%%</div><div class="col-sm-8 form-group">%%line2%%</div></div>
+<div class="row"><div class="col-sm-8 form-group">%%city%%</div><div class="col-sm-8 form-group">%%postalcode%%</div></div>
+<div class="row"><div class="col-sm-8 form-group">%%country%%%%country_id%%</div><div class="col-sm-8 form-group" id="provinceWrapper">%%province%%%%province_id%%</div></div>
+<div class="row form-group">
+	<div class="col-xs-5 col-xs-offset-1">
+		<div class="row no-gutters">
+			<div class="col-xs-4">%%residential%%</div>
+			<div class="col-xs-10 col-xs-offset-2"><label>Residential</label></div>
+		</div>
+	</div>
+	<div class="col-xs-5">
+		<div class="row no-gutters">
+			<div class="col-xs-4">%%address_book%%</div>
+			<div class="col-xs-10 col-xs-offset-2"><label>Save to Book</label></div>
+		</div>
+	</div>
+	<div class="col-xs-5">
+		<input type="button" value="Edit" onclick="document.location='/address-book/%%id%%/%%ownerid%%'" class="btn btn-black" />
+	</div>
+</div>
+<script type="text/javascript">
+if(parseInt("%%id%%")>0) getPackages($("#to-step-2"))
+</script>

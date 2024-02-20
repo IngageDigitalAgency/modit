@@ -1,0 +1,21 @@
+<script type="text/javascript">
+var setHeight = function () {
+	var h = 1100;
+	try {
+		//
+		//	generates an error when not on our site
+		//
+		h = $("#iframe").contentWindow.document.body.scrollHeight;
+		h1 = $("#iframe").contentWindow.document.body.clientHeight;	//chrome bug?
+		if (h1 < h) h = h1;
+	}
+	catch(e) {};
+	$("#iframe").css("height",h);
+	//$(setHeight).delay(5000);
+}
+function setFrame() {
+	$(setHeight).delay(500);
+}
+</script> 
+<iframe id="iframe" onload="setFrame()" src="http://%%FULLDOMAIN%%/moneris-checkout" style="width:100%;height:400px;border:0" scrolling="no" frameborder="0">
+</iframe>

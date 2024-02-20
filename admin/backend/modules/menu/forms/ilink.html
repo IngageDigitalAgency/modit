@@ -1,0 +1,82 @@
+<div class='title'>Add an Internal Link</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("ilinkForm","/modit/ajax/showPageProperties/menu",$("#popup"));return false;' id='ilinkForm'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs'>
+		<ul>
+			<li><a href="#tabs-1">MainInfo</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			%%customTab%%
+		</ul>
+		<div id='tabs-1'>
+<table aria-label="" class='propertyEditing'>
+				<tr>
+					<th class="a-left" scope="col">Link Name:</th><td>%%title%% %%titleError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Alt/2nd Line:</th><td>%%alternate_title%% %%alternate_titleError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Parent:</th><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Internal Page:</th><td>%%internal_link%% %%internal_linkError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">New Window:</th><td>%%new_window%% %%new_windowError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Published:</th><td>%%published%% %%publishedError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Secure Link:</th><td>%%secure%% %%secureError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Icon Class:</th><td>%%icon_class%% %%icon_classError%%</td>
+				</tr>
+				<tr>
+					<th class="a-left" scope="col">Notes:</th><td>%%notes%% %%notesError%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+<table aria-label="">
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-3'>
+			<div class='title'>Teaser</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+		%%customInfo%%
+	</div>
+	%%submit%%
+	<input type='hidden' action='%%form:action%%'>
+	%%showPageProperties%% %%id%% %%type%% 
+	<div class='break'></div>
+</form>
+<code>
+<script type="text/javascript"> 
+//<![CDATA[ 
+$( "#tabs" ).tabs();
+//]]> 
+</script> 
+</code>

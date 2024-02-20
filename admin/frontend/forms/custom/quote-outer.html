@@ -1,0 +1,57 @@
+<div id="selectService">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-16">
+				<h4 class="mobile-show text-center">Checkout Step</h4>
+				<ul id="checkout-steps">
+					<li>
+						<a href="/step-1" title="Review Your Order"><span class="step-number">1</span><span class="step-txt">Pick Your Addresses</span></a>
+					</li><li>
+						<a href="#" title="Billing Information"><span class="step-number">2</span><span class="step-txt">Select Packages</span></a>
+					</li><li class="active">
+						<a href="#" title="Pay For Your Order"><span class="step-number">3</span><span class="step-txt">Get A Quote</span></a>
+					</li><li>
+						<a href="#" title="View Your Receipt"><span class="step-number">4</span><span class="step-txt">Pay</span></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16">
+				<h1>When to Deliver?</h1>
+				%%errorMessage%%
+				<form method="post">
+					<div class="row">
+						<div class="col-sm-16">
+							<div class="form-group">
+								<label for="">Pickup Time:</label>
+								%%pickup_datetime%%
+							</div>
+							<div class="form-group">
+								<label for="">Service:</label>
+								%%serviceType%%
+							</div>
+						</div>
+					</div>
+<table aria-label="" class="table table-striped table-bordered">
+						<thead>
+							<tr><th>Seq.</th><th>Type</th><th>Quantity</th><th>Weight</th><th></th></tr>
+						</thead>
+						<tbody>
+							%%products%%
+						</tbody>
+					</table>
+					<input class="btn" type="submit" value="Get Rate" />
+					<input class="btn btn-black" type="button" value="Add Another Package" onclick="addPackage();return 0;" />
+					%%getQuote%%
+				</form>
+				<a href="/logout">Logout</a> | <a href="/pickup-address">Next Test</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-16">
+				<div>%%quote%%</div>
+			</div>
+		</div>
+	</div>
+</div>
