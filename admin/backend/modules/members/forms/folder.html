@@ -1,0 +1,85 @@
+<div class='title'>Add a Member Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck("membersForm","/modit/ajax/showPageProperties/members","popup");return false;' id='membersForm' class='form-inline'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-3">Description</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-4">Media</a></li>
+			%%customTab%%
+			<li><a href="#tabs-5">Products</a></li>
+			<li><a href="#tabs-6">Fed-Ex</a></li>
+		</ul>
+		<div id='tabs-1'>
+<table aria-label="" class='propertyEditing'>
+				<tr>
+					<td>Folder Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%% %%tooltip:SecondLine%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<td>Template Folder:</td><td>%%template_id%% %%templateError%% %%tooltip:TemplateFolder%%</td>
+				</tr>
+				<tr>
+					<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+				</tr>
+				<tr>
+					<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+<table aria-label="">
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-3'>
+			<div class='title'>Teaser</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+		<div id='tabs-4'>
+			<span class='errorMessage'>The Category must be saved first</span>
+		</div>
+		<div id="tabs-5">
+			<span class='errorMessage'>The Category must be saved first</span>
+		</div>
+		<div id="tabs-6">
+			<span class='errorMessage'>The Category must be saved first</span>
+		</div>
+		%%customInfo%%
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showPageProperties%% 
+		%%test%% 
+		<input type='hidden' name='id' value='%%id%%' />
+		%%type%% 
+		<div class='break'></div>
+	</div>
+</form>
+<code>
+$( "#tabs" ).tabs();
+$('.popovers').popover();
+loadGroupMedia(%%id%%);
+loadGroupProducts(%%id%%,1);
+loadFedexProducts(%%id%%,1);
+</code>

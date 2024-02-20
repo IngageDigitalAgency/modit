@@ -1,0 +1,104 @@
+li.collapsed ol {
+	display:none;
+}
+
+#contentTree ol {
+	list-style:none inside;
+}
+
+#contentTree a.icon_folder {
+	
+}
+
+#leftContent {
+	float:left;
+}
+
+#middleContent {
+	float:left;
+}
+
+#rightContent {
+	float:left;
+}
+
+.propertyEditing img,
+.productInfoTable img {
+	max-width:150px;
+	max-height:150px;
+}
+ol.draggable.level_1,
+ul.draggable {
+	border: 1px solid;
+	padding:10px;
+}
+
+.def_field_smalltext {
+	width:75px;
+}
+
+a {
+	text-decoration:none;
+}
+
+#tabs table {
+	width:100%;
+}
+
+#tabs table.content th {
+	width:30%;
+	text-align:right;
+}
+
+.productDragger {
+	display:none;
+}
+
+.productDragger .id {
+	display:none;
+}
+
+#productArticleList th {
+	text-align:center;
+}
+table.info th {
+	text-align:center;
+}
+
+#assemblyTable.listing th {
+	text-align:left;
+}
+
+.def_field_ddl_sml {
+	width:75px;
+}
+.def_field_small {
+	width:75px;
+}
+
+#assemblyTab th.sequence,
+#assemblyTab td.sequence {
+	display:none;
+}
+#assemblyTab th.quantity,
+#assemblyTab td.quantity,
+#assemblyTab th.delete,
+#assemblyTab td.delete {
+	width:20%;
+}
+#assemblyTab th.delete,
+#assemblyTab td.delete {
+	text-align:center;
+}
+#assemblyTab th.code,
+#assemblyTab td.code {
+	width:20%;
+}
+#assemblyTab th.name,
+#assemblyTab td.name {
+	width:40%;
+}
+
+#assemblyTab .dragger {
+	float:left;
+}

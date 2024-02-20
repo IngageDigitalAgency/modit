@@ -1,0 +1,35 @@
+<div class='propertyEditing'>
+	<div class='title'>Add/Edit a Delivery Zone</div>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<form method='%%form:method%%' name='%%form:name%%' onsubmit='formCheck("%%form:name%%","%%form:action%%",$("#popup"));return false;' id='%%form:name%%' action=''>
+		<div id='tabs-1'>
+<table aria-label="" style='width:100%'>
+				<tr>
+					<th>Name:</th><td>%%name%% <span class='errorMessage'>%%nameError%%</span></td>
+				</tr>
+				<tr>
+					<th>Enabled:</th><td>%%enabled%% %%enabledError%%</td>
+				</tr>
+				<tr>
+					<th>Vehicle Type:</th><td>%%vehicle_id%%%%vehicle_name%%</td>
+				</tr>
+				<tr>
+					<th>Driver:</th><td><div id="driver_id">%%driver_id%%</div></td>
+				</tr>
+				<tr>
+					<th>FSA's:</th><td><div id="zone_fsa">%%fsa%%</div> <span class='errorMessage'>%%fsaError%%</span></td>
+				</tr>
+			</table>
+			<div class="form-actions">
+				%%submit%% %%editZone%% %%z_id%%
+			</div>
+		</div>
+		<div class="break"></div>
+	</div>
+</div>
+<script type="text/javascript">
+$('select[name="fsa[]"]').chosen();
+<!if("%%id%%"=="0")!>
+getDrivers($("select[name=vehicle_id]").val());
+<!fi!>
+</script>

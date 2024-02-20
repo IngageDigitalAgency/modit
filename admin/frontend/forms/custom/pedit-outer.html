@@ -1,0 +1,69 @@
+<div id="package-edit">
+	<div id="mobile-header" class="bottom20">
+		<div class="container">
+			<div class="row">
+<!if("%%service_type%%"=="P")!>
+				<div class="col-xs-2"><a href="/mobile-pickup?c_id=%%request:c_id%%"><em class="fa fa-chevron-left"></em></a></div>
+<!else!>
+				<div class="col-xs-2"><a href="/mobile-delivery?c_id=%%request:c_id%%"><em class="fa fa-chevron-left"></em></a></div>
+<!fi!>
+				<div class="col-xs-12">ORDER: %%order_id%%</div>
+				<div class="col-xs-2"><em class="fa fa-search"></em></div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<form method="post">
+			<div class="package">
+				<div class="row bottom10">
+					<div class="col-xs-16 text-center">
+						%%errorMessage%%
+					</div>
+				</div>
+				<div class="row bottom10">
+					<div class="col-xs-16 ul"><label>Packages</label></div>
+				</div>
+				<div class="row">
+<!if("0%%request:l_id%%"=="0")!>
+					<div class="form-group col-xs-8">%%product_id%%</div>
+<!else!>
+					<div class="form-group col-xs-8 top5"><label>%%name%%</label></div>
+<!fi!>
+					<div class="form-group col-xs-8">%%quantity%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-16 ul bottom10"><label>Preferred Units</label></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-8"><label>Weight:</label> %%weight_code%%</div>
+					<div class="col-xs-8"><label>Dimensions:</label> %%dimension_code%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-16 ul bottom10"><label>Package Details</label></div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 form-group top5"><label>WT:</label></div>
+					<div class="col-xs-12 form-group">%%weight%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 form-group top5"><label>HT:</label></div>
+					<div class="col-xs-12 form-group">%%height%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 form-group top5"><label>WD:</label></div>
+					<div class="col-xs-12 form-group">%%width%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-4 form-group top5"><label>DP:</label></div>
+					<div class="col-xs-12 form-group">%%depth%%</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-10 col-xs-offset-4">
+						<input type="submit" value="SAVE PACKAGE" class="red-bg form-control btn" />
+						%%t_id%%%%c_id%%%%o_id%%%%l_id%%%%editPackageLine%%
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

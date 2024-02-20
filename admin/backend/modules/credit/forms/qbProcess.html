@@ -1,0 +1,21 @@
+<div class="title centered">Export Results</div>
+<div class="row">
+	<div class="col-xs-12 col-xs-offset-2 text-center">%%errorMessage%%</div>
+</div>
+<div class="row">
+	<div class="col-xs-16">
+<table aria-label="" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Company</th><th class="a-right">Invoice #</th><th class="a-right">Amount</th><th class="a-right">RoundingError</th><th class="a-right"># of Orders</th>
+				</tr>
+			<thead>
+			<tbody>
+				%%rows%%
+			</tbody>
+		</table>
+	</div>
+</div>
+<script type="text/javascript">
+	$("input[name='qb_invoice_id']").val("%%qb_invoice_id%%")
+</script>

@@ -1,0 +1,208 @@
+<div class='title'>Add a Product Category</div>
+<form method='%%form:method%%' name='%%form:name%%' action='' onsubmit='formCheck_fldr("%%form:name%%","/modit/ajax/showPageProperties/product","popup");return false;' id='%%form:name%%'>
+	<div class='errorMessage'>%%errorMessage%%</div>
+	<div id='tabs' class='propertyEditing'>
+		<ul>
+			<li><a href="#tabs-1">Main Info</a></li>
+			<li><a href="#tabs-7">Description</a></li>
+			<li><a href="#tabs-9">SEO</a></li>
+			<li><a href="#tabs-2">Images</a></li>
+			<li><a href="#tabs-5">Related Categories</a></li>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-3">Coupons</a></li>
+<!fi!>
+<!if(array_key_exists('product:stores',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-4">Stores</a></li>
+<!fi!>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-6">Blogs</a></li>
+<!fi!>
+<!if(array_key_exists('product:gallery',$GLOBALS['globals']->getRelations()))!>
+			<li><a href="#tabs-8">Gallery</a></li>
+<!fi!>
+		</ul>
+		<div id='tabs-1'>
+<table aria-label="" class='propertyEditing'>
+				<tr>
+					<td>Folder Name:</td><td>%%title%% %%titleError%% %%tooltip:FolderName%%</td>
+				</tr>
+				<tr>
+					<td>Alt/2nd Line:</td><td>%%alternate_title%% %%alternate_titleError%% %%tooltip:SecondLine%%</td>
+				</tr>
+				<tr>
+					<td>Parent:</td><td>%%p_id%% %%pidError%%</td>
+				</tr>
+				<tr>
+					<td>Template Folder:</td><td>%%template_id%% %%templateError%% %%tooltip:TemplateFolder%%</td>
+				</tr>
+				<tr>
+					<td>Enabled:</td><td>%%enabled%% %%enabledError%% %%tooltip:Enabled%%</td>
+				</tr>
+				<tr>
+					<td>Link To Folder:</td><td>%%internal_link%% %%internal_linkError%% %%tooltip:InternalLink%%</td>
+				</tr>
+				<tr>
+					<td>Notes:</td><td>%%notes%% %%notesError%% %%tooltip:Notes%%</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-2'>
+<table aria-label="">
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_a%%</a> <span class='errorMessage'>%%imageError%%</span><br/>
+						<input id="image_a" type="hidden" name="image" value="%%image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 1</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<a href="#" onclick="setImage(this);return false;">%%imagesel_b%%</a> <span class='errorMessage'>%%rollover_imageError%%</span><br/>
+						<input id="image_b" type="hidden" name="rollover_image" value="%%rollover_image%%" />
+						<a href="#" onclick="setImage(this);return false;">image 2</a> | <a href="#" onclick="clearImage(this);return false;">set no image</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id='tabs-5'>
+			<div class='title'>This Category Relates to Categories</div>
+			%%destRelatedCategories%% %%tooltip:CatToRel%%
+			<div class='title'><strong>Other</strong> Categories are Related to this Category</div>
+			%%destRelatedTo%% %%tooltip:CatFromRel%%
+			<div class='title'>This Category Relates to Products</div>
+<table aria-label="">
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%productFolders%%
+					</td>
+					<td>
+						<div>Select the Product</div>
+						<div id='catProdSelection'>
+							%%destRelatedProducts%%
+						</div> 
+						%%tooltip:CatToProd%%
+					</td>
+				</tr>
+			</table>
+		</div>
+<!if(array_key_exists('coupons:product',$GLOBALS['globals']->getRelations()))!>
+		<div id='tabs-3'>
+			<div class='title'>Deal or Offer Categories Assigned to this Category</div>
+			%%destCouponFolders%% %%tooltip:DealCatRel%%
+			<div class='title'>Individual Deal or Offer Assigned to this Category</div>
+<table aria-label="">
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%couponFolders%%
+					</td>
+					<td>
+						<div>Select the Coupon(s) %%tooltip:DealRel%%</div>
+						<div id='offerCatSelection'>
+							%%destCoupons%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+<!fi!>
+<!if(array_key_exists('product:stores',$GLOBALS['globals']->getRelations()))!>
+		<div id='tabs-4'>
+			<div class='title'>Store or Location Categories Assigned to this Category</div>
+			%%destStoreFolders%% %%tooltip:LocationCatRel%%
+			<div class='title'>Individual Stores or Locations Assigned to this Category</div>
+<table aria-label="">
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%storeFolders%%
+					</td>
+					<td>
+						<div>Select the Store(s) %%tooltip:LocationRel%%</div>
+						<div id='storeCatSelection'>
+							%%destStores%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+<!fi!>
+<!if(array_key_exists('blog:product',$GLOBALS['globals']->getRelations()))!>
+		<div id='tabs-6'>
+			<div class='title'>Blog Categories Assigned to this Category</div>
+			%%destBlogFolders%% %%tooltip:BlogCatRel%%
+			<div class='title'>Individual Blogs Assigned to this Category</div>
+<table aria-label="">
+				<tr>
+					<td>
+						<div>Select a Category</div>
+						%%blogFolders%%
+					</td>
+					<td>
+						<div>Select the Blog(s) %%tooltip:BlogRel%%</div>
+						<div id='blogCatSelection'>
+							%%destBlogs%%
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+<!fi!>
+<!if(array_key_exists('product:gallery',$GLOBALS['globals']->getRelations()))!>
+		<div id='tabs-8'>
+			<div class='title'>Galleries Assigned to this Category</div>
+			%%destGalleryFolders%% %%tooltip:GalleryCatRel%%
+		</div>
+<!fi!>
+		<div id='tabs-7'>
+			<div class='title'>Teaser %%tooltip:Teaser%%</div>
+			%%teaser%% <span class='errorMessage'>%%teaserError%%</span>
+			<div class='title'>Description %%tooltip:Description%%</div>
+			%%description%% <span class='errorMessage'>%%descriptionError%%</span>
+		</div>
+		<div id="tabs-9">
+			<div class='title'>SEO Content for Category Browsing</div>
+<table aria-label="">
+				<tbody>
+					<tr><th>Keywords:</th><td>%%meta_description%%</td></tr>
+					<tr><th>Description:</th><td>%%meta_keywords%%</td></tr>
+					<tr><th>Title:</th><td>%%browser_title%%</td></tr>
+				</tbody>
+			</table>
+		</div>
+		<input type='hidden' action='%%form:action%%'>
+		%%submit%%
+		%%showPageProperties%% 
+		%%test%% 
+		<input type='hidden' name='id' value='%%id%%' />
+		%%type%% 
+		<div class='break'></div>
+	</div>
+</form>
+<code>
+$('#destCouponFolders').chosen();
+$('#destCoupons').chosen();
+$('#destStoreFolders').chosen();
+$('#destStores').chosen();
+$('#destRelatedCategories').chosen();
+$('#destRelatedTo').chosen();
+$('#destBlogFolders').chosen();
+$('#destGalleryFolders').chosen();
+$('#destBlogs').chosen();
+$('.popovers').popover();
+$('#byProductSource').chosen();
+$('#productFolderSelector').change(function() {
+	loadProductList(this,'#catProdSelection',true);
+});
+$('#couponFolderSelector').change(function() {
+	loadCouponList(this,'#offerCatSelection',true);
+});
+$('#blogFolderSelector').change(function() {
+	loadBlogList(this,'#blogCatSelection',true);
+});
+$('#storeFolderSelector').change(function() {
+	loadStoreList(this,'#storeCatSelection',true);
+});
+$( "#tabs" ).tabs();
+</code>

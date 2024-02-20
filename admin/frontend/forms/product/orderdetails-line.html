@@ -1,0 +1,15 @@
+<tr>
+	<td class='name'>%%name%%</td>
+	<td class='qty text-right'>%%quantity%%</td>
+<!if('%%custom_package%%'=='P')!>
+	<td class='weight text-right'>%%weight%% %%weightCode%%</td>
+	<td></td>
+<!else!>
+<!if("%%product_id%%"==FEDEX_RECALC)!>
+	<td class='weight text-right'>%%weight%% %%weightCode%%</td>
+<!else!>
+	<td></td>
+<!fi!>
+	<td class='price text-right'>%%formattedValue%%</td>
+<!fi!>
+</tr>

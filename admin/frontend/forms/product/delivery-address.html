@@ -1,0 +1,22 @@
+<div class="col-sm-8">
+	<h3>%%code:value%% Address</h3>
+	<hr/>
+<table aria-label="" class="table table-striped table-hover">
+		<tr><td class="col-xs-4">Contact:</td><td class='value col-xs-12'>%%firstname%% %%lastname%%</td></tr>
+		<tr><td>Company:</td><td class='value'>%%company%%</td></tr>
+		<tr><td>Address:</td><td class='value'>%%phone1%% <a href="mailto:%%email%%">%%email%%</a></td></tr>
+		<tr><td></td><td class='value'>%%line1%%</td></tr>
+		<tr><td></td><td>%%line2%% </td></tr>
+		<tr><td></td><td>%%city%%, %%provinceCode%% %%postalcode%%</td></tr>
+		<tr><td>Scheduled:</td><td class='value'><!@@(date(GLOBAL_DEFAULT_DATETIME_FORMAT,strtotime('%%action:scheduled_date%%')))@@!></td></tr>
+<!if("%%action:actual_date%%"!="0000-00-00 00:00:00")!>
+		<tr><td>Actual:</td><td class='value'><!@@(date(GLOBAL_DEFAULT_DATETIME_FORMAT,strtotime('%%action:actual_date%%')))@@!></td></tr>
+<!else!>
+		<tr><td>Actual:</td><td class='value'> </td></tr>
+<!fi!>
+		<tr><td>Driver:</td><td class='value'>%%action:firstname%% %%action:lastname%%</td></tr>
+<!if("%%action:service_type%%"=="D")!>
+		<tr><td>Signed By:</td><td class='value'>%%action:delivery_name%%</td></tr>
+<!fi!>
+	</table>
+</div>

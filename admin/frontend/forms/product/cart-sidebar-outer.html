@@ -1,0 +1,30 @@
+<div class="sidebar-cart leftBoxContainer">
+	%%header%%
+ <table aria-label="">
+		%%totals%%
+<!if(%%freeShipping%%>0)!>
+		<tr>
+			<td class='text'>Free Shipping</td><td class='value savings'>%%formattedFreeShipping%%</td>
+		</tr>
+<!fi!>
+<!if(%%totalSavings%%>0)!>
+		<tr>
+			<td class='text'>You saved:</td><td class='value savings'>%%formattedTotalSavings%%</td>
+		</tr>
+<!fi!>
+	</table>
+			<div class='coupon'>
+				<div class='title'>Discount Code or Voucher</div>
+				<div class='subtitle'>Enter your discount code or voucher to receive a discount on your total order. Multiple vouchers cannot be applied.</div>
+				%%ecomErrors%%
+				<form method='post'>
+					<input type='text' name='discount_code' value='%%discount_code%%' class='def_field_input' />
+					<input type='submit' value='SUBMIT' />
+					%%discountCode%%
+					<input type='hidden' value='1' name='updateCart' />
+				</form>
+				<div class='teaser'>
+					%%session:cart:header:discount:teaser%%
+				</div>
+			</div>
+</div>
