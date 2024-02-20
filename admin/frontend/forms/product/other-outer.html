@@ -1,0 +1,23 @@
+<div id='on-account' class="bottom20">
+	<div class="row">
+		<div class="col-xs-16 col-sm-8 col-sm-offset-4 text-center">
+			%%ecomErrors%%
+			%%errorMessage%%
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-16 text-center">
+<!if("0%%session:user:info:id%%" == "0")!>
+			<div class='alert alert-error'>You are not logged in</div>
+<!fi!>
+<!if("0%%session:user:info:id%%" != "0" && "0%%session:cart:header:total" == "0")!>
+			<div class='alert alert-error'>Your cart is empty</div>
+<!else!>
+			<form method='post'>
+				<input type='hidden' name='isOther' value='1' />
+				<input type="submit" value="BILL ME LATER" class="btn btn-red" />
+			</form>
+<!fi!>
+		</div>
+	</div>
+</div>

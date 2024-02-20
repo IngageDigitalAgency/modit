@@ -1,0 +1,15 @@
+<tr>
+	<td><!if("%%service_type%%"=="P")!>Pickup<!else!>Delivery<!fi!></td>
+<!if("%%completed%%"=="1")!>
+	<td class="alert-success">%%actual_date%%</td>
+<!else!>
+	<td class="alert-warning">%%scheduled_date%%</td>
+<!fi!>
+	<td class="a-right"><a href="/modit/orders/showOrder?o_id=%%order_id%%" target="new">%%order_id%%</a></td>
+	<td class="a-right">%%custom_commissionable_amt%%</td>
+	<td class='centered'>@</td>
+	<td class="a-right">%%percent_of_delivery%%%</td>
+	<td class="a-right">%%calculated%%</td>
+	<td class="a-right">%%override%%</td>
+	<td class="centered"><a href="#" onclick="editPayment(%%id%%);return false;"><em class="icon-edit"></em></a></td>
+</tr>
