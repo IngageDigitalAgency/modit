@@ -1,0 +1,30 @@
+<div id="artist-list">
+	<div class="banner">
+		<div class="title">Our Artists</div>
+		<div class="see_all">for a full listing <a href='#'>click here</a></div>
+		<div class="clearfix"></div>
+		<div class='line'></div>
+	</div>
+	%%listing%%
+	<div class="clearfix"></div>
+</div>
+<script>
+	$('#artist-list div.image').each(function(idx,el) {
+		var i = $(el).css('background-image');
+		var l = i.split('"');
+		if (i == 'none' || (l.length > 2 && l[1] == document.location.href)) {
+			$(el).parent().css('display','none');
+		}
+		else {
+			$(el).find('div.description').hide();
+			$(el).bind('mouseenter',function() {
+				$(this).find('div.description').show();
+				$(this).find('div.hover').hide();
+			});
+			$(el).bind('mouseleave',function() {
+				$(this).find('div.description').hide();
+				$(this).find('div.hover').show();
+			});
+		}
+	});
+</script>

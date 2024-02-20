@@ -1,0 +1,20 @@
+<html>
+<head>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+<script type="text/javascript" 
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+<title>Page Moved</title>
+</head>
+<body style="background-color:#ee3823; color:#ffffff; height:100vh; width:100vw;">
+<div class="container">
+	<div class="row">
+		<div class="col-xs-4"><img class="def_field_image" src="https://kjvcourier.ca/images/logos/kjv-courier.jpg" alt="KJV Courier"></div>
+		<div class="col-xs-12" style="padding-top:40px;"><h1>Under Maintenance - We'll be back shortly</h1></div>
+	</div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,27 @@
+<li>
+	<div class='item'>
+		<div class='wrapper' style='background-image:url(%%image4%%);'>
+		<div class="teaser">
+			<div class="discount">
+<!if("%%onSale%%"=="1")!>
+				<div class="onsale">
+					<span class="top">%%salePercentFormatted%%%<br/>OFF</span>
+					<span class="bottom">Regular Price</span>
+				</div>
+<!else!>
+				&nbsp;
+<!fi!>
+			</div>
+			<div class="name">
+				%%name%%
+				<form method="post" action="/shopping-cart">
+					%%options%% %%addToCart%% %%product_id%% %%quantity%%
+					<input type="submit" value="Buy Now" />
+				</form>
+			</div>
+			<div class='clearfix'></div>
+		</div>
+		<div class="image">%%img_image1%%</div>
+		<div class='clearfix'></div>
+	</div>
+</li>

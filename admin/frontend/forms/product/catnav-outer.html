@@ -1,0 +1,31 @@
+<div id="categories" class="leftBoxContainer">
+	<h3 id="categoriesHeading" class="leftBoxHeading">%%title%%</h3>
+	<div id="categoriesContent">
+		%%listing%%
+		<ul class="level_0">
+			<li><a href="/all-products">All Products</a></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+var acc = $('#categoriesContent ul.level_1 > li').hide();
+$('#categoriesContent ul.level_0 > li').addClass('closed');
+$('#categoriesContent ul.level_0 > li').click(function() {
+	productToggler(this);
+});
+$('#categoriesContent ul.level_0 > li > span.toggler').click(function() {
+	productToggler(this);
+});
+var a = $("#categoriesContent li.active").closest(".level_0 > li");
+if (a.length > 0) productToggler(a[0]);
+function productToggler(el) {
+	if ($(el).hasClass('open')) return false;
+	$('#categoriesContent ul.level_1 > li').slideUp();
+	$('#categoriesContent ul.level_0 > li').addClass('closed').removeClass('open');
+	$(el).toggleClass('open closed');
+	$('#categoriesContent span.toggle').html("+");
+	$(el).find('ul.submenu > li').slideDown();
+	$(el).find("span.toggle").html("-");
+	return false;
+}
+</script>
