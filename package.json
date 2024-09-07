@@ -11,10 +11,10 @@
   "author": "KJV",
   "license": "ISC",
   "dependencies": {
-    "jquery": "^1.12.4",
+    "jquery": "^3.7.1",
     "jquery-ui-dist": "^1.13.1",
-    "bootstrap": "3.3.7",
+    "bootstrap": "5.3.3",
     "jquery-contextmenu": "^2.9.2",
-    "flot": "^4.2.2"
+    "flot": "^4.2.6"
   }
 }
