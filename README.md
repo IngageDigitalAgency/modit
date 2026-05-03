@@ -1,0 +1,1 @@
+This is the KJV latest code - this could be used to merge with leasing code then (once fixed) then we should compair with Bickles code. this could become the new base to look at adding versioning controls to
